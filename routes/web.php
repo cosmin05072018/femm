@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\SuperAdmin\FantasticAdminController;
+use App\Http\Controllers\SuperAdmin\UserManagementController;
+use App\Http\Controllers\SuperAdmin\DepartmentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +18,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// radacina proiectului
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('startApp');
+})->name('StartApp');;
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// pagina in care userul este notificat ca a creat contul si trebuie sa astepte aprobarea noastra
+Route::get('/registration/pending', [RegisteredUserController::class, 'pending'])->name('registration.pending');
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,4 +37,36 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
+// SUPER ADMIN
+// Route::get('/fantastic-admin', [FantasticAdminController::class, 'index'])->name('admin.dashboard');
+
+Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->group(function () {
+    // Dashboard route
+    Route::get('/', [FantasticAdminController::class, 'index'])->name('dashboard');
+
+    // Users management
+    Route::get('/users-management', [UserManagementController::class, 'index'])->name('users-management');
+
+    // Accept user
+    Route::put('/users/{user}/accept', [UserManagementController::class, 'acceptUser'])->name('users.accept');
+
+    // User logout
+    Route::post('/logout', [FantasticAdminController::class, 'destroy'])->name('logout');
+
+    // Delete user
+    Route::delete('/users-management/{user}', [UserManagementController::class, 'destroy'])->name('users.destroy');
+
+
+    // utilizatorii din acelasi hotel
+    Route::get('/management-hotel', [UserManagementController::class, 'show'])->name('management-hotel');
+
+    // departamentele (acces pt super-admin)
+    Route::get('/departments', [DepartmentsController::class, 'index'])->name('departments');
+    Route::post('/change-color', [DepartmentsController::class, 'ChangeColorDepartments'])->name('change-color');
+
+});
+
+
+
+require __DIR__ . '/auth.php';

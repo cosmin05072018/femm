@@ -2,29 +2,36 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Symfony\Component\HttpFoundation\Response;
 
 class RedirectIfAuthenticated
 {
     /**
-     * Handle an incoming request.
+     * Manejează cererea.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
      */
-    public function handle(Request $request, Closure $next, string ...$guards): Response
+    public function handle(Request $request, Closure $next)
     {
-        $guards = empty($guards) ? [null] : $guards;
+        $user = Auth::user();
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+        if ($user && $user->status === 1) {
+            // Dacă utilizatorul este super-admin, redirecționează către /fantastic-events
+            if ($user->role === 'super-admin') {
+                return redirect('/fantastic-admin');
+            }
+
+            // Dacă utilizatorul este admin sau user, redirecționează către /hotel-manager
+            if (in_array($user->role, ['admin', 'user'])) {
+                return redirect('/hotel-manager');
             }
         }
 
+        // Continuă procesarea cererii pentru utilizatorii neautentificați sau fără condiții speciale
         return $next($request);
     }
 }

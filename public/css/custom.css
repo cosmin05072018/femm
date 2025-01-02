@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+:root {
+    --white: #ffffff;
+    --public-events: linear-gradient(to bottom, #afeeee, #40e0d0, #00ced1);
+    --hotel-manager: linear-gradient(to right, #0099ffc0, #3a7bd5);
+    --booking: linear-gradient(to right, #e43a15, #e65245);
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(
+        30deg,
+        hsla(344, 78%, 61%, 0.5),
+        hsla(187, 100%, 42%, 0.5)
+    );
+}
+
+.card {
+    border-radius: 30% 70% 70% 30% / 60% 30% 70% 40%;
+    height: 200px !important;
+    transition: 0.4s linear;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.logo-img  {
+    transition: 0.4s linear;
+    transform: scale(1.4);
+    z-index: 1;
+}
+
+.logo-img:hover {
+    transform: scale(1.7);
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.btns-first-page {
+    border: 0px !important;
+    background: linear-gradient(
+        30deg,
+        hsl(344, 78%, 61%),
+        hsla(187, 100%, 42%, 0.942)
+    );
+    color: var(--white);
+    border-radius: 50px 10px 50px 10px;
+}
+
+.btns-first-page a{
+    color: var(--white);
+    text-decoration: none !important;
+}
+
+.public-events {
+    background: var(--public-events);
+}
+
+.hotel-manager {
+    background: var(--hotel-manager);
+}
+
+.booking {
+    background: var(--booking);
+}
+
+
