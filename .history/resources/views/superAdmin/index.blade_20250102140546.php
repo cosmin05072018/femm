@@ -99,7 +99,7 @@
                 },
                 data: [{
                     type: "column",
-                    dataPoints: <?php echo json_encode($statusUsersForChart, JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
                 }]
             });
             chart.render();
