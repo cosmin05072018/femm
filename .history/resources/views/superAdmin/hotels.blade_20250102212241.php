@@ -21,7 +21,7 @@
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Hoteluri</h6>
                 </div>
-                <div class="card-body d-flex flex-direction-column gap-5">
+                <div class="card-body d-flex flex-direction-column">
                     <select name="hotel" id="hotel" class="form-select">
                         <option value="" disabled selected>Selectează un hotel</option>
                         @foreach ($hotels as $hotel)
