@@ -17,6 +17,6 @@ class HotelsController extends Controller
         $owner = User::where('role', 'owner')->first();
         $hotels = Hotel::all();
 
-        return view('superAdmin/hotels', compact('owner', 'hotels'));
+        return view('superAdmin/hotels', compact('owner'));
     }
 }

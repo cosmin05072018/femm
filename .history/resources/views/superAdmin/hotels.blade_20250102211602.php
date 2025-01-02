@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <select name="hotel" id="hotel" class="form-select">
-                        <option value="" disabled selected>Selectează un hotel</option>
+                        <option value="" disabled selected>Select a hotel</option>
                         @foreach ($hotels as $hotel)
                             <option value="{{ $hotel['id'] }}">{{ $hotel['name'] }}</option>
                         @endforeach
