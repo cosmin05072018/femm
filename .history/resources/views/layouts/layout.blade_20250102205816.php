@@ -71,7 +71,7 @@
 
             <!-- Nav Item - Hoteluri -->
             <li class="nav-item {{ request()->routeIs('admin.users-management') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.hotels') }}">
+                <a class="nav-link" href="{{ route('admin.hotels-management') }}">
                     <i class="fas fa-hotel"></i>
                     <span>Hoteluri</span></a>
             </li>
