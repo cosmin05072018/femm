@@ -32,6 +32,7 @@
                         Confirmă hotelul selectat
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
