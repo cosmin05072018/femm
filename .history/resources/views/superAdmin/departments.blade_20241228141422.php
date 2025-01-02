@@ -41,11 +41,6 @@
                                                         value="{{ $department['id'] }}">
                                                     <input name="color" class="w-50" type="color" id="colorInput"
                                                         value="{{ isset($department['color']) ? $department['color'] : '#3d5272' }}">
-                                                    <input type="text" id="colorValue"
-                                                        class="form-control w-25 ml-2 text-center"
-                                                        value="{{ isset($department['color']) ? $department['color'] : '#3d5272' }}"
-                                                        readonly
-                                                        style="color: white; background-color: {{ isset($department['color']) ? $department['color'] : '#3d5272' }};">
                                                     <button type="submit" class="btn btn-sm btn-primary ml-2"><i
                                                             class="fas fa-check"></i></button>
                                                 </form>
