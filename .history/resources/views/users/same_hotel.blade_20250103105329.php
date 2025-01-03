@@ -18,7 +18,7 @@
         <!-- Main Content -->
         <div id="content">
             <section class="bg-light p-3 shadow-sm">
-                <div class="row d-flex justify-content-center align-items-center">
+                <div class="row">
                     <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                         <div class="card w-100 text-center bg-dark text-white">
                             <div class="card-body d-flex flex-column">
