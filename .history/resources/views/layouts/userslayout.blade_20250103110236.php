@@ -580,6 +580,10 @@
                                     <div class="dropdown-user-scroll scrollbar-outer">
                                         <li>
                                             <div class="user-box">
+                                                <div class="avatar-lg">
+                                                    <img src="{{ asset('images/user-interface/profile.jpg') }}"
+                                                        alt="image profile" class="avatar-img rounded" />
+                                                </div>
                                                 <div class="u-text">
                                                     <h4>
                                                         @foreach ($data['users'] as $user)
