@@ -22,6 +22,6 @@ class HotelsController extends Controller
 
     public function show(Request $request){
         $hotel = Hotel::where('id', $request->id)->first();
-        dd($hotel);
+        dd();
     }
 }
