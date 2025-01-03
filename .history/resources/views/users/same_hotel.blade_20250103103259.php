@@ -22,7 +22,7 @@
             </div>
             @foreach ($data as $a)
                 <ul>
-                    <li>{{ $a[0] }}</li>
+                    <li>{{ $a }}</li>
                 </ul>
             @endforeach
         </div>
