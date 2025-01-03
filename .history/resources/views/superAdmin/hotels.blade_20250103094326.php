@@ -28,10 +28,10 @@
                             <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-body d-flex flex-column">
-                                        <h5 class="card-title">{{ $hotel->name }}</h5>
-                                        <p class="card-text mb-4">{{ $hotel->address }}</p>
-                                        <p class="card-text mb-4">Total angajati: 0</p>
-                                        <a href="#">Vezi mai multe</a>
+                                        <h5 class="card-title">Dōtonbori Canal</h5>
+                                        <p class="card-text mb-4">Is a manmade waterway dug in the early 1600's and now
+                                            displays many landmark commercial locals and vivid neon signs.</p>
+                                        <a href="#" class="btn btn-primary mt-auto align-self-start">Book now</a>
                                     </div>
                                 </div>
                             </div>
