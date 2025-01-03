@@ -83,7 +83,7 @@ class UserManagementController extends Controller
             'users' => $users,
             'authUser' => $authUser,
             'hotelName' => $hotel->name, // Trimite numele hotelului
-        ];
+        ]
 
         // Returnăm view-ul cu datele utilizatorilor și hotelului
         return view('users.same_hotel', compact('data'));

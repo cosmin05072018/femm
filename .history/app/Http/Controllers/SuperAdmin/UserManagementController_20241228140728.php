@@ -59,18 +59,11 @@ class UserManagementController extends Controller
 
     public function show(Request $request)
     {
+
         $hotelId = session('hotel_id');
 
         if (!$hotelId) {
             return;
-        }
-
-        // Obține hotelul după ID
-        $hotel = Hotel::find($hotelId);
-
-        // Verifică dacă hotelul există
-        if (!$hotel) {
-            return back()->with('error', 'Hotelul nu a fost găsit.');
         }
 
         // Preluăm utilizatorii aferenți hotelului
@@ -78,17 +71,13 @@ class UserManagementController extends Controller
         $users = User::where('hotel_id', $hotelId)->get();
         $authUser = Auth::user();
 
-        $data = [
+        // Returnăm view-ul cu datele utilizatorilor
+        return view('users.same_hotel', [
             'departments' => $departments,
             'users' => $users,
-            'authUser' => $authUser,
-            'hotelName' => $hotel->name, // Trimite numele hotelului
-        ];
-
-        // Returnăm view-ul cu datele utilizatorilor și hotelului
-        return view('users.same_hotel', compact('data'));
+            'authUser' => $authUser
+        ]);
     }
-
 
 
 

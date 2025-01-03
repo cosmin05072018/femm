@@ -78,15 +78,13 @@ class UserManagementController extends Controller
         $users = User::where('hotel_id', $hotelId)->get();
         $authUser = Auth::user();
 
-        $data = [
+        // Returnăm view-ul cu datele utilizatorilor și hotelului
+        return view('users.same_hotel', [
             'departments' => $departments,
             'users' => $users,
             'authUser' => $authUser,
             'hotelName' => $hotel->name, // Trimite numele hotelului
-        ];
-
-        // Returnăm view-ul cu datele utilizatorilor și hotelului
-        return view('users.same_hotel', compact('data'));
+        ]);
     }
 
 
