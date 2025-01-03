@@ -24,7 +24,7 @@
                 <div class="row">
                     @foreach ($data['departments'] as $department)
                         <!--ADD CLASSES HERE d-flex align-items-stretch-->
-                        <div class="col-lg-4 mb-3 d-flex align-items-stretch" style="background: {{ isset($department['color']) ? $department['color'] : '#3d5272' }};">
+                        <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                             <div class="card w-100 text-center">
                                 <div class="card-body d-flex flex-column">
                                     <h3 class="card-title">{{ $department->name }}</h3>
