@@ -27,8 +27,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
+
                     @foreach ($data['departments'] as $department)
                         <!--ADD CLASSES HERE d-flex align-items-stretch-->
                         <div class="col-lg-4 mb-3 d-flex align-items-stretch">
