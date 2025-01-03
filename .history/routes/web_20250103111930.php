@@ -69,7 +69,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // hotele
     Route::get('/hotels', [HotelsController::class, 'index'])->name('hotels');
 
-    Route::get('/hotel/{id}', [HotelsController::class, 'show'])->name('hotel.show');
+    Route::get('/hotel/{id}', [HotelController::class, 'show'])->name('hotel.show');
 
 
 });
