@@ -28,7 +28,7 @@
                             <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                                 <div class="card w-100 text-center">
                                     <div class="card-body d-flex flex-column">
-                                        <h3 class="card-title">{{ $hotel->name }}</h3>
+                                        <h5 class="card-title">{{ $hotel->name }}</h5>
                                         <p class="card-text mb-4">{{ $hotel->address }}</p>
                                         <p class="card-text mb-4">Total angajati: 0</p>
                                         <a href="#">Vezi mai multe</a>
