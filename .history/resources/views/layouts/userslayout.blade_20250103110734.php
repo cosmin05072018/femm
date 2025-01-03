@@ -71,7 +71,7 @@
                     <ul class="nav nav-secondary">
                         <li class="nav-item active">
                             <a data-bs-toggle="collapse" href="#dashboard" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-briefcase"></i>
+                                <i class="fas fa-home"></i>
                                 <p>Departamente</p>
                             </a>
                         </li>
