@@ -190,7 +190,6 @@
                                     <tr>
                                         <td>{{ $counter++ }}</td>
                                         <td>{{ $employee->name }}</td>
-                                        <td>{{ $employee->function }}</td>
                                         <td>{{ $employee->phone }}</td>
                                         <td>{{ $employee->email }}</td>
                                     </tr>
