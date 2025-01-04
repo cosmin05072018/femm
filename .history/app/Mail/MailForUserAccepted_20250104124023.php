@@ -9,8 +9,6 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 
 class MailForUserAccepted extends Mailable
@@ -55,5 +53,4 @@ class MailForUserAccepted extends Mailable
                     'email' => $this->user->email,
                     'password' => $password
                 ]);
-}
 }
