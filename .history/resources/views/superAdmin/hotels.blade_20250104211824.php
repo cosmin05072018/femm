@@ -31,7 +31,7 @@
                                         <p class="card-text mb-4">Adresă: {{ $hotel->address }}</p>
                                         <p class="card-text mb-4">Total angajati:
                                             @foreach ($hotelsWithEmployeeCount as $hotel)
-                                                {{ $hotel->employee_count }}
+                                            {{ $hotel->employee_count }}
                                             @endforeach
                                         </p>
                                         <a href="{{ route('admin.hotel.show', ['id' => $hotel->id]) }}">Vezi mai multe</a>
