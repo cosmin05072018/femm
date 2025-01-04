@@ -58,6 +58,7 @@
                 <div class="card-header py-3 d-flex">
                     <h3 class="card-title">
                         <i class="fas fa-user-plus me-2 text-primary"></i> Adaugă angajați
+
                     </h3>
                 </div>
                 <div class="card border-0">
