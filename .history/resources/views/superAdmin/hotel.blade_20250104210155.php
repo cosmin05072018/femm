@@ -237,15 +237,6 @@
         document.getElementById('backButton').addEventListener('click', function() {
             window.location.href = 'https://femm.ro/public/fantastic-admin/hotels';
         });
-
-        document.getElementById('role').addEventListener('change', function() {
-            var role = this.value;
-            if (role === '4') { // '4' este ID-ul rolului "user"
-                document.getElementById('functie-group').style.display = 'block';
-            } else {
-                document.getElementById('functie-group').style.display = 'none';
-            }
-        });
     </script>
 
 @endsection

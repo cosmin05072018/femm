@@ -142,7 +142,7 @@
                             </div>
 
                             <!-- Input Functie -->
-                            <div class="mb-3 col-md-5 col-12 p-0" id="functie-group" style="display: none;">
+                            <div class="mb-3 col-md-5 col-12 p-0">
                                 <label for="functie" class="form-label">Functie</label>
                                 <input type="text" class="form-control @error('functie') is-invalid @enderror"
                                     id="functie" name="functie" placeholder="Introduceti numele functiei"
@@ -236,15 +236,6 @@
     <script>
         document.getElementById('backButton').addEventListener('click', function() {
             window.location.href = 'https://femm.ro/public/fantastic-admin/hotels';
-        });
-
-        document.getElementById('role').addEventListener('change', function() {
-            var role = this.value;
-            if (role === '4') { // '4' este ID-ul rolului "user"
-                document.getElementById('functie-group').style.display = 'block';
-            } else {
-                document.getElementById('functie-group').style.display = 'none';
-            }
         });
     </script>
 
