@@ -37,6 +37,6 @@ class CreateUserController extends Controller
             'department_id' => $department_id
         ]);
 
-        return redirect()->to(url()->previous() . '#formular-angajati');
+        return redirect()->back();
     }
 }

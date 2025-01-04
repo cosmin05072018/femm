@@ -54,7 +54,7 @@
                 </div>
             </div>
 
-            <div class="mt-5 card shadow mb-4" id="formular-angajati">
+            <div class="mt-5 card shadow mb-4">
                 <div class="card-header py-3 d-flex">
                     <h3 class="card-title">
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
