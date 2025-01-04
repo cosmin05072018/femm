@@ -47,6 +47,6 @@ class HotelsController extends Controller
 
         $hotel->delete(); // Ștergem hotelul
 
-        return redirect()->route('/hotels');
+        return redirect()->route('superadmin.hotels.index')->with('success', 'Hotelul a fost șters cu succes.');
     }
 }
