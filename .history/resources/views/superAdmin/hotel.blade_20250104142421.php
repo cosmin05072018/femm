@@ -56,10 +56,10 @@
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
                         <div class="col-md-6 border-1">
-                            <p class="">Adauga angajat</p>
+                            <p class="p-5">Adauga angajat</p>
                         </div>
                         <div class="col-md-6">
-                            <p class="">Tabel angajati</p>
+                            <p class="p-5">Tabel angajati</p>
                         </div>
                     </div>
                 </section>
