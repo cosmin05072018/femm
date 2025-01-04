@@ -29,7 +29,7 @@ class HotelsController extends Controller
         $users = User::where('hotel_id', $request->id)->get();
         $departments = Department::all();
         $employees = Employee::where('hotel_id', $hotelSelected)->get();
-        dd($employees);
+        dd($employees)
         $roles = Role::whereIn('name', ['admin', 'user'])->get();
 
         return view('superAdmin/hotel', compact('owner', 'users', 'hotelSelected', 'departments', 'roles', 'employees'));
