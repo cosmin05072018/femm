@@ -157,15 +157,6 @@
         document.getElementById('backButton').addEventListener('click', function() {
             window.history.back();
         });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            if (window.location.hash === '#formular-angajati') {
-                const target = document.querySelector('#formular-angajati');
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
     </script>
 
 @endsection

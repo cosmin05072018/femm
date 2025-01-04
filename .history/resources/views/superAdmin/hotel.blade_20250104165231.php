@@ -144,6 +144,7 @@
                             <!-- Buton Submit -->
                             <div class="mb-3 col-md-5 col-12 p-0">
                                 <button type="submit" class="btn btn-primary w-100">Salvează</button>
+                                <a href="formular-angajati"></a>
                             </div>
                         </form>
 
@@ -156,15 +157,6 @@
     <script>
         document.getElementById('backButton').addEventListener('click', function() {
             window.history.back();
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-            if (window.location.hash === '#formular-angajati') {
-                const target = document.querySelector('#formular-angajati');
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
         });
     </script>
 
