@@ -28,8 +28,8 @@
             </button>
             <div class="mt-3 card shadow mb-4">
                 <div class="card-header py-3 d-flex">
-                    <span>Hotel selectat:</span>
                     <h2 class="m-0 font-weight-bold text-primary">
+                        <span>Hotel selectat:</span>
                         <b>{{ $hotelSelected->name ?? 'Numele hotelului nu este disponibil' }}</b>
                     </h2>
                 </div>
