@@ -24,7 +24,7 @@ class HotelsController extends Controller
             return $hotel;
         });
 
-        return view('superAdmin/hotels', compact('owner', 'hotelsWithEmployeeCount'));
+        return view('superAdmin/hotels', compact('owner', 'hotels'));
     }
 
     public function show(Request $request)

@@ -17,14 +17,12 @@ class HotelsController extends Controller
     public function index()
     {
         $owner = User::where('role', 'owner')->first();
-        $hotels = Hotel::all();
-
         $hotelsWithEmployeeCount = $hotels->map(function ($hotel) {
             $hotel->employee_count = Employee::where('hotel_id', $hotel->id)->count(); // Calculăm angajații
             return $hotel;
         });
 
-        return view('superAdmin/hotels', compact('owner', 'hotelsWithEmployeeCount'));
+        return view('superAdmin/hotels', compact('owner', 'hotels'));
     }
 
     public function show(Request $request)

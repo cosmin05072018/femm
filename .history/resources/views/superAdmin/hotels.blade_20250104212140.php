@@ -29,7 +29,7 @@
                                     <div class="card-body d-flex flex-column">
                                         <h3 class="card-title">{{ $hotel->name }}</h3>
                                         <p class="card-text mb-4">Adresă: {{ $hotel->address }}</p>
-                                        <p class="card-text mb-4">Total angajati: {{ $hotel->employee_count }}</p>
+                                        <p class="card-text mb-4">Total angajati: 0</p>
                                         <a href="{{ route('admin.hotel.show', ['id' => $hotel->id]) }}">Vezi mai multe</a>
                                     </div>
                                 </div>
