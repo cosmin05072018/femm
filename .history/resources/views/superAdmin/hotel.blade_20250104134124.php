@@ -11,12 +11,6 @@
         .card-custom form input {
             cursor: pointer !important;
         }
-
-        .custom-btn {
-            display: inline-flex !important;
-            width: auto !important;
-            padding: 0.5rem 1rem !important;
-        }
     </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -29,8 +23,7 @@
                 </button>
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Hotel selectat:
-                        <b>{{ $hotelSelected->name ?? 'Numele hotelului nu este disponibil' }}</b>
-                    </h6>
+                        <b>{{ $hotelSelected->name ?? 'Numele hotelului nu este disponibil' }}</b></h6>
                 </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
