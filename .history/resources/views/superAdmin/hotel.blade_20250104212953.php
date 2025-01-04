@@ -233,11 +233,6 @@
                         @endif
                     </div>
                 @endforeach
-                <form action="{{ route('admin.hotel.destroy', $hotelSelected->id) }}" method="POST" class="mt-2">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Șterge hotel</button>
-                </form>
             </div>
         </div>
     </div>
