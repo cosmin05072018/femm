@@ -53,8 +53,8 @@
 
                     </div>
                 </div>
-                <section>
-                    <div class="row gap-4">
+                <section class="bg-light p-3 shadow-sm">
+                    <div class="row">
                         <div class="col-md-6 bg-light shadow-sm">
                             <p class="">Adauga angajat</p>
                         </div>
