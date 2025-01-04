@@ -157,67 +157,67 @@
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
                     </h3>
                 </div>
-                @foreach ($departments as $department)
-                    <div class="mb-4">
-                        <h3>{{ $department->name }}</h3>
+                @foreach($departments as $department)
+            <div class="mb-4">
+                <h3>{{ $department->name }}</h3>
 
-                        <!-- Șefi Departament -->
-                        <h4>Șefi Departament</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nume</th>
-                                    <th>Telefon</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $counter = 1; @endphp
-                                @foreach ($employees->where('department_id', $department->id)->where('role_id', 3) as $employee)
-                                    <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $employee->name }}</td>
-                                        <td>{{ $employee->phone }}</td>
-                                        <td>{{ $employee->email }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <!-- Șefi Departament -->
+                <h4>Șefi Departament</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nume</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $counter = 1; @endphp
+                        @foreach($employees->where('department_id', $department->id)->where('role_id', 3) as $employee)
+                            <tr>
+                                <td>{{ $counter++ }}</td>
+                                <td>{{ $employee->name }}</td>
+                                <td>{{ $employee->phone }}</td>
+                                <td>{{ $employee->email }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                        @if ($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
-                            <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
-                        @endif
+                @if($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
+                    <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
+                @endif
 
-                        <!-- Angajați -->
-                        <h4>Angajați</h4>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Nume</th>
-                                    <th>Telefon</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $counter = 1; @endphp
-                                @foreach ($employees->where('department_id', $department->id)->where('role_id', 4) as $employee)
-                                    <tr>
-                                        <td>{{ $counter++ }}</td>
-                                        <td>{{ $employee->name }}</td>
-                                        <td>{{ $employee->phone }}</td>
-                                        <td>{{ $employee->email }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                <!-- Angajați -->
+                <h4>Angajați</h4>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nume</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @php $counter = 1; @endphp
+                        @foreach($employees->where('department_id', $department->id)->where('role_id', 4) as $employee)
+                            <tr>
+                                <td>{{ $counter++ }}</td>
+                                <td>{{ $employee->name }}</td>
+                                <td>{{ $employee->phone }}</td>
+                                <td>{{ $employee->email }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
 
-                        @if ($employees->where('department_id', $department->id)->where('role_id', 4)->isEmpty())
-                            <p class="text-center">Nu sunt angajați înregistrați pentru acest departament.</p>
-                        @endif
-                    </div>
-                @endforeach
+                @if($employees->where('department_id', $department->id)->where('role_id', 4)->isEmpty())
+                    <p class="text-center">Nu sunt angajați înregistrați pentru acest departament.</p>
+                @endif
+            </div>
+        @endforeach
             </div>
         </div>
     </div>
