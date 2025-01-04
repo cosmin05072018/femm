@@ -21,14 +21,6 @@ class CreateUserController extends Controller
         $role_id = $request->role;
         $department_id = $request->department;
 
-        Employee::create([
-            'name' => $name,
-            'phone' => $phone,
-            'email' => $email,
-            'role_id' => $role_id,
-            'department_id' => $department_id
-        ]);
-
         return redirect()->back();
     }
 }

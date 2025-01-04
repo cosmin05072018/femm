@@ -14,20 +14,12 @@ class CreateUserController extends Controller
 {
     public function create(Request $request)
     {
-        $hotel = $request->id;
-        $name = $request->name;
-        $phone = $request->phone;
+        $hotel= $request->id;
+        $name= $request->name;
+        $phone= $request->phone;
         $email = $request->email;
-        $role_id = $request->role;
-        $department_id = $request->department;
-
-        Employee::create([
-            'name' => $name,
-            'phone' => $phone,
-            'email' => $email,
-            'role_id' => $role_id,
-            'department_id' => $department_id
-        ]);
+        $role= $request->role;
+        $department= $request->department;
 
         return redirect()->back();
     }
