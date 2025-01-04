@@ -57,11 +57,27 @@
             <div class="mt-3 card shadow mb-4">
                 <div class="card-header py-3 d-flex">
                     <h3 class="card-title">
-                        <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
+                        <i class="fas fa-info-circle me-2 text-primary"></i> Informații
                     </h3>
                 </div>
                 <div class="card border-0">
                     <div class="card-body">
+                        @foreach ($users as $user)
+                            <p><span>Nume Hotel:</span> <b>{{ $user['hotel_name'] }}</b></p>
+                            <p><span>Nume Manager:</span> <b>{{ $user['manager_name'] }}</b></p>
+                            <p><span>Rol:</span>
+                                <b>
+                                    @if ($user['role'] == 'super-admin')
+                                        GENERAL MANAGER
+                                    @endif
+                                </b>
+                            </p>
+                            <p><span>Mail:</span> <b>{{ $user['email'] }}</b></p>
+                            <p><span>Nume Companie:</span> <b>{{ $user['company_name'] }}</b></p>
+                            <p><span>CUI Companie:</span> <b>{{ $user['company_cui'] }}</b></p>
+                            <p><span>Oras:</span> <b>{{ $user['county'] }}</b></p>
+                            <p><span>Adresa Companie:</span> <b>{{ $user['company_address'] }}</b></p>
+                        @endforeach
                     </div>
                 </div>
             </div>

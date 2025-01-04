@@ -53,18 +53,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="mt-3 card shadow mb-4">
-                <div class="card-header py-3 d-flex">
-                    <h3 class="card-title">
-                        <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
-                    </h3>
-                </div>
-                <div class="card border-0">
-                    <div class="card-body">
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
