@@ -37,13 +37,4 @@ class Hotel extends Model
     {
         return $this->hasMany(Employee::class, 'hotel_id');
     }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($hotel) {
-            $hotel->employees()->delete(); // Șterge angajații asociați
-        });
-    }
 }

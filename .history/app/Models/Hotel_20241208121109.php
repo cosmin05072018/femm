@@ -32,18 +32,4 @@ class Hotel extends Model
     {
         return $this->belongsToMany(Department::class, 'hotel_department');
     }
-
-    public function employees()
-    {
-        return $this->hasMany(Employee::class, 'hotel_id');
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::deleting(function ($hotel) {
-            $hotel->employees()->delete(); // Șterge angajații asociați
-        });
-    }
 }
