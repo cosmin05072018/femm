@@ -113,7 +113,7 @@
                             </div>
 
                             <!-- Buton Submit -->
-                            <div class="mb-3 col-md-4 col-12 p-0">
+                            <div class="mb-3 col-md-5 col-12 p-0">
                                 <button type="submit" class="btn btn-primary ">Salvează</button>
                             </div>
                         </form>
