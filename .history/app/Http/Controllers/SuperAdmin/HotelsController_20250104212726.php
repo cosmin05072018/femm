@@ -39,10 +39,8 @@ class HotelsController extends Controller
         return view('superAdmin/hotel', compact('owner', 'users', 'hotelSelected', 'departments', 'roles', 'employees'));
     }
 
-    public function destroy(Request $request)
+    public function destroy($userId)
     {
-
-        dd('1');
         // // Găsește utilizatorul pe baza ID-ului
         // $user = User::findOrFail($userId);
 

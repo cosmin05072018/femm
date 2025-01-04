@@ -73,7 +73,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // create user for hotel
     Route::post('/hotel/{id}/create-user', [CreateUserController::class, 'create'])->name('hotel.create-user');
     // delete hotel
-    Route::delete('hotel/{id}', [HotelsController::class, 'destroy'])->name('hotel.destroy');
+    Route::delete('hotel/{id}', [HotelsController::class, 'destroy'])->name('admin.hotel.destroy');
 
 });
 

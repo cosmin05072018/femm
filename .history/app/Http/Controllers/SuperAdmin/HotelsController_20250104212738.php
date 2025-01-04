@@ -41,8 +41,6 @@ class HotelsController extends Controller
 
     public function destroy(Request $request)
     {
-
-        dd('1');
         // // Găsește utilizatorul pe baza ID-ului
         // $user = User::findOrFail($userId);
 
