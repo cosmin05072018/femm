@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <section>
-                    <div class="row gap-2">
+                    <div class="row">
                         <div class="col-md-6 bg-secondary ">
                             <p class="">Adauga angajat</p>
                         </div>

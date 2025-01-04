@@ -54,11 +54,11 @@
                     </div>
                 </div>
                 <section>
-                    <div class="row gap-2">
-                        <div class="col-md-6 bg-secondary ">
+                    <div class="row">
+                        <div class="col-md-6 bg-light">
                             <p class="">Adauga angajat</p>
                         </div>
-                        <div class="col-md-6 bg-secondary ">
+                        <div class="col-md-6 bg-light">
                             <p class="">Tabel angajati</p>
                         </div>
                     </div>
