@@ -40,7 +40,7 @@
                         </h3>
                         @foreach ($users as $user)
                             <p><span>Nume Manager</span>{{ $user['company_name'] }}</p>
-                            {{ $user }}
+                            {{ $user}}
                         @endforeach
 
                     </div>

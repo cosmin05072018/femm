@@ -38,18 +38,15 @@
                         <h3 class="card-title">
                             <i class="fas fa-info-circle me-2 text-primary"></i> Informații
                         </h3>
-                        @foreach ($users as $user)
-                            <p><span>Nume Manager</span>{{ $user['company_name'] }}</p>
-                            {{ $user }}
-                        @endforeach
-
                     </div>
                 </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
                         {{ $hotelSelected }}
                         <br>
-
+                        @foreach ($users as $user)
+                            {{ $user['company_name'] }}
+                        @endforeach
                     </div>
                 </section>
             </div>
