@@ -23,7 +23,7 @@
                 </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
-                        {{ $hotelSelected }}
+                        {{ hotelSelected }}
                     </div>
                 </section>
             </div>
