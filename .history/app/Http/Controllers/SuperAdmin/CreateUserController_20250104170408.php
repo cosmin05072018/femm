@@ -36,7 +36,6 @@ class CreateUserController extends Controller
             'role_id' => $role_id,
             'department_id' => $department_id
         ]);
-        dd(1);
 
         // return redirect()->to(route('admin.hotel.shows', ['id' => $hotel->id. '#formular-angajati']));
 
