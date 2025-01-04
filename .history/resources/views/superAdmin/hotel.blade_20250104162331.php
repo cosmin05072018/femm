@@ -85,7 +85,7 @@
                                 <input type="text" class="form-control" id="email" name="email"
                                     placeholder="Introduceti adresa de email">
                                 <small class="form-text text-muted">Adresa de email va fi completată automat cu
-                                    @femm.ro</small>
+                                    @femm.ro.</small>
                             </div>
 
                             <!-- Select Sef Departament -->
