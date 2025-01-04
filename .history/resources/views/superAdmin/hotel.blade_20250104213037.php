@@ -31,12 +31,6 @@
                     <h3 class="card-title">
                         <i class="fas fa-info-circle me-2 text-primary"></i> Informații
                     </h3>
-
-                    <form action="{{ route('admin.hotel.destroy', $hotelSelected->id) }}" method="POST" class="mt-2">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Șterge hotel</button>
-                    </form>
                 </div>
                 <div class="card border-0">
                     <div class="card-body">
