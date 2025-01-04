@@ -34,12 +34,7 @@ class MailForUserAccepted extends Mailable
     /**
      * Get the message content definition.
      */
-    // public function content(): Content
-    // {
-    //     return $this->view('emails.user-accepted');
-    // }
-
-    public function build()
+    public function content(): Content
     {
         return $this->view('emails.user-accepted');
     }
