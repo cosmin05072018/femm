@@ -134,6 +134,7 @@
                                 @enderror
                             </div>
 
+
                             <!-- Select Departament -->
                             <div class="mb-3 col-md-5 col-12 p-0">
                                 <label for="department" class="form-label">Departament</label>
