@@ -20,6 +20,6 @@ class CreateUserController extends Controller
         $role= $request->role;
         $department= $request->department;
 
-        dd(compact('hotel', 'name', 'phone', 'email', 'role', 'department'));
+        dd($request->all(), ); // Afișează toate datele din inputuri
     }
 }

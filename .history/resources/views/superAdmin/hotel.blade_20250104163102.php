@@ -65,6 +65,7 @@
                         <form action="{{ route('admin.hotel.create-user', ['id' => $hotelSelected->id]) }}" method="POST">
                             @csrf
                             <!-- Input Nume -->
+                            <!-- Input Nume -->
                             <div class="mb-3 col-md-5 col-12 p-0">
                                 <label for="name" class="form-label">Nume</label>
                                 <input type="text" class="form-control" id="name" name="name"

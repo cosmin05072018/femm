@@ -24,7 +24,7 @@
         <!-- Main Content -->
         <div id="content">
             <button id="backButton" class="btn btn-outline-primary d-inline-flex align-items-center custom-btn">
-                <i class="fas fa-arrow-left me-2"></i> Back
+                <i class="fas fa-arrow-left me-2"></i> Back {{ $hotelSelected->id }}
             </button>
             <div class="mt-5 card shadow mb-4">
                 <div class="card-header py-3 d-flex">
@@ -64,6 +64,7 @@
                     <div class="card-body">
                         <form action="{{ route('admin.hotel.create-user', ['id' => $hotelSelected->id]) }}" method="POST">
                             @csrf
+                            <!-- Input Nume -->
                             <!-- Input Nume -->
                             <div class="mb-3 col-md-5 col-12 p-0">
                                 <label for="name" class="form-label">Nume</label>
