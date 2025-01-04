@@ -38,8 +38,9 @@
                         {{ $hotelSelected }}
                         <br>
                         @foreach ($users as $user)
-                            {{ $user['company_name'] }}
+
                         @endforeach
+                        {{ $users['company_name'] }}
                     </div>
                 </section>
             </div>
