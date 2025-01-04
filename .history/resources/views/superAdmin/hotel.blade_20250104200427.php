@@ -158,7 +158,7 @@
                     </h3>
                 </div>
                 @foreach ($departments as $department)
-                    <div class="mb-4 p-4">
+                    <div class="mb-4 p-4 border-bottom">
                         <h3>Departament: <b>{{ $department->name }}</b></h3>
 
                         <!-- Șefi Departament -->
