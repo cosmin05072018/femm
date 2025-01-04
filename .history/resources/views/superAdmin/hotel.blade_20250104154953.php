@@ -62,7 +62,7 @@
                 </div>
                 <div class="card border-0">
                     <div class="card-body">
-                        <form action="{{ route('admin.hotel.create-user') }}" method="POST">
+                        <form action="" method="POST">
                             @csrf
                             <!-- Input Nume -->
                             <div class="mb-3 col-md-5 col-12 p-0">

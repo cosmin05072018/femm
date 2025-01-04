@@ -7,7 +7,6 @@ use App\Http\Controllers\SuperAdmin\FantasticAdminController;
 use App\Http\Controllers\SuperAdmin\UserManagementController;
 use App\Http\Controllers\SuperAdmin\DepartmentsController;
 use App\Http\Controllers\SuperAdmin\HotelsController;
-use App\Http\Controllers\SuperAdmin\CreateUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +70,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     Route::get('/hotels', [HotelsController::class, 'index'])->name('hotels');
     Route::get('/hotel/{id}', [HotelsController::class, 'show'])->name('hotel.show');
     // create user for hotel
-    Route::post('/hotel/create-user', [CreateUserController::class, 'create'])->name('hotel.create-user');
+    Route::post('/hotel/{id}', [HotelsController::class, 'show'])->name('hotel.show');
 });
 
 
