@@ -33,15 +33,6 @@
                         <b>{{ $hotelSelected->name ?? 'Numele hotelului nu este disponibil' }}</b>
                     </h2>
                 </div>
-                <div class="col-lg-4 mb-3 d-flex align-items-stretch">
-                    <div class="card w-100 text-center">
-                        <div class="card-body d-flex flex-column">
-                            <h3 class="card-title">
-                                <i class="fas fa-info-circle me-2 text-primary"></i> Informații
-                            </h3>
-                        </div>
-                    </div>
-                </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
                         {{ $hotelSelected }}

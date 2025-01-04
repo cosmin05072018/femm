@@ -39,6 +39,7 @@
                             <h3 class="card-title">
                                 <i class="fas fa-info-circle me-2 text-primary"></i> Informații
                             </h3>
+
                         </div>
                     </div>
                 </div>
