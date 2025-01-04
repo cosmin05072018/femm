@@ -37,7 +37,7 @@
                     <div class="row">
                         {{ $hotelSelected }}
                         <br>
-                        {{ $users['company_name'] }}
+                        {{ $users }}
                     </div>
                 </section>
             </div>
