@@ -22,8 +22,7 @@
                     <i class="fas fa-arrow-left"></i> Back
                 </button>
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Hotel selectat:
-                        <b>{{ $hotelSelected->name ?? 'Numele hotelului nu este disponibil' }}</b></h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Hotel selectat: <b>{{ $hotelSelected->name ?? 'Numele hotelului nu este disponibil' }}</b></h6>
                 </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
@@ -33,11 +32,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('backButton').addEventListener('click', function() {
-            window.history.back();
-        });
-    </script>
-
 @endsection
