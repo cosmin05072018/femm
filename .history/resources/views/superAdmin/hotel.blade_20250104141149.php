@@ -35,7 +35,6 @@
                 <div class="card border-0">
                     <div class="card-body">
                         @foreach ($users as $user)
-                            <p><span>Nume Hotel:</span> <b>{{ $user['hotel_name'] }}</b></p>
                             <p><span>Nume Manager:</span> <b>{{ $user['manager_name'] }}</b></p>
                             <p><span>Rol:</span>
                                 <b>
