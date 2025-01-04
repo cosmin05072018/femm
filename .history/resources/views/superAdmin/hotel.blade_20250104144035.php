@@ -52,7 +52,6 @@
                         @endforeach
                     </div>
                 </div>
-                <h4>Adauga angajati</h4>
             </div>
         </div>
     </div>

@@ -50,9 +50,14 @@
                             <p><span>Oras:</span> <b>{{ $user['county'] }}</b></p>
                             <p><span>Adresa Companie:</span> <b>{{ $user['company_address'] }}</b></p>
                         @endforeach
+
                     </div>
                 </div>
-                <h4>Adauga angajati</h4>
+                <section>
+                    <div class="row">
+                            <p class="">Adauga angajat</p>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
