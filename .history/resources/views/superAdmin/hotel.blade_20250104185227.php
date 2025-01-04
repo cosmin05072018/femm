@@ -159,73 +159,39 @@
                 </div>
                 <div class="card border-0">
                     <div class="card-body">
-                        @if($employees->where('role_id', 3)->count() > 0)
-                            <table class="table table-bordered">
-                                <thead>
+                        tabel cu angajatii
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nume</th>
+                                    <th>Telefon</th>
+                                    <th>Email</th>
+                                    <th>Rol</th>
+                                    <th>Departament</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $counter = 1; @endphp
+                                @foreach($employees as $employee)
                                     <tr>
-                                        <th>#</th>
-                                        <th>Nume</th>
-                                        <th>Telefon</th>
-                                        <th>Email</th>
-                                        <th>Departament</th>
+                                        <td>{{ $counter++ }}</td>
+                                        <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->phone }}</td>
+                                        <td>{{ $employee->email }}</td>
+                                        <td>
+                                            @if($employee->role_id == 3)
+                                                <span class="badge bg-success">Șef Departament</span>
+                                            @elseif($employee->role_id == 4)
+                                                <span class="badge bg-primary">Angajat</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $employee->department->name }}</td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    @php $counter = 1; @endphp
-                                    @foreach($employees->where('role_id', 3) as $employee)
-                                        <tr>
-                                            <td>{{ $counter++ }}</td>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->phone }}</td>
-                                            <td>{{ $employee->email }}</td>
-                                            <td>{{ $employee->department->name }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p class="text-center">Nu există șefi de departamente înregistrati.</p>
-                        @endif
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
-
-                <!-- Tabel pentru Angajați -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h3 class="card-title">
-                            <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        @if($employees->where('role_id', 4)->count() > 0)
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Nume</th>
-                                        <th>Telefon</th>
-                                        <th>Email</th>
-                                        <th>Departament</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $counter = 1; @endphp
-                                    @foreach($employees->where('role_id', 4) as $employee)
-                                        <tr>
-                                            <td>{{ $counter++ }}</td>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->phone }}</td>
-                                            <td>{{ $employee->email }}</td>
-                                            <td>{{ $employee->department->name }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        @else
-                            <p class="text-center">Nu există angajați înregistrați.</p>
-                        @endif
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
