@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Hotel')
+@section('title', 'Hoteluri')
 
 @section('content')
     <style>
@@ -23,7 +23,7 @@
                 </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
-                        @foreach ($data[$hotel] as $hotel)
+                        @foreach ($data as $a)
                             <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                                 <div class="card w-100 text-center">
                                     <div class="card-body d-flex flex-column">

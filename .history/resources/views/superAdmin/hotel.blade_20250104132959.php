@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Hotel')
+@section('title', 'Hoteluri')
 
 @section('content')
     <style>
