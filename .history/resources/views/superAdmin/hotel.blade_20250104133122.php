@@ -23,12 +23,8 @@
                 </div>
                 <section class="bg-light p-3 shadow-sm">
                     <div class="row">
-                        @foreach ($data as $a)
-                            <ul>
-                                <li>
-                                    {{ $a }}
-                                </li>
-                            </ul>
+                        @foreach ($data['hotel'] as $hotel)
+
                         @endforeach
                     </div>
                 </section>

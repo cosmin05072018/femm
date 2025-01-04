@@ -26,7 +26,7 @@
                         @foreach ($data as $a)
                             <ul>
                                 <li>
-                                    {{ $a }}
+                                    {{ $hotel }}
                                 </li>
                             </ul>
                         @endforeach
