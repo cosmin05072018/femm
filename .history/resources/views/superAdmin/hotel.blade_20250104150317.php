@@ -67,28 +67,28 @@
                                 <!-- Input Nume -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nume</label>
-                                    <input type="text" class="form-control " id="name"
+                                    <input type="text" class="form-control w-50 " id="name"
                                         placeholder="Introduceti numele" required>
                                 </div>
 
                                 <!-- Input Număr de Telefon -->
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Număr de Telefon</label>
-                                    <input type="tel" class="form-control " id="phone"
+                                    <input type="tel" class="form-control w-50 " id="phone"
                                         placeholder="Introduceti numărul de telefon" required>
                                 </div>
 
                                 <!-- Input Email -->
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control " id="email"
+                                    <input type="email" class="form-control w-50 " id="email"
                                         placeholder="Introduceti adresa de email" required>
                                 </div>
 
                                 <!-- Select Sef Departament -->
                                 <div class="mb-3">
                                     <label for="role" class="form-label">Rol</label>
-                                    <select class="form-select " id="role" required>
+                                    <select class="form-select w-50 " id="role" required>
                                         <option value="0" disabled selected>-- Selectați rolul --</option>
                                         <option value="manager">Șef Departament</option>
                                         <option value="employee">Angajat</option>
@@ -98,7 +98,7 @@
                                 <!-- Select Departament -->
                                 <div class="mb-3">
                                     <label for="department" class="form-label">Departament</label>
-                                    <select class="form-select " id="department" required>
+                                    <select class="form-select w-50 " id="department" required>
                                         <option value="0" disabled selected>-- Selectați departamentul --</option>
                                         <option value="hr">Resurse Umane</option>
                                         <option value="it">IT</option>
