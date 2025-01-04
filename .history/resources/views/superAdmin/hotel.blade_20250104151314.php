@@ -64,28 +64,28 @@
                     <div class="card-body">
                         <form>
                             <!-- Input Nume -->
-                            <div class="mb-3 col-md-5 col-12 p-0">
+                            <div class="mb-3 col-md-4 col-12">
                                 <label for="name" class="form-label">Nume</label>
                                 <input type="text" class="form-control " id="name" placeholder="Introduceti numele"
                                     required>
                             </div>
 
                             <!-- Input Număr de Telefon -->
-                            <div class="mb-3 col-md-5 col-12 p-0">
+                            <div class="mb-3">
                                 <label for="phone" class="form-label">Număr de Telefon</label>
                                 <input type="tel" class="form-control " id="phone"
                                     placeholder="Introduceti numărul de telefon" required>
                             </div>
 
                             <!-- Input Email -->
-                            <div class="mb-3 col-md-5 col-12 p-0">
+                            <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control " id="email"
                                     placeholder="Introduceti adresa de email" required>
                             </div>
 
                             <!-- Select Sef Departament -->
-                            <div class="mb-3 col-md-5 col-12 p-0">
+                            <div class="mb-3">
                                 <label for="role" class="form-label">Rol</label>
                                 <select class="form-select" id="role" required>
                                     <option value="0" disabled selected>-- Selectați rolul --</option>
@@ -102,7 +102,7 @@
                             </div>
 
                             <!-- Select Departament -->
-                            <div class="mb-3 col-md-5 col-12 p-0">
+                            <div class="mb-3">
                                 <label for="department" class="form-label">Departament</label>
                                 <select class="form-select" id="department" required>
                                     <option value="0" disabled selected>-- Selectați departamentul --</option>
