@@ -146,7 +146,7 @@
                                 <label for="name" class="form-label">Functie</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="functie" placeholder="Introduceti numele functiei"
-                                    value="{{ old('functie') }}">
+                                    value="{{ old('name') }}">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
