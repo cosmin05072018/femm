@@ -20,8 +20,7 @@ class HotelsController extends Controller
         return view('superAdmin/hotels', compact('owner', 'hotels'));
     }
 
-    public function show(Request $request)
-    {
+    public function show(Request $request){
         $hotel = Hotel::where('id', $request->id)->first();
         $users = User::where('hotel_id', $request->id)->get();
 

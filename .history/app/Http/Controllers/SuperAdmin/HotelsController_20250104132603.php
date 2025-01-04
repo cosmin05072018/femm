@@ -22,10 +22,12 @@ class HotelsController extends Controller
 
     public function show(Request $request)
     {
-        $hotel = Hotel::where('id', $request->id)->first();
-        $users = User::where('hotel_id', $request->id)->get();
+        $hotel =
+        $users =
 
-        $data = [$hotel, $users];
+        $data = [
+            'hotel' => Hotel::where('id', $request->id)->first(),
+            'users' => User::where('hotel_id', $request->id)->get();
 
         return view('superAdmin/hotel', $data);
     }
