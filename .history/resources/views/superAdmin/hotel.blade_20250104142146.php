@@ -54,14 +54,6 @@
                     </div>
                 </div>
                 <section class="bg-light p-3 shadow-sm">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p class="p-5">Adauga angajat</p>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="p-5">Tabel angajati</p>
-                        </div>
-                    </div>
                 </section>
             </div>
         </div>
