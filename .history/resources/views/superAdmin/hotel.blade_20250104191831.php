@@ -159,7 +159,7 @@
                 </div>
                 @foreach ($departments as $department)
                     <div class="mb-4 p-4">
-                        <h3 class="text-muted">{{ $department->name }}</h3>
+                        <h3>{{ $department->name }}</h3>
 
                         <!-- Șefi Departament -->
                         <p><b>Șefi Departament</b></p>
@@ -190,7 +190,7 @@
                         @endif
 
                         <!-- Angajați -->
-                        <p><b>Angajați</b></p>
+                        <h4>Angajați</h4>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

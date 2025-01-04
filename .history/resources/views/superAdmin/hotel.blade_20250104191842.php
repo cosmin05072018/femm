@@ -159,7 +159,7 @@
                 </div>
                 @foreach ($departments as $department)
                     <div class="mb-4 p-4">
-                        <h3 class="text-muted">{{ $department->name }}</h3>
+                        <h3>{{ $department->name }}</h3>
 
                         <!-- Șefi Departament -->
                         <p><b>Șefi Departament</b></p>
