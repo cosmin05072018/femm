@@ -37,7 +37,7 @@ class CreateUserController extends Controller
             'department_id' => $department_id
         ]);
 
-        return redirect()->to(route('admin.hotel.show', ['id' => $hotel->id]) . '#formular-angajati');
+        return redirect()->to(route('admin.hotel.show', ['id' => $hotelSelected->id]) . '#formular-angajati');
 
     }
 }
