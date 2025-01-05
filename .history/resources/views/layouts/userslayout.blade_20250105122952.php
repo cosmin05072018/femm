@@ -83,20 +83,8 @@
                         </li>
                         <li class="nav-item">
                             <a data-bs-toggle="collapse" href="" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-tasks"></i>
-                                <p>Notificari de la angajati</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-users"></i>
-                                <p>Info angajati</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="" class="collapsed" aria-expanded="false">
-                                <i class="fas fa-comment-alt"></i>
-                                <p>Chat</p>
+                                <i class="fas fa-inbox"></i>
+                                <p>Notificari angajati</p>
                             </a>
                         </li>
                     </ul>
