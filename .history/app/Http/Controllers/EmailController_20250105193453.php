@@ -9,7 +9,7 @@ class EmailController extends Controller
     public function readEmail()
     {
         return response()->json([
-            'test' => '1'
-        ]);
+            'test' => '1';
+        ])
     }
 }

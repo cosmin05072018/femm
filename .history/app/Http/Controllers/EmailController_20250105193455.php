@@ -10,6 +10,6 @@ class EmailController extends Controller
     {
         return response()->json([
             'test' => '1'
-        ]);
+        ])
     }
 }

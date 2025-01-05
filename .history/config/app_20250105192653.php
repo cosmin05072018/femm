@@ -168,7 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Webklex\IMAP\Providers\LaravelServiceProvider::class,
+        Webklex\IMAP\IMAPServiceProvider::class,
     ])->toArray(),
 
     /*
