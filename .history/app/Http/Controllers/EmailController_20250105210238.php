@@ -11,7 +11,7 @@ class EmailController extends Controller
     public function readEmail(Request $request)
     {
 
-       // $email = $request->all()['email'];
+        $email = $request->all()['email'];
 
         $client = Client::account('default'); // The name from `imap.php`
         $client->connect();
