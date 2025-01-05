@@ -109,7 +109,7 @@
                             <!-- Input Parola -->
                             <div class="mb-3 col-md-5 col-12 p-0">
                                 <label for="email" class="form-label">Parola</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                <input type="text" class="form-control @error('password') is-invalid @enderror"
                                     id="password" name="password" placeholder="Introduceti parola"
                                     value="{{ old('password') }}">
                                 @error('password')
