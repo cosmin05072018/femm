@@ -63,12 +63,25 @@ class CreateUserController extends Controller
 
             $name = $validated['name'];
             $phone = $validated['phone'];
-            $email = $validated['email'] . '@femm.ro'; // Adaugă sufixul automat
+            $emailUser = $validated['email'];
+            $email = $emailUser . '@femm.ro'; // Adaugă sufixul automat
             $role_id = $validated['role'];
             $department_id = $validated['department'];
             $functie = $validated['functie'];
 
+            // Generează o parolă random pentru contul de e-mail
+            $password = Str::random(12);
 
+            // Creează contul de e-mail în cPanel
+            try {
+                createEmailAccountInCpanel($emailUser, $password, 'femm.ro');
+            } catch (\Exception $e) {
+                return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati')
+                    ->withErrors(['email' => $e->getMessage()])
+                    ->withInput();
+            }
+
+            // Salvează angajatul în baza de date
             Employee::create([
                 'name' => $name,
                 'phone' => $phone,
@@ -79,9 +92,9 @@ class CreateUserController extends Controller
                 'hotel_id' => $hotel
             ]);
 
-            return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati');
+            return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati')
+                ->with('status', 'Angajatul a fost creat, iar e-mailul a fost adăugat în cPanel.');
         } catch (\Illuminate\Validation\ValidationException $e) {
-            // Capturează erorile de validare și redirecționează cu hash-ul formularului
             return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati')
                 ->withErrors($e->validator)
                 ->withInput();
