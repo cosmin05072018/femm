@@ -19,7 +19,7 @@ class EmailController extends Controller
             $folder = $client->getFolder('INBOX');
 
             // Obține toate email-urile necitite
-            $messages = $folder->query()->get();
+            $messages = $folder->query()->unseen()->get();
 
             $emails = [];
             foreach ($messages as $message) {
