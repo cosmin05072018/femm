@@ -10,6 +10,7 @@ use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+
 use Illuminate\Support\Str;
 
 function createEmailAccountInCpanel($email, $password, $domain, $quota = 1024)
