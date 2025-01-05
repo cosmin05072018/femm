@@ -8,7 +8,6 @@ use App\Http\Controllers\SuperAdmin\UserManagementController;
 use App\Http\Controllers\SuperAdmin\DepartmentsController;
 use App\Http\Controllers\SuperAdmin\HotelsController;
 use App\Http\Controllers\SuperAdmin\CreateUserController;
-use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,7 +77,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
 
 });
 
-Route::get('/read-emails', [EmailController::class, 'readEmail']);
+Route::get('/read-emails', [EmailController::class, 'readEmail'])->middleware('auth');
 
 
 require __DIR__ . '/auth.php';

@@ -78,7 +78,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
 
 });
 
-Route::get('/read-emails', [EmailController::class, 'readEmail']);
+Route::get('/read-emails', [EmailController::class, 'readEmail'])->middleware('auth');
 
 
 require __DIR__ . '/auth.php';

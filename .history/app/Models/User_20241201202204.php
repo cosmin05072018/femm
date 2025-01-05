@@ -31,7 +31,6 @@ class User extends Authenticatable
         'manager_name',
         'company_address',
         'email',
-        'email_femm',
         'password',
         'status',
         'role',

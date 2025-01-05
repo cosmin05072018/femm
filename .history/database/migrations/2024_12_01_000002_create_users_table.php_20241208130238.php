@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('manager_name')->nullable();      // Nume Manager (poate fi null pentru super-admin)
             $table->string('company_address')->nullable();   // Sediu Firmă (poate fi null pentru super-admin)
             $table->string('email')->unique();               // Email (unic pentru fiecare firmă)
-            $table->string('email_femm')->unique();
             $table->string('password')->nullable();          // Parolă (poate fi null implicit)
             $table->tinyInteger('status')->default(0);       // Status (0 - în așteptare, 1 - aprobat, 2 - respins)
             $table->enum('role', ['owner', 'super-admin', 'admin', 'user'])->nullable(); // Roluri utilizatori
