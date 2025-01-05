@@ -21,6 +21,7 @@ class EmailController extends Controller
 
         // Fetch all unseen (new) emails
         $messages = $folder->query()->unseen()->get();
+        error_log("narcis5 ".json_encode($messages));
         Log::info("test".json_encode($messages));
 
         $emails = [];
