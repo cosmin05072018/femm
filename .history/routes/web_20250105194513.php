@@ -78,7 +78,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
 
 });
 
-Route::match(['GET', 'POST'], '/read-emails', [EmailController::class, 'readEmail']);
+Route::match(['GET', 'POST'], [EmailController::class, 'readEmail']);
 
 
 require __DIR__ . '/auth.php';
