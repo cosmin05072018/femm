@@ -9,11 +9,11 @@ class EmailController extends Controller
     public function readEmail()
     {
         // Path to the pipescript.php
-        $pipescriptPath = base_path('public_html/pipescript.php'); // folosim calea absolută
+        $pipescriptPath = 'pipescript.php';
 
         // Execute the pipescript and capture its output
         $output = '';
-        $handle = popen('php ' . escapeshellarg($pipescriptPath), 'r');
+        $handle = fopen('php ' . escapeshellarg($pipescriptPath), 'r');
         if ($handle) {
             while (!feof($handle)) {
                 $output .= fread($handle, 8192);
