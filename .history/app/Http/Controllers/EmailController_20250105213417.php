@@ -15,7 +15,6 @@ class EmailController extends Controller
             Log::info(1);
             $client = Client::account('default'); // Conexiunea IMAP definită în `imap.php`
             $client->connect();
-            Log::info($client);
 
             $folder = $client->getFolder('INBOX');
             $messages = $folder->query()->get();
