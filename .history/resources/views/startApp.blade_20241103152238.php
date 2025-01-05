@@ -869,7 +869,7 @@
             <div class="col-12 col-md-8">
                 <div class="card py-5 d-flex align-items-center justify-content-center public-events">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                        <h3 class="text-center">Public <br> Eventssssssss</h3>
+                        <h3 class="text-center">Public <br> Events</h3>
                         <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
 
                     </div>
