@@ -22,7 +22,7 @@ class EmailController extends Controller
         $messages = $inbox->messages()->all()->get();
 
         $emails = [];  // Array pentru a stoca datele emailurilor
-        dd($messages);
+        dd( $messages);
         foreach ($messages as $message) {
             // Preia subiectul și corpul mesajului
             $subject = $message->getSubject();
