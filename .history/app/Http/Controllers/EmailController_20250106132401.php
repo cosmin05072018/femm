@@ -34,12 +34,6 @@ class EmailController extends Controller
             // dd($index, $message);
             // echo '</pre>';
             // Preia subiectul și corpul mesajului
-
-            foreach ($message as $m) {
-                echo '<pre>';
-                dd($m);
-                echo '</pre>';
-            }
             $subject = $message->getSubject();
             $messageBody = strip_tags($message->getTextBody());  // elimină etichetele HTML
 
