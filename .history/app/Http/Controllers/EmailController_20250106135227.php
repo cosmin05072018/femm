@@ -54,7 +54,7 @@ class EmailController extends Controller
             $emails[] = [
                 'subject' => $subject,
                 'body' => $messageBody,
-                'from_email' => $from,  // Aici avem doar adresa de e-mail a expeditorului
+                'from_email' => $fromEmail,  // Aici avem doar adresa de e-mail a expeditorului
             ];
         }
 
