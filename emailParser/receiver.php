@@ -60,16 +60,10 @@ foreach ($data as $data_line) {
         $headers['UNMATCHED'][] = $data_line;
     }
 
-    //   $client = new \GuzzleHttp\Client();
-    //   $client->request('POST', 'https://femm.ro/api/email/receiver', [
-    //     'body' => [
-    //         'headers' => $headers,
-    //         'email' => $body,
-    //     ]
-    // ]);
+    $client = new \GuzzleHttp\Client();
     $client->request('POST', 'https://femm.ro/api/email/receiver', [
-        'form_params' => [
-            'headers' => json_encode($headers), // Trimite ca string JSON
+        'body' => [
+            'headers' => $headers,
             'email' => $body,
         ]
     ]);
