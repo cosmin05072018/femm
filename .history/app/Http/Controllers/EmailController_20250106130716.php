@@ -21,27 +21,16 @@ class EmailController extends Controller
         // Obține toate mesajele
         $messages = $inbox->messages()->all()->get();
 
-        $emails = []; // Asigură-te că array-ul este inițializat
-
-        foreach ($messages as $index => $message) {
-            // Ignoră mesajul de la indexul 0 (primul mesaj din listă)
-            if ($index == 0) {
-                continue;
-            }
-
+        $emails = [];  // Array pentru a stoca datele emailurilor
+        foreach ($messages as $message) {
             // Preia subiectul și corpul mesajului
             $subject = $message->getSubject();
             $messageBody = strip_tags($message->getTextBody());  // elimină etichetele HTML
 
-            // Verifică dacă există conținut în mesaj
-            if (empty($subject) && empty($messageBody)) {
-                continue;  // Sar peste mesajele goale
-            }
-
             // Poți adăuga o filtrare suplimentară pentru a curăța conținutul
             $messageBody = preg_replace('/(Server.*?Port.*?=\s*\d+|.*?SSL.*?Settings.*?)/s', '', $messageBody);
 
-            // Adaugă datele în array doar pentru mesajele valabile
+            // Adaugă datele în array
             $emails[] = [
                 'subject' => $subject,
                 'body' => $messageBody,
