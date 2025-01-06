@@ -30,6 +30,9 @@ class EmailController extends Controller
             if ($index == 0) {
                 continue;
             }
+            echo '<pre>';
+            dd($index, $message->header->from[0]->mail);
+            echo '</pre>';
 
             $subject = $message->getSubject();
             $messageBody = strip_tags($message->getTextBody());  // elimină etichetele HTML
