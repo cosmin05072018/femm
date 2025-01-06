@@ -1,0 +1,8 @@
+[05-Jan-2025 14:49:38 Europe/Bucharest] PHP Warning:  require(/home/femmro/public_html/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/femmro/public_html/public/index.php on line 34
+[05-Jan-2025 14:49:38 Europe/Bucharest] PHP Warning:  require(/home/femmro/public_html/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/femmro/public_html/public/index.php on line 34
+[05-Jan-2025 14:49:38 Europe/Bucharest] PHP Fatal error:  Uncaught Error: Failed opening required '/home/femmro/public_html/public/../vendor/autoload.php' (include_path='.:/opt/alt/php83/usr/share/pear:/opt/alt/php83/usr/share/php:/usr/share/pear:/usr/share/php') in /home/femmro/public_html/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/femmro/public_html/public/index.php on line 34
+[05-Jan-2025 19:12:31 UTC] narcis5 []
+[05-Jan-2025 19:16:24 UTC] narcis5 []
