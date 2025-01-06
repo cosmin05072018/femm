@@ -8,5 +8,7 @@ use Illuminate\Support\Facades\Log;
 class EmailController extends Controller {
     public function getFromReceiver(Request $request) {
        Log::info($request->all());
+       dd($request->all);
+
     }
 }
