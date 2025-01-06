@@ -26,7 +26,7 @@ class EmailController extends Controller
         foreach ($messages as $index => $message) {
 
             echo '<pre>';
-            dd($index, $message);
+            dd($index, $message)
             echo '</pre>';
             // Ignoră mesajul de la indexul 0 (primul mesaj din listă)
             if ($index == 0) {
