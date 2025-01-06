@@ -22,7 +22,7 @@ class EmailController extends Controller
         $messages = $inbox->messages()->all()->get();
 
         $emails = []; // Asigură-te că array-ul este inițializat
-        dd($messages->folder_path);
+        dd($message->folder_path);
         foreach ($messages as $index => $message) {
 
 
