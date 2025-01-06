@@ -31,7 +31,7 @@ class EmailController extends Controller
                 continue;
             }
             echo '<pre>';
-            dd($index, $message->header['attributes']);
+            dd($index, $message->header);
             echo '</pre>';
 
             $subject = $message->getSubject();
