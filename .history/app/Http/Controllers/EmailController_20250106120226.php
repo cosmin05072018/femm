@@ -19,12 +19,10 @@ class EmailController extends Controller
             $client->connect();
 
             // Logăm conexiunea activă (informații sumare)
-            if ($client->isConnected()) {
-                Log::info('Client is connected to IMAP server.');
-            } else {
-                Log::warning('Failed to connect to IMAP server.');
-            }
-
+            Log::info('Connected to IMAP server', [
+                'host' => $client->getClient()->host,
+                'port' => $client->getClient()->port,
+            ]);
 
             // Obține folderul INBOX
             $folder = $client->getFolder('INBOX');
