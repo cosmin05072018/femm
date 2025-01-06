@@ -1,11 +1,4 @@
-<?php
-
-namespace App\Http\Controllers;
-
-use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
 use Webklex\IMAP\Facades\Client;
-use Illuminate\Support\Facades\Log;
 
 class EmailController extends Controller
 {
