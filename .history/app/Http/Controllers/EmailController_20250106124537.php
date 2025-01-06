@@ -20,7 +20,7 @@ class EmailController extends Controller
         $messages = $inbox->messages()->all()->get();
 
         foreach ($messages as $message) {
-            echo 'succes';
+            echo $message->getSubject() . '<br>';
         }
     }
 }
