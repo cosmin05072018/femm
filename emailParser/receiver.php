@@ -1,5 +1,4 @@
-#!/usr/bin/php -q
-<?php
+#!/usr/bin/php -q<?php
 require __DIR__ . '/../vendor/autoload.php';
 
 $data = file_get_contents("php://stdin");
