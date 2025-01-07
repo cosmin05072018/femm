@@ -3,7 +3,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$data = file_get_contents("php://stdin" , "r");
+$data = file_get_contents("php://stdin", "r");
 
 list($data, $body) = explode("\n\n", $data, 2);
 
@@ -61,11 +61,14 @@ foreach ($data as $data_line) {
         $headers['UNMATCHED'][] = $data_line;
     }
 
-    $client = new \GuzzleHttp\Client();
-    $client->request('POST', 'https://femm.ro/api/email/receiver', [
-        'body' => [
-            'headers' => $headers,
-            'email' => $body,
-        ]
-    ]);
+    try {
+        $response = $client->request('POST', 'https://femm.ro/api/email/receiver', [
+            'json' => [
+                'headers' => $headers,
+                'email' => $body,
+            ]
+        ]);
+    } catch (\GuzzleHttp\Exception\RequestException $e) {
+        echo 'Request failed: ' . $e->getMessage();
+    }
 }
