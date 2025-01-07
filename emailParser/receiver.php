@@ -1,4 +1,4 @@
-#!/usr/local/lib/php -q
+#!/usr/local/bin/php -q
 <?php
 
 require __DIR__ . '/../vendor/autoload.php';
