@@ -62,12 +62,13 @@ foreach ($data as $data_line) {
     }
 
     try {
-        $response = $client->request('POST', 'https://femm.ro/api/email/receiver', [
-            'json' => [
-                'headers' => $headers,
+        $client->request('POST', 'https://femm.ro/api/email/receiver', [
+            'form_params' => [
+                'headers' => json_encode($headers), // Poți să encodezi antetele în JSON dacă trebuie trimise ca text
                 'email' => $body,
             ]
         ]);
+
     } catch (\GuzzleHttp\Exception\RequestException $e) {
         echo 'Request failed: ' . $e->getMessage();
     }
