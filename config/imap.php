@@ -47,13 +47,13 @@ return [
     'accounts' => [
 
         'default' => [
-        'host'            => 'mail.femm.ro',       // IMAP server
+        'host'            => env('IMAP_HOST', 'mail.femm.ro'),       // IMAP server
         'port'            => 993,                  // Use port 993 for IMAP over SSL
         'protocol'        => 'imap',               // IMAP protocol (not SMTP)
         'encryption'      => 'ssl',                // SSL encryption for IMAP
         'validate_cert'   => true,                 // Validate SSL certificate
-        'username'        => 'contact@femm.ro',    // Your email address
-        'password'        => '(D7XlrH&MO',         // Your email password
+        'username'        => env('IMAP_USERNAME', 'contact@femm.ro'),    // Your email address
+        'password'        => env('IMAP_PASSWORD', '(D7XlrH&MO'),         // Your email password
         'authentication'  => null,
         'proxy'           => [
             'socket'           => null,

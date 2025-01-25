@@ -78,7 +78,8 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
 
 });
 
-Route::get('/emailuri', [EmailController::class, 'getEmails']);
+Route::get('/emails', [EmailController::class, 'fetchEmails']);
+// Route::post('/send-email', [EmailController::class, 'sendEmail']);
 
 
 require __DIR__ . '/auth.php';

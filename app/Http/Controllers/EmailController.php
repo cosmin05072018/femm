@@ -6,60 +6,69 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 use Webklex\IMAP\Facades\Client;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\EmailAccount;
+use Illuminate\Support\Facades\Crypt;
 class EmailController extends Controller
 {
-
-    public function getEmails()
+    // Obține emailurile pentru utilizatorul conectat
+    public function fetchEmails($userId)
     {
-        // Conectează-te la contul IMAP
-        $client = Client::account('default');
-        $client->connect();
+        // $account = EmailAccount::where('user_id', $userId)->first();
+        $account = 'contact@femm.ro';
 
-        // Obține inbox-ul
-        $inbox = $client->getFolder('INBOX');
-
-        // Obține toate mesajele
-        $messages = $inbox->messages()->all()->get();
-
-        $emails = []; // Asigură-te că array-ul este inițializat
-
-        foreach ($messages as $index => $message) {
-
-
-            // Ignoră mesajul de la indexul 0 (primul mesaj din listă)
-            if ($index == 0) {
-                continue;
-            }
-
-            $subject = $message->getSubject();
-            $messageBody = strip_tags($message->getTextBody());  // elimină etichetele HTML
-
-            // Preia expeditorul
-            $from = $message->header->from[0]->mail;  // returnează un array asociativ
-
-            // Obține doar adresa de e-mail a expeditorului
-
-            // Sau, în caz că există mai mulți expeditori, se poate folosi:
-            // $fromEmail = array_key_first($from);
-
-            // Verifică dacă există conținut în mesaj
-            if (empty($subject) && empty($messageBody)) {
-                continue;  // Sar peste mesajele goale
-            }
-
-            // Poți adăuga o filtrare suplimentară pentru a curăța conținutul
-            $messageBody = preg_replace('/(Server.*?Port.*?=\s*\d+|.*?SSL.*?Settings.*?)/s', '', $messageBody);
-
-            // Adaugă datele în array doar pentru mesajele valabile
-            $emails[] = [
-                'subject' => $subject,
-                'body' => $messageBody,
-                'from_email' => $from,  // Aici avem doar adresa de e-mail a expeditorului
-            ];
+        if (!$account) {
+            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
-        // Trimite datele către view
-        return view('mailuri', ['emails' => $emails]);
+        $client = Client::make([
+            'host'          => 'mail.femm.ro',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            // 'username'      => $account->email,
+            'username'      => $account,
+            // 'password'      => Crypt::decryptString($account->password),
+            'password'      => 'S+g)d1GKv7Ky',
+            'protocol'      => 'imap',
+        ]);
+
+        $client->connect();
+        $inbox = $client->getFolder('INBOX');
+        $messages = $inbox->messages()->all()->get();
+
+        return view('emails.index', compact('messages'));
+    }
+
+    // Trimite un email
+    public function sendEmail(Request $request)
+    {
+        $request->validate([
+            'to' => 'required|email',
+            'subject' => 'required',
+            'message' => 'required',
+        ]);
+
+        $userId = auth()->id();
+        $account = EmailAccount::where('user_id', $userId)->first();
+
+        if (!$account) {
+            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+        }
+
+        config([
+            'mail.mailers.smtp.host' => 'mail.domeniultau.ro',
+            'mail.mailers.smtp.port' => 465,
+            'mail.mailers.smtp.encryption' => 'ssl',
+            'mail.mailers.smtp.username' => $account->email,
+            'mail.mailers.smtp.password' => Crypt::decryptString($account->password),
+        ]);
+
+        // \Mail::raw($request->message, function ($message) use ($request, $account) {
+        //     $message->to($request->to)
+        //             ->subject($request->subject)
+        //             ->from($account->email);
+        // });
+
+        return back()->with('success', 'Email trimis cu succes!');
     }
 }
