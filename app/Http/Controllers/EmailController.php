@@ -139,4 +139,36 @@ class EmailController extends Controller
 
         return back()->with('success', 'Răspuns trimis cu succes!');
     }
+
+    public function createEmailAccount(Request $request)
+    {
+        // Validează input-ul formularului
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        // Construiește URL-ul cPanel API
+        $cpanelApiUrl = 'https://' . env('CPANEL_HOST') . ':2083/execute/Email/addpop';
+
+        // Parametrii necesari pentru a crea un cont de email
+        $params = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'domain' => 'domeniul_tău.com',
+            'quota' => 500,  // 500MB
+        ];
+
+        // Folosește API Token pentru a face cererea
+        $response = Http::withHeaders([
+            'Authorization' => 'cpanel ' . env('CPANEL_API_TOKEN'),
+        ])->post($cpanelApiUrl, $params);
+
+        // Verifică dacă cererea a avut succes
+        if ($response->successful()) {
+            return back()->with('success', 'Contul de email a fost creat cu succes!');
+        } else {
+            return back()->with('error', 'A apărut o problemă la crearea contului de email.');
+        }
+    }
 }
