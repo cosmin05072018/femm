@@ -89,7 +89,7 @@ Route::get('/emails/{messageId}', [EmailController::class, 'showEmail']);
 // Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail']);
 Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail'])->name('emails.reply');
 
-Route::post('/create-email-account', [EmailController::class, 'createEmailAccount'])->name('createEmailAccount');
+Route::post('/create-email', [EmailController::class, 'createEmail'])->name('createEmail');
 
 
 require __DIR__ . '/auth.php';

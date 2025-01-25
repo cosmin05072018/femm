@@ -16,15 +16,19 @@
     @endforeach
 </ul>
 
-<form action="{{ route('createEmailAccount') }}" method="POST">
+<form action="{{ route('createEmail') }}" method="POST">
     @csrf
     <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required placeholder="example">
     </div>
     <div>
-        <label for="password">Parola</label>
-        <input type="password" id="password" name="password" required>
+        <label for="domain">Domain:</label>
+        <input type="text" name="domain" id="domain" required placeholder="example.com">
     </div>
-    <button type="submit">Creează cont email</button>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+    </div>
+    <button type="submit">Create Email</button>
 </form>
