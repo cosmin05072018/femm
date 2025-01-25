@@ -124,12 +124,12 @@ class EmailController extends Controller
         $fromEmail = "contact@femm.ro";
         $fromName = "Femm Ro";
         Mail::raw('test', function ($mail) use ($fromEmail, $fromName) {
-
             $mail->to('cosminmorari99@yahoo.com')
                  ->subject('Test Email')
-                 ->from('contact@femm.ro', 'Femm Ro') // Adresa statică
-                 ->replyTo($fromEmail, $fromName); // Adresa dinamică pentru răspuns
+                 ->from('cosmin050718@gmail.com', 'Femm Ro') // Adresa fixă de la Gmail
+                 ->replyTo($fromEmail, $fromName); // Adresa dinamică
         });
+
 
 
 
