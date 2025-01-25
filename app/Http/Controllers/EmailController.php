@@ -123,7 +123,7 @@ class EmailController extends Controller
         // });
         $fromEmail = "contact@femm.ro";
         $fromName = "Femm Ro";
-        Mail::raw('test', function ($mail) use ($fromEmail, $fromName) {
+        Mail::raw('testsssssssss', function ($mail) use ($fromEmail, $fromName) {
             $mail->to('cosminmorari99@yahoo.com')
                  ->subject('Test Email')
                  ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
