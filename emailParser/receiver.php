@@ -53,12 +53,14 @@ $headers['UNMATCHED'] = $headers['UNMATCHED'] ?? [];
 // Trimiterea cererii către API
 try {
     $client = new \GuzzleHttp\Client();
-    $response = $client->request('POST', 'https://femm.ro/api/email/receiver', [
-        'json' => [
-            'headers' => $headers,
+    $client->request('POST', 'https://femm.ro/api/email/receiver', [
+        'form_params' => [
+            'headers' => json_encode($headers),
             'email' => $body,
         ]
     ]);
+
+
     echo "Email processed successfully, status code: " . $response->getStatusCode();
 } catch (\Exception $e) {
     error_log("Error sending email to API: " . $e->getMessage());
