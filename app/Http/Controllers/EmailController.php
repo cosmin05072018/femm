@@ -97,7 +97,7 @@ class EmailController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
         // $message = $inbox->messages()->get()->where('uid', $messageId)->first();
-        $message = $inbox->messages()->get()->first();
+        $message = $inbox->messages()->get();
 
         if (!$message) {
             return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
