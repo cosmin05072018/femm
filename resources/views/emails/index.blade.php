@@ -23,10 +23,6 @@
         <input type="text" name="email" id="email" required placeholder="exemplu">
     </div>
     <div>
-        <label for="domain">Domeniu:</label>
-        <input type="text" name="domain" id="domain" required placeholder="example.com">
-    </div>
-    <div>
         <label for="password">Parola:</label>
         <input type="password" name="password" id="password" required>
     </div>
