@@ -84,7 +84,7 @@ class EmailController extends Controller
         }
 
         $client = Client::make([
-            'host'          => 'mail.domeniultau.ro',
+            'host'          => 'mail.femm.ro',
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
