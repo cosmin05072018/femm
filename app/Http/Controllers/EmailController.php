@@ -126,10 +126,10 @@ class EmailController extends Controller
         $fromName = "Femm Ro";
         Mail::raw('testsssssssss', function ($mail) use ($fromEmail, $fromName) {
             $mail->to('cosminmorari99@yahoo.com')
-                 ->subject('Test Email')
-                 ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
-                 ->replyTo($fromEmail, $fromName) // Adresa dinamică
-                 ->text('testulescuuuuuuuuuuuuu'); // Conținutul mesajului
+                ->subject('Test Email')
+                ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
+                ->replyTo($fromEmail, $fromName) // Adresa dinamică
+                ->text('testulescuuuuuuuuuuuuu'); // Conținutul mesajului
         });
 
 
@@ -166,16 +166,18 @@ class EmailController extends Controller
             'quota' => $request->quota ?? 0, // 0 pentru spațiu nelimitat
         ];
 
-        // Efectuează cererea către API
+        // Efectuează cererea către API cu metoda POST
         $response = Http::withHeaders([
             'Authorization' => "cpanel $cpanelUsername:$cpanelToken",
-        ])->get($url, $params);
+        ])->post($url, $params);
 
         // Verifică răspunsul API
         if ($response->successful()) {
-            return back()->with('success', 'Contul de email a fost creat cu succes!');
+            // Afișează răspunsul pentru debugging în caz de succes
+            dd('Email creat cu succes:', $response->json());
         } else {
-            return back()->with('error', 'Eroare: ' . $response->body());
+            // Afișează răspunsul pentru debugging în caz de eroare
+            dd('Eroare la crearea emailului:', $response->body());
         }
     }
 }
