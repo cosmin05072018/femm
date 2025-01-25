@@ -156,7 +156,7 @@ class EmailController extends Controller
         $params = [
             'email' => $request->email,
             'password' => $request->password,
-            'domain' => 'domeniul_tău.com',
+            'domain' => 'femm.ro',
             'quota' => 500,  // 500MB
         ];
 
