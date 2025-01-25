@@ -128,7 +128,7 @@ class EmailController extends Controller
                  ->subject('Test Email')
                  ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
                  ->replyTo($fromEmail, $fromName) // Adresa dinamică
-                 ->text('test'); // Conținutul mesajului
+                 ->text('testulescuuuuuuuuuuuuu'); // Conținutul mesajului
         });
 
 
