@@ -53,7 +53,7 @@ return [
         'encryption'      => 'ssl',                // SSL encryption for IMAP
         'validate_cert'   => true,                 // Validate SSL certificate
         'username'        => env('IMAP_USERNAME', 'contact@femm.ro'),    // Your email address
-        'password'        => env('IMAP_PASSWORD', '(D7XlrH&MO'),         // Your email password
+        'password'        => env('IMAP_PASSWORD', '@mU_(UvcY(ZL'),         // Your email password
         'authentication'  => null,
         'proxy'           => [
             'socket'           => null,

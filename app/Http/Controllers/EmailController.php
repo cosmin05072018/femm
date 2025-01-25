@@ -28,7 +28,7 @@ class EmailController extends Controller
             // 'username'      => $account->email,
             'username'      => $account,
             // 'password'      => Crypt::decryptString($account->password),
-            'password'      => '(D7XlrH&MO',
+            'password'      => '@mU_(UvcY(ZL',
             'protocol'      => 'imap',
         ]);
 
