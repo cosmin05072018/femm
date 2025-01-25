@@ -78,7 +78,7 @@ class EmailController extends Controller
     public function replyEmail(Request $request)
     {
         // $account = EmailAccount::where('user_id', $userId)->first();
-        $account = 'cosminmorari99@yahoo.com';
+        $account = 'contact@femm.ro';
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
