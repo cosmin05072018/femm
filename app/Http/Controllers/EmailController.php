@@ -119,8 +119,9 @@ class EmailController extends Controller
                  ->subject('Test Email') // Subiectul emailului
                  ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
                  ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
-                 ->setBody('test'); // Conținutul mesajului
+                 ->text('test'); // Conținutul mesajului
         });
+
 
 
 
