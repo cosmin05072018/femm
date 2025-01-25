@@ -114,12 +114,21 @@ class EmailController extends Controller
         //          ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
         //          ->setBody($request->input('message')); // Conținutul mesajului
         // });
-        Mail::raw('test', function ($mail) {
-            $mail->to('cosminmorari99@yahoo.com') // Adresa destinatarului
-                 ->subject('Test Email') // Subiectul emailului
-                 ->from('contact@femm.ro', 'Femm Ro') // Adresa de email a expeditorului și numele expeditorului
-                 ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
-                 ->text('test'); // Conținutul mesajului
+        // Mail::raw('test', function ($mail) {
+        //     $mail->to('cosminmorari99@yahoo.com') // Adresa destinatarului
+        //          ->subject('Test Email') // Subiectul emailului
+        //          ->from('contact@femm.ro', 'Femm Ro') // Adresa de email a expeditorului și numele expeditorului
+        //          ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
+        //          ->text('test'); // Conținutul mesajului
+        // });
+        $fromEmail = "contact@femm.ro";
+        $fromName = "Femm Ro";
+        Mail::raw('test', function ($mail) use ($fromEmail, $fromName) {
+
+            $mail->to('cosminmorari99@yahoo.com')
+                 ->subject('Test Email')
+                 ->from('contact@femm.ro', 'Femm Ro') // Adresa statică
+                 ->replyTo($fromEmail, $fromName); // Adresa dinamică pentru răspuns
         });
 
 
