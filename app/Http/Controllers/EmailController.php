@@ -104,16 +104,24 @@ class EmailController extends Controller
         }
 
         // Răspunsul la email
-        Mail::raw($request->input('message'), function ($mail) use ($message, $request) {
-            // Accesează direct primul expeditor din lista returnată de getFrom()
-            $recipient = $message->getFrom()[0]->mail;
+        // Mail::raw($request->input('message'), function ($mail) use ($message, $request) {
+        //     // Accesează direct primul expeditor din lista returnată de getFrom()
+        //     $recipient = $message->getFrom()[0]->mail;
 
-            $mail->to($recipient) // Adresa destinatarului
-                 ->subject('RE: ' . $message->getSubject()) // Subiectul emailului
+        //     $mail->to($recipient) // Adresa destinatarului
+        //          ->subject('RE: ' . $message->getSubject()) // Subiectul emailului
+        //          ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
+        //          ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
+        //          ->setBody($request->input('message')); // Conținutul mesajului
+        // });
+        Mail::raw('test', function ($mail) {
+            $mail->to('cosminmorari99@yahoo.com') // Adresa destinatarului
+                 ->subject('Test Email') // Subiectul emailului
                  ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
                  ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
-                 ->setBody($request->input('message')); // Conținutul mesajului
+                 ->setBody('test'); // Conținutul mesajului
         });
+
 
 
 
