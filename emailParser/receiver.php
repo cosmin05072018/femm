@@ -3,12 +3,22 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$data = file_get_contents("php://stdin", "r");
+$data = file_get_contents("php://stdin");
 
-list($data, $body) = explode("\n\n", $data, 2);
+if (!$data) {
+    error_log("No data received on stdin");
+    exit(1);
+}
 
-$data = explode("\n", $data);
-$patterns = array(
+list($headersPart, $body) = explode("\n\n", $data, 2) + ["", ""];
+
+if (empty($headersPart) || empty($body)) {
+    error_log("Invalid email format: no headers or body found");
+    exit(1);
+}
+
+$dataLines = explode("\n", $headersPart);
+$patterns = [
     'Return-Path',
     'X-Original-To',
     'Delivered-To',
@@ -18,58 +28,38 @@ $patterns = array(
     'Date',
     'From',
     'Subject',
-);
+];
 
-// define a variable to hold parsed headers
-$headers = array();
+$headers = [];
+$lastMatch = null;
 
-// loop through data
-foreach ($data as $data_line) {
-
-    // for each line, assume a match does not exist yet
-    $pattern_match_exists = false;
-
-    // check for lines that start with white space
-    // NOTE: if a line starts with a white space, it signifies a continuation of the previous header
-    if ((substr($data_line, 0, 1) == ' ' || substr($data_line, 0, 1) == "\t") && $last_match) {
-
-        // append to last header
-        $headers[$last_match][] = $data_line;
+foreach ($dataLines as $line) {
+    if ((substr($line, 0, 1) == ' ' || substr($line, 0, 1) == "\t") && $lastMatch) {
+        $headers[$lastMatch][] = trim($line);
         continue;
     }
 
-    // loop through patterns
-    foreach ($patterns as $key => $pattern) {
-
-        // create preg regex
-        $preg_pattern = '/^' . $pattern . ': (.*)$/';
-
-        // execute preg
-        preg_match($preg_pattern, $data_line, $matches);
-
-        // check if preg matches exist
-        if (count($matches)) {
-
+    foreach ($patterns as $pattern) {
+        if (preg_match('/^' . $pattern . ': (.*)$/', $line, $matches)) {
             $headers[$pattern][] = $matches[1];
-            $pattern_match_exists = true;
-            $last_match = $pattern;
+            $lastMatch = $pattern;
+            break;
         }
     }
+}
 
-    // check if a pattern did not match for this line
-    if (!$pattern_match_exists) {
-        $headers['UNMATCHED'][] = $data_line;
-    }
+$headers['UNMATCHED'] = $headers['UNMATCHED'] ?? [];
 
-    try {
-        $client->request('POST', 'https://femm.ro/api/email/receiver', [
-            'form_params' => [
-                'headers' => json_encode($headers), // Poți să encodezi antetele în JSON dacă trebuie trimise ca text
-                'email' => $body,
-            ]
-        ]);
-
-    } catch (\GuzzleHttp\Exception\RequestException $e) {
-        echo 'Request failed: ' . $e->getMessage();
-    }
+// Trimiterea cererii către API
+try {
+    $client = new \GuzzleHttp\Client();
+    $response = $client->request('POST', 'https://femm.ro/api/email/receiver', [
+        'json' => [
+            'headers' => $headers,
+            'email' => $body,
+        ]
+    ]);
+    echo "Email processed successfully, status code: " . $response->getStatusCode();
+} catch (\Exception $e) {
+    error_log("Error sending email to API: " . $e->getMessage());
 }
