@@ -105,12 +105,16 @@ class EmailController extends Controller
 
         // Răspunsul la email
         Mail::raw($request->input('message'), function ($mail) use ($message, $request) {
-            $mail->to($message->getFrom()[0]->mail) // Adresa destinatarului
+            // Accesează direct primul expeditor din lista returnată de getFrom()
+            $recipient = $message->getFrom()[0]->mail;
+
+            $mail->to($recipient) // Adresa destinatarului
                  ->subject('RE: ' . $message->getSubject()) // Subiectul emailului
                  ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
                  ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
                  ->setBody($request->input('message')); // Conținutul mesajului
         });
+
 
 
         return back()->with('success', 'Răspuns trimis cu succes!');
