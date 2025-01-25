@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class EmailController extends Controller
 {
     // Metodă pentru a obține și lista emailurile
-    public function fetchEmails($userId)
+    // public function fetchEmails($userId)
+    public function fetchEmails()
     {
         // $account = EmailAccount::where('user_id', $userId)->first();
         $account= 'contact@femm.ro';
