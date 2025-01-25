@@ -42,6 +42,7 @@ class EmailController extends Controller
     // Metodă pentru a deschide un email specific
     public function showEmail($userId, $messageId)
     {
+        dd($userId, $messageId);
         $account = EmailAccount::where('user_id', $userId)->first();
 
         if (!$account) {
