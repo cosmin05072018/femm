@@ -19,16 +19,20 @@
 <form action="{{ route('createEmail') }}" method="POST">
     @csrf
     <div>
-        <label for="email">Email:</label>
-        <input type="text" name="email" id="email" required placeholder="example">
+        <label for="email">Adresa Email:</label>
+        <input type="text" name="email" id="email" required placeholder="exemplu">
     </div>
     <div>
-        <label for="domain">Domain:</label>
+        <label for="domain">Domeniu:</label>
         <input type="text" name="domain" id="domain" required placeholder="example.com">
     </div>
     <div>
-        <label for="password">Password:</label>
+        <label for="password">Parola:</label>
         <input type="password" name="password" id="password" required>
     </div>
-    <button type="submit">Create Email</button>
+    <div>
+        <label for="quota">Spațiu (MB, opțional):</label>
+        <input type="number" name="quota" id="quota" placeholder="0 pentru nelimitat">
+    </div>
+    <button type="submit">Creează Email</button>
 </form>

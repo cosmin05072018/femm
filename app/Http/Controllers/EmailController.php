@@ -143,35 +143,39 @@ class EmailController extends Controller
 
     public function createEmail(Request $request)
     {
-        // Validate the request
+        // Validează datele introduse în formular
         $request->validate([
             'email' => 'required|string',
             'password' => 'required|string|min:6',
-            // 'domain' => 'required|string',
+            'domain' => 'required|string',
+            'quota' => 'nullable|integer|min:0', // Optional: spațiu alocat în MB
         ]);
 
-        // cPanel API URL
-        $cpanelApiUrl = 'https://' . env('CPANEL_HOST') . ':2083/execute/Email/add_pop';
+        // Construiește URL-ul pentru API-ul cPanel
+        $cpanelHost = env('CPANEL_HOST');
+        $cpanelUsername = env('CPANEL_USERNAME');
+        $cpanelToken = env('CPANEL_API_TOKEN');
 
-        // Parameters for the API call
+        $url = "https://$cpanelHost:2083/execute/Email/add_pop";
+
+        // Parametrii pentru cererea API
         $params = [
             'email' => $request->email,
             'password' => $request->password,
-            'domain' => 'https://femm.ro',
-            'quota' => 0, // Unlimited quota
-            'skip_update_db' => 1,
+            'domain' => $request->domain,
+            'quota' => $request->quota ?? 0, // 0 pentru spațiu nelimitat
         ];
 
-        // Make the API request
+        // Efectuează cererea către API
         $response = Http::withHeaders([
-            'Authorization' => 'cpanel ' . env('CPANEL_USERNAME') . ':' . env('CPANEL_API_TOKEN'),
-        ])->post($cpanelApiUrl, $params);
+            'Authorization' => "cpanel $cpanelUsername:$cpanelToken",
+        ])->get($url, $params);
 
-        // Check the response
+        // Verifică răspunsul API
         if ($response->successful()) {
-            return back()->with('success', 'Email account created successfully!');
+            return back()->with('success', 'Contul de email a fost creat cu succes!');
         } else {
-            return back()->with('error', 'Failed to create email account. ' . $response->body());
+            return back()->with('error', 'Eroare: ' . $response->body());
         }
     }
 }
