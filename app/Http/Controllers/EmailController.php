@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\EmailAccount;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Http;
 
 class EmailController extends Controller
 {
