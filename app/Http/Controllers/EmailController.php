@@ -117,7 +117,7 @@ class EmailController extends Controller
         Mail::raw('test', function ($mail) {
             $mail->to('cosminmorari99@yahoo.com') // Adresa destinatarului
                  ->subject('Test Email') // Subiectul emailului
-                 ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
+                 ->from('contact@femm.ro') // Adresa de email a expeditorului
                  ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
                  ->text('test'); // Conținutul mesajului
         });
