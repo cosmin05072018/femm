@@ -17,7 +17,7 @@ class EmailController extends Controller
     public function fetchEmails()
     {
         // $account = EmailAccount::where('user_id', $userId)->first();
-        $account = 'contact@femm.ro';
+        $account = 'anonimanonimus330@femm.ro';
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
