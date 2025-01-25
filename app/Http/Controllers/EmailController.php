@@ -11,7 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 class EmailController extends Controller
 {
     // Obține emailurile pentru utilizatorul conectat
-    public function fetchEmails($userId)
+    public function fetchEmails()
+    // public function fetchEmails($userId)
     {
         // $account = EmailAccount::where('user_id', $userId)->first();
         $account = 'contact@femm.ro';
@@ -40,35 +41,35 @@ class EmailController extends Controller
     }
 
     // Trimite un email
-    public function sendEmail(Request $request)
-    {
-        $request->validate([
-            'to' => 'required|email',
-            'subject' => 'required',
-            'message' => 'required',
-        ]);
+    // public function sendEmail(Request $request)
+    // {
+    //     $request->validate([
+    //         'to' => 'required|email',
+    //         'subject' => 'required',
+    //         'message' => 'required',
+    //     ]);
 
-        $userId = auth()->id();
-        $account = EmailAccount::where('user_id', $userId)->first();
+    //     $userId = auth()->id();
+    //     $account = EmailAccount::where('user_id', $userId)->first();
 
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
+    //     if (!$account) {
+    //         return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+    //     }
 
-        config([
-            'mail.mailers.smtp.host' => 'mail.domeniultau.ro',
-            'mail.mailers.smtp.port' => 465,
-            'mail.mailers.smtp.encryption' => 'ssl',
-            'mail.mailers.smtp.username' => $account->email,
-            'mail.mailers.smtp.password' => Crypt::decryptString($account->password),
-        ]);
+    //     config([
+    //         'mail.mailers.smtp.host' => 'mail.domeniultau.ro',
+    //         'mail.mailers.smtp.port' => 465,
+    //         'mail.mailers.smtp.encryption' => 'ssl',
+    //         'mail.mailers.smtp.username' => $account->email,
+    //         'mail.mailers.smtp.password' => Crypt::decryptString($account->password),
+    //     ]);
 
-        // \Mail::raw($request->message, function ($message) use ($request, $account) {
-        //     $message->to($request->to)
-        //             ->subject($request->subject)
-        //             ->from($account->email);
-        // });
+    //     \Mail::raw($request->message, function ($message) use ($request, $account) {
+    //         $message->to($request->to)
+    //                 ->subject($request->subject)
+    //                 ->from($account->email);
+    //     });
 
-        return back()->with('success', 'Email trimis cu succes!');
-    }
+    //     return back()->with('success', 'Email trimis cu succes!');
+    // }
 }
