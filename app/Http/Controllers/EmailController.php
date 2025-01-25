@@ -90,7 +90,7 @@ class EmailController extends Controller
             'validate_cert' => true,
             'username'      => $account,
             // 'password'      => Crypt::decryptString($account->password),
-            'password'      => 'SteliaOreoLuna123!',
+            'password'      => '@mU_(UvcY(ZL',
             'protocol'      => 'imap',
         ]);
 
