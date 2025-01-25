@@ -8,6 +8,8 @@ use Webklex\IMAP\Facades\Client;
 use Illuminate\Support\Facades\Log;
 use App\Models\EmailAccount;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
+
 class EmailController extends Controller
 {
     // Metodă pentru a obține și lista emailurile
@@ -15,7 +17,7 @@ class EmailController extends Controller
     public function fetchEmails()
     {
         // $account = EmailAccount::where('user_id', $userId)->first();
-        $account= 'contact@femm.ro';
+        $account = 'contact@femm.ro';
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -40,46 +42,43 @@ class EmailController extends Controller
     }
 
     // Metodă pentru a deschide un email specific
-    public function showEmail($userId, $messageId)
-    {
-        dd($userId, $messageId);
-        $account = EmailAccount::where('user_id', $userId)->first();
+    // public function showEmail($userId, $messageId)
 
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
+    // {
+    //     dd($userId, $messageId);
+    //     $account = EmailAccount::where('user_id', $userId)->first();
 
-        $client = Client::make([
-            'host'          => 'mail.domeniultau.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account->email,
-            'password'      => Crypt::decryptString($account->password),
-            'protocol'      => 'imap',
-        ]);
+    //     if (!$account) {
+    //         return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+    //     }
 
-        $client->connect();
-        $inbox = $client->getFolder('INBOX');
-        $message = $inbox->messages()->get()->where('uid', $messageId)->first();
+    //     $client = Client::make([
+    //         'host'          => 'mail.domeniultau.ro',
+    //         'port'          => 993,
+    //         'encryption'    => 'ssl',
+    //         'validate_cert' => true,
+    //         'username'      => $account->email,
+    //         'password'      => Crypt::decryptString($account->password),
+    //         'protocol'      => 'imap',
+    //     ]);
 
-        if (!$message) {
-            return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
-        }
+    //     $client->connect();
+    //     $inbox = $client->getFolder('INBOX');
+    //     $message = $inbox->messages()->get()->where('uid', $messageId)->first();
 
-        return view('emails.show', compact('message'));
-    }
+    //     if (!$message) {
+    //         return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
+    //     }
+
+    //     return view('emails.show', compact('message'));
+    // }
 
     // Metodă pentru a răspunde la un email
-    public function replyEmail(Request $request, $userId, $messageId)
+    // public function replyEmail(Request $request, $userId, $messageId)
+    public function replyEmail(Request $request)
     {
-        dd($request, $userId, $messageId);
-;        $request->validate([
-            'message' => 'required',
-        ]);
-
-        $account = EmailAccount::where('user_id', $userId)->first();
-
+        // $account = EmailAccount::where('user_id', $userId)->first();
+        $account = 'cosminmorari99@yahoo.com';
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -89,26 +88,30 @@ class EmailController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            'username'      => $account->email,
-            'password'      => Crypt::decryptString($account->password),
+            'username'      => $account,
+            // 'password'      => Crypt::decryptString($account->password),
+            'password'      => 'SteliaOreoLuna123!',
             'protocol'      => 'imap',
         ]);
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        $message = $inbox->messages()->get()->where('uid', $messageId)->first();
+        // $message = $inbox->messages()->get()->where('uid', $messageId)->first();
+        $message = $inbox->messages()->get()->first();
 
         if (!$message) {
             return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
         }
 
-        \Mail::raw($request->message, function ($mail) use ($message, $account, $request) {
-            $mail->to($message->getFrom()[0]->mail)
-                 ->subject('RE: ' . $message->getSubject())
-                 ->from($account->email)
-                 ->replyTo($account->email)
-                 ->setBody($request->message);
+        // Răspunsul la email
+        Mail::raw($request->input('message'), function ($mail) use ($message, $request) {
+            $mail->to($message->getFrom()[0]->mail) // Adresa destinatarului
+                 ->subject('RE: ' . $message->getSubject()) // Subiectul emailului
+                 ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
+                 ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
+                 ->setBody($request->input('message')); // Conținutul mesajului
         });
+
 
         return back()->with('success', 'Răspuns trimis cu succes!');
     }

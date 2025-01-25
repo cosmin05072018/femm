@@ -86,7 +86,9 @@ Route::get('/emails', [EmailController::class, 'fetchEmails']);
 Route::get('/emails/{messageId}', [EmailController::class, 'showEmail']);
 
 // Route pentru a răspunde la un email
-Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail']);
+// Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail']);
+Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail'])->name('emails.reply');
+
 
 
 require __DIR__ . '/auth.php';
