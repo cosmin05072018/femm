@@ -78,8 +78,15 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
 
 });
 
+
+// Route pentru listarea emailurilor
 Route::get('/emails', [EmailController::class, 'fetchEmails']);
-// Route::post('/send-email', [EmailController::class, 'sendEmail']);
+
+// Route pentru vizualizarea unui email
+Route::get('/emails/{messageId}', [EmailController::class, 'showEmail']);
+
+// Route pentru a răspunde la un email
+Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail']);
 
 
 require __DIR__ . '/auth.php';
