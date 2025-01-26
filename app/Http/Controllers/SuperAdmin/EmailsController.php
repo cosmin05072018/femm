@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Http;
 use function Ramsey\Uuid\v1;
 use Webklex\PHPIMAP\Facade\IMAP;
 use Webklex\PHPIMAP\Query\WhereQuery;
+use Webklex\PHPIMAP\ClientManager;
 
 class EmailsController extends Controller
 {
@@ -96,47 +97,43 @@ class EmailsController extends Controller
     }
 
     public function reply(Request $request)
-{
-    $user = Auth::user();
-    $userId = $user->id;
-    $account = $user->email_femm;
-    $password = $user->password_mail_femm;
+    {
+        dd('Metoda reply a fost apelată'); // Debugging inițial
 
-    if (!$account) {
-        return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-    }
-    dd($request);
-    // Connect to the IMAP server
-    $client = Client::make([
-        'host'          => 'mail.femm.ro',
-        'port'          => 993,
-        'encryption'    => 'ssl',
-        'validate_cert' => true,
-        'username'      => $account,
-        'password'      => $password,
-        'protocol'      => 'imap',
-    ]);
+        $user = Auth::user();
+        $account = $user->email_femm;
+        $password = $user->password_mail_femm;
 
-    $client->connect();
-    $inbox = $client->getFolder('INBOX');
+        dd('Date utilizator: ' . $account); // Debugging după autentificare
 
-    // Retrieve the message by UID
-    $message = $inbox->query()->getMessage($request->email);
+        if (!$account) {
+            dd('Contul de email nu este configurat.'); // Debugging dacă contul lipsește
+        }
 
-    try {
-        // Creează răspunsul
+        // Conectare la serverul IMAP
+        $clientManager = new ClientManager();
+        $client = $clientManager->make([
+            'host'          => 'mail.femm.ro',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => $account,
+            'password'      => $password,
+            'protocol'      => 'imap',
+        ]);
+
+        $client->connect();
+        dd('Conexiune IMAP reușită'); // Debugging după conectare
+
+        $inbox = $client->getFolder('INBOX');
+        $message = $inbox->query()->getMessage($request->email);
+
+        dd('Mesaj găsit: ' . $message->getSubject()); // Debugging dacă mesajul este găsit
+
         $reply = $message->reply();
-        $reply->setTextBody($request->reply_message); // Mesajul răspunsului
+        $reply->setTextBody($request->reply_message); // Setează corpul răspunsului
         $reply->send(); // Trimite răspunsul
-        // Debugging: Afișează un mesaj de confirmare
+
         dd('Răspunsul a fost trimis cu succes către: ' . $message->getFrom()[0]->mail);
-
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'A apărut o eroare: ' . $e->getMessage());
-        dd('A apărut o eroare: ' . $e->getMessage(), $e->getTrace());
     }
-
-
-    return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
-}
 }
