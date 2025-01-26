@@ -106,7 +106,7 @@
 
                                                             <!-- Creare mail pentru platforma CPANEL -->
                                                             <b>Creaza datele de autentificare pentru utilizator</b>
-                                                            <div class="alert alert-primary" role="alert">
+                                                            <div class="alert alert-primary p-3 mt-3" role="alert">
                                                                   Adresa nu trebuie sa contina "@ceva.com" deoarece i se va pune automat "@femm.ro"
                                                               </div>
                                                             <div class="mb-3">
