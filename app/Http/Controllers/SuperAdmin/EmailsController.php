@@ -64,6 +64,6 @@ class EmailsController extends Controller
     }
 
     public function show(Request $request){
-        dd($request);
+        dd($request->email);
     }
 }
