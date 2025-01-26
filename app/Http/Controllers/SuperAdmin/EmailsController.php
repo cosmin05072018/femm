@@ -48,9 +48,19 @@ class EmailsController extends Controller
         $unseenMessage = $inbox->query()->unseen()->get();
         $seenMessage = $inbox->query()->seen()->get();
 
+        // $messages = $inbox->messages()->all()->get();
+
         $messages = $inbox->messages()->all()->get();
 
-        dd($messages->seen());
+        foreach ($messages as $message) {
+            // Verifică dacă mesajul a fost citit
+            $isRead = $message->isSeen(); // În loc de getFlags(), folosește isSeen()
+
+            // Adaugă la fiecare mesaj un câmp care indică dacă a fost citit
+            $message->isRead = $isRead;
+        }
+        dd($message);
+
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
