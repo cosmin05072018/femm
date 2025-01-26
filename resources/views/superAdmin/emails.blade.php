@@ -67,7 +67,7 @@
                                                 </td>
                                                 <td>
                                                     <span class="text-dark {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
-                                                        {{ $message->getDate() }}
+                                                        {{ $message->getDate() }} {{ $message->getId() }}
                                                     </span>
                                                 </td>
                                             </tr>
