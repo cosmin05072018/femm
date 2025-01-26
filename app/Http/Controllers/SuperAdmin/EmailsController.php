@@ -58,4 +58,8 @@ class EmailsController extends Controller
 
         return view('superAdmin/emails', compact('owner', 'messages', 'userId'));
     }
+
+    public function show(Request $request){
+        dd($request);
+    }
 }
