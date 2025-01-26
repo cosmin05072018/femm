@@ -15,9 +15,23 @@
                         <strong>{{ $message->getSubject() }}</strong><br>
                         De la: {{ $message->getFrom()[0]->mail }}<br>
                         Data: {{ $message->getDate() }}<br>
-                        <p>Conținut: {{ $message->bodies}}</p>
+
+                        {{-- Afișăm conținutul mesajului --}}
+                        <p>
+                            Conținut:
+                            @if (!empty($message->bodies['html']))
+                                {{-- Afișăm HTML dacă există --}}
+                                {!! $message->bodies['html'] !!}
+                            @elseif (!empty($message->bodies['text']))
+                                {{-- Afișăm text simplu dacă HTML nu există --}}
+                                {{ nl2br(e($message->bodies['text'])) }}
+                            @else
+                                Mesajul nu conține conținut.
+                            @endif
+                        </p>
                     </li>
                 @endforeach
+
             </ul>
         </div>
     </div>
