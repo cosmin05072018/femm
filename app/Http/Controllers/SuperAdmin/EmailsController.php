@@ -91,9 +91,9 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
 
-        $messages = $inbox->query()->getMessage($request->email);
+        $messages = $inbox->query()->getMessage($request->email)->markAsRead()->get();
 
-        $messages-> $inbox->query()->seen();
+        // $messages-> $inbox->query()->seen();
 
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
