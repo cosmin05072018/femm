@@ -94,11 +94,25 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
-        foreach ($messages as $message) {
-            dd($messages, $message);
+
+        $attachments = $messages->getAttachments();
+        $cidMap = [];
+
+        foreach ($attachments as $attachment) {
+            if ($attachment->getContentId()) {
+                $cid = $attachment->getContentId();
+                $base64Image = 'data:' . $attachment->getContentType() . ';base64,' . base64_encode($attachment->getContent());
+                $cidMap[$cid] = $base64Image;
+            }
         }
 
-        return view('superAdmin/view-email', compact('owner', 'messages'));
+        $htmlBody = $messages->getHTMLBody();
+
+        foreach ($cidMap as $cid => $base64Image) {
+            $htmlBody = str_replace('cid:' . $cid, $base64Image, $htmlBody);
+        }
+
+        return view('superAdmin/view-email', compact('owner', 'htmlBody'));
     }
 
     public function reply(Request $request)

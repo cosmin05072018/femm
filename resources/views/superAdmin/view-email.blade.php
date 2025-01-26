@@ -13,7 +13,7 @@
 
             <p class="text-dark">Continutul mailului:</p>
             <div class="container-fluid p-3 border b-rounded">
-                {!! $messages->getHTMLBody() !!}
+                {!! $htmlBody !!}
             </div>
 
             <!-- Butonul pentru activarea modalului -->
