@@ -69,7 +69,6 @@ class EmailsController extends Controller
         $mailAdressView = $request->email;
 
         $user = Auth::user();
-        $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
 
         $account = $user->email_femm;
@@ -92,12 +91,7 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
 
-        $messages = $inbox->query()
-            ->from($mailAdressView) // Doar mesajele de la adresa specificată
-            ->get();
-
-        $messagesss = $inbox->query()->getMessage($request->email);
-        dd($messagesss);
+        $messages = $inbox->query()->getMessage($request->email);
 
         return view('superAdmin/view-email', compact('owner', 'messages', 'mailAdressView'));
     }
