@@ -59,7 +59,7 @@
                                                     <span
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
-                                                <td><span class="subject">{{ $message->getSubject() }}</span></td>
+                                                <td><span class="subject">{{ $message->getSubject() }} {{ $message->getFlag() }}</span></td>
                                                 <td><span class="text-dark">{{ $message->getDate() }}</span></td>
                                             </tr>
                                         @endif
