@@ -60,7 +60,7 @@
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
                                                 <td><span class="subject">{{ $message->getSubject() }} {{ $message->getFlag() }}</span></td>
-                                                <td><span class="text-dark">{{ $message->getDate() }}</span></td>
+                                                <td><span class="text-dark">{{ $message->getDate() }}</span> <p>Status: {{ $message->is_seen ? 'Citit' : 'Necitit' }}</p></td>
                                             </tr>
                                         @endif
                                     @endforeach
