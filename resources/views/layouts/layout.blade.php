@@ -24,6 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .btn-custom {
@@ -90,10 +91,12 @@
                     <i class="fas fa-envelope"></i>
                     <span>Emailuri</span>
                 </a>
-                <div id="collapseEmails" class="collapse" aria-labelledby="headingEmails" data-parent="#accordionSidebar">
+                <div id="collapseEmails" class="collapse" aria-labelledby="headingEmails"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Emailuri:</h6>
-                        <a class="collapse-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}" href="{{ route('admin.emails') }}">
+                        <a class="collapse-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}"
+                            href="{{ route('admin.emails') }}">
                             Mesaje Primite
                         </a>
                     </div>
@@ -259,5 +262,10 @@
     -->
     <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js"></script>
+
 
 </html>
