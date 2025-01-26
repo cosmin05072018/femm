@@ -14,7 +14,6 @@
             <p class="text-dark">Continutul mailului:</p>
             <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->getHTMLBody() !!}
-                {{ $messages->getHTMLBody() }}
             </div>
 
             <!-- Butonul pentru activarea modalului -->
