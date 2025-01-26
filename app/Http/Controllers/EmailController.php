@@ -39,6 +39,8 @@ class EmailController extends Controller
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->messages()->all()->get();
 
+        dd($messages);
+
         return view('emails.index', compact('messages'));
     }
 
