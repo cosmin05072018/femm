@@ -51,8 +51,10 @@ class EmailsController extends Controller
         $messages = $inbox->messages()->all()->get();
 
         foreach ($messages as $message) {
-            $message->isUnread = !$message->isSeen(); // Metoda isSeen() poate fi folosită pentru a verifica dacă mesajul a fost citit
+            // Verificăm dacă mesajul este necitit
+            $message->isUnread = $unseenMessage->contains($message);
         }
+
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
