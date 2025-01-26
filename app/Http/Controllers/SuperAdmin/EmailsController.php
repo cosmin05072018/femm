@@ -128,6 +128,9 @@ class EmailsController extends Controller
         $reply = $message->reply();
         $reply->setTextBody($request->reply_message); // Mesajul răspunsului
         $reply->send(); // Trimite răspunsul
+        // Debugging: Afișează un mesaj de confirmare
+        dd('Răspunsul a fost trimis cu succes către: ' . $message->getFrom()[0]->mail);
+
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'A apărut o eroare: ' . $e->getMessage());
     }
