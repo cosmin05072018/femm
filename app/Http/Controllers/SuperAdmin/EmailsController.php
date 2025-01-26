@@ -98,8 +98,7 @@ class EmailsController extends Controller
             $attachments = $message->getAttachments();
             foreach ($attachments as $attachment) {
                 // Salvează fiecare atașament
-                $savePath = public_path('attachments'); // Locația în care să salvezi atașamentele
-                dd($savePath);
+                $savePath = public_path('/public_html/storage/app/public/emails'); // Locația în care să salvezi atașamentele
                 $attachment->save($savePath);
 
                 // Obține CID-ul și înlocuiește-l în HTML
@@ -110,9 +109,6 @@ class EmailsController extends Controller
                 // Înlocuiește `cid:...` cu URL-ul valid
                 $htmlBody = str_replace("cid:$cid", $url, $message->getHTMLBody());
             }
-
-            // Afișează HTML-ul actualizat
-            echo $htmlBody;
         }
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
