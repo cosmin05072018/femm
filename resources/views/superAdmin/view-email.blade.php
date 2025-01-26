@@ -34,7 +34,7 @@
                                 <div class="mb-3">
                                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
                                   </div>
-                                <button type="submit" class="btn btn-danger">Trimite</button>
+                                <button type="submit" class="btn btn-primary">Trimite</button>
                             </form>
                         </div>
                     </div>
