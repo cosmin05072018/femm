@@ -120,7 +120,6 @@ class EmailsController extends Controller
         ]);
 
         $client->connect();
-        dd('Conexiune IMAP reușită'); // Debugging după conectare
 
         $inbox = $client->getFolder('INBOX');
         $message = $inbox->query()->getMessage($request->email);
