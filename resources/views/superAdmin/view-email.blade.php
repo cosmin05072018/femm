@@ -8,11 +8,30 @@
 
         <!-- Main Content -->
         <div id="content">
-            <h1>Email</h1>
+            <h1>Messages from: {{ $mailAddressView }}</h1>
 
-            <div class="container-fluid p-0">
-                asdasda
-            </div>
+            @if ($messages->isEmpty())
+                <p>No messages found from {{ $mailAddressView }}.</p>
+            @else
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>From</th>
+                            <th>Body</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($messages as $message)
+                            <tr>
+                                <td>{{ $message->getSubject() }}</td>
+                                <td>{{ $message->getFrom()[0]->mail }}</td>
+                                <td>{{ $message->getTextBody() }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
     </div>
 @endsection
