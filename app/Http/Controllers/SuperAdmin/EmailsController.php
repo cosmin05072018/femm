@@ -60,10 +60,11 @@ class EmailsController extends Controller
 
             // Caută în modelul User coloana care se potrivește cu adresa de email
             $userFromMail = User::where('email_femm', $emailAddress)->get();
+
+
+            dd($userFromMail);
         }
 
-
-        // $idUserFromMail = User::where('email_femm', $account)->value('id');
 
 
         return view('superAdmin/emails', compact('owner', 'messages', 'userFromMail'));
