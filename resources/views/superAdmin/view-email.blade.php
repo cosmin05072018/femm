@@ -8,7 +8,7 @@
 
         <!-- Main Content -->
         <div id="content">
-            <h1>Messages from: {{ $mailAdressView }}</h1>
+            <h1>Mail primit de la: {{ $messages->getFrom()[0]->mail }}</h1>
 
             {!! $messages->getHTMLBody() !!}
 

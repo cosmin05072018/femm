@@ -93,6 +93,6 @@ class EmailsController extends Controller
 
         $messages = $inbox->query()->getMessage($request->email);
 
-        return view('superAdmin/view-email', compact('owner', 'messages', 'mailAdressView'));
+        return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 }
