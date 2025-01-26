@@ -45,7 +45,8 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->messages()->all()->get();
-        $aMessage = $inbox->query()->unseen()->get();
+
+        $aMessage = $inbox->query()->seen()->get();
         dd($aMessage);
 
 
