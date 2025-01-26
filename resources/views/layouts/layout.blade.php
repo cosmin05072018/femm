@@ -84,34 +84,21 @@
             </li>
 
             <!-- Nav Item - Emailuri -->
-            <li class="nav-item dropdown {{ request()->routeIs('admin.emails*') ? 'active' : '' }}">
-                <a class="nav-link dropdown-toggle" href="#" id="emailDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmails"
+                    aria-expanded="true" aria-controls="collapseEmails">
                     <i class="fas fa-envelope"></i>
                     <span>Emailuri</span>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="emailDropdown">
-                    <li>
-                        <a class="dropdown-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}" href="{{ route('admin.emails') }}">
+                <div id="collapseEmails" class="collapse" aria-labelledby="headingEmails" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Emailuri:</h6>
+                        <a class="collapse-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}" href="{{ route('admin.emails') }}">
+                            Toate Emailurile
+                        </a>
+                        <a class="collapse-item {{ request()->routeIs('admin.emails.inbox') ? 'active' : '' }}" href="{{ route('admin.emails.inbox') }}">
                             Mesaje Primite
                         </a>
-                    </li>
-                </ul>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
                     </div>
                 </div>
             </li>
