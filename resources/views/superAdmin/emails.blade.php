@@ -3,18 +3,6 @@
 @section('title', 'Emailuri')
 
 @section('content')
-
-    <style>
-        .bg-danger {
-            background-color: red !important;
-            color: white !important;
-        }
-
-        .bg-light {
-            background-color: white !important;
-            color: black !important;
-        }
-    </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -62,17 +50,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($messages as $message)
+                                    @foreach ($sortedMessages as $message)
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <tr class="{{ $message->isUnread ? 'bg-danger' : 'bg-light' }}">
+                                            <tr>
                                                 <td>
                                                     <span
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
-                                                <td><span class="subject">{{ $message->getSubject() }}</span></td>
-                                                <td><span class="text-dark">{{ $message->getDate() }}</span></td>
+                                                <td><span class="subject">{{ $message->getSubject() }}</span>
+                                                </td>
+                                                <td><span class="text-dark">{{ $message->getDate() }}</span> </td>
                                             </tr>
                                         @endif
                                     @endforeach
