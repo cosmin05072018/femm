@@ -12,11 +12,11 @@
             <p class="text-dark">Subiect: <b>{{ $messages->getSubject() }}</b></p>
 
             <p class="text-dark">Continutul mailului:</p>
-            <div class="container-fluid p-3 border b-rounded g-3">
+            <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->getHTMLBody() !!}
             </div>
             <!-- Butonul pentru activarea modalului -->
-            <a href="#" class="btn btn-info btn-sm mb-2" title="Raspunde" data-bs-toggle="modal" data-bs-target="#userRequestModal">
+            <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal" data-bs-target="#userRequestModal">
                 Raspunde
             </a>
 
