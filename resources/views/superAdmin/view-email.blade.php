@@ -8,10 +8,10 @@
 
         <!-- Main Content -->
         <div id="content">
-            <h1>Messages from: {{ $mailAddressView }}</h1>
+            <h1>Messages from: {{ $mailAdressView }}</h1>
 
             @if ($messages->isEmpty())
-                <p>No messages found from {{ $mailAddressView }}.</p>
+                <p>No messages found from {{ $mailAdressView }}.</p>
             @else
                 <table class="table">
                     <thead>
