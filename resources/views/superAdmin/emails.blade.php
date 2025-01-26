@@ -41,7 +41,7 @@
                     <!-- tab panes -->
                     <div class="tab-content py-4">
                         <div class="tab-pane in active" id="inbox">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>De la:</th>
