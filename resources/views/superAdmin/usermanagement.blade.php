@@ -64,7 +64,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- Form cu toate detaliile utilizatorului -->
-                                                        <form id="userRequestForm-{{ $user->id }}" method="POST" action="{{ route('admin.users.accept', ['user' => $user->id]) }}">
+                                                        <form id="userRequestForm-{{ $user->id }}">
                                                             @csrf
                                                             @method('PUT')
 
@@ -103,7 +103,13 @@
                                                                 <label for="email" class="form-label">Email</label>
                                                                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
                                                             </div>
-
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <!-- Buton Acceptă -->
+                                                        <form action="{{ route('admin.users.accept', $user->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('PUT')
                                                             <!-- Creare mail pentru platforma CPANEL -->
                                                             <b class="text-uppercase border-top text-center w-100">Creaza datele de autentificare pentru utilizator</b>
                                                             <div class="alert alert-primary p-3 mt-3" role="alert">
@@ -122,13 +128,6 @@
                                                             <div class="mb-3">
                                                                 <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
                                                             </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <!-- Buton Acceptă -->
-                                                        <form action="{{ route('admin.users.accept', $user->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('PUT')
                                                             <button type="submit" class="btn btn-success">Acceptă</button>
                                                         </form>
 
