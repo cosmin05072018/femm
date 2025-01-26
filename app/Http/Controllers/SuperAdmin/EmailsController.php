@@ -44,18 +44,15 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        $messages = $inbox->messages()->all()->get();
-
 
         $unseenMessage = $inbox->query()->unseen()->get();
         $seenMessage = $inbox->query()->seen()->get();
 
-        dd($unseenMessage->count(), $seenMessage->count());
+        $messages = $inbox->messages()->all()->get();
 
-
-
-        // $messagesUNSEEN = $query->where([['FLAGGED','FLAGGED']])->count();
-        // dd($messagesUNSEEN[0]);
+        foreach ($messages as $message) {
+            $message->isUnread = !$message->isSeen(); // Metoda isSeen() poate fi folosită pentru a verifica dacă mesajul a fost citit
+        }
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
