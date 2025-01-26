@@ -74,6 +74,8 @@
             </div>
         </div>
     </div>
-
+    @foreach ($messages as $message)
+    {{ $message->getDate() }}
+    @endforeach
     {{ $messages  }}
 @endsection
