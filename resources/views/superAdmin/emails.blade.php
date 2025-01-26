@@ -46,60 +46,6 @@
 
             <div class="container-fluid py-3">
                 <div class="row">
-                    <div class="col-md-2">
-                        <div class="btn-group w-100">
-                            <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown"> Inbox <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown-item"><a href="#">Mail</a></li>
-                                <li class="dropdown-item"><a href="#">Contacts</a></li>
-                                <li class="dropdown-item"><a href="#">Tasks</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light">
-                                <input type="checkbox" aria-label="..." style="margin:1px;">
-                            </button>
-                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">
-                                <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown-item"><a href="#">All</a></li>
-                                <li class="dropdown-item"><a href="#">None</a></li>
-                                <li class="dropdown-item"><a href="#">Read</a></li>
-                                <li class="dropdown-item"><a href="#">Unread</a></li>
-                                <li class="dropdown-item"><a href="#">Starred</a></li>
-                                <li class="dropdown-item"><a href="#">Unstarred</a></li>
-                            </ul>
-                        </div>
-                        <button type="button" class="btn btn-light" data-toggle="tooltip" title="Refresh">
-                            <i class="fa fa-refresh"></i> </button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown"> More <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu">
-                                <li class="dropdown-item"><a href="#">Mark all as read</a></li>
-                                <li class="divider"></li>
-                                <li class="dropdown-item text-center"><small class="text-muted">Select messages to see more actions</small></li>
-                            </ul>
-                        </div>
-                        <div class="float-right">
-                            <span class="text-muted"><b>1</b>–<b>50</b> of <b>160</b></span>
-                            <div class="btn-group btn-group-sm">
-                                <button type="button" class="btn btn-default">
-                                    <span class="fa fa-chevron-left"></span>
-                                </button>
-                                <button type="button" class="btn btn-default">
-                                    <span class="fa fa-chevron-right"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
                     <!--left-->
                     <aside class="col-sm-3 col-md-2 pb-3">
                         <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i> Compose</a>
