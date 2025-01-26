@@ -93,6 +93,27 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
+
+        foreach ($messages as $message) {
+            $attachments = $message->getAttachments();
+            foreach ($attachments as $attachment) {
+                // Salvează fiecare atașament
+                $savePath = public_path('attachments'); // Locația în care să salvezi atașamentele
+                dd($savePath);
+                $attachment->save($savePath);
+
+                // Obține CID-ul și înlocuiește-l în HTML
+                $cid = $attachment->getContentId();
+                $filename = $attachment->getName();
+                $url = asset("attachments/$filename"); // Creează URL-ul public
+
+                // Înlocuiește `cid:...` cu URL-ul valid
+                $htmlBody = str_replace("cid:$cid", $url, $message->getHTMLBody());
+            }
+
+            // Afișează HTML-ul actualizat
+            echo $htmlBody;
+        }
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 
