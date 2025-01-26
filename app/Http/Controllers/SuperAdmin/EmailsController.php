@@ -92,7 +92,7 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
-        if($messages = $inbox->query()->seen()){
+        if($messages = $inbox->query()->seen($request->email)){
             dd(1);
         }else{
             dd(2);
