@@ -97,7 +97,6 @@ class EmailsController extends Controller
 
     public function reply(Request $request)
 {
-    dd($request);
     $user = Auth::user();
     $userId = $user->id;
     $account = $user->email_femm;
@@ -106,7 +105,7 @@ class EmailsController extends Controller
     if (!$account) {
         return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
     }
-
+    dd($request);
     // Connect to the IMAP server
     $client = Client::make([
         'host'          => 'mail.femm.ro',
