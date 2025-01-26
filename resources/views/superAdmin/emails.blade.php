@@ -75,5 +75,7 @@
         </div>
     </div>
 
-    {{ $messages }}
+    @foreach ($messages  as  $message)
+        {{ $message }}
+    @endforeach
 @endsection
