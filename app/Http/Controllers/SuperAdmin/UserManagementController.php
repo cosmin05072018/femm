@@ -35,7 +35,7 @@ class UserManagementController extends Controller
 
     public function acceptUser(Request $request, $id)
     {
-        dd($request);
+        dd($request['parola-femm']);
         // Găsim utilizatorul după ID
         $user = User::findOrFail($id);
 
