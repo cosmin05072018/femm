@@ -60,7 +60,7 @@ class EmailsController extends Controller
         // $idUserFromMail = User::where('email_femm', $account)->value('id');
 
 
-        return view('superAdmin/emails', compact('owner', 'messages', 'idUserFromMail'));
+        return view('superAdmin/emails', compact('owner', 'messages'));
     }
 
     public function show(Request $request){
