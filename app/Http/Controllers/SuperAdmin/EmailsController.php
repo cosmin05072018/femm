@@ -95,6 +95,7 @@ class EmailsController extends Controller
 
         $messages = $inbox->query()->getMessage($request->email);
         $attachment = $messages->getAttachments();
+        dd($attachment);
         return view('superAdmin/view-email', compact('owner', 'messages', 'attachment'));
     }
 
