@@ -8,10 +8,13 @@
 
         <!-- Main Content -->
         <div id="content">
-            <h1>Mail primit de la: {{ $messages->getFrom()[0]->mail }}</h1>
+            <p>Mail primit de la: <b>{{ $messages->getFrom()[0]->mail }}</b></p>
+            <p>Subiect: <b>{{ $messages->getSubject() }}</b></p>
 
-            {!! $messages->getHTMLBody() !!}
-
+            <h4>Continutul mailului:</h4>
+            <div class="container-fluid p-3">
+                {!! $messages->getHTMLBody() !!}
+            </div>
         </div>
     </div>
 @endsection
