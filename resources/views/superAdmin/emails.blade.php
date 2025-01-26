@@ -63,7 +63,7 @@
                                                 <td>
                                                     <span class="subject {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
                                                         {{ $message->getSubject() }}
-                                                        {{ $message->getId() }}
+                                                        {{ $message->getUid()() }}
                                                     </span>
                                                 </td>
                                                 <td>
