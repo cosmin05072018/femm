@@ -92,11 +92,6 @@
                 <ul class="dropdown-menu" aria-labelledby="emailDropdown">
                     <li>
                         <a class="dropdown-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}" href="{{ route('admin.emails') }}">
-                            Toate Emailurile
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item {{ request()->routeIs('admin.emails.inbox') ? 'active' : '' }}" href="{{ route('admin.emails.inbox') }}">
                             Mesaje Primite
                         </a>
                     </li>
