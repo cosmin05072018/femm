@@ -32,7 +32,7 @@ class EmailsController extends Controller
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
-        $client = IMAP::connect([
+        $client = Client::make([
             'host'          => 'mail.femm.ro',
             'port'          => 993,
             'encryption'    => 'ssl',
