@@ -13,7 +13,8 @@ use Webklex\IMAP\Facades\Client;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use function Ramsey\Uuid\v1;
-
+use Webklex\PHPIMAP\Facade\IMAP;
+use Webklex\PHPIMAP\Query\WhereQuery;
 
 class EmailsController extends Controller
 {
@@ -31,7 +32,7 @@ class EmailsController extends Controller
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
-        $client = Client::make([
+        $client = IMAP::connect([
             'host'          => 'mail.femm.ro',
             'port'          => 993,
             'encryption'    => 'ssl',
@@ -47,7 +48,7 @@ class EmailsController extends Controller
 
         /** @var \Webklex\PHPIMAP\Query\WhereQuery $query */
         /** @var \Webklex\PHPIMAP\Support\MessageCollection $messages */
-
+        $query = $client->query();
         $messagesUNSEEN = $query->where([["UNSEEN" => true]])->get();
         dd($messagesUNSEEN[0]);
 
