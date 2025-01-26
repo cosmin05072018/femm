@@ -202,6 +202,7 @@
 
 <script>
     function generateStrongPassword(length = 12) {
+        console.log(1);
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
         let password = "";
         for (let i = 0; i < length; i++) {
@@ -211,6 +212,7 @@
     }
 
     document.getElementById('generate-password').addEventListener('click', function() {
+        console.log(1);
         const strongPassword = generateStrongPassword();
         document.getElementById('parola-femm').value = strongPassword;
     });
