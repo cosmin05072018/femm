@@ -95,39 +95,6 @@ class EmailsController extends Controller
 
         $messages = $inbox->query()->getMessage($request->email);
 
-        $htmlBody = $messages->getHTMLBody();
-
-        // Preia atașamentele
-        $attachments = $messages->getAttachments();
-
-        if ($attachments->count() > 0) {
-            // Creează o secțiune pentru atașamente
-            $htmlBody .= '<div class="attachments">';
-            $htmlBody .= '<h4>Atașamente:</h4>';
-
-            foreach ($attachments as $attachment) {
-                // Salvează fiecare atașament
-                $path = 'emails/';
-                $filename = $attachment->getName();
-                $attachment->save(storage_path("app/public/$path"), $filename);
-
-                // Creează URL public pentru atașament
-                $url = Storage::url("$path$filename");
-
-                // Adaugă un link sau imagine pentru atașament în HTML
-                if (preg_match('/\.(jpg|jpeg|png|gif)$/i', $filename)) {
-                    // Dacă este o imagine, o afișăm
-                    $htmlBody .= "<div><img src='$url' alt='$filename' style='max-width:100%; height:auto;'></div>";
-                } else {
-                    // Dacă este alt tip de fișier, afișăm un link de descărcare
-                    $htmlBody .= "<div><a href='$url' download>$filename</a></div>";
-                }
-            }
-
-            $htmlBody .= '</div>';
-        }
-
-
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 
