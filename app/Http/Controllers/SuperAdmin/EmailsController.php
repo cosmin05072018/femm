@@ -49,7 +49,10 @@ class EmailsController extends Controller
         $seenMessage = $inbox->query()->seen()->get();
 
         $messages = $inbox->messages()->all()->get();
-        dd($messages);
+
+        foreach ($messages as $message) {
+            $message->is_seen = $message->isSeen() ? true : false;  // true dacă mesajul este citit
+        }
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
