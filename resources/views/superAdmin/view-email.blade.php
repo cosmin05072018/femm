@@ -15,17 +15,6 @@
             <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->getHTMLBody() !!}
             </div>
-            <!-- Afișează atașamentele -->
-@if(!empty($imageUrls))
-<div class="attachments">
-    <h5>Atașamente:</h5>
-    <ul>
-        @foreach ($imageUrls as $url)
-            <li><img src="{{ $url }}" alt="Image" style="max-width: 100%;"></li>
-        @endforeach
-    </ul>
-</div>
-@endif
 
             <!-- Butonul pentru activarea modalului -->
             <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal" data-bs-target="#userRequestModal">
