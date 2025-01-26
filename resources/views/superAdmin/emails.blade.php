@@ -87,19 +87,6 @@
                                         <td></td>
                                     </tr>
                                     <!-- inbox item -->
-                                    <tr>
-                                        <td>
-                                            <label>
-                                                <input type="checkbox">
-                                            </label> <span class="name text-truncate">Mark Otto</span>
-                                        </td>
-                                        <td><span class="subject">Nice work on the docs for lastest version</span>
-                                            <small class="text-muted">- Joe, I just reviewed the last...</small>
-                                        </td>
-                                        <td><span class="badge">12:10 AM</span> <span
-                                                class="float-right fa fa-paperclip"></span></td>
-                                    </tr>
-
                                     @foreach ($sortedMessages as $message)
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
