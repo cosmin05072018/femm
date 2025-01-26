@@ -94,24 +94,7 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
-
-
-        $attachments = $messages->getAttachments();
-        foreach ($attachments as $attachment) {
-            // Setează calea de salvare
-            $path = 'emails/';
-            $filename = $attachment->getName();
-
-            // Salvează atașamentul în storage/app/public/emails
-            $attachment->save(storage_path("app/public/$path"), $filename);
-
-            // Creează URL-ul public al fișierului
-            $url = Storage::url("$path$filename");
-
-            // Înlocuiește `cid:...` cu URL-ul valid
-            $cid = $attachment->getContentId();
-            $htmlBody = str_replace("cid:$cid", $url, $messages->getHTMLBody());
-        }
+        $messages->getAttachments();
 
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
