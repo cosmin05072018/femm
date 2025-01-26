@@ -21,10 +21,11 @@ class EmailsController extends Controller
     {
 
         $user = Auth::user();
-        dd($user->email_femm);
         $owner = User::where('role', 'owner')->first();
 
-        $account = 'anonimanonimus330@femm.ro';
+        $account = $user->email_femm;
+        $password = $user->password_mail_femm;
+
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -34,10 +35,8 @@ class EmailsController extends Controller
             'port'          => 993,
             'encryption'    => 'ssl',
             'validate_cert' => true,
-            // 'username'      => $account->email,
             'username'      => $account,
-            // 'password'      => Crypt::decryptString($account->password),
-            'password'      => 'bpBo1+H]ynKU',
+            'password'      => $password,
             'protocol'      => 'imap',
         ]);
 
@@ -45,9 +44,7 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->messages()->all()->get();
 
-        return view('emails.index', compact('messages'));
-
-        return view('superAdmin/emails', compact('owner'));
+        return view('superAdmin/emails', compact('owner', 'messages'));
     }
 
 }

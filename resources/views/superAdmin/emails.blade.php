@@ -10,6 +10,9 @@
         <div id="content">
             <div class="py-5">
                 <h1>Emailuri</h1>
+                @foreach ($messages as $message)
+                    {{ $message }}
+                @endforeach
             </div>
         </div>
     </div>
