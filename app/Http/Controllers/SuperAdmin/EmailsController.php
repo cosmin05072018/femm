@@ -59,10 +59,10 @@ class EmailsController extends Controller
             $emailAddress = $message->getFrom()[0]->mail;
 
             // Caută în modelul User coloana care se potrivește cu adresa de email
-            $userFromMail = User::where('email_femm', $emailAddress)->get();
+            $userFromMail = User::where('email_femm', $emailAddress)->first();
 
 
-            dd($emailAddress);
+            dd($userFromMail);
         }
 
 
