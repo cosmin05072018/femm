@@ -97,6 +97,7 @@ class EmailsController extends Controller
 
     public function reply(Request $request)
 {
+    dd($request);
     $user = Auth::user();
     $userId = $user->id;
     $account = $user->email_femm;
