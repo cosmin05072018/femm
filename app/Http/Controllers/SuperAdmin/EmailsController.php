@@ -124,8 +124,6 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
         $message = $inbox->query()->getMessage($request->email);
 
-        dd('Mesaj găsit: ' . $message->getSubject()); // Debugging dacă mesajul este găsit
-
         $reply = $message->reply();
         $reply->setTextBody($request->reply_message); // Setează corpul răspunsului
         $reply->send(); // Trimite răspunsul
