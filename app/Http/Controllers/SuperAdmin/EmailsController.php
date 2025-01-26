@@ -55,7 +55,7 @@ class EmailsController extends Controller
             $flags = $message->flags();  // Obține colecția de flag-uri
             $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
             // dd($message->bodies['text']);
-            dd($message->getSubject());
+            dd($message[1]->getSubject());
         }
 
 
