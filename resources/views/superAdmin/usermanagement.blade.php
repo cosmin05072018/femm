@@ -117,6 +117,9 @@
                                                             <div class="mb-3">
                                                                 <label for="parola-femm" class="form-label">Parola</label>
                                                                 <input type="text" class="form-control" id="parola-femm" name="parola-femm">
+                                                            </div>
+
+                                                            <div class="mb-3">
                                                                 <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
                                                             </div>
                                                         </form>
