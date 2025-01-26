@@ -46,8 +46,12 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->messages()->all()->get();
 
-        $aMessage = $inbox->query()->seen()->get();
-        dd($aMessage);
+
+        $unseenMessage = $inbox->query()->unseen()->get();
+        $seenMessage = $inbox->query()->seen()->get();
+
+        dd($unseenMessage->count(), $seenMessage->count());
+
 
 
         // $messagesUNSEEN = $query->where([['FLAGGED','FLAGGED']])->count();
