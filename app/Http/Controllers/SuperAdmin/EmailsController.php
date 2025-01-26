@@ -99,10 +99,13 @@ class EmailsController extends Controller
         $cidMap = [];
 
         foreach ($attachments as $attachment) {
-            if ($attachment->getContentId()) {
-                $cid = $attachment->getContentId();
-                $base64Image = 'data:' . $attachment->getContentType() . ';base64,' . base64_encode($attachment->getContent());
-                $cidMap[$cid] = $base64Image;
+            // Verifică dacă $attachment este un obiect valid
+            if (is_object($attachment) && method_exists($attachment, 'getContentId')) {
+                if ($attachment->getContentId()) {
+                    $cid = $attachment->getContentId();
+                    $base64Image = 'data:' . $attachment->getContentType() . ';base64,' . base64_encode($attachment->getContent());
+                    $cidMap[$cid] = $base64Image;
+                }
             }
         }
 
