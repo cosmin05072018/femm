@@ -32,7 +32,7 @@
                             <form action="{{ route('admin.reply', ['email' => $messages->getUid()]) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <div class="mb-3">
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" name="reply_message" rows="8"></textarea>
                                   </div>
                                 <button type="submit" class="btn btn-primary">Trimite</button>
                             </form>

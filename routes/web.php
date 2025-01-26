@@ -10,7 +10,7 @@ use App\Http\Controllers\SuperAdmin\HotelsController;
 use App\Http\Controllers\SuperAdmin\CreateUserController;
 use App\Http\Controllers\SuperAdmin\EmailsController;
 use App\Http\Controllers\EmailController;
-
+use Webklex\PHPIMAP\ClientManager;
 /*
 |--------------------------------------------------------------------------
 | Web Routes

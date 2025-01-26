@@ -122,21 +122,16 @@ class EmailsController extends Controller
 
     // Retrieve the message by UID
     $message = $inbox->query()->getMessage($request->email);
-    if (!$message) {
-        return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
+
+    try {
+        // Creează răspunsul
+        $reply = $message->reply();
+        $reply->setTextBody($request->reply_message); // Mesajul răspunsului
+        $reply->send(); // Trimite răspunsul
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'A apărut o eroare: ' . $e->getMessage());
     }
 
-    // Prepare reply message content
-    $replyContent = $request->input('reply_message');
-    $subject = 'Re: ' . $message->getSubject();
-    $body = $replyContent;
-
-    // Send the reply email
-    Mail::raw($body, function($message) use ($account, $subject) {
-        $message->from($account)
-                ->to($message->getFrom())
-                ->subject($subject);
-    });
 
     return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
 }
