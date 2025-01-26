@@ -15,7 +15,11 @@
                         <strong>{{ $message->getSubject() }}</strong><br>
                         De la: {{ $message->getFrom()[0]->mail }}<br>
                         Data: {{ $message->getDate() }}<br>
-                        <p>Conținut: {{ $message->getBodyHtml() }}</p>
+                        <p>Conținut: {{ $message->body() }}</p>
+                        <p>Conținut: {{ $message->textBody() }}</p>
+                        <p>Conținut: {{ $message->htmlBody() }}</p>
+                        <p>Conținut: {{ $message->content() }}</p>
+                        <p>Conținut: {{ $message->messageBody() }}</p>
                     </li>
                 @endforeach
             </ul>
