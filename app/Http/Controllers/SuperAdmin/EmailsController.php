@@ -92,7 +92,6 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
-        $messages = $inbox->query()->markAsRead()->get();
 
         // $messages-> $inbox->query()->seen();
 
