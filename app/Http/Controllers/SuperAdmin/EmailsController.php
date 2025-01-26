@@ -51,7 +51,8 @@ class EmailsController extends Controller
         $messages = $inbox->messages()->all()->get();
 
         foreach ($messages as $message) {
-            $message->is_seen = $message->isSeen() ? true : false;  // true dacă mesajul este citit
+            $flags = $message->flags();  // Obține flag-urile mesajului
+            $message->is_seen = in_array('Seen', $flags);  // Verifică dacă mesajul are flag-ul 'Seen'
         }
 
         return view('superAdmin/emails', compact('owner', 'messages'));
