@@ -63,11 +63,12 @@
                                                 <td>
                                                     <span class="subject {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
                                                         {{ $message->getSubject() }}
+                                                        {{ $message->getId() }}
                                                     </span>
                                                 </td>
                                                 <td>
                                                     <span class="text-dark {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
-                                                        {{ $message->getDate() }} {{ $message->getId() }}
+                                                        {{ $message->getDate() }}
                                                     </span>
                                                 </td>
                                             </tr>
