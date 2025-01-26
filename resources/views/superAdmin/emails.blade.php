@@ -55,7 +55,7 @@
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
                                             <tr
-                                                class=" bg-transparent {{ $message->is_seen ? 'Citit' : 'Necitit' }}">
+                                                class=" bg-transparent {{ $message->is_seen ? 'seen' : 'fw-bold' }}">
                                                 <td class="bg-transparent">
                                                     <span
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
