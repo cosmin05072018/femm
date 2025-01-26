@@ -54,18 +54,23 @@ class EmailsController extends Controller
         foreach ($messages as $message) {
             $flags = $message->flags();  // Obține colecția de flag-uri
             $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
-            // dd($message->bodies['text']);
-            dd($message->getFrom()[0]->mail);
+
+            // Obține adresa de email din mesaj
+            $emailAddress = $message->getFrom()[0]->mail;
+
+            // Caută în modelul User coloana care se potrivește cu adresa de email
+            $userFromMail = User::where('email_femm', $emailAddress)->get();
         }
 
 
         // $idUserFromMail = User::where('email_femm', $account)->value('id');
 
 
-        return view('superAdmin/emails', compact('owner', 'messages', 'idUserFromMail'));
+        return view('superAdmin/emails', compact('owner', 'messages', 'userFromMail'));
     }
 
-    public function show(Request $request){
+    public function show(Request $request)
+    {
         dd($request);
     }
 }
