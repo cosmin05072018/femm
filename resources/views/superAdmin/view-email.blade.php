@@ -25,14 +25,14 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="userRequestModalLabel">Detalii cerere utilizator</h5>
+                            <h5 class="modal-title" id="userRequestModalLabel">Raspunde lui <b>{{ $messages->getFrom()[0]->mail }}</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
                             <form action="{{ route('admin.reply', $messages->getUid()) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <input type="text">
-                                <button type="submit" class="btn btn-danger">Șterge</button>
+                                <button type="submit" class="btn btn-primary">Trimite</button>
                             </form>
                         </div>
                     </div>
