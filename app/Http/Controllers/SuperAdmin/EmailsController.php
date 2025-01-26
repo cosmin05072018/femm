@@ -97,37 +97,49 @@ class EmailsController extends Controller
     }
 
     public function reply(Request $request)
-    {
+{
+    $user = Auth::user();
+    $account = $user->email_femm;
+    $password = $user->password_mail_femm;
 
-        $user = Auth::user();
-        $account = $user->email_femm;
-        $password = $user->password_mail_femm;
-
-        if (!$account) {
-            dd('Contul de email nu este configurat.'); // Debugging dacă contul lipsește
-        }
-
-        // Conectare la serverul IMAP
-        $clientManager = new ClientManager();
-        $client = $clientManager->make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account,
-            'password'      => $password,
-            'protocol'      => 'imap',
-        ]);
-
-        $client->connect();
-
-        $inbox = $client->getFolder('INBOX');
-        $message = $inbox->query()->getMessage($request->email);
-
-        $reply = $message->reply();
-        $reply->setTextBody($request->reply_message); // Setează corpul răspunsului
-        $reply->send(); // Trimite răspunsul
-
-        dd('Răspunsul a fost trimis cu succes către: ' . $message->getFrom()[0]->mail);
+    if (!$account) {
+        return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
     }
+
+    // Conectare la serverul IMAP
+    $clientManager = new ClientManager();
+    $client = $clientManager->make([
+        'host'          => 'mail.femm.ro',
+        'port'          => 993,
+        'encryption'    => 'ssl',
+        'validate_cert' => true,
+        'username'      => $account,
+        'password'      => $password,
+        'protocol'      => 'imap',
+    ]);
+
+    $client->connect();
+    $inbox = $client->getFolder('INBOX');
+
+    // Găsește mesajul original
+    $message = $inbox->query()->getMessage($request->email);
+
+    if (!$message) {
+        return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
+    }
+
+    // Setează detaliile mesajului de răspuns
+    $replyTo = $message->getFrom()[0]->mail; // E-mailul destinatarului
+    $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
+    $replyMessage = $request->reply_message; // Mesajul de răspuns
+
+    // Trimite răspunsul folosind Mail
+    Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
+        $mail->to($replyTo)
+            ->from($account)
+            ->subject($subject);
+    });
+
+    return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
+}
 }
