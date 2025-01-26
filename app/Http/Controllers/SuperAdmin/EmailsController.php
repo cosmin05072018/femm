@@ -45,12 +45,12 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->messages()->all()->get();
+        $aMessage = $inbox->query()->unseen()->get();
+        dd($aMessage);
 
-        /** @var \Webklex\PHPIMAP\Query\WhereQuery $query */
-        /** @var \Webklex\PHPIMAP\Support\MessageCollection $messages */
-        $query = $client->query();
-        $messagesUNSEEN = $query->where([["UNSEEN" => true]])->get();
-        dd($messagesUNSEEN[0]);
+
+        // $messagesUNSEEN = $query->where([['FLAGGED','FLAGGED']])->count();
+        // dd($messagesUNSEEN[0]);
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
