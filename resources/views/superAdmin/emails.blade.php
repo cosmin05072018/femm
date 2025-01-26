@@ -61,9 +61,11 @@
                                     <i class="fa fa-plus"></i>
                                 </a>
                             </li>
+                            <li>
+                                <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i>
+                                    Compune un mail</a>
+                            </li>
                         </ul>
-                        <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i>
-                            Compune un mail</a>
                         <!-- tab panes -->
                         <div class="tab-content py-4">
                             <div class="tab-pane in active" id="inbox">
