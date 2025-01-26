@@ -92,8 +92,44 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
-
-
         return view('superAdmin/view-email', compact('owner', 'messages'));
+    }
+
+    public function reply(Request $request)
+    {
+        // $account = EmailAccount::where('user_id', $userId)->first();
+        $account = 'contact@femm.ro';
+        if (!$account) {
+            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+        }
+
+        $client = Client::make([
+            'host'          => 'mail.femm.ro',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => $account,
+            // 'password'      => Crypt::decryptString($account->password),
+            'password'      => '@mU_(UvcY(ZL',
+            'protocol'      => 'imap',
+        ]);
+
+        $client->connect();
+        $inbox = $client->getFolder('INBOX');
+        $message = $inbox->messages();
+
+        if (!$message) {
+            return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
+        }
+        $fromEmail = "contact@femm.ro";
+        $fromName = "Femm Ro";
+        Mail::raw('testsssssssss', function ($mail) use ($fromEmail, $fromName) {
+            $mail->to('cosminmorari99@yahoo.com')
+                ->subject('Test Email')
+                ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
+                ->replyTo($fromEmail, $fromName) // Adresa dinamică
+                ->text('testulescuuuuuuuuuuuuu'); // Conținutul mesajului
+        });
+        return back()->with('success', 'Răspuns trimis cu succes!');
     }
 }

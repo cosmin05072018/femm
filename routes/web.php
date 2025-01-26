@@ -75,6 +75,8 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // vezi mail
     Route::get('/view-email', [EmailsController::class, 'show'])->name('view-email');
 
+    //raspnde la mail reply
+    Route::post('/reply', [EmailsController::class, 'reply'])->name('reply');
     // hotele
     Route::get('/hotels', [HotelsController::class, 'index'])->name('hotels');
     Route::get('/hotel/{id}', [HotelsController::class, 'show'])->name('hotel.show');

@@ -15,6 +15,29 @@
             <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->getHTMLBody() !!}
             </div>
+            <!-- Butonul pentru activarea modalului -->
+            <a href="#" class="btn btn-info btn-sm mb-2" title="Raspunde" data-bs-toggle="modal" data-bs-target="#userRequestModal">
+                Raspunde
+            </a>
+
+            <!-- Modalul complet -->
+            <div class="modal fade" id="userRequestModal" tabindex="-1" aria-labelledby="userRequestModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="userRequestModalLabel">Detalii cerere utilizator</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('admin.reply', $message->getUid()) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <input type="text">
+                                <button type="submit" class="btn btn-danger">Șterge</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
