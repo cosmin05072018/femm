@@ -13,7 +13,25 @@
 
             <p class="text-dark">Continutul mailului:</p>
             <div class="container-fluid p-3 border b-rounded">
-                {!! $messages->getHTMLBody() !!}
+                @php
+                    // Obține HTML-ul brut din mesaj
+                    $messageBody = $messages->getHTMLBody();
+
+                    // Înlocuiește referințele `cid` cu URL-uri publice către imagini
+                    $messageBody = preg_replace_callback(
+                        '/src="cid:([^"]+)"/',
+                        function ($matches) {
+                            $contentId = $matches[1];
+                            // Creează URL-ul public pentru imagine, ajustând extensia după caz (jpg, png etc.)
+                            return 'src="' . asset('storage/emails/' . $contentId . '.jpg') . '"';
+                        },
+                        $messageBody,
+                    );
+                @endphp
+
+                <!-- Afișează HTML-ul procesat -->
+                {!! $messageBody !!}
+
             </div>
 
             @php
@@ -55,7 +73,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="userRequestModalLabel">Raspunde lui
-                                <b>{{ $messages->getFrom()[0]->mail }}</b></h5>
+                                <b>{{ $messages->getFrom()[0]->mail }}</b>
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
