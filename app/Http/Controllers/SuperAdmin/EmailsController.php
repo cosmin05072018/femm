@@ -65,6 +65,7 @@ class EmailsController extends Controller
 
     public function show(Request $request)
     {
+        dd($request->email);
         $mailAdressView = $request->email;
 
         $user = Auth::user();

@@ -54,7 +54,7 @@
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <tr class="bg-transparent" onclick="window.location='{{ route('admin.view-email', ['email' => $message->getFrom()[0]->mail]) }}';" style="cursor: pointer;">
+                                            <tr class="bg-transparent" onclick="window.location='{{ route('admin.view-email', ['email' => $message->getFrom()[0]->mail, 'date' => $message->getDate()->format('Y-m-d_H-i-s')]) }}';" style="cursor: pointer;">
                                                 <td class="bg-transparent">
                                                     <span class="name text-truncate {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
                                                         {{ $message->getFrom()[0]->mail }}
