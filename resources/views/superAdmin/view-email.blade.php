@@ -13,7 +13,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content">
+        <div id="content content-mail mt-5">
             <p class="text-dark">Mail primit de la: <b>{{ $messages->getFrom()[0]->mail }}</b></p>
             <p class="text-dark">Subiect: <b>{{ $messages->getSubject() }}</b></p>
 
