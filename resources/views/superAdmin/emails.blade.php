@@ -49,8 +49,10 @@
                     <!--main-->
                     <div class="col-sm-9 col-md-10">
                         <!-- tabs -->
-                        <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i> Compose</a>
                         <ul class="nav nav-tabs border-0">
+                            <li class="nav-item">
+                                <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i> Compose</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link active" href="#inbox" data-toggle="tab">
                                     <i class="fa fa-inbox mr-1"></i> Toate mesajele
