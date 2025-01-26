@@ -50,10 +50,7 @@ class EmailsController extends Controller
 
         $messages = $inbox->messages()->all()->get();
 
-        foreach ($messages as $message) {
-            // Verificăm dacă mesajul este necitit
-            $message->isUnread = $unseenMessage->contains($message);
-        }
+        dd($messages->query()->seen()->get());
 
 
         return view('superAdmin/emails', compact('owner', 'messages'));
