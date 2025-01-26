@@ -65,7 +65,7 @@ class EmailsController extends Controller
 
     public function show(Request $request)
     {
-        dd($request->email);
+        // dd($request->email);
         $mailAdressView = $request->email;
 
         $user = Auth::user();
@@ -95,6 +95,9 @@ class EmailsController extends Controller
         $messages = $inbox->query()
             ->from($mailAdressView) // Doar mesajele de la adresa specificată
             ->get();
+
+        $messagesss = $inbox->query()->getMessage($id = 1);
+        dd($messagesss);
 
         return view('superAdmin/view-email', compact('owner', 'messages', 'mailAdressView'));
     }
