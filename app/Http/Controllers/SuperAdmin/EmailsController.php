@@ -92,7 +92,6 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         $messages = $inbox->query()->getMessage($request->email);
-        dd($messages);
 
         return view('superAdmin/view-email', compact('owner', 'messages', 'mailAdressView'));
     }
