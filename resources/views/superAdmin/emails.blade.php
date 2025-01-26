@@ -61,7 +61,7 @@
                                                 </td>
                                                 <td><span class="subject">{{ $message->getSubject() }}</span>
                                                 </td>
-                                                <td><span class="badge">{{ $message->getDate() }}</span> </td>
+                                                <td><span class="text-dark">{{ $message->getDate() }}</span> </td>
                                             </tr>
                                         @endif
                                     @endforeach
