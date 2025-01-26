@@ -54,22 +54,19 @@
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <tr class="bg-transparent">
+                                            <tr class="bg-transparent" onclick="window.location='{{ route('admin.view-email', ['email' => $message->getFrom()[0]->mail]) }}';" style="cursor: pointer;">
                                                 <td class="bg-transparent">
-                                                    <a href="{{ route('admin.view-email', ['email' => $message->getFrom()[0]->mail]) }}"
-                                                        class="name text-truncate {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
+                                                    <span class="name text-truncate {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
                                                         {{ $message->getFrom()[0]->mail }}
-                                                    </a>
+                                                    </span>
                                                 </td>
                                                 <td>
-                                                    <span
-                                                        class="subject {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
+                                                    <span class="subject {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
                                                         {{ $message->getSubject() }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span
-                                                        class="text-dark {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
+                                                    <span class="text-dark {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
                                                         {{ $message->getDate() }}
                                                     </span>
                                                 </td>
@@ -77,6 +74,7 @@
                                         @endif
                                     @endforeach
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
