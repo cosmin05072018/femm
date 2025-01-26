@@ -76,6 +76,6 @@
     </div>
 
     @foreach ($messages  as  $message)
-        {{ $message }}
+        {{ $message[0] }}
     @endforeach
 @endsection
