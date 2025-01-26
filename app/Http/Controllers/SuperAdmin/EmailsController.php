@@ -17,6 +17,7 @@ use Webklex\PHPIMAP\Facade\IMAP;
 use Webklex\PHPIMAP\Query\WhereQuery;
 use Webklex\PHPIMAP\ClientManager;
 use Illuminate\Support\Facades\Storage;
+
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
@@ -94,24 +95,24 @@ class EmailsController extends Controller
 
         $messages = $inbox->query()->getMessage($request->email);
 
-        foreach ($messages as $message) {
-            $attachments = $message->getAttachments();
-            foreach ($attachments as $attachment) {
-                // Setează calea de salvare
-                $path = 'emails/';
-                $filename = $attachment->getName();
 
-                // Salvează atașamentul în storage/app/public/emails
-                $attachment->save(storage_path("app/public/$path"), $filename);
+        $attachments = $messages->getAttachments();
+        foreach ($attachments as $attachment) {
+            // Setează calea de salvare
+            $path = 'emails/';
+            $filename = $attachment->getName();
 
-                // Creează URL-ul public al fișierului
-                $url = Storage::url("$path$filename");
+            // Salvează atașamentul în storage/app/public/emails
+            $attachment->save(storage_path("app/public/$path"), $filename);
 
-                // Înlocuiește `cid:...` cu URL-ul valid
-                $cid = $attachment->getContentId();
-                $htmlBody = str_replace("cid:$cid", $url, $message->getHTMLBody());
-            }
+            // Creează URL-ul public al fișierului
+            $url = Storage::url("$path$filename");
+
+            // Înlocuiește `cid:...` cu URL-ul valid
+            $cid = $attachment->getContentId();
+            $htmlBody = str_replace("cid:$cid", $url, $messages->getHTMLBody());
         }
+
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 
