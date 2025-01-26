@@ -54,7 +54,7 @@
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <tr class="{{ $message->isSeen() ? 'read-message' : 'unread-message' }}">
+                                            <tr class="{{ $message->getFlag('seen') ? 'read-message' : 'unread-message' }}">
                                                 <td>
                                                     <span
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
@@ -64,6 +64,7 @@
                                             </tr>
                                         @endif
                                     @endforeach
+
 
                                 </tbody>
                             </table>
