@@ -93,3 +93,4 @@ Route::post('/create-email', [EmailController::class, 'createEmail'])->name('cre
 
 
 require __DIR__ . '/auth.php';
+
