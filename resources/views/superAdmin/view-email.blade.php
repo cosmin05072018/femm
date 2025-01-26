@@ -10,7 +10,8 @@
         <div id="content">
             <h1>Messages from: {{ $mailAdressView }}</h1>
 
-            {{ $messages->getHTMLBody() }}
+            {!! $messages->getHTMLBody() !!}
+
         </div>
     </div>
 @endsection
