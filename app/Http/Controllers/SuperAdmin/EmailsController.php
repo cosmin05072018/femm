@@ -21,7 +21,7 @@ class EmailsController extends Controller
     {
 
         $user = Auth::user();
-        dd($user);
+        dd($user->email_femm);
         $owner = User::where('role', 'owner')->first();
 
         $account = 'anonimanonimus330@femm.ro';
