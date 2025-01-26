@@ -99,74 +99,8 @@
                                         <td><span class="badge">12:10 AM</span> <span
                                                 class="float-right fa fa-paperclip"></span></td>
                                     </tr>
-                                    <!-- inbox item -->
-                                    <tr>
-                                        <td>
-                                            <label>
-                                                <input type="checkbox">
-                                            </label> <span class="name text-truncate">Anil Judah</span>
-                                        </td>
-                                        <td><span class="subject">GAE Project</span> <small class="text-muted">- Can you
-                                                take a second to look..</small></td>
-                                        <td><span class="badge badge-inverse">11:33 AM</span> <span
-                                                class="float-right fa fa-warning-sign text-danger"></span></td>
-                                    </tr>
-                                    <!-- inbox item -->
-                                    <tr class="unread">
-                                        <td>
-                                            <label>
-                                                <input type="checkbox">
-                                            </label> <span class="name text-truncate">Terry Lincoln</span>
-                                        </td>
-                                        <td><span class="subject">Vacation pics</span> <small class="text-muted">(this
-                                                message contains images)</small></td>
-                                        <td><span class="badge">11:13 AM</span> <span class="float-right"></span></td>
-                                    </tr>
-                                    <!-- inbox item -->
-                                    <tr>
-                                        <td>
-                                            <label>
-                                                <input type="checkbox">
-                                            </label> <span class="name text-truncate">Mark Brown</span>
-                                        </td>
-                                        <td><span class="subject">Last call for this weekend</span> <small
-                                                class="text-muted">- Hi Joe, Thanks for sending over those..</small>
-                                        </td>
-                                        <td><span class="badge">11:05 AM</span> <span class="pull-right"></span></td>
-                                    </tr>
-                                    <!-- inbox item -->
-                                    <tr>
-                                        <td class=" text-truncate">
-                                            <label>
-                                                <input type="checkbox">
-                                            </label> <span class="name text-truncate">Jorge Anodonolgez</span>
-                                        </td>
-                                        <td><span class="subject">Meeting with Simco</span> <small class="text-muted">-
-                                                Joe I included your contact info for the...</small></td>
-                                        <td><span class="badge">10:54 AM</span> <span
-                                                class="pull-right glyphicon glyphicon-paperclip"></span></td>
-                                    </tr>
-                                    <!-- inbox item -->
-                                    <tr>
-                                        <td class="text-nowrap">
-                                            <label>
-                                                <input type="checkbox">
-                                            </label> <span class="name text-truncate">Mark Otto</span>
-                                        </td>
-                                        <td><span class="subject">FYI: New Release</span> <small class="text-muted">this
-                                                message is high priority</small></td>
-                                        <td><span class="badge badge-dark">9:58 AM</span> <span class="float-right"></span>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="tab-pane in" id="profile">
-                            <div class="list-group">
-                                <div class="list-group-item">
-                                    <span class="text-center">This tab folder is empty.</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
