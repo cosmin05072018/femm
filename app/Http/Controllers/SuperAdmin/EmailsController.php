@@ -50,7 +50,7 @@ class EmailsController extends Controller
 
         $messages = $inbox->messages()->all()->get();
 
-        dd($messages->getFlag());
+        dd($messages->flag());
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
