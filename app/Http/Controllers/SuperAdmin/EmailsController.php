@@ -98,8 +98,12 @@ class EmailsController extends Controller
     public function reply(Request $request)
     {
         $user = Auth::user();
+        $userId = $user->id;
+        $owner = User::where('role', 'owner')->first();
+
         $account = $user->email_femm;
         $password = $user->password_mail_femm;
+
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -115,21 +119,5 @@ class EmailsController extends Controller
         ]);
 
         $client->connect();
-        $inbox = $client->getFolder('INBOX');
-        $message = $inbox->messages();
-
-        if (!$message) {
-            return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
-        }
-        $fromEmail = "contact@femm.ro";
-        $fromName = "Femm Ro";
-        Mail::raw('testsssssssss', function ($mail) use ($fromEmail, $fromName) {
-            $mail->to('cosminmorari99@yahoo.com')
-                ->subject('Test Email')
-                ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
-                ->replyTo($fromEmail, $fromName) // Adresa dinamică
-                ->text('testulescuuuuuuuuuuuuu'); // Conținutul mesajului
-        });
-        return back()->with('success', 'Răspuns trimis cu succes!');
     }
 }
