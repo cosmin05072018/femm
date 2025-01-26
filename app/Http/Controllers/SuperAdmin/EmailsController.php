@@ -103,8 +103,6 @@ class EmailsController extends Controller
         $account = $user->email_femm;
         $password = $user->password_mail_femm;
 
-        dd('Date utilizator: ' . $account); // Debugging după autentificare
-
         if (!$account) {
             dd('Contul de email nu este configurat.'); // Debugging dacă contul lipsește
         }
