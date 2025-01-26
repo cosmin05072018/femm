@@ -201,6 +201,7 @@
 @endsection
 
 <script>
+    console.log(1);
     function generateStrongPassword(length = 12) {
         console.log(1);
         const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
