@@ -84,11 +84,25 @@
             </li>
 
             <!-- Nav Item - Emailuri -->
-            <li class="nav-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('admin.emails') }}">
+            <li class="nav-item dropdown {{ request()->routeIs('admin.emails*') ? 'active' : '' }}">
+                <a class="nav-link dropdown-toggle" href="#" id="emailDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-envelope"></i>
-                    <span>Emailuri</span></a>
+                    <span>Emailuri</span>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="emailDropdown">
+                    <li>
+                        <a class="dropdown-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}" href="{{ route('admin.emails') }}">
+                            Toate Emailurile
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {{ request()->routeIs('admin.emails.inbox') ? 'active' : '' }}" href="{{ route('admin.emails.inbox') }}">
+                            Mesaje Primite
+                        </a>
+                    </li>
+                </ul>
             </li>
+
 
             <!-- Nav Item - Setări -->
             <li class="nav-item">
