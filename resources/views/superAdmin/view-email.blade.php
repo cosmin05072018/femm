@@ -18,7 +18,7 @@
             <p class="text-dark">Subiect: <b>{{ $messages->getSubject() }}</b></p>
 
             <p class="text-dark">Continutul mailului:</p>
-            <div class="container-fluid p-3 content-mail">
+            <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->getHTMLBody() !!}
             </div>
         </div>
