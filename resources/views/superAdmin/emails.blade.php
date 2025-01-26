@@ -3,6 +3,18 @@
 @section('title', 'Emailuri')
 
 @section('content')
+
+    <style>
+        .bg-danger {
+            background-color: red !important;
+            color: white !important;
+        }
+
+        .bg-light {
+            background-color: white !important;
+            color: black !important;
+        }
+    </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
