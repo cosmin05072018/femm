@@ -54,7 +54,7 @@ class EmailsController extends Controller
         foreach ($messages as $message) {
             $flags = $message->flags();  // Obține colecția de flag-uri
             $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
-            dd($message->bodies->getFrom()[0]->mail);
+            dd($message->bodies->getFrom()->mail);
         }
 
         return view('superAdmin/emails', compact('owner', 'messages', 'userId'));
