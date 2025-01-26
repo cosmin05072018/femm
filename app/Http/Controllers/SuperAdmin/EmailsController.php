@@ -95,7 +95,7 @@ class EmailsController extends Controller
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 
-    public function reply(Request $request, $messageUid)
+    public function reply(Request $request)
 {
     $user = Auth::user();
     $userId = $user->id;
