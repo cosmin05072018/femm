@@ -96,7 +96,7 @@ class EmailsController extends Controller
             ->from($mailAdressView) // Doar mesajele de la adresa specificată
             ->get();
 
-        $messagesss = $inbox->query()->getMessage($id = 1);
+        $messagesss = $inbox->query()->getMessage($id = 6);
         dd($messagesss);
 
         return view('superAdmin/view-email', compact('owner', 'messages', 'mailAdressView'));
