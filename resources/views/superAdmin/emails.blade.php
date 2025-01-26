@@ -75,7 +75,7 @@
         </div>
     </div>
     @foreach ($messages as $message)
-    {{ $message->getDate() }}
+    {{ $message->flags() }}
     @endforeach
     {{ $messages  }}
 @endsection
