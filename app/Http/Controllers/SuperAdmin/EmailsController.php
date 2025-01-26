@@ -55,8 +55,11 @@ class EmailsController extends Controller
             $flags = $message->flags();  // Obține colecția de flag-uri
             $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
         }
-        dd($account);
-        return view('superAdmin/emails', compact('owner', 'messages', 'userId'));
+
+        $idUserFromMail = User::where('email_femm', $account)->value('id');
+
+
+        return view('superAdmin/emails', compact('owner', 'messages', 'idUserFromMail'));
     }
 
     public function show(Request $request){
