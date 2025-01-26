@@ -44,42 +44,19 @@
                             <table class="table table-striped table-hover">
                                 <thead>
                                     <tr>
-                                        <th>
-                                            <btn class="btn btn-outline-primary">
-                                                <input type="checkbox" class="all" title="select all"> All
-                                            </btn>
-                                        </th>
                                         <th>De la:</th>
                                         <th>Subiect</th>
                                         <th>Data</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- inbox header
-                                        <tr>
-                                            <td>
-                                                <btn class="btn btn-outline-primary">
-                                                    <input type="checkbox" class="all" title="select all"> All
-                                                </btn>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-light"><i title="delete selected"
-                                                        class="fa fa-trash"></i></button>
-                                                <button class="btn btn-light"><i title="move to folder"
-                                                        class="fa fa-folder-open"></i></button>
-                                            </td>
-                                            <td></td>
-                                        </tr> -->
-                                    <!-- inbox item -->
                                     @foreach ($sortedMessages as $message)
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
                                             <tr>
                                                 <td>
-                                                    <label>
-                                                        <input type="checkbox">
-                                                    </label> <span
+                                                    <span
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
                                                 <td><span class="subject">{{ $message->getSubject() }}</span>
