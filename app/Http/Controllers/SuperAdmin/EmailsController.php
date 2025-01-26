@@ -17,8 +17,9 @@ class EmailsController extends Controller
     // Metoda pentru a lista utilizatorii
     public function index()
     {
+        $owner = User::where('role', 'owner')->first();
 
-        return view('superAdmin/emails');
+        return view('superAdmin/emails', compact('owner'));
     }
 
 }
