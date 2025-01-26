@@ -201,20 +201,22 @@
 @endsection
 
 <script>
-    console.log(1);
-    function generateStrongPassword(length = 12) {
-        console.log(1);
-        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
-        let password = "";
-        for (let i = 0; i < length; i++) {
-            password += charset.charAt(Math.floor(Math.random() * charset.length));
+    document.addEventListener('DOMContentLoaded', function() {
+        function generateStrongPassword(length = 12) {
+            const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+            let password = "";
+            for (let i = 0; i < length; i++) {
+                password += charset.charAt(Math.floor(Math.random() * charset.length));
+            }
+            return password;
         }
-        return password;
-    }
 
-    document.getElementById('generate-password').addEventListener('click', function() {
-        console.log(1);
-        const strongPassword = generateStrongPassword();
-        document.getElementById('parola-femm').value = strongPassword;
+        const generateButton = document.getElementById('generate-password');
+        if (generateButton) {
+            generateButton.addEventListener('click', function() {
+                const strongPassword = generateStrongPassword();
+                document.getElementById('parola-femm').value = strongPassword;
+            });
+        }
     });
 </script>
