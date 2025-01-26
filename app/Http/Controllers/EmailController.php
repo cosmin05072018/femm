@@ -92,7 +92,6 @@ class EmailController extends Controller
             'encryption'    => 'ssl',
             'validate_cert' => true,
             'username'      => $account,
-            // 'password'      => Crypt::decryptString($account->password),
             'password'      => '@mU_(UvcY(ZL',
             'protocol'      => 'imap',
         ]);
@@ -105,40 +104,6 @@ class EmailController extends Controller
         if (!$message) {
             return response()->json(['error' => 'Emailul nu a fost găsit.'], 404);
         }
-
-        // Răspunsul la email
-        // Mail::raw($request->input('message'), function ($mail) use ($message, $request) {
-        //     // Accesează direct primul expeditor din lista returnată de getFrom()
-        //     $recipient = $message->getFrom()[0]->mail;
-
-        //     $mail->to($recipient) // Adresa destinatarului
-        //          ->subject('RE: ' . $message->getSubject()) // Subiectul emailului
-        //          ->from('cosminmorari99@yahoo.com') // Adresa de email a expeditorului
-        //          ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
-        //          ->setBody($request->input('message')); // Conținutul mesajului
-        // });
-        // Mail::raw('test', function ($mail) {
-        //     $mail->to('cosminmorari99@yahoo.com') // Adresa destinatarului
-        //          ->subject('Test Email') // Subiectul emailului
-        //          ->from('contact@femm.ro', 'Femm Ro') // Adresa de email a expeditorului și numele expeditorului
-        //          ->replyTo('cosminmorari99@yahoo.com') // Adresa de reply
-        //          ->text('test'); // Conținutul mesajului
-        // });
-        $fromEmail = "contact@femm.ro";
-        $fromName = "Femm Ro";
-        Mail::raw('testsssssssss', function ($mail) use ($fromEmail, $fromName) {
-            $mail->to('cosminmorari99@yahoo.com')
-                ->subject('Test Email')
-                ->from('anonimanonimus330@femm.ro', 'mail de test') // Adresa fixă de la Gmail
-                ->replyTo($fromEmail, $fromName) // Adresa dinamică
-                ->text('testulescuuuuuuuuuuuuu'); // Conținutul mesajului
-        });
-
-
-
-
-
-
 
         return back()->with('success', 'Răspuns trimis cu succes!');
     }

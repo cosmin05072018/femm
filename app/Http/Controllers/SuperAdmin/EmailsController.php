@@ -95,29 +95,49 @@ class EmailsController extends Controller
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 
-    public function reply(Request $request)
-    {
-        $user = Auth::user();
-        $userId = $user->id;
-        $owner = User::where('role', 'owner')->first();
+    public function reply(Request $request, $messageUid)
+{
+    $user = Auth::user();
+    $userId = $user->id;
+    $account = $user->email_femm;
+    $password = $user->password_mail_femm;
 
-        $account = $user->email_femm;
-        $password = $user->password_mail_femm;
-
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
-
-        $client = Client::make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account,
-            'password'      => $password,
-            'protocol'      => 'imap',
-        ]);
-
-        $client->connect();
+    if (!$account) {
+        return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
     }
+
+    // Connect to the IMAP server
+    $client = Client::make([
+        'host'          => 'mail.femm.ro',
+        'port'          => 993,
+        'encryption'    => 'ssl',
+        'validate_cert' => true,
+        'username'      => $account,
+        'password'      => $password,
+        'protocol'      => 'imap',
+    ]);
+
+    $client->connect();
+    $inbox = $client->getFolder('INBOX');
+
+    // Retrieve the message by UID
+    $message = $inbox->query()->getMessage($request->email);
+    if (!$message) {
+        return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
+    }
+
+    // Prepare reply message content
+    $replyContent = $request->input('reply_message');
+    $subject = 'Re: ' . $message->getSubject();
+    $body = $replyContent;
+
+    // Send the reply email
+    Mail::raw($body, function($message) use ($account, $subject) {
+        $message->from($account)
+                ->to($message->getFrom())
+                ->subject($subject);
+    });
+
+    return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
+}
 }
