@@ -33,8 +33,9 @@ class UserManagementController extends Controller
         return redirect()->route('admin.users-management')->with('success', 'Utilizatorul a fost acceptat.');
     }
 
-    public function acceptUser($id)
+    public function acceptUser(Request $request, $id)
     {
+        dd($request->all());
         // Găsim utilizatorul după ID
         $user = User::findOrFail($id);
 
