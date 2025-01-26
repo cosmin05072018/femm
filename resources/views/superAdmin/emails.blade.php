@@ -58,10 +58,10 @@
                                                 class=" bg-transparent">
                                                 <td class="bg-transparent">
                                                     <span
-                                                        class="name text-truncate {{ $message->is_seen ? 'seen' : 'fw-bold' }}">{{ $message->getFrom()[0]->mail }}</span>
+                                                        class="name text-truncate {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
-                                                <td><span class="subject {{ $message->is_seen ? 'seen' : 'fw-bold' }}">{{ $message->getSubject() }}</span></td>
-                                                <td><span class="text-dark {{ $message->is_seen ? 'seen' : 'fw-bold' }}">{{ $message->getDate() }}</span></td>
+                                                <td><span class="subject {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">{{ $message->getSubject() }}</span></td>
+                                                <td><span class="text-dark {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">{{ $message->getDate() }}</span></td>
                                             </tr>
                                         @endif
                                     @endforeach
