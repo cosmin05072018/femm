@@ -53,6 +53,7 @@ class UserManagementController extends Controller
         $user->role = 'super-admin';
         $user->hotel_id = $hotel->id; // Asociem utilizatorul cu ID-ul hotelului
         $user->email_femm = $request->input('email-femm');
+        $user->password_mail_femm = bcrypt($request->input('parola-femm')); // Hashing parola
         $user->save();
 
         // date de logare pe mail care vor fi trimise in Mail creat automat

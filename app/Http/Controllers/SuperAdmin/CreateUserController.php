@@ -11,40 +11,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 
-function createEmailAccountInCpanel($email, $password, $domain, $quota = 1024)
-{
-    $cpanelHost = env('CPANEL_HOST'); // Configurat în .env
-    $cpanelUser = env('CPANEL_USER'); // Configurat în .env
-    $cpanelPassword = env('CPANEL_PASSWORD'); // Configurat în .env
-
-    $client = new Client([
-        'base_uri' => $cpanelHost,
-        'auth' => [$cpanelUser, $cpanelPassword],
-    ]);
-
-    try {
-        $response = $client->request('POST', '/execute/Email/add_pop', [
-            'form_params' => [
-                'email' => $email,
-                'password' => $password,
-                'domain' => $domain,
-                'quota' => $quota, // Quota în MB
-            ],
-        ]);
-
-        $data = json_decode($response->getBody(), true);
-
-        if (isset($data['status']) && $data['status'] == 1) {
-            return true; // Succes
-        } else {
-            throw new \Exception($data['errors'][0] ?? 'Eroare necunoscută');
-        }
-    } catch (\Exception $e) {
-        throw new \Exception("Eroare la crearea contului de e-mail: " . $e->getMessage());
-    }
-}
-
-
 class CreateUserController extends Controller
 {
     public function create(Request $request)
