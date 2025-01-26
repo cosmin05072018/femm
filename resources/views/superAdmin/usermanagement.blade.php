@@ -64,7 +64,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <!-- Form cu toate detaliile utilizatorului -->
-                                                        <form id="userRequestForm-{{ $user->id }}" method="POST" action="{{ route('users.accept', ['user' => $user->id]) }}">
+                                                        <form id="userRequestForm-{{ $user->id }}" method="POST" action="{{ route('admin.users.accept', ['user' => $user->id]) }}">
                                                             @csrf
                                                             @method('PUT')
 
