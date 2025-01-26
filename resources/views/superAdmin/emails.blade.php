@@ -54,7 +54,7 @@
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <a href="{{ route('admin.view-email', ['userId' => $userFromMail]) }}">
+                                            <a href="{{ route('admin.view-email', ['userFromMail' => $userFromMail]) }}">
                                                 <tr class="bg-transparent">
                                                     <td class="bg-transparent">
                                                         <span
