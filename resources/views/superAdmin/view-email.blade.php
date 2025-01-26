@@ -10,9 +10,7 @@
         <div id="content">
             <h1>Messages from: {{ $mailAdressView }}</h1>
 
-            @foreach ($messages as $message)
-                {{ $message }}
-            @endforeach
+                {{ $messages }}
         </div>
     </div>
 @endsection
