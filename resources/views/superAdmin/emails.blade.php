@@ -9,6 +9,12 @@
         <!-- Main Content -->
         <div id="content">
             <h1>Emailuri</h1>
+            @php
+                    // Sortăm mesajele în ordine descrescătoare după dată
+                    $sortedMessages = collect($messages)->sortByDesc(function ($message) {
+                        return $message->getDate();
+                    });
+                @endphp
 
             <div class="container-fluid p-0">
                 <div class="row w-100">
