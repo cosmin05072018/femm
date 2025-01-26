@@ -46,36 +46,18 @@
 
             <div class="container-fluid py-3">
                 <div class="row">
-                    <!--left-->
-                    <aside class="col-sm-3 col-md-2 pb-3">
-                        <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i> Compose</a>
-                        <hr>
-                        <ul class="nav nav-pills flex-column">
-                            <li class="active"><a href="#"><span class="badge badge-primary float-right">32</span> Inbox </a></li>
-                            <li><a href="#">Archived</a></li>
-                            <li><a href="#">Important</a></li>
-                            <li><a href="#">Sent</a></li>
-                            <li><a href="#"><span class="badge badge-primary float-right">3</span>Drafts</a></li>
-                        </ul>
-                        <hr>
-                        <div class="storage">
-                            <small>2.85 GB of <strong>15 GB</strong></small>
-                            <div class="progress progress-sm">
-                                <div class="progress-bar progress-bar-primary" style="width:30%;"></div>
-                            </div>
-                        </div>
-                    </aside>
                     <!--main-->
                     <div class="col-sm-9 col-md-10">
                         <!-- tabs -->
+                        <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i> Compose</a>
                         <ul class="nav nav-tabs border-0">
                             <li class="nav-item">
                                 <a class="nav-link active" href="#inbox" data-toggle="tab">
-                                    <i class="fa fa-inbox mr-1"></i> Primary
+                                    <i class="fa fa-inbox mr-1"></i> Toate mesajele
                                 </a>
                             </li>
                             <li><a href="#profile" class="nav-link" data-toggle="tab">
-                                <i class="fa fa-user mr-1"></i> Personal</a></li>
+                                <i class="fa fa-user mr-1"></i> Mesaje Trimise </a></li>
                             <li><a href="#settings" class="nav-link" data-toggle="tab">
                                 <i class="fa fa-plus"></i>
                                 </a>
@@ -162,11 +144,6 @@
                                         <span class="text-center">This tab folder is empty.</span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row-md-12">
-                            <div class="card card-body text-right">
-                                <small>Last updated: 4/14/2020: 3:02 PM</small>
                             </div>
                         </div>
                     </div>
