@@ -105,7 +105,7 @@
                                                             </div>
 
                                                             <!-- Creare mail pentru platforma CPANEL -->
-                                                            <b class="text-uppercase border-top text-center w-100 pt-4">Creaza datele de autentificare pentru utilizator</b>
+                                                            <b class="text-uppercase border-top text-center w-100">Creaza datele de autentificare pentru utilizator</b>
                                                             <div class="alert alert-primary p-3 mt-3" role="alert">
                                                                   Adresa nu trebuie sa contina "@ceva.com" deoarece i se va pune automat "@femm.ro"
                                                               </div>
@@ -117,6 +117,7 @@
                                                             <div class="mb-3">
                                                                 <label for="parola-femm" class="form-label">Parola</label>
                                                                 <input type="text" class="form-control" id="parola-femm" name="parola-femm">
+                                                                <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -199,3 +200,18 @@
     </div>
 @endsection
 
+<script>
+    function generateStrongPassword(length = 12) {
+        const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+";
+        let password = "";
+        for (let i = 0; i < length; i++) {
+            password += charset.charAt(Math.floor(Math.random() * charset.length));
+        }
+        return password;
+    }
+
+    document.getElementById('generate-password').addEventListener('click', function() {
+        const strongPassword = generateStrongPassword();
+        document.getElementById('parola-femm').value = strongPassword;
+    });
+</script>
