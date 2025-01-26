@@ -8,6 +8,7 @@ use App\Http\Controllers\SuperAdmin\UserManagementController;
 use App\Http\Controllers\SuperAdmin\DepartmentsController;
 use App\Http\Controllers\SuperAdmin\HotelsController;
 use App\Http\Controllers\SuperAdmin\CreateUserController;
+use App\Http\Controllers\SuperAdmin\EmailsController;
 use App\Http\Controllers\EmailController;
 
 /*
@@ -67,6 +68,9 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // departamentele (acces pt super-admin)
     Route::get('/departments', [DepartmentsController::class, 'index'])->name('departments');
     Route::post('/change-color', [DepartmentsController::class, 'ChangeColorDepartments'])->name('change-color');
+
+    // emailuri
+    Route::get('/emails', [EmailsController::class, 'index'])->name('emails');
 
     // hotele
     Route::get('/hotels', [HotelsController::class, 'index'])->name('hotels');

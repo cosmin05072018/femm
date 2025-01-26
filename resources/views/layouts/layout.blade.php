@@ -83,6 +83,13 @@
                     <span>Departamente</span></a>
             </li>
 
+            <!-- Nav Item - Emailuri -->
+            <li class="nav-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.emails') }}">
+                    <i class="fas fa-mail"></i>
+                    <span>Emailuri</span></a>
+            </li>
+
             <!-- Nav Item - Setări -->
             <li class="nav-item">
                 <a class="nav-link" href="#">
