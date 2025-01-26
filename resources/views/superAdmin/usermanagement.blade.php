@@ -105,12 +105,9 @@
                                                             </div>
 
                                                             <!-- Creare mail pentru platforma CPANEL -->
-                                                            <H3>Creaza datele de autentificare pentru utilizator</H3>
-                                                            <div class="alert alert-primary d-flex align-items-center" role="alert">
-                                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
-                                                                <div>
+                                                            <b>Creaza datele de autentificare pentru utilizator</b>
+                                                            <div class="alert alert-primary" role="alert">
                                                                   Adresa nu trebuie sa contina "@ceva.com" deoarece i se va pune automat "@femm.ro"
-                                                                </div>
                                                               </div>
                                                             <div class="mb-3">
                                                                 <label for="email-femm" class="form-label">Email</label>
