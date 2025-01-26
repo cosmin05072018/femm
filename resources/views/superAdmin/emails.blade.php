@@ -16,21 +16,22 @@
                         De la: {{ $message->getFrom()[0]->mail }}<br>
                         Data: {{ $message->getDate() }}<br>
 
-                        {{-- Afișăm conținutul mesajului --}}
+                        {{-- Afișăm corpul real al emailului --}}
                         <p>
                             Conținut:
-                            @if (!empty($message->bodies['html']))
-                                {{-- Afișăm HTML dacă există --}}
+                            @if (isset($message->bodies['html']) && !empty($message->bodies['html']))
+                                {{-- Afișăm conținut HTML dacă există --}}
                                 {!! $message->bodies['html'] !!}
-                            @elseif (!empty($message->bodies['text']))
+                            @elseif (isset($message->bodies['text']) && !empty($message->bodies['text']))
                                 {{-- Afișăm text simplu dacă HTML nu există --}}
                                 {{ nl2br(e($message->bodies['text'])) }}
                             @else
-                                Mesajul nu conține conținut.
+                                Mesajul nu conține conținut vizibil.
                             @endif
                         </p>
                     </li>
                 @endforeach
+
 
             </ul>
         </div>
