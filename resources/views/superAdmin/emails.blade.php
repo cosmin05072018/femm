@@ -44,8 +44,8 @@
                 @endforeach
             </ul>
 
-            <div class="container-fluid py-3">
-                <div class="row">
+            <div class="container-fluid p-0">
+                <div class="row w-100">
                     <!--main-->
                     <div class="col-sm-9 col-md-10">
                         <!-- tabs -->
