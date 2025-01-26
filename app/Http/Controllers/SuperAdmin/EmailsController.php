@@ -23,6 +23,7 @@ class EmailsController extends Controller
     {
 
         $user = Auth::user();
+        $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
 
         $account = $user->email_femm;
@@ -55,6 +56,6 @@ class EmailsController extends Controller
             $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
         }
 
-        return view('superAdmin/emails', compact('owner', 'messages'));
+        return view('superAdmin/emails', compact('owner', 'messages', 'userId'));
     }
 }
