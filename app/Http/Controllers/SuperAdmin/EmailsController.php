@@ -98,7 +98,6 @@ class EmailsController extends Controller
 
     public function reply(Request $request)
     {
-        dd('Metoda reply a fost apelată'); // Debugging inițial
 
         $user = Auth::user();
         $account = $user->email_femm;
