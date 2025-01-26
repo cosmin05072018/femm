@@ -147,7 +147,6 @@ class EmailController extends Controller
         $request->validate([
             'email' => 'required|string',
             'password' => 'required|string|min:6',
-            // 'domain' => 'required|string',
             'quota' => 'nullable|integer|min:0', // Optional: spațiu alocat în MB
         ]);
 
@@ -162,7 +161,6 @@ class EmailController extends Controller
         $params = [
             'email' => $request->email,
             'password' => $request->password,
-            // 'domain' => $request->domain,
             'quota' => $request->quota ?? 0, // 0 pentru spațiu nelimitat
         ];
 

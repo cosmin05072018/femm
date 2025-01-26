@@ -103,6 +103,24 @@
                                                                 <label for="email" class="form-label">Email</label>
                                                                 <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
                                                             </div>
+
+                                                            <!-- Creare mail pentru platforma CPANEL -->
+                                                            <H3>Creaza datele de autentificare pentru utilizator</H3>
+                                                            <div class="alert alert-primary d-flex align-items-center" role="alert">
+                                                                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
+                                                                <div>
+                                                                  Adresa nu trebuie sa contina "@ceva.com" deoarece i se va pune automat "@femm.ro"
+                                                                </div>
+                                                              </div>
+                                                            <div class="mb-3">
+                                                                <label for="email-femm" class="form-label">Email</label>
+                                                                <input type="text" class="form-control" id="email-femm" name="email-femm">
+                                                            </div>
+
+                                                            <div class="mb-3">
+                                                                <label for="parola-femm" class="form-label">Parola</label>
+                                                                <input type="text" class="form-control" id="parola-femm" name="parola-femm">
+                                                            </div>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
