@@ -52,18 +52,24 @@ class EmailsController extends Controller
         $messages = $inbox->messages()->all()->get();
 
         foreach ($messages as $message) {
-            $flags = $message->flags();  // Obține colecția de flag-uri
-            $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
+            // Obține colecția de flag-uri
+            $flags = $message->flags();
+            $message->is_seen = $flags->contains('Seen'); // Verifică dacă colecția conține flag-ul 'Seen'
 
             // Obține adresa de email din mesaj
             $emailAddress = $message->getFrom()[0]->mail;
 
+            // Verifică dacă adresa de email este "cpanel@femm.ro" și trece peste ea
+            if ($emailAddress === 'cpanel@femm.ro') {
+                continue;
+            }
+
             // Caută în modelul User coloana care se potrivește cu adresa de email
             $userFromMail = User::where('email_femm', $emailAddress)->first();
 
-
             dd($emailAddress);
         }
+
 
 
 
