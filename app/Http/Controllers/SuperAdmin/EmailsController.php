@@ -95,7 +95,42 @@ class EmailsController extends Controller
 
         $messages = $inbox->query()->getMessage($request->email);
 
-        return view('superAdmin/view-email', compact('owner', 'messages'));
+        $imageUrls = [];
+
+    foreach ($messages as $message) {
+        // Verifică dacă mesajul are atașamente
+        if ($message->hasAttachments()) {
+            foreach ($message->getAttachments() as $attachment) {
+                $filename = $attachment->getFilename();
+                $fileContent = $attachment->getDecodedContent();
+                $path = public_path('uploads/' . $filename);
+
+                // Salvează fișierul în directorul public
+                file_put_contents($path, $fileContent);
+
+                // Adaugă URL-ul fișierului în lista de imagini
+                $imageUrls[] = url('uploads/' . $filename);
+            }
+        }
+
+        // Verifică și imagini inline
+        if ($message->hasInlineAttachments()) {
+            foreach ($message->getInlineAttachments() as $inlineAttachment) {
+                $cid = $inlineAttachment->getContentId();
+                $filename = $cid . '.' . $inlineAttachment->getExtension();
+                $fileContent = $inlineAttachment->getDecodedContent();
+                $path = public_path('uploads/' . $filename);
+
+                // Salvează imaginea în directorul public
+                file_put_contents($path, $fileContent);
+
+                // Înlocuiește referințele cid în corpul mesajului cu URL-ul fișierului
+                $message->setBody(str_replace('cid:' . $cid, url('uploads/' . $filename), $message->getBody()));
+            }
+        }
+    }
+
+        return view('superAdmin/view-email', compact('owner', 'messages', 'imageUrls'));
     }
 
     public function reply(Request $request)
