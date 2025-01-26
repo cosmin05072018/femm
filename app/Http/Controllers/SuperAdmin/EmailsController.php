@@ -62,7 +62,7 @@ class EmailsController extends Controller
             $userFromMail = User::where('email_femm', $emailAddress)->get();
 
 
-            dd($userFromMail);
+            dd($emailAddress);
         }
 
 
