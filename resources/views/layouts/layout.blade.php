@@ -94,9 +94,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Emailuri:</h6>
                         <a class="collapse-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}" href="{{ route('admin.emails') }}">
-                            Toate Emailurile
-                        </a>
-                        <a class="collapse-item {{ request()->routeIs('admin.emails.inbox') ? 'active' : '' }}" href="{{ route('admin.emails.inbox') }}">
                             Mesaje Primite
                         </a>
                     </div>
