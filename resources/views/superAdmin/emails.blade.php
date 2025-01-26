@@ -10,13 +10,7 @@
         <div id="content">
             <div class="py-5">
                 <h1>Emailuri</h1>
-                    @foreach ($messages as $email)
-                    <tr>
-                        <td>{{ $email['subject'] }}</td>
-                        <td>{{ $email['from_email'] }}</td> <!-- Afișează doar adresa de e-mail -->
-                        <td>{{ $email['body'] }}</td>
-                    </tr>
-                @endforeach
+                {{ $messages }}
             </div>
         </div>
     </div>
