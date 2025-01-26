@@ -31,8 +31,10 @@
                         <div class="modal-body">
                             <form action="{{ route('admin.reply', $messages->getUid()) }}" method="POST" style="display:inline;">
                                 @csrf
-                                <input type="textarea">
-                                <button type="submit" class="btn btn-primary">Trimite</button>
+                                <div class="mb-3">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
+                                  </div>
+                                <button type="submit" class="btn btn-danger">Trimite</button>
                             </form>
                         </div>
                     </div>
