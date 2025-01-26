@@ -97,8 +97,9 @@ class EmailsController extends Controller
 
     public function reply(Request $request)
     {
-        // $account = EmailAccount::where('user_id', $userId)->first();
-        $account = 'contact@femm.ro';
+        $user = Auth::user();
+        $account = $user->email_femm;
+        $password = $user->password_mail_femm;
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -109,8 +110,7 @@ class EmailsController extends Controller
             'encryption'    => 'ssl',
             'validate_cert' => true,
             'username'      => $account,
-            // 'password'      => Crypt::decryptString($account->password),
-            'password'      => '@mU_(UvcY(ZL',
+            'password'      => $password,
             'protocol'      => 'imap',
         ]);
 
