@@ -99,6 +99,25 @@
                                         <td><span class="badge">12:10 AM</span> <span
                                                 class="float-right fa fa-paperclip"></span></td>
                                     </tr>
+
+                                    @foreach ($sortedMessages as $message)
+                                        @if (
+                                            !str_contains($message->getSubject(), 'Client Configuration') &&
+                                                !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
+                                            <tr>
+                                                <td>
+                                                    <label>
+                                                        <input type="checkbox">
+                                                    </label> <span
+                                                        class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
+                                                </td>
+                                                <td><span class="subject">{{ $message->getSubject() }}</span>
+                                                </td>
+                                                <td><span class="badge">{{ $message->getDate() }}</span> <span
+                                                        class="float-right fa fa-paperclip"></span></td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
