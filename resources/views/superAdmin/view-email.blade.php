@@ -11,11 +11,7 @@
             <h1>Messages from: {{ $mailAdressView }}</h1>
 
             @foreach ($messages as $message)
-                <tr>
-                    <td>{{ $message['subject'] }}</td>
-                    <td>{{ $message['from_email'] }}</td> <!-- Afișează doar adresa de e-mail -->
-                    <td>{{ $message['body'] }}</td>
-                </tr>
+                {{ $message }}
             @endforeach
         </div>
     </div>
