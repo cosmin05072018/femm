@@ -2,13 +2,13 @@
 
 @section('title', 'Emailuri')
 
-<style>
-    .content-mail{
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
-    }
-</style>
-
 @section('content')
+
+    <style>
+        .content-mail {
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px !important;
+        }
+    </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
