@@ -9,7 +9,7 @@
         <!-- Main Content -->
         <div id="content">
             <div class="py-5">
-                <h1>emailuri</h1>
+                <h1>Emailuri</h1>
             </div>
         </div>
     </div>
