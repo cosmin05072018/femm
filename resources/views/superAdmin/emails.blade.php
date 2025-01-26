@@ -10,11 +10,11 @@
         <div id="content">
             <h1>Emailuri</h1>
             @php
-                    // Sortăm mesajele în ordine descrescătoare după dată
-                    $sortedMessages = collect($messages)->sortByDesc(function ($message) {
-                        return $message->getDate();
-                    });
-                @endphp
+                // Sortăm mesajele în ordine descrescătoare după dată
+                $sortedMessages = collect($messages)->sortByDesc(function ($message) {
+                    return $message->getDate();
+                });
+            @endphp
 
             <div class="container-fluid p-0">
                 <div class="row w-100">
@@ -42,22 +42,34 @@
                     <div class="tab-content py-4">
                         <div class="tab-pane in active" id="inbox">
                             <table class="table table-striped table-hover">
-                                <tbody>
-                                    <!-- inbox header -->
+                                <thead>
                                     <tr>
-                                        <td>
+                                        <th>
                                             <btn class="btn btn-outline-primary">
                                                 <input type="checkbox" class="all" title="select all"> All
                                             </btn>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-light"><i title="delete selected"
-                                                    class="fa fa-trash"></i></button>
-                                            <button class="btn btn-light"><i title="move to folder"
-                                                    class="fa fa-folder-open"></i></button>
-                                        </td>
-                                        <td></td>
+                                        </th>
+                                        <th>De la:</th>
+                                        <th>Subiect</th>
+                                        <th>Data</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- inbox header
+                                        <tr>
+                                            <td>
+                                                <btn class="btn btn-outline-primary">
+                                                    <input type="checkbox" class="all" title="select all"> All
+                                                </btn>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-light"><i title="delete selected"
+                                                        class="fa fa-trash"></i></button>
+                                                <button class="btn btn-light"><i title="move to folder"
+                                                        class="fa fa-folder-open"></i></button>
+                                            </td>
+                                            <td></td>
+                                        </tr> -->
                                     <!-- inbox item -->
                                     @foreach ($sortedMessages as $message)
                                         @if (
@@ -72,8 +84,7 @@
                                                 </td>
                                                 <td><span class="subject">{{ $message->getSubject() }}</span>
                                                 </td>
-                                                <td><span class="badge">{{ $message->getDate() }}</span> <span
-                                                        class="float-right fa fa-paperclip"></span></td>
+                                                <td><span class="badge">{{ $message->getDate() }}</span> </td>
                                             </tr>
                                         @endif
                                     @endforeach
