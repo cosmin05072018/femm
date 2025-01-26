@@ -29,7 +29,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin.reply', $message->getUid()) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.reply', $messages->getUid()) }}" method="POST" style="display:inline;">
                                 @csrf
                                 <input type="text">
                                 <button type="submit" class="btn btn-danger">Șterge</button>
