@@ -15,29 +15,33 @@
             <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->mask()->getHTMLBodyWithEmbeddedBase64Images() !!}
                 @foreach ($webmails as $webmail)
-                    {{ $webmail }}
+                    {{ $webmail->getAttachments }}
                 @endforeach
             </div>
 
             <!-- Butonul pentru activarea modalului -->
-            <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal" data-bs-target="#userRequestModal">
+            <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal"
+                data-bs-target="#userRequestModal">
                 Raspunde
             </a>
 
             <!-- Modalul complet -->
-            <div class="modal fade" id="userRequestModal" tabindex="-1" aria-labelledby="userRequestModalLabel" aria-hidden="true">
+            <div class="modal fade" id="userRequestModal" tabindex="-1" aria-labelledby="userRequestModalLabel"
+                aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="userRequestModalLabel">Raspunde lui <b>{{ $messages->getFrom()[0]->mail }}</b></h5>
+                            <h5 class="modal-title" id="userRequestModalLabel">Raspunde lui
+                                <b>{{ $messages->getFrom()[0]->mail }}</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin.reply', ['email' => $messages->getUid()]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.reply', ['email' => $messages->getUid()]) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 <div class="mb-3">
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="reply_message" rows="8"></textarea>
-                                  </div>
+                                </div>
                                 <button type="submit" class="btn btn-primary">Trimite</button>
                             </form>
                         </div>
