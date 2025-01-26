@@ -49,6 +49,7 @@ class EmailsController extends Controller
         $seenMessage = $inbox->query()->seen()->get();
 
         $messages = $inbox->messages()->all()->get();
+        dd($messages);
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
