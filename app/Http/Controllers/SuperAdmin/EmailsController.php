@@ -93,16 +93,11 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
 
-        $webmails = [];
-
         $messages = $inbox->query()->getMessage($request->email);
         $attachment = $messages->getAttachments();
+        dd($attachment);
 
-        $webmails[] = [
-            'getAttachments' => $messages->getAttachments(),
-        ];
-
-        return view('superAdmin/view-email', compact('owner', 'messages', 'webmails'));
+        return view('superAdmin/view-email', compact('owner', 'messages'));
     }
 
     public function reply(Request $request)
