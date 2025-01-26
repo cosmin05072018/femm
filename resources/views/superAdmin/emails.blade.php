@@ -54,17 +54,17 @@
                                         @if (
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <tr>
+                                            <tr class="{{ $message->isSeen() ? 'read-message' : 'unread-message' }}">
                                                 <td>
                                                     <span
                                                         class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
-                                                <td><span class="subject">{{ $message->getSubject() }}</span>
-                                                </td>
-                                                <td><span class="text-dark">{{ $message->getDate() }}</span> </td>
+                                                <td><span class="subject">{{ $message->getSubject() }}</span></td>
+                                                <td><span class="text-dark">{{ $message->getDate() }}</span></td>
                                             </tr>
                                         @endif
                                     @endforeach
+
                                 </tbody>
                             </table>
                         </div>
