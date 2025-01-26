@@ -55,13 +55,13 @@
                                             !str_contains($message->getSubject(), 'Client Configuration') &&
                                                 !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
                                             <tr
-                                                class=" bg-transparent {{ $message->is_seen ? 'seen' : 'fw-bold' }}">
+                                                class=" bg-transparent">
                                                 <td class="bg-transparent">
                                                     <span
-                                                        class="name text-truncate">{{ $message->getFrom()[0]->mail }}</span>
+                                                        class="name text-truncate {{ $message->is_seen ? 'seen' : 'fw-bold' }}">{{ $message->getFrom()[0]->mail }}</span>
                                                 </td>
-                                                <td><span class="subject">{{ $message->getSubject() }}</span></td>
-                                                <td><span class="text-dark">{{ $message->getDate() }}</span></td>
+                                                <td><span class="subject {{ $message->is_seen ? 'seen' : 'fw-bold' }}">{{ $message->getSubject() }}</span></td>
+                                                <td><span class="text-dark {{ $message->is_seen ? 'seen' : 'fw-bold' }}">{{ $message->getDate() }}</span></td>
                                             </tr>
                                         @endif
                                     @endforeach
