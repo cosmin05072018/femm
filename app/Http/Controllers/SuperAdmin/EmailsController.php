@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use function Ramsey\Uuid\v1;
 
+
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
@@ -44,9 +45,12 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->messages()->all()->get();
 
-        dd($messages[0]);
+        /** @var \Webklex\PHPIMAP\Query\WhereQuery $query */
+        /** @var \Webklex\PHPIMAP\Support\MessageCollection $messages */
+
+        $messagesUNSEEN = $query->where([["UNSEEN" => true]])->get();
+        dd($messagesUNSEEN[0]);
 
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
-
 }
