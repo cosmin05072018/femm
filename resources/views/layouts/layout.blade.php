@@ -86,7 +86,7 @@
             <!-- Nav Item - Emailuri -->
             <li class="nav-item {{ request()->routeIs('admin.emails') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.emails') }}">
-                    <i class="fas fa-mail"></i>
+                    <i class="fas fa-envelope"></i>
                     <span>Emailuri</span></a>
             </li>
 
