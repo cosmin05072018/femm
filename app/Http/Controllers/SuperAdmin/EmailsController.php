@@ -133,6 +133,7 @@ class EmailsController extends Controller
 
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'A apărut o eroare: ' . $e->getMessage());
+        dd('A apărut o eroare: ' . $e->getMessage(), $e->getTrace());
     }
 
 
