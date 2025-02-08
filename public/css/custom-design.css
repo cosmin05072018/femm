@@ -118,6 +118,14 @@
     border: none !important;
 }
 
+.card-custom-hotel .card{
+    border-radius: 0px !important;
+}
+
+.card-custom-hotel{
+    border: none !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
