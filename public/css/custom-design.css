@@ -73,6 +73,12 @@
     cursor: pointer !important;
 }
 
+.btn-custom-action{
+    color: var(--white) !important;
+    background-color: var(--background-back) !important;
+    padding: 5px 10px !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;

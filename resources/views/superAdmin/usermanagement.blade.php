@@ -50,7 +50,7 @@
                                     <!-- Dacă statusul este 0 (în așteptare) -->
                                     <div class="d-flex flex-column">
                                         <!-- Butonul pentru activarea modalului -->
-                                        <a href="#" class="btn btn-custom btn-sm mb-2" style="width: fit-content" title="Vezi cererea" data-bs-toggle="modal" data-bs-target="#userRequestModal-{{ $user->id }}">
+                                        <a href="#" class="btn btn-custom-action btn-sm mb-2" style="width: fit-content" title="Vezi cererea" data-bs-toggle="modal" data-bs-target="#userRequestModal-{{ $user->id }}">
                                             Vezi cererea
                                         </a>
 
