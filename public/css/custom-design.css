@@ -36,7 +36,7 @@
     justify-content: space-between !important;
 }
 
-.card-custom{
+.custom-container-card .card{
     background-color: var(--background-containers) !important;
 }
 
