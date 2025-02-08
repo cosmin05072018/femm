@@ -143,6 +143,10 @@
     color: var(--white) !important;
 }
 
+.accordion-custom button::after svg{
+    color: red !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
