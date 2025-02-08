@@ -164,7 +164,7 @@
                 <div id="content-wrapper" class="d-flex flex-column custom-content">
                     <div id="content">
                         <!-- Main Content -->
-                        <div class="container-fluid">
+                        <div class="container-fluid p-5">
                             @yield('content')
                         </div>
                     </div>

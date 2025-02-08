@@ -36,6 +36,10 @@
     justify-content: space-between !important;
 }
 
+.card-custom{
+    background-color: var(--background-containers) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
