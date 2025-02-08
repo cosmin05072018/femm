@@ -53,7 +53,7 @@
                         <form action="{{ route('admin.hotel.destroy', $hotelSelected->id) }}" method="POST" class="mt-2">
                             @csrf
                             @method('DELETE')
-                            <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-danger btn-sm mb-2"
+                            <a style="width: fit-content" class="btn btn-danger btn-sm mb-2"
                                 title="Șterge hotel" data-bs-toggle="modal" data-bs-target="deleteHotel">
                                 Șterge hotel
                             </a>
