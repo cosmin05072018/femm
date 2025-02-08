@@ -214,7 +214,7 @@
                     @foreach ($departments as $department)
                         <div class="accordion-item accordion-custom">
                             <h2 class="accordion-header py-3" id="flush-heading{{ $department->id }}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $department->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $department->id }}">
+                                <button class="accordion-button collapsed d-flex gap-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $department->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $department->id }}">
                                     <span>Departament:</span> <br> <span></span><b> {{ $department->name }} </b></span>
                                 </button>
                             </h2>
