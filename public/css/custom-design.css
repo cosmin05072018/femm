@@ -8,7 +8,7 @@
 }
 
 .custom-nav{
-    background-color: var(--background-containers);
+    background-color: var(--background-containers) !important;
 }
 
 @media only screen and (max-width: 768px) {
