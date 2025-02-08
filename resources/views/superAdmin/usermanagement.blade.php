@@ -151,7 +151,7 @@
                                 @elseif ($user->status == 1)
                                     <!-- Dacă statusul este 1 (aprobat) -->
                                     <div class="d-flex flex-column">
-                                        <a href="{{ $user->id }}" class="btn btn-primary btn-sm mb-2" title="Vezi detalii" data-bs-toggle="modal" data-bs-target="#userDetailsModal-{{ $user->id }}">
+                                        <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-primary btn-sm mb-2" title="Vezi detalii" data-bs-toggle="modal" data-bs-target="#userDetailsModal-{{ $user->id }}">
                                             Vezi detalii
                                         </a>
                                         <!-- Modal pentru "Vezi detalii" -->
