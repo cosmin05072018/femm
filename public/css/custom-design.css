@@ -143,8 +143,8 @@
     color: var(--white) !important;
 }
 
-.accordion-custom button::after svg{
-    color: red !important;
+.accordion-custom button::after svg parh{
+    fill: red !important;
 }
 
 @media only screen and (max-width: 768px) {
