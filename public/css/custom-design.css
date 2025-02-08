@@ -15,7 +15,7 @@
 }
 
 .custom-nav .btn-custom{
-    background-color: none !important;
+    background: none !important;
     color: var(--white) !important;
 }
 
