@@ -3,12 +3,6 @@
 @section('title', 'Hotel')
 
 @section('content')
-<!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Bootstrap Bundle JS (include și Popper.js) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <style>
         .card-custom:hover {
             box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px !important;
@@ -216,16 +210,16 @@
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
                     </h4>
                 </div>
-                <div class="accordion" id="departmentsAccordion">
+                <div class="accordion accordion-flush" id="departmentsAccordion">
                     @foreach ($departments as $department)
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="heading{{ $department->id }}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $department->id }}" aria-expanded="false" aria-controls="collapse{{ $department->id }}">
+                            <h2 class="accordion-header" id="flush-heading{{ $department->id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $department->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $department->id }}">
                                     Departament: <b>{{ $department->name }}</b>
                                 </button>
                             </h2>
 
-                            <div id="collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $department->id }}">
+                            <div id="flush-collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $department->id }}" data-bs-parent="#departmentsAccordion">
                                 <div class="accordion-body">
 
                                     <!-- Șefi Departament -->
