@@ -7,7 +7,6 @@
         <div class="card-header py-3">
             <h4 class="m-0 font-weight-bold text-primary">Evidență utilizatori și cereri în așteptare</h4>
         </div>
-            <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
@@ -225,7 +224,6 @@
                     @endforeach
                     </tbody>
                 </table>
-            </div>
 @endsection
 
 <script>
