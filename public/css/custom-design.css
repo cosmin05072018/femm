@@ -115,6 +115,7 @@
 .card-custom-hotel .card{
     background-color: var(--background-containers) !important;
     color: var(--white) !important;
+    border: none !important;
 }
 
 @media only screen and (max-width: 768px) {
