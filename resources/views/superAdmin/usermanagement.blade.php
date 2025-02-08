@@ -13,7 +13,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th></th>
+                            <th style="width: 0% !important"></th>
                             <th style="width: 5% !important">Oras</th>
                             <th style="width: 1% !important">Nume Manager</th>
                             <th style="width: 1% !important">Email</th>
