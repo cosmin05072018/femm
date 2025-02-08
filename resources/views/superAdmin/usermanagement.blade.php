@@ -225,9 +225,13 @@
 
         document.querySelectorAll('.generate-password').forEach(button => {
             button.addEventListener('click', function() {
-                const passwordField = this.previousElementSibling; // Găsește inputul de parolă din același container
-                if (passwordField && passwordField.classList.contains('password-field')) {
-                    passwordField.value = generateStrongPassword();
+                // Căutăm cel mai apropiat .password-container dinaintea acestui buton
+                const container = this.closest('.mb-3').previousElementSibling;
+                if (container && container.classList.contains('password-container')) {
+                    const passwordField = container.querySelector('.password-field');
+                    if (passwordField) {
+                        passwordField.value = generateStrongPassword();
+                    }
                 }
             });
         });
