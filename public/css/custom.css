@@ -5,6 +5,7 @@
     --public-events: linear-gradient(to bottom, #afeeee, #40e0d0, #00ced1);
     --hotel-manager: linear-gradient(to right, #0099ffc0, #3a7bd5);
     --booking: linear-gradient(to right, #e43a15, #e65245);
+    --background-back: #151a30 ;
 }
 
 * {
@@ -75,4 +76,6 @@ body {
     background: var(--booking);
 }
 
-
+.content-custom{
+    background: var(--background-back) !important;
+}
