@@ -13,12 +13,12 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>Oras</th>
-                            <th>Nume Manager</th>
-                            <th>Email</th>
-                            <th>Status Cont</th>
-                            <th>Rol</th>
+                            <th style="width: 5% !important"></th>
+                            <th style="width: 5% !important">Oras</th>
+                            <th style="width: 5% !important">Nume Manager</th>
+                            <th style="width: 5% !important">Email</th>
+                            <th style="width: 5% !important">Status Cont</th>
+                            <th style="width: 5% !important">Rol</th>
                             <th style="width: 5% !important">Departament</th>
                             <th style="width: 5% !important">Hotel</th>
                             <th>Actiuni</th>
