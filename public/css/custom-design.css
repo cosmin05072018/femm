@@ -103,6 +103,11 @@
     border-radius: 0px !important;
 }
 
+.card-custom-hotels section .card{
+    background-color: var(--background-containers) !important;
+    color: var(--white) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
