@@ -125,10 +125,10 @@
                                                                 <input type="text" class="form-control" id="parola-femm" name="parola-femm">
                                                             </div>
 
-                                                            <div class="mb-3">
+                                                            <div class="mb-3 d-flex justify-content-between">
                                                                 <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
+                                                                <button type="submit" class="btn btn-success">Acceptă</button>
                                                             </div>
-                                                            <button type="submit" class="btn btn-success">Acceptă</button>
                                                         </form>
 
                                                         <!-- Buton Șterge -->
