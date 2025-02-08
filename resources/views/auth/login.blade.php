@@ -1,12 +1,15 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <style>
     .logo-img {
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    .links-section-custom{
+        display: flex !important;
+        flex-direction: space-between !important;
+        align-items: center !important;
     }
 </style>
 <x-guest-layout>
@@ -35,7 +38,7 @@
         </div>
 
         <!-- Remember Me -->
-        <div class="mt-4 d-flex justify-content-between">
+        <div class="mt-4 links-section-custom">
             <label for="remember_me" class="items-center">
                 <input id="remember_me" type="checkbox"
                     class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
