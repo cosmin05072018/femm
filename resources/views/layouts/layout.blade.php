@@ -24,6 +24,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom-design.css') }}" rel="stylesheet">
 
     <style>
         .btn-custom {
