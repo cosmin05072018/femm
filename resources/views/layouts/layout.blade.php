@@ -43,7 +43,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="custom-nav navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="custom-nav navbar-nav sidebar accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
