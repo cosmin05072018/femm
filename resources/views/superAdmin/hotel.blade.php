@@ -204,11 +204,11 @@
                 </div>
             </div>
 
-            <div class="mt-5 card shadow mb-4" id="formular-angajati">
+            <div class="mt-5 card card-custom-hotel shadow mb-4" id="formular-angajati">
                 <div class="card-header py-3 d-flex">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
-                    </h3>
+                    </h4>
                 </div>
                 @foreach ($departments as $department)
                     <div class="mb-4 p-4">
