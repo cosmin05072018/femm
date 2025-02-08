@@ -66,6 +66,11 @@
     border: none !important;
 }
 
+.card-custom-users th,
+.card-custom-users td{
+    padding: 5px 0px !important;
+}
+
 .card-custom-users tr{
     border-bottom: 1px solid var(--background-back) !important;
 }
