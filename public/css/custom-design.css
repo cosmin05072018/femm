@@ -44,6 +44,11 @@
 .card-custom-users,
 .card-custom-users .card-header{
     background: none var(--background-containers) !important;
+    border: none !important;
+}
+
+.card-custom-users h6{
+    color: var(--white) !important;
 }
 
 @media only screen and (max-width: 768px) {
