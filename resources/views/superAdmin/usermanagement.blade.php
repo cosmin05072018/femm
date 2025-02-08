@@ -194,7 +194,27 @@
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Șterge utilizatorul">Șterge</button>
+                                            <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-custom-action btn-sm mb-2" title="Șterge" data-bs-toggle="modal" data-bs-target="#DeleteUseModal-{{ $user->id }}">
+                                                Șterge
+                                            </a>
+                                            <!-- Modal pentru "Șterge" -->
+                                        <div class="modal fade" id="DeleteUseModal-{{ $user->id }}" tabindex="-1" aria-labelledby="DeleteUseModal-{{ $user->id }}" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content modal-custom">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="DeleteUseModal-{{ $user->id }}">Detalii Cont Utilizator</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p class="py-5">Ești sigur că vrei să ștergi acest utilizator?</p>
+                                                    </div>
+                                                    <div class="modal-footer d-flex justify-content-between">
+                                                        <button type="submit" class="btn btn-danger btn-sm" title="Șterge utilizatorul">Șterge</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </form>
                                     </div>
                                     @else
