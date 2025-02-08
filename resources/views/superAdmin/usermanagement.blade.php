@@ -31,16 +31,16 @@
                                 $counter = 1;
                             @endphp
                             <td>{{ $loop->iteration }}</td>
-                            <td  class='{{ $user->county ? '' : 'text-danger' }}'>{{ $user->county ? $user->county : 'Nu sunt informatii' }}</td>
-                            <td class='{{ $user->company_address ? '' : 'text-danger' }}'>{{ $user->company_address ? $user->company_address : 'Nu sunt informatii' }}</td>
+                            <td  class='{{ $user->county ? '' : 'text-danger' }}'>{{ $user->county ? $user->county : 'Nu sunt <br> informatii' }}</td>
+                            <td class='{{ $user->company_address ? '' : 'text-danger' }}'>{{ $user->company_address ? $user->company_address : 'Nu sunt <br> informatii' }}</td>
                             <td class='{{ $user->email ? '' : 'text-danger' }}'>{{ $user->email ? $user->email : 'Nu sunt informatii' }}</td>
                             <td class="{{ $user->status == 0 ? 'text-warning' : ($user->status == 1 ? 'text-success' : 'text-danger') }}">
                                 {{ $user->status == 0 ? 'În așteptare' : ($user->status == 1 ? 'Aprobat' : 'Respins') }}
                             </td>
-                            <td class='{{ $user->role ? '' : 'text-danger' }}'>{{ $user->role ? $user->role : 'Nu sunt informatii' }}</td>
-                            <td class='{{ $user->department_id ? '' : 'text-danger' }}'>{{ $user->department ? $user->department->name : 'Nu sunt informatii' }}</td>
+                            <td class='{{ $user->role ? '' : 'text-danger' }}'>{{ $user->role ? $user->role : 'Nu sunt <br> informatii' }}</td>
+                            <td class='{{ $user->department_id ? '' : 'text-danger' }}'>{{ $user->department ? $user->department->name : 'Nu sunt <br> informatii' }}</td>
                             <td class='{{ $user->hotel_name ? '' : 'text-danger' }}'>
-                                {{ $user->hotel_name ? $user->hotel_name : 'Nu sunt informatii' }}
+                                {{ $user->hotel_name ? $user->hotel_name : 'Nu sunt <br> informatii' }}
                             </td>
                             <td>
                                 @if ($user->role == 'owner')
