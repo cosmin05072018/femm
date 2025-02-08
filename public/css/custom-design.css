@@ -23,7 +23,7 @@
 }
 
 .custom-nav li a i::before{
-    color: var(--background-back) !important;
+    color: var(--icons) !important;
 }
 
 .custom-content{
