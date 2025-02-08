@@ -85,11 +85,11 @@
                 </div>
             </div>
 
-            <div class="mt-5 card shadow mb-4" id="formular-angajati">
+            <div class="mt-5 card shadow mb-4 card-custom-hotel"  id="formular-angajati">
                 <div class="card-header py-3 d-flex">
-                    <h3 class="card-title">
+                    <h4 class="card-title">
                         <i class="fas fa-user-plus me-2 text-primary"></i> Adaugă angajați
-                    </h3>
+                    </h4>
                 </div>
                 <div class="card border-0">
                     <div class="card-body">
