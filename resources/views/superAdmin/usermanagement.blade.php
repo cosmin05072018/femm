@@ -111,7 +111,7 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <!-- Creare mail pentru platforma CPANEL -->
-                                                            <b class="text-uppercase border-top text-center w-100">Creaza datele de autentificare pentru utilizator</b>
+                                                            <b class="text-uppercase text-center w-100">Creaza datele de autentificare pentru utilizator</b>
                                                             <div class="alert alert-primary p-3 mt-3" role="alert">
                                                                   Adresa nu trebuie sa contina "@ceva.com" deoarece i se va pune automat "@femm.ro"
                                                               </div>

@@ -86,6 +86,7 @@
 
 .modal-custom input{
     background-color: var(--background-containers) !important;
+    color: var(--white) !important;
 }
 
 @media only screen and (max-width: 768px) {
