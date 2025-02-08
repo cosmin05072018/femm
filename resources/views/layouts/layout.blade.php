@@ -112,10 +112,10 @@
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content-wrapper" class="d-flex flex-column custom-content">
 
             <!-- Main Content -->
-            <div id="content" class="custom-content">
+            <div id="content" class="">
 
                 <!-- Topbar -->
                 <nav class="custom-nav navbar navbar-expand topbar mb-4 static-top">
@@ -161,10 +161,10 @@
 
                 <!-- Continutul tuturor paginilor -->
                 <!-- Content Wrapper -->
-                <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content-wrapper" class="d-flex flex-column custom-content">
                     <div id="content">
                         <!-- Main Content -->
-                        <div class="container-fluid custom-content">
+                        <div class="container-fluid">
                             @yield('content')
                         </div>
                     </div>
