@@ -223,7 +223,7 @@
                                 <div class="accordion-body">
                                     <!-- Șefi Departament -->
                                     <p><b>Șefi Departament</b></p>
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered text-white">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
@@ -253,7 +253,7 @@
 
                                     <!-- Angajați -->
                                     <p><b>Angajați</b></p>
-                                    <table class="table table-bordered">
+                                    <table class="table table-bordered text-white">
                                         <thead>
                                             <tr>
                                                 <th>#</th>
