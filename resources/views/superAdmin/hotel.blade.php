@@ -214,12 +214,15 @@
                     @foreach ($departments as $department)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading{{ $department->id }}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $department->id }}" aria-expanded="false" aria-controls="collapse{{ $department->id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ $department->id }}" aria-expanded="false"
+                                    aria-controls="collapse{{ $department->id }}">
                                     Departament: <b>{{ $department->name }}</b>
                                 </button>
                             </h2>
 
-                            <div id="collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $department->id }}" data-bs-parent="#departmentsAccordion">
+                            <div id="collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $department->id }}">
+
                                 <div class="accordion-body">
 
                                     <!-- Șefi Departament -->
@@ -249,7 +252,8 @@
                                     </table>
 
                                     @if ($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
-                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
+                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest
+                                            departament.</p>
                                     @endif
 
                                     <!-- Angajați -->
