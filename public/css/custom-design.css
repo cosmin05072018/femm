@@ -51,6 +51,13 @@
     color: var(--white) !important;
 }
 
+.card-custom-users label,
+.card-custom-users th,
+.card-custom-users td,
+.card-custom-users .dataTables_info{
+    color: var(--white);
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
