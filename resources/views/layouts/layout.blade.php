@@ -174,10 +174,7 @@
                         <span>Copyright &copy; Fantastic Events 2025</span>
                     </div>
                     <div class="copyright text-center my-auto">
-                        <span>Site realizat de &copy; Cosmin Morari</span>
-                    </div>
-                    <div class="copyright text-center my-auto">
-                        <span>In colaborare cu &copy; Popescu Adrian</span>
+                        <span>Site realizat de &copy; Cosmin Morari în colaborare cu &copy; Popescu Adrian</span>
                     </div>
                     <div class="copyright text-center my-auto">
                         <span>
