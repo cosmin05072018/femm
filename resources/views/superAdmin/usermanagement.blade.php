@@ -135,7 +135,7 @@
                                                             </div>
 
                                                             <div class="mb-3 d-flex justify-content-between">
-                                                                <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
+                                                                <button type="button" class="btn btn-secondary generate-password">Generează parolă puternică</button>
                                                                 <button type="submit" class="btn btn-success">Acceptă</button>
                                                             </div>
                                                         </form>
@@ -222,7 +222,7 @@
             return password;
         }
 
-        const generateButton = document.getElementById('generate-password');
+        const generateButton = document.querySelector('generate-password');
         if (generateButton) {
             generateButton.addEventListener('click', function() {
                 const strongPassword = generateStrongPassword();
