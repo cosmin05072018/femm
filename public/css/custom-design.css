@@ -66,6 +66,10 @@
     border: none !important;
 }
 
+.card-custom-users tr{
+    border-bottom: var(--background-containers) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
