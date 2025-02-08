@@ -26,14 +26,6 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom-design.css') }}" rel="stylesheet">
 
-    <style>
-        .btn-custom {
-            background-color: #3dbbbc !important;
-            color: #ffffff !important;
-            border-radius: 0px !important;
-        }
-    </style>
-
 
 </head>
 
