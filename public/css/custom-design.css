@@ -75,8 +75,8 @@
     border-bottom: 1px solid var(--background-back) !important;
 }
 
-.card-custom-users .table-responsive{
-    overflow: hidden !important;
+.card-custom-users .table-responsive th{
+    cursor: pointer !important;
 }
 
 @media only screen and (max-width: 768px) {
