@@ -13,7 +13,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Nr. Crt.</th>
+                            <th></th>
                             <th>Oras</th>
                             <th>Nume Manager</th>
                             <th>Email</th>
