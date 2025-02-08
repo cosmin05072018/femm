@@ -361,18 +361,6 @@
         document.getElementById('backButton').addEventListener('click', function() {
             window.location.href = 'https://femm.ro/public/fantastic-admin/hotels';
         });
-
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelectorAll(".accordion-button").forEach(button => {
-                button.addEventListener("click", function () {
-                    let target = document.querySelector(this.getAttribute("data-bs-target"));
-                    if (target.classList.contains("show")) {
-                        let bsCollapse = new bootstrap.Collapse(target, { toggle: true });
-                        bsCollapse.hide();
-                    }
-                });
-            });
-        });
     </script>
 
 @endsection
