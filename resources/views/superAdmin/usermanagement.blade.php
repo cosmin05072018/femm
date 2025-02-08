@@ -19,8 +19,8 @@
                             <th>Email</th>
                             <th>Status Cont</th>
                             <th>Rol</th>
-                            <th>Departament</th>
-                            <th style="width:5% !important">Hotel</th>
+                            <th style="width: 5% !important">Departament</th>
+                            <th style="width: 5% !important">Hotel</th>
                             <th>Actiuni</th>
                         </tr>
                     </thead>
