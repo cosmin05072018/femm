@@ -126,9 +126,11 @@
     border: none !important;
 }
 
-.card-custom-hotel .card input{
+.card-custom-hotel .card input,
+.card-custom-hotel .card select{
     background-color: var(--background-back) !important;
     color: var(--white) !important;
+    border: none !important;
 }
 
 @media only screen and (max-width: 768px) {
