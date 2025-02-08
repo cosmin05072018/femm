@@ -5,6 +5,11 @@
     --shadow: #1a1f33;
     --icons: #5364af;
 }
+
+#content {
+    background-color: var(--background-back) !important;
+}
+
 .content-custom {
     background: var(--background-back) !important;
 }
