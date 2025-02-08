@@ -204,14 +204,14 @@
                 </div>
             </div>
 
-            <div class="pt-5 card card-custom-hotel shadow mb-4" id="formular-angajati">
+            <div class="mt-5 card card-custom-hotel shadow" id="formular-angajati">
                 <div class="card-header py-3 d-flex">
                     <h4 class="card-title">
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
                     </h4>
                 </div>
                 @foreach ($departments as $department)
-                    <div class="mb-4 p-4 departaments">
+                    <div class=" p-4 departaments">
                         <h3>Departament: <b>{{ $department->name }}</b></h3>
 
                         <!-- Șefi Departament -->
