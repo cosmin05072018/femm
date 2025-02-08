@@ -57,7 +57,7 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-between py-4">
+        <div class="flex items-center justify-between py-4 buttons-costom-links">
             <x-primary-button class="ms-3">
                 {{ __('Conecteză-te') }}
             </x-primary-button>

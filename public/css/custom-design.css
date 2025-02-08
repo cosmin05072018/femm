@@ -1,7 +1,26 @@
 :root {
     --white: #ffffff;
-    --background-back: #151a30 ;
+    --background-back: #151a30;
 }
-.content-custom{
+.content-custom {
     background: var(--background-back) !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .content-custom {
+        padding: 10px ;
+        display: flex !important;
+        gap: 15px !important;
+        margin-top: 20px !important;
+    }
+
+    .logo-img img{
+        width: 100% !important;
+    }
+
+    .content-custom .buttons-costom-links{
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+    }
 }
