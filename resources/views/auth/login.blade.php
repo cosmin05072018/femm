@@ -8,7 +8,7 @@
 
     .links-section-custom{
         display: flex !important;
-        flex-direction: space-between !important;
+        justify-content: space-between !important;
         align-items: center !important;
     }
 </style>
