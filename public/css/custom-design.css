@@ -41,7 +41,8 @@
     border: none !important;
 }
 
-.card-custom-users h4{
+.card-custom-users h4,
+.card-custom-hotels h4{
     color: var(--white) !important;
 }
 
@@ -95,9 +96,11 @@
 }
 
 .card-custom-hotels,
-.card-custom-hotels .card-header{
+.card-custom-hotels .card-header,
+.card-custom-hotels section{
     background-color: var(--background-back) !important;
     border: none !important;
+    border-radius: 0px !important;
 }
 
 @media only screen and (max-width: 768px) {
