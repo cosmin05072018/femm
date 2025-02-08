@@ -62,7 +62,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content modal-custom">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                        <h5 class="modal-title" id="exampleModalLabel">Alertă</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -73,7 +73,7 @@
                                         <form action="{{ route('admin.hotel.destroy', $hotelSelected->id) }}" method="POST" class="mt-2">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"></button>
+                                            <button type="submit" class="btn btn-danger">Șterge hotel</button>
                                         </form>
                                         <button type="button" class="btn btn-secondary"
                                             data-bs-dismiss="modal">Închide</button>
