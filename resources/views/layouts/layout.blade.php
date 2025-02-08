@@ -59,7 +59,7 @@
             <li class="nav-item {{ request()->routeIs('admin.users-management') ? 'active' : '' }}">
                 <a class="nav-link" href="{{ route('admin.users-management') }}">
                     <i class="fas fa-user"></i>
-                    <span>Manageri si cereri in asteptare</span></a>
+                    <span>Evidență utilizatori</span></a>
             </li>
 
             <!-- Nav Item - Hoteluri -->
