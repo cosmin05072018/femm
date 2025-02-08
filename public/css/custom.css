@@ -75,7 +75,3 @@ body {
 .booking {
     background: var(--booking);
 }
-
-.content-custom{
-    background: var(--background-back) !important;
-}
