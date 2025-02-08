@@ -138,6 +138,10 @@
     color: var(--white) !important;
 }
 
+.accordion-custom{
+    border-bottom: 1px solid var(--background-back) !important;
+}
+
 .accordion-custom,
 .accordion-custom button{
     background-color: var(--background-containers) !important;
