@@ -210,44 +210,84 @@
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
                     </h4>
                 </div>
-                <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          Accordion Item #1
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                <div class="accordion" id="departmentsAccordion">
+                    @foreach ($departments as $department)
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="heading{{ $department->id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $department->id }}" aria-expanded="false" aria-controls="collapse{{ $department->id }}">
+                                    Departament: <b>{{ $department->name }}</b>
+                                </button>
+                            </h2>
+
+                            <div id="collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $department->id }}">
+                                <div class="accordion-body">
+
+                                    <!-- Șefi Departament -->
+                                    <p><b>Șefi Departament</b></p>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nume</th>
+                                                <th>Functie</th>
+                                                <th>Telefon</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $counter = 1; @endphp
+                                            @foreach ($employees->where('department_id', $department->id)->where('role_id', 3) as $employee)
+                                                <tr>
+                                                    <td>{{ $counter++ }}</td>
+                                                    <td>{{ $employee->name }}</td>
+                                                    <td>{{ $employee->function }}</td>
+                                                    <td>{{ $employee->phone }}</td>
+                                                    <td>{{ $employee->email }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    @if ($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
+                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
+                                    @endif
+
+                                    <!-- Angajați -->
+                                    <p><b>Angajați</b></p>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Nume</th>
+                                                <th>Functie</th>
+                                                <th>Telefon</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $counter = 1; @endphp
+                                            @foreach ($employees->where('department_id', $department->id)->where('role_id', 4) as $employee)
+                                                <tr>
+                                                    <td>{{ $counter++ }}</td>
+                                                    <td>{{ $employee->name }}</td>
+                                                    <td>{{ $employee->function }}</td>
+                                                    <td>{{ $employee->phone }}</td>
+                                                    <td>{{ $employee->email }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    @if ($employees->where('department_id', $department->id)->where('role_id', 4)->isEmpty())
+                                        <p class="text-center">Nu sunt angajați înregistrați pentru acest departament.</p>
+                                    @endif
+
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                          Accordion Item #2
-                        </button>
-                      </h2>
-                      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                      </div>
-                    </div>
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingThree">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          Accordion Item #3
-                        </button>
-                      </h2>
-                      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    @endforeach
+                </div>
+
                 @foreach ($departments as $department)
                     <div class=" p-4 departaments">
                         <h3>Departament: <b>{{ $department->name }}</b></h3>
