@@ -214,11 +214,8 @@
                     @foreach ($departments as $department)
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="heading{{ $department->id }}">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapse{{ $department->id }}" aria-expanded="false"
-                                    aria-controls="collapse{{ $department->id }}">
-                                    Departament: <b>{{ $department->name }}</b>
-                                </button>
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $department->id }}" aria-expanded="false" aria-controls="collapse{{ $department->id }}">
+
                             </h2>
 
                             <div id="collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $department->id }}">
