@@ -196,7 +196,7 @@
 
                             <!-- Buton Submit -->
                             <div class="mb-3 col-md-5 col-12 p-0">
-                                <button type="submit" class="btn btn-primary w-100">Salvează</button>
+                                <button type="submit" class="btn btn-custom-action w-100">Salvează</button>
                             </div>
                         </form>
 
