@@ -21,7 +21,7 @@
                             <th style="width: 5% !important">Rol</th>
                             <th style="width: 5% !important">Departament</th>
                             <th style="width: 5% !important">Hotel</th>
-                            <th>Actiuni</th>
+                            <th style="width: 5% !important">Actiuni</th>
                         </tr>
                     </thead>
                     <tbody>
