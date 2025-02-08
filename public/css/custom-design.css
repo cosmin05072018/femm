@@ -133,6 +133,11 @@
     border: none !important;
 }
 
+.card-custom-hotel .departaments{
+    background-color: var(--background-containers) !important;
+    color: var(--white) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
