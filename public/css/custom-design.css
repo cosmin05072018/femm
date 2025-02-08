@@ -43,7 +43,8 @@
 }
 
 .card-custom-users h4,
-.card-custom-hotels h4{
+.card-custom-hotels h4,
+.card-custom-hotel H4{
     color: var(--white) !important;
 }
 
@@ -108,6 +109,11 @@
     background-color: var(--background-containers) !important;
     color: var(--white) !important;
     box-shadow: 0 .5rem 1rem var(--shadow) !important;
+}
+
+.custom-hotel{
+    background-color: var(--background-containers) !important;
+    color: var(--white) !important;
 }
 
 @media only screen and (max-width: 768px) {
