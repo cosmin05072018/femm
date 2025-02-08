@@ -210,18 +210,18 @@
                         <i class="fas fa-user-tie me-2 text-primary"></i> Angajați
                     </h4>
                 </div>
-                @foreach ($departments as $department)
-                    <div class="accordion" id="departaments">
+                <div class="accordion" id="departmentsAccordion">
+                    @foreach ($departments as $department)
                         <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <h3>Departament: <b>{{ $department->name }}</b></h3>
+                            <h2 class="accordion-header" id="heading{{ $department->id }}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $department->id }}" aria-expanded="false" aria-controls="collapse{{ $department->id }}">
+                                    Departament: <b>{{ $department->name }}</b>
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
-                                data-bs-parent="departaments">
+
+                            <div id="collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $department->id }}" data-bs-parent="#departmentsAccordion">
                                 <div class="accordion-body">
+
                                     <!-- Șefi Departament -->
                                     <p><b>Șefi Departament</b></p>
                                     <table class="table table-bordered">
@@ -249,8 +249,7 @@
                                     </table>
 
                                     @if ($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
-                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest
-                                            departament.</p>
+                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
                                     @endif
 
                                     <!-- Angajați -->
@@ -282,9 +281,76 @@
                                     @if ($employees->where('department_id', $department->id)->where('role_id', 4)->isEmpty())
                                         <p class="text-center">Nu sunt angajați înregistrați pentru acest departament.</p>
                                     @endif
+
                                 </div>
                             </div>
                         </div>
+                    @endforeach
+                </div>
+
+                @foreach ($departments as $department)
+                    <div class=" p-4 departaments">
+                        <h3>Departament: <b>{{ $department->name }}</b></h3>
+
+                        <!-- Șefi Departament -->
+                        <p><b>Șefi Departament</b></p>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nume</th>
+                                    <th>Functie</th>
+                                    <th>Telefon</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $counter = 1; @endphp
+                                @foreach ($employees->where('department_id', $department->id)->where('role_id', 3) as $employee)
+                                    <tr>
+                                        <td>{{ $counter++ }}</td>
+                                        <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->function }}</td>
+                                        <td>{{ $employee->phone }}</td>
+                                        <td>{{ $employee->email }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        @if ($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
+                            <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
+                        @endif
+
+                        <!-- Angajați -->
+                        <p><b>Angajați</b></p>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nume</th>
+                                    <th>Functie</th>
+                                    <th>Telefon</th>
+                                    <th>Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @php $counter = 1; @endphp
+                                @foreach ($employees->where('department_id', $department->id)->where('role_id', 4) as $employee)
+                                    <tr>
+                                        <td>{{ $counter++ }}</td>
+                                        <td>{{ $employee->name }}</td>
+                                        <td>{{ $employee->function }}</td>
+                                        <td>{{ $employee->phone }}</td>
+                                        <td>{{ $employee->email }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        @if ($employees->where('department_id', $department->id)->where('role_id', 4)->isEmpty())
+                            <p class="text-center">Nu sunt angajați înregistrați pentru acest departament.</p>
+                        @endif
                     </div>
                 @endforeach
             </div>
