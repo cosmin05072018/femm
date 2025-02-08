@@ -3,6 +3,7 @@
     --background-back: #151a30f5;
     --background-containers: #222b45;
     --shadow: #1a1f33;
+    --icons: #5364af;
 }
 .content-custom {
     background: var(--background-back) !important;
