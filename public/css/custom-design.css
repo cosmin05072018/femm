@@ -58,6 +58,13 @@
     color: var(--white);
 }
 
+.card-custom-users table,
+.card-custom-users thead,
+.card-custom-users tr,
+.card-custom-users th{
+    border: none !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
