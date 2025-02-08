@@ -19,6 +19,10 @@
     color: var(--white) !important;
 }
 
+.custom-nav li a i::before{
+    color: var(--background-back) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
