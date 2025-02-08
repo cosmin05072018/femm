@@ -17,7 +17,7 @@
 
         <!-- Main Content -->
         <div id="content">
-            <div class="card card-custom-hotels shadow mb-4">
+            <div class="card card-custom-hotels shadow">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary">Hoteluri</h4>
                 </div>
