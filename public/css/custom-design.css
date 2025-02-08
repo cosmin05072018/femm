@@ -16,6 +16,7 @@
 
 .custom-nav .btn-custom{
     background-color: none !important;
+    color: var(--white) !important;
 }
 
 .custom-nav li span{
