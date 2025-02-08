@@ -111,7 +111,7 @@
     box-shadow: 0 .5rem 1rem var(--shadow) !important;
 }
 
-.custom-hotel{
+.card-custom-hotel{
     background-color: var(--background-containers) !important;
     color: var(--white) !important;
 }
