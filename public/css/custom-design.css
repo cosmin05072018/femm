@@ -7,6 +7,10 @@
     background: var(--background-back) !important;
 }
 
+.custom-nav{
+    background-color: var(--background-containers);
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
@@ -23,9 +27,5 @@
         display: flex !important;
         flex-wrap: wrap !important;
         gap: 15px !important;
-    }
-
-    .custom-nav{
-        background-color: var(--background-containers);
     }
 }
