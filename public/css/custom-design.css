@@ -61,7 +61,8 @@
 .card-custom-users table,
 .card-custom-users thead,
 .card-custom-users tr,
-.card-custom-users th{
+.card-custom-users th,
+.card-custom-users td{
     border: none !important;
 }
 
