@@ -96,7 +96,7 @@
 
 .card-custom-hotels,
 .card-custom-hotels .card-header{
-    background-color: var(--background-containers) !important;
+    background-color: var(--background-back) !important;
     border: none !important;
 }
 
