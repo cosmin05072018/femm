@@ -68,43 +68,52 @@
                                                             @csrf
                                                             @method('PUT')
 
-                                                            <!-- Județ -->
-                                                            <div class="mb-3">
-                                                                <label for="county" class="form-label">Județ</label>
-                                                                <input type="text" class="form-control" id="county" name="county" value="{{ $user->county }}" readonly>
-                                                            </div>
+                                                            <div class="row">
+                                                                <!-- Coloana 1 -->
+                                                                <div class="col-md-6">
+                                                                    <!-- Județ -->
+                                                                    <div class="mb-3">
+                                                                        <label for="county" class="form-label">Județ</label>
+                                                                        <input type="text" class="form-control" id="county" name="county" value="{{ $user->county }}" readonly>
+                                                                    </div>
 
-                                                            <!-- Nume Firmă -->
-                                                            <div class="mb-3">
-                                                                <label for="company_name" class="form-label">Nume Firmă</label>
-                                                                <input type="text" class="form-control" id="company_name" name="company_name" value="{{ $user->company_name }}" readonly>
-                                                            </div>
+                                                                    <!-- Nume Firmă -->
+                                                                    <div class="mb-3">
+                                                                        <label for="company_name" class="form-label">Nume Firmă</label>
+                                                                        <input type="text" class="form-control" id="company_name" name="company_name" value="{{ $user->company_name }}" readonly>
+                                                                    </div>
 
-                                                            <!-- CUI Firmă -->
-                                                            <div class="mb-3">
-                                                                <label for="company_cui" class="form-label">CUI Firmă</label>
-                                                                <input type="text" class="form-control" id="company_cui" name="company_cui" value="{{ $user->company_cui }}" readonly>
-                                                            </div>
+                                                                    <!-- CUI Firmă -->
+                                                                    <div class="mb-3">
+                                                                        <label for="company_cui" class="form-label">CUI Firmă</label>
+                                                                        <input type="text" class="form-control" id="company_cui" name="company_cui" value="{{ $user->company_cui }}" readonly>
+                                                                    </div>
+                                                                </div>
 
-                                                            <!-- Nume Manager -->
-                                                            <div class="mb-3">
-                                                                <label for="manager_name" class="form-label">Nume Manager</label>
-                                                                <input type="text" class="form-control" id="manager_name" name="manager_name" value="{{ $user->manager_name }}" readonly>
-                                                            </div>
+                                                                <!-- Coloana 2 -->
+                                                                <div class="col-md-6">
+                                                                    <!-- Nume Manager -->
+                                                                    <div class="mb-3">
+                                                                        <label for="manager_name" class="form-label">Nume Manager</label>
+                                                                        <input type="text" class="form-control" id="manager_name" name="manager_name" value="{{ $user->manager_name }}" readonly>
+                                                                    </div>
 
-                                                            <!-- Sediu Firmă -->
-                                                            <div class="mb-3">
-                                                                <label for="company_address" class="form-label">Sediu Firmă</label>
-                                                                <input type="text" class="form-control" id="company_address" name="company_address" value="{{ $user->company_address }}" readonly>
-                                                            </div>
+                                                                    <!-- Sediu Firmă -->
+                                                                    <div class="mb-3">
+                                                                        <label for="company_address" class="form-label">Sediu Firmă</label>
+                                                                        <input type="text" class="form-control" id="company_address" name="company_address" value="{{ $user->company_address }}" readonly>
+                                                                    </div>
 
-                                                            <!-- Email -->
-                                                            <div class="mb-3">
-                                                                <label for="email" class="form-label">Email</label>
-                                                                <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
+                                                                    <!-- Email -->
+                                                                    <div class="mb-3">
+                                                                        <label for="email" class="form-label">Email</label>
+                                                                        <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" readonly>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </form>
                                                     </div>
+
                                                     <div class="modal-footer">
                                                         <!-- Buton Acceptă -->
                                                         <form action="{{ route('admin.users.accept', $user->id) }}" method="POST">
@@ -127,7 +136,7 @@
 
                                                             <div class="mb-3 d-flex justify-content-between">
                                                                 <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
-                                                                <button type="submit" class="btn btn-custom-action">Acceptă</button>
+                                                                <button type="submit" class="btn btn-success">Acceptă</button>
                                                             </div>
                                                         </form>
 
