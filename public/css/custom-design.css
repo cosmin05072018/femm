@@ -2,6 +2,7 @@
     --white: #ffffff;
     --background-back: #151a30;
     --background-containers: #222b45f5;
+    --shadow: #1a1f33;
 }
 .content-custom {
     background: var(--background-back) !important;
@@ -9,6 +10,7 @@
 
 .custom-nav{
     background-color: var(--background-containers) !important;
+    box-shadow: 0 .5rem 1rem var(--shadow) !important;
 }
 
 .custom-nav .btn-custom{
