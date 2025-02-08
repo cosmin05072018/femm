@@ -20,7 +20,7 @@
                             <th>Status Cont</th>
                             <th>Rol</th>
                             <th>Departament</th>
-                            <th>Hotel</th>
+                            <th style="width:5% !important">Hotel</th>
                             <th>Actiuni</th>
                         </tr>
                     </thead>
