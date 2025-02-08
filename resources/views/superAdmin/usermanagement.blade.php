@@ -161,13 +161,13 @@
                                 @elseif ($user->status == 1)
                                     <!-- Dacă statusul este 1 (aprobat) -->
                                     <div class="d-flex flex-column">
-                                        <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-primary btn-sm mb-2" title="Vezi detalii" data-bs-toggle="modal" data-bs-target="#userDetailsModal-{{ $user->id }}">
+                                        <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-custom-action btn-sm mb-2" title="Vezi detalii" data-bs-toggle="modal" data-bs-target="#userDetailsModal-{{ $user->id }}">
                                             Vezi detalii
                                         </a>
                                         <!-- Modal pentru "Vezi detalii" -->
                                         <div class="modal fade" id="userDetailsModal-{{ $user->id }}" tabindex="-1" aria-labelledby="userDetailsModalLabel-{{ $user->id }}" aria-hidden="true">
                                             <div class="modal-dialog">
-                                                <div class="modal-content">
+                                                <div class="modal-content modal-custom">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="userDetailsModalLabel-{{ $user->id }}">Detalii Cont Utilizator</h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
