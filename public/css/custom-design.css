@@ -79,6 +79,11 @@
     padding: 5px 10px !important;
 }
 
+.modal-custom{
+    background-color: var(--background-back) !important;
+    color: var(--white) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
