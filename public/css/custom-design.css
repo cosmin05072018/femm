@@ -41,6 +41,11 @@
     background-color: var(--background-containers) !important;
 }
 
+.card-custom-users,
+.card-custom-users .card-header{
+    background: none !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
