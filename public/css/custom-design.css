@@ -29,7 +29,7 @@
     background-color: var(--background-back) !important;
 }
 
-.content-wrapper #content{
+#content-wrapper #content{
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
