@@ -53,7 +53,27 @@
                         <form action="{{ route('admin.hotel.destroy', $hotelSelected->id) }}" method="POST" class="mt-2">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Șterge hotel</button>
+                            <a href="#" class="btn btn-custom-action btn-sm mb-2" style="width: fit-content" title="Șterge hotel" data-bs-toggle="modal" data-bs-target="deleteHotel">
+                                Șterge hotel
+                            </a>
+                            <!-- Modal pentru "Șterge" -->
+                            <div class="modal fade" id="deleteHotel" tabindex="-1" aria-labelledby="deleteHotel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content modal-custom">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Alertă </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p class="py-5">Ești sigur că vrei să ștergi acest utilizator?</p>
+                                        </div>
+                                        <div class="modal-footer d-flex justify-content-between">
+                                            <button type="submit" class="btn btn-danger">Șterge hotel</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Închide</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
