@@ -127,7 +127,7 @@
 
                                                             <div class="mb-3 d-flex justify-content-between">
                                                                 <button type="button" class="btn btn-secondary" id="generate-password">Generează parolă puternică</button>
-                                                                <button type="submit" class="btn btn-success">Acceptă</button>
+                                                                <button type="submit" class="btn btn-custom-action">Acceptă</button>
                                                             </div>
                                                         </form>
 
