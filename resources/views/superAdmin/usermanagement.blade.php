@@ -202,7 +202,7 @@
                                             <div class="modal-dialog">
                                                 <div class="modal-content modal-custom">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="DeleteUseModal-{{ $user->id }}">Detalii Cont Utilizator</h5>
+                                                        <h5 class="modal-title" id="DeleteUseModal-{{ $user->id }}">Alertă </h5>
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                                                     </div>
                                                     <div class="modal-body">

@@ -94,6 +94,12 @@
     color: var(--white) !important;
 }
 
+.card-custom-hotels,
+.card-custom-hotels .card-header{
+    background-color: var(--background-containers) !important;
+    border: none !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
