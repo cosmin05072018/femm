@@ -31,12 +31,6 @@
     background-color: var(--background-back) !important;
 }
 
-#content-wrapper #content{
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-}
-
 .custom-container-card .card{
     background-color: var(--background-containers) !important;
 }
