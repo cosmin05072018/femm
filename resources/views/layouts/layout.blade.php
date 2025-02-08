@@ -118,7 +118,7 @@
             <div id="content" class="custom-content">
 
                 <!-- Topbar -->
-                <nav class="custom-nav navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="custom-nav navbar navbar-expand topbar mb-4 static-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
