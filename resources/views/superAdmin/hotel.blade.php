@@ -26,7 +26,7 @@
             <button id="backButton" class="btn btn-outline-primary d-inline-flex align-items-center custom-btn">
                 <i class="fas fa-arrow-left me-2"></i> Back
             </button>
-            <div class="mt-5 card shadow mb-4">
+            <div class="mt-5 card shadow mb-4 card-custom-hotels">
                 <div class="card-header py-3 d-flex justify-content-between align-center">
                     <h3 class="card-title">
                         <i class="fas fa-info-circle me-2 text-primary"></i> Informații
