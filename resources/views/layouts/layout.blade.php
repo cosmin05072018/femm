@@ -115,7 +115,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content custom-content">
+            <div id="content" class="custom-content">
 
                 <!-- Topbar -->
                 <nav class="custom-nav navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
