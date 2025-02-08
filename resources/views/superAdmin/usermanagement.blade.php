@@ -155,7 +155,7 @@
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" title="Șterge utilizatorul">Șterge</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Șterge cererea">Șterge cererea</button>
                                         </form>
                                     </div>
                                 @elseif ($user->status == 1)
@@ -194,7 +194,7 @@
                                         <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-custom-action btn-sm mb-2" title="Șterge" data-bs-toggle="modal" data-bs-target="#DeleteUseModal-{{ $user->id }}">
+                                            <a href="{{ $user->id }}" style="width: fit-content" class="btn btn-danger btn-sm mb-2" title="Șterge" data-bs-toggle="modal" data-bs-target="#DeleteUseModal-{{ $user->id }}">
                                                 Șterge
                                             </a>
                                             <!-- Modal pentru "Șterge" -->
