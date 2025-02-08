@@ -15,6 +15,10 @@
     background-color: var(--background-back) !important;
 }
 
+.custom-nav li span{
+    color: var(--white) !important;
+}
+
 @media only screen and (max-width: 768px) {
     .content-custom {
         padding: 10px ;
