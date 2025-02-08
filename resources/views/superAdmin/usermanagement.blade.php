@@ -19,6 +19,7 @@
                             <th>Email</th>
                             <th>Status Cont</th>
                             <th>Rol</th>
+                            <th>Departament</th>
                             <th>Hotel</th>
                             <th>Actiuni</th>
                         </tr>
@@ -37,6 +38,7 @@
                                 {{ $user->status == 0 ? 'În așteptare' : ($user->status == 1 ? 'Aprobat' : 'Respins') }}
                             </td>
                             <td class='{{ $user->role ? '' : 'text-danger' }}'>{{ $user->role ? $user->role : 'Nu sunt informatii' }}</td>
+                            <td class='{{ $user->department_id ? '' : 'text-danger' }}'>{{ $user->department ? $user->department->name : 'Nu sunt informatii' }}</td>
                             <td class='{{ $user->hotel_name ? '' : 'text-danger' }}'>
                                 {{ $user->hotel_name ? $user->hotel_name : 'Nu sunt informatii' }}
                             </td>
