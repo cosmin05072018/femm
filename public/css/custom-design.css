@@ -1,7 +1,7 @@
 :root {
     --white: #ffffff;
     --background-back: #151a30;
-    --background-containers: #222b45;
+    --background-containers: #222b45f5;
 }
 .content-custom {
     background: var(--background-back) !important;
@@ -9,6 +9,10 @@
 
 .custom-nav{
     background-color: var(--background-containers) !important;
+}
+
+.custom-nav .btn-custom{
+    background-color: var(--background-back) !important;
 }
 
 @media only screen and (max-width: 768px) {
