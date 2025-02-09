@@ -831,10 +831,27 @@
             }
         }
 
-        .card-fixed {
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* Centrare pe rând */
+            gap: 20px;
+            /* Spațiu egal între carduri */
+            max-width: 1200px;
+            /* Evită carduri prea late */
             width: 100%;
+        }
+
+        .card {
+            flex: 1 1 250px !important;
+            /* Toate cardurile au aceeași lățime minimă */
             max-width: 300px !important;
-            min-width: 250px !important;
+            /* Evită lățimi prea mari */
+            text-align: center !important;
+            padding: 20px !important;
+            background: #fff !important;
+            border-radius: 10px !important;
         }
     </style>
 
@@ -857,42 +874,34 @@
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-        <div class="row w-100 justify-content-center gap-3">
-            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
-                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center public-events">
-                    <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                        <h3 class="text-center">Public <br> Events</h3>
-                        <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-                    </div>
+        <div class="cards-container">
+            <div class="card public-events">
+                <div class="card-body">
+                    <h3 class="text-center">Public <br> Events</h3>
+                    <button type="button" class="btns-first-page">Să începem</button>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
-                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center hotel-manager">
-                    <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                        <h3 class="text-center text-white">Hotel <br> Manager</h3>
-                        <a href="{{ route('login') }}">
-                            <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-                        </a>
-                    </div>
+            <div class="card hotel-manager">
+                <div class="card-body">
+                    <h3 class="text-center text-white">Hotel <br> Manager</h3>
+                    <a href="{{ route('login') }}">
+                        <button type="button" class="btns-first-page">Să începem</button>
+                    </a>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
-                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center booking">
-                    <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                        <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
-                        <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-                    </div>
+            <div class="card booking">
+                <div class="card-body">
+                    <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
+                    <button type="button" class="btns-first-page">Să începem</button>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
-                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center">
-                    <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                        <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
-                        <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
+                    <button type="button" class="btns-first-page">Să începem</button>
                 </div>
             </div>
         </div>
