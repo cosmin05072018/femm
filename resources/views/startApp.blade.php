@@ -875,7 +875,7 @@
 
         <div class="cards-container">
             <div class="card public-events">
-                <img src="{{ asset('storage/celebration-party-winter-svgrepo-com.svg') }}" alt="">
+                <img class="img-sugestive" src="{{ asset('storage/celebration-party-winter-svgrepo-com.svg') }}" alt="">
                 <div class="card-body py-5 d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Public Events</h3>
                     <p class="description">
