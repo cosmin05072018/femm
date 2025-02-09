@@ -850,8 +850,6 @@
             /* Evită lățimi prea mari */
             text-align: center !important;
             padding: 20px !important;
-            background: #fff !important;
-            border-radius: 10px !important;
         }
     </style>
 
