@@ -837,34 +837,17 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        <link href="{{ asset('css/custom-design.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom-design.css') }}" rel="stylesheet">
 </head>
 
 <body>
-    <!--
-    <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-        @if (Route::has('login'))
-            <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
-                @auth
-                    <a href="{{ url('/dashboard') }}"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
-                        in</a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                    @endif
-                @endauth
-            </div>
-        @endif
-    </div>-->
     <div
         class="container container-first-page d-flex align-items-center justify-content-center min-vh-100 flex-column py-3">
         <div class="col-12 col-md-4 d-flex d-md-none justify-content-center mb-3 mb-md-0">
+            <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
+        </div>
+
+        <div class="col-12 col-md-7 col-lg-4 d-none d-md-flex justify-content-center mb-3 mb-md-0">
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
@@ -875,52 +858,40 @@
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center">Public <br> Events</h3>
                         <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Al doilea rând: Hotel Manager, Logo, Booking Restaurant Hotel -->
-        <div class="row w-100 justify-content-center mb-4">
             <div class="col-12 col-md-7 col-lg-4 mb-3 mb-md-0">
-
                 <div class="card py-5 d-flex align-items-center justify-content-center hotel-manager">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center text-white">Hotel <br> Manager</h3>
-                            <a href="{{ route('login') }}">
-                                <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-                            </a>
+                        <a href="{{ route('login') }}">
+                            <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-7 col-lg-4 d-none d-md-flex justify-content-center mb-3 mb-md-0">
-                <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
-            </div>
+
             <div class="col-12 col-md-7 col-lg-4">
                 <div class="card py-5 d-flex align-items-center justify-content-center booking">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
                         <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Al treilea rând: Crează Evenimentul Tău -->
-        <div class="row w-100 justify-content-center">
-            <div class="col-12 col-md-8">
-                <div class="card py-5 d-flex align-items-center justify-content-center">
-                    <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                        <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
-                        <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
-                    </div>
+        <div class="col-12 col-md-8">
+            <div class="card py-5 d-flex align-items-center justify-content-center">
+                <div class="card-body d-flex align-items-center flex-column justify-content-between">
+                    <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
+                    <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--<section id="particles-js"></section> -->
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
