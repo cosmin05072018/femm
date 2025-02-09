@@ -879,7 +879,7 @@
                 <div class="card-body d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Public Events</h3>
                     <p class="description">
-                        Platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
+                        Platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea și promovarea eficientă.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
