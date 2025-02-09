@@ -873,7 +873,7 @@
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-        <div class="cards-container pt-5">
+        <div class="cards-container pt-5 mt-5">
             <div class="card public-events">
                 <img class="img-sugestive" src="{{ asset('storage/public-events.svg') }}" alt="">
                 <div class="card-body d-flex justify-content-between flex-column">
@@ -886,7 +886,7 @@
             </div>
 
             <div class="card hotel-manager">
-                <img class="img-sugestive" src="{{ asset('storage/public-events.svg') }}" alt="">
+                <img class="img-sugestive" src="{{ asset('storage/hotel-manager.svg') }}" alt="">
                 <div class="card-body d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Hotel Manager</h3>
                     <p class="description">
