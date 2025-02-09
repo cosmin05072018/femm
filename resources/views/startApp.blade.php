@@ -878,7 +878,7 @@
                 <div class="card-body py-5">
                     <h3 class="text-center text-white">Public Events</h3>
                     <p class="description">
-                        Public Events este o platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
+                        Platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
@@ -888,7 +888,7 @@
                 <div class="card-body py-5">
                     <h3 class="text-center text-white">Hotel Manager</h3>
                     <p class="description">
-                        Hotel Manager** este dedicat managerilor hotelurilor, contribuind la optimizarea timpului și îmbunătățirea experienței angajaților.
+                        Dedicat managerilor hotelurilor, contribuind la optimizarea timpului și îmbunătățirea experienței angajaților.
                     </p>
                     <a href="{{ route('login') }}">
                         <button type="button" class="btns-first-page">Să începem</button>
@@ -900,7 +900,7 @@
                 <div class="card-body py-5">
                     <h3 class="text-center text-white">Booking Restaurant Hotel</h3>
                     <p class="description">
-                        Booking Restaurant Hotel** este un sistem dedicat rezervărilor în hoteluri și restaurante, simplificând procesul pentru clienți și administratori.
+                        Sistem dedicat rezervărilor în hoteluri și restaurante, simplificând procesul pentru clienți și administratori.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
@@ -910,7 +910,7 @@
                 <div class="card-body py-5">
                     <h3 class="text-center text-white">Crează Evenimentul Tău</h3>
                     <p class="description">
-                        Crează Evenimentul Tău este o platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
+                        Platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
