@@ -87,5 +87,5 @@ body {
 .your-events .card-body h3,
 .hotel-manager .card-body h3,
 .booking .card-body h3{
-    height: 80px !important;
+    /* height: 80px !important; */
 }

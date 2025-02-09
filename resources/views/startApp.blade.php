@@ -875,7 +875,7 @@
 
         <div class="cards-container">
             <div class="card public-events">
-                <div class="card-body py-5">
+                <div class="card-body py-5 d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Public Events</h3>
                     <p class="description">
                         Platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
@@ -885,7 +885,7 @@
             </div>
 
             <div class="card hotel-manager">
-                <div class="card-body py-5">
+                <div class="card-body py-5 d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Hotel Manager</h3>
                     <p class="description">
                         Dedicat managerilor hotelurilor, contribuind la optimizarea timpului și îmbunătățirea experienței angajaților.
@@ -897,7 +897,7 @@
             </div>
 
             <div class="card booking">
-                <div class="card-body py-5">
+                <div class="card-body py-5 d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Booking Restaurant Hotel</h3>
                     <p class="description">
                         Sistem dedicat rezervărilor în hoteluri și restaurante, simplificând procesul pentru clienți și administratori.
@@ -907,7 +907,7 @@
             </div>
 
             <div class="card your-events">
-                <div class="card-body py-5">
+                <div class="card-body py-5 d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Crează Evenimentul Tău</h3>
                     <p class="description">
                         Platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
