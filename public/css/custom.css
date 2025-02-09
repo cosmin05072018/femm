@@ -99,3 +99,9 @@ body {
     align-self: center;
     margin-top: -25% !important;
 }
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 90px !important;
+    }
+}
