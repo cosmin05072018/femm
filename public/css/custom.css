@@ -24,7 +24,6 @@ body {
 
 .card {
     border-radius: 30% 70% 70% 30% / 60% 30% 70% 40%;
-    height: 200px !important;
     transition: 0.4s linear;
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
         rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
