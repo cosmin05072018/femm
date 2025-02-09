@@ -93,10 +93,9 @@ body {
 
 .img-sugestive{
     background-color: var(--background-containers) !important;
-    filter: invert(1) !important;
     border-radius: 50%;
-    border: 1px solid var(--white);
     padding: 20px;
     width: 140px !important;
     align-self: center;
+    margin-top: -25% !important;
 }
