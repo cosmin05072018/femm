@@ -850,6 +850,7 @@
             max-width: 300px !important;
             /* Evită lățimi prea mari */
             text-align: center !important;
+            height: 100% !important;
         }
     </style>
 
