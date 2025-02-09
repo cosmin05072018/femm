@@ -875,7 +875,7 @@
             <div class="card public-events">
                 <div class="card-body">
                     <h3 class="text-center">Public Events</h3>
-                    <p class="description">
+                    <p class="description text-white">
                         Public Events este o platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
@@ -885,7 +885,7 @@
             <div class="card hotel-manager">
                 <div class="card-body">
                     <h3 class="text-center text-white">Hotel Manager</h3>
-                    <p class="description">
+                    <p class="description text-white">
                         Hotel Manager** este dedicat managerilor hotelurilor, contribuind la optimizarea timpului și îmbunătățirea experienței angajaților.
                     </p>
                     <a href="{{ route('login') }}">
@@ -897,7 +897,7 @@
             <div class="card booking">
                 <div class="card-body">
                     <h3 class="text-center text-white">Booking Restaurant Hotel</h3>
-                    <p class="description">
+                    <p class="description text-white">
                         Booking Restaurant Hotel** este un sistem dedicat rezervărilor în hoteluri și restaurante, simplificând procesul pentru clienți și administratori.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
@@ -907,7 +907,7 @@
             <div class="card your-events">
                 <div class="card-body">
                     <h3 class="text-center">Crează Evenimentul Tău</h3>
-                    <p class="description">
+                    <p class="description text-white">
                         Crează Evenimentul Tău este o platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
                     </p>
                     <button type="button" class="btns-first-page">Să începem</button>
