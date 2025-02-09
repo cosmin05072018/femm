@@ -843,17 +843,16 @@
 <body>
     <div
         class="container container-first-page d-flex align-items-center justify-content-center min-vh-100 flex-column py-3">
-        <div class="col-12 col-md-4 d-flex d-md-none justify-content-center mb-3 mb-md-0">
+        <div class="col-12 col-md-4 d-flex d-md-none justify-content-center mb-3">
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-        <div class="col-12 col-md-7 col-lg-4 d-none d-md-flex justify-content-center mb-3 mb-md-0">
+        <div class="col-12 col-md-7 col-lg-4 d-none d-md-flex justify-content-center mb-3">
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-
-        <div class="row w-100 justify-content-center mb-4">
-            <div class="col-12 col-md-8">
+        <div class="row w-100 justify-content-center gap-3">
+            <div class="col-12 col-md-5 col-lg-3">
                 <div class="card py-5 d-flex align-items-center justify-content-center public-events">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center">Public <br> Events</h3>
@@ -862,7 +861,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-7 col-lg-4 mb-3 mb-md-0">
+            <div class="col-12 col-md-5 col-lg-3">
                 <div class="card py-5 d-flex align-items-center justify-content-center hotel-manager">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center text-white">Hotel <br> Manager</h3>
@@ -873,7 +872,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-7 col-lg-4">
+            <div class="col-12 col-md-5 col-lg-3">
                 <div class="card py-5 d-flex align-items-center justify-content-center booking">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
@@ -882,7 +881,7 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-8">
+            <div class="col-12 col-md-5 col-lg-3">
                 <div class="card py-5 d-flex align-items-center justify-content-center">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
@@ -892,6 +891,7 @@
             </div>
         </div>
     </div>
+
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}" defer></script>
