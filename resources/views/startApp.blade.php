@@ -866,7 +866,7 @@
     <div
         class="container container-first-page d-flex align-items-center min-vh-100 flex-column py-3">
         <div class="col-12 col-md-4 d-flex d-md-none justify-content-center mb-3">
-            <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
+            <img src="{{ asset('storage/logo.svg') }}" alt="Logo">
         </div>
 
         <div class="col-12 col-md-7 col-lg-4 d-none d-md-flex justify-content-center mb-3">
