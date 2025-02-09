@@ -841,6 +841,7 @@
             max-width: 1200px;
             /* Evită carduri prea late */
             width: 100%;
+            height: 400px !important;
         }
 
         .card {
@@ -874,7 +875,7 @@
         <div class="cards-container">
             <div class="card public-events">
                 <div class="card-body">
-                    <h3 class="text-center">Public Events</h3>
+                    <h3 class="text-center text-white">Public Events</h3>
                     <p class="description">
                         Public Events este o platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
                     </p>
@@ -906,7 +907,7 @@
 
             <div class="card your-events">
                 <div class="card-body">
-                    <h3 class="text-center">Crează Evenimentul Tău</h3>
+                    <h3 class="text-center text-white">Crează Evenimentul Tău</h3>
                     <p class="description">
                         Crează Evenimentul Tău este o platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
                     </p>
