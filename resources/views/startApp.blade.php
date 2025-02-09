@@ -873,7 +873,7 @@
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-        <div class="cards-container">
+        <div class="cards-container pt-5">
             <div class="card public-events">
                 <img class="img-sugestive" src="{{ asset('storage/public-events.svg') }}" alt="">
                 <div class="card-body d-flex justify-content-between flex-column">
