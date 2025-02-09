@@ -830,6 +830,12 @@
                 padding: 2rem
             }
         }
+
+        .card-fixed {
+            width: 100%;
+            max-width: 300px !important;
+            min-width: 250px !important;
+        }
     </style>
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -841,7 +847,8 @@
 </head>
 
 <body>
-    <div class="container container-first-page d-flex align-items-center justify-content-center min-vh-100 flex-column py-3">
+    <div
+        class="container container-first-page d-flex align-items-center justify-content-center min-vh-100 flex-column py-3">
         <div class="col-12 col-md-4 d-flex d-md-none justify-content-center mb-3">
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
@@ -850,9 +857,9 @@
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-        <div class="d-flex flex-wrap justify-content-center gap-3 w-100">
-            <div class="col-auto">
-                <div class="card py-5 d-flex align-items-center justify-content-center public-events">
+        <div class="row w-100 justify-content-center gap-3">
+            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
+                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center public-events">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center">Public <br> Events</h3>
                         <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
@@ -860,8 +867,8 @@
                 </div>
             </div>
 
-            <div class="col-auto">
-                <div class="card py-5 d-flex align-items-center justify-content-center hotel-manager">
+            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
+                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center hotel-manager">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center text-white">Hotel <br> Manager</h3>
                         <a href="{{ route('login') }}">
@@ -871,8 +878,8 @@
                 </div>
             </div>
 
-            <div class="col-auto">
-                <div class="card py-5 d-flex align-items-center justify-content-center booking">
+            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
+                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center booking">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
                         <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
@@ -880,8 +887,8 @@
                 </div>
             </div>
 
-            <div class="col-auto">
-                <div class="card py-5 d-flex align-items-center justify-content-center">
+            <div class="col-12 col-md-6 col-lg-3 d-flex justify-content-center">
+                <div class="card card-fixed py-5 d-flex align-items-center justify-content-center">
                     <div class="card-body d-flex align-items-center flex-column justify-content-between">
                         <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
                         <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
