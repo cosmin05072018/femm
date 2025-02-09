@@ -46,19 +46,18 @@ body {
 
 .btns-first-page {
     border: 0px !important;
-    background: linear-gradient(
-        30deg,
-        hsl(344, 78%, 61%),
-        hsla(187, 100%, 42%, 0.942)
-    );
-    color: var(--white);
-    border-radius: 50px 10px 50px 10px;
+    background: var(--background-back) !important;
+    color: var(--white) !important;
+    border-radius: 20px !important;
+    width: 100% !important;
+    padding: 10px 20px !important;
 }
 
-.btns-first-page a{
-    color: var(--white);
-    text-decoration: none !important;
+.btns-first-page:hover{
+    background-color: var(--white) !important;
+    color: var(--background-back) !important;
 }
+
 
 /* .public-events {
     background: var(--public-events);
