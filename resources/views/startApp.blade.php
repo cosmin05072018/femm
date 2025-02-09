@@ -870,7 +870,7 @@
         </div>
 
         <div class="col-12 col-md-7 col-lg-4 d-none d-md-flex justify-content-center mb-3">
-            <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
+            <img src="{{ asset('storage/public-events.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
         <div class="cards-container">
@@ -899,7 +899,7 @@
 
             <div class="card booking">
                 <div class="card-body py-5 d-flex justify-content-between flex-column">
-                    <h3 class="text-center text-white">Booking Restaurant Hotel</h3>
+                    <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
                     <p class="description">
                         Sistem dedicat rezervărilor în hoteluri și restaurante, simplificând procesul pentru clienți și administratori.
                     </p>
@@ -909,7 +909,7 @@
 
             <div class="card your-events">
                 <div class="card-body py-5 d-flex justify-content-between flex-column">
-                    <h3 class="text-center text-white">Crează Evenimentul Tău</h3>
+                    <h3 class="text-center text-white">Crează <br> Evenimentul Tău</h3>
                     <p class="description">
                         Platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
                     </p>
