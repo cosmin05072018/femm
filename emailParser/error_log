@@ -1,0 +1,7 @@
+[07-Jan-2025 13:35:46 UTC] PHP Fatal error:  Uncaught GuzzleHttp\Exception\InvalidArgumentException: Passing in the "body" request option as an array to send a request is not supported. Please use the "form_params" request option to send a application/x-www-form-urlencoded request, or the "multipart" request option to send a multipart/form-data request. in /home/femmro/public_html/vendor/guzzlehttp/guzzle/src/Client.php:477
+Stack trace:
+#0 /home/femmro/public_html/vendor/guzzlehttp/guzzle/src/Client.php(163): GuzzleHttp\Client->invalidBody()
+#1 /home/femmro/public_html/vendor/guzzlehttp/guzzle/src/Client.php(189): GuzzleHttp\Client->requestAsync('POST', Object(GuzzleHttp\Psr7\Uri), Array)
+#2 /home/femmro/public_html/emailParser/receiver.php(65): GuzzleHttp\Client->request('POST', 'https://femm.ro...', Array)
+#3 {main}
+  thrown in /home/femmro/public_html/vendor/guzzlehttp/guzzle/src/Client.php on line 477
