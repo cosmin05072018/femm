@@ -849,7 +849,6 @@
             max-width: 300px !important;
             /* Evită lățimi prea mari */
             text-align: center !important;
-            padding: 20px !important;
         }
     </style>
 
@@ -875,14 +874,20 @@
         <div class="cards-container">
             <div class="card public-events">
                 <div class="card-body">
-                    <h3 class="text-center">Public <br> Events</h3>
+                    <h3 class="text-center">Public Events</h3>
+                    <p class="description">
+                        Public Events este o platformă dedicată organizării și gestionării evenimentelor publice, facilitând coordonarea, promovarea și participarea eficientă.
+                    </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
             </div>
 
             <div class="card hotel-manager">
                 <div class="card-body">
-                    <h3 class="text-center text-white">Hotel <br> Manager</h3>
+                    <h3 class="text-center text-white">Hotel Manager</h3>
+                    <p class="description">
+                        Hotel Manager** este dedicat managerilor hotelurilor, contribuind la optimizarea timpului și îmbunătățirea experienței angajaților.
+                    </p>
                     <a href="{{ route('login') }}">
                         <button type="button" class="btns-first-page">Să începem</button>
                     </a>
@@ -891,14 +896,20 @@
 
             <div class="card booking">
                 <div class="card-body">
-                    <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
+                    <h3 class="text-center text-white">Booking Restaurant Hotel</h3>
+                    <p class="description">
+                        Booking Restaurant Hotel** este un sistem dedicat rezervărilor în hoteluri și restaurante, simplificând procesul pentru clienți și administratori.
+                    </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card your-events">
                 <div class="card-body">
-                    <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
+                    <h3 class="text-center">Crează Evenimentul Tău</h3>
+                    <p class="description">
+                        Crează Evenimentul Tău este o platformă dedicată organizării evenimentelor, oferind instrumente pentru planificare, gestionare și promovare.
+                    </p>
                     <button type="button" class="btns-first-page">Să începem</button>
                 </div>
             </div>

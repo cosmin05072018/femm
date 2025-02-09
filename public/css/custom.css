@@ -5,7 +5,10 @@
     --public-events: linear-gradient(to bottom, #afeeee, #40e0d0, #00ced1);
     --hotel-manager: linear-gradient(to right, #0099ffc0, #3a7bd5);
     --booking: linear-gradient(to right, #e43a15, #e65245);
-    --background-back: #151a30 ;
+    --background-back: #151a30f5;
+    --background-containers: #222b45;
+    --shadow: #1a1f33;
+    --icons: #5364af;
 }
 
 * {
@@ -16,13 +19,7 @@
 }
 
 body {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: linear-gradient(
-        30deg,
-        hsla(344, 78%, 61%, 0.5),
-        hsla(187, 100%, 42%, 0.5)
-    );
+    background-color: var(--background-back) !important;
 }
 
 .card {
@@ -64,7 +61,7 @@ body {
     text-decoration: none !important;
 }
 
-.public-events {
+/* .public-events {
     background: var(--public-events);
 }
 
@@ -74,4 +71,11 @@ body {
 
 .booking {
     background: var(--booking);
+} */
+
+.public-events,
+.your-events,
+.hotel-manager,
+.booking{
+    background-color: var(--background-containers) !important;
 }
