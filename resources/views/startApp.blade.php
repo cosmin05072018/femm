@@ -851,7 +851,7 @@
             <img src="{{ asset('storage/logo.svg') }}" alt="Logo" class="logo-img img-fluid">
         </div>
 
-        <!-- Primul rând: Public Events -->
+
         <div class="row w-100 justify-content-center mb-4">
             <div class="col-12 col-md-8">
                 <div class="card py-5 d-flex align-items-center justify-content-center public-events">
@@ -881,13 +881,13 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-12 col-md-8">
-            <div class="card py-5 d-flex align-items-center justify-content-center">
-                <div class="card-body d-flex align-items-center flex-column justify-content-between">
-                    <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
-                    <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
+            <div class="col-12 col-md-8">
+                <div class="card py-5 d-flex align-items-center justify-content-center">
+                    <div class="card-body d-flex align-items-center flex-column justify-content-between">
+                        <h3 class="text-center">Crează <br> Evenimentul Tău</h3>
+                        <button type="button" class="btns-first-page py-2 py-md-3 px-3 px-md-5">Să începem</button>
+                    </div>
                 </div>
             </div>
         </div>
