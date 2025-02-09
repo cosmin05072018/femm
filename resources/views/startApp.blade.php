@@ -899,7 +899,7 @@
             </div>
 
             <div class="card booking">
-                <img class="img-sugestive" src="{{ asset('storage/public-events.svg') }}" alt="">
+                <img class="img-sugestive" src="{{ asset('storage/booking.svg') }}" alt="">
                 <div class="card-body d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Booking <br> Restaurant Hotel</h3>
                     <p class="description">
@@ -910,7 +910,7 @@
             </div>
 
             <div class="card your-events">
-                <img class="img-sugestive" src="{{ asset('storage/public-events.svg') }}" alt="">
+                <img class="img-sugestive" src="{{ asset('storage/create-your-design.svg') }}" alt="">
                 <div class="card-body d-flex justify-content-between flex-column">
                     <h3 class="text-center text-white">Crează <br> Evenimentul Tău</h3>
                     <p class="description">
