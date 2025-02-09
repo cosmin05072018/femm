@@ -79,3 +79,7 @@ body {
 .booking{
     background-color: var(--background-containers) !important;
 }
+
+.description{
+    color: var(--white) !important;
+}
