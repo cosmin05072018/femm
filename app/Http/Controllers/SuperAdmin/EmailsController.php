@@ -66,49 +66,49 @@ class EmailsController extends Controller
         return view('superAdmin/emails', compact('owner', 'messages'));
     }
 
-    // public function show(Request $request)
-    // {
-    //     // dd($request->email);
-    //     $mailAdressView = $request->email;
-
-    //     $user = Auth::user();
-    //     $owner = User::where('role', 'owner')->first();
-
-    //     $account = $user->email_femm;
-    //     $password = $user->password_mail_femm;
-
-    //     if (!$account) {
-    //         return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-    //     }
-
-    //     $client = Client::make([
-    //         'host'          => 'mail.femm.ro',
-    //         'port'          => 993,
-    //         'encryption'    => 'ssl',
-    //         'validate_cert' => true,
-    //         'username'      => $account,
-    //         'password'      => $password,
-    //         'protocol'      => 'imap',
-    //     ]);
-
-    //     $client->connect();
-    //     $inbox = $client->getFolder('INBOX');
-
-    //     $messages = $inbox->query()->getMessage($request->email);
-    //     $attachment = $messages->getAttachments();
-    //     // dd($attachment);
-    //     //cred ca trebuie salvat pe server
-
-    //     return view('superAdmin/view-email', compact('owner', 'messages'));
-    // }
-    public function show()
+    public function show(Request $request)
     {
-        $owner = User::where('role', 'owner')->first();
-        $user = Auth::user();
-        $emails = Email::where('user_id', $user->id)->orderBy('date', 'desc')->paginate(10);
+        // dd($request->email);
+        $mailAdressView = $request->email;
 
-        return view('superAdmin/view-email', compact('owner', 'emails'));
+        $user = Auth::user();
+        $owner = User::where('role', 'owner')->first();
+
+        $account = $user->email_femm;
+        $password = $user->password_mail_femm;
+
+        if (!$account) {
+            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+        }
+
+        $client = Client::make([
+            'host'          => 'mail.femm.ro',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => $account,
+            'password'      => $password,
+            'protocol'      => 'imap',
+        ]);
+
+        $client->connect();
+        $inbox = $client->getFolder('INBOX');
+
+        $messages = $inbox->query()->getMessage($request->email);
+        $attachment = $messages->getAttachments();
+        // dd($attachment);
+        //cred ca trebuie salvat pe server
+
+        return view('superAdmin/view-email', compact('owner', 'messages'));
     }
+    // public function show()
+    // {
+    //     $owner = User::where('role', 'owner')->first();
+    //     $user = Auth::user();
+    //     $emails = Email::where('user_id', $user->id)->orderBy('date', 'desc')->paginate(10);
+
+    //     return view('superAdmin/view-email', compact('owner', 'emails'));
+    // }
 
 
 
