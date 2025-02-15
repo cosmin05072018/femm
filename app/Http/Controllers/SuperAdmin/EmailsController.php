@@ -103,6 +103,7 @@ class EmailsController extends Controller
     // }
     public function show()
     {
+        $owner = User::where('role', 'owner')->first();
         $user = Auth::user();
         $emails = Email::where('user_id', $user->id)->orderBy('date', 'desc')->paginate(10);
 
