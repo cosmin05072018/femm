@@ -139,10 +139,10 @@ class EmailController extends Controller
         // Verifică răspunsul API
         if ($response->successful()) {
             // Afișează răspunsul pentru debugging în caz de succes
-            dd('Email creat cu succes:', $response->json());
+            // dd('Email creat cu succes:', $response->json());
         } else {
             // Afișează răspunsul pentru debugging în caz de eroare
-            dd('Eroare la crearea emailului:', $response->body());
+            // dd('Eroare la crearea emailului:', $response->body());
         }
     }
 }
