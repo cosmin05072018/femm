@@ -14,7 +14,7 @@
             <p class="text-dark">Continutul mailului:</p>
             <div class="container-fluid p-3 border b-rounded">
                 {!! $messages->mask()->getHTMLBodyWithEmbeddedBase64Images() !!}
-                    {{ $webmails->getAttachments }}
+                    {{ $messages->getAttachments }}
             </div>
 
             <!-- Butonul pentru activarea modalului -->
