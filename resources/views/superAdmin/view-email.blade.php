@@ -3,10 +3,10 @@
 @section('title', 'Emailuri')
 
 @section('content')
-    <!-- Content Wrapper -->
+    <!-- Content Wrapper
     <div id="content-wrapper" class="d-flex flex-column">
 
-        <!-- Main Content -->
+
         <div id="content mt-5">
             <p class="text-dark">Mail primit de la: <b>{{ $messages->getFrom()[0]->mail }}</b></p>
             <p class="text-dark">Subiect: <b>{{ $messages->getSubject() }}</b></p>
@@ -17,13 +17,13 @@
                     {{ $messages->getAttachments }}
             </div>
 
-            <!-- Butonul pentru activarea modalului -->
+
             <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal"
                 data-bs-target="#userRequestModal">
                 Raspunde
             </a>
 
-            <!-- Modalul complet -->
+
             <div class="modal fade" id="userRequestModal" tabindex="-1" aria-labelledby="userRequestModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
@@ -48,4 +48,16 @@
             </div>
         </div>
     </div>
+    -->
+    @foreach ($emails as $email)
+    <div class="email">
+        <h3>{{ $email->subject }}</h3>
+        <p><strong>De la:</strong> {{ $email->from }}</p>
+        <p><strong>Data:</strong> {{ $email->date }}</p>
+        <p>{{ Str::limit($email->body, 200) }}</p>
+        <a href="{{ route('emails.show', $email->id) }}">Vezi detalii</a>
+    </div>
+@endforeach
+{{ $emails->links() }}
+
 @endsection
