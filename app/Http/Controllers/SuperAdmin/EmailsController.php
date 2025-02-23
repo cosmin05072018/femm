@@ -79,23 +79,10 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        $email = Email::where('id', $request->email)->first();
-
-        if (!$email || !$email->message_id) {
-            return response()->json(['error' => 'Mesajul nu a fost găsit în baza de date.'], 404);
-        }
-
-        $uid = (int) $email->message_id; // Acesta este UID-ul IMAP real
-        $message = $inbox->query()->getMessage(44);
-
-        if (!$message) {
-            return response()->json(['error' => 'Mesajul nu a fost găsit în inbox.'], 404);
-        }
-
-
 
         // Găsește mesajul original
-        $message = $inbox->query()->getMessage($request->email);
+        $message = $inbox->query()->getMessage(44);
+
         if (!$message) {
             return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
         }
