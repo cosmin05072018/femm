@@ -79,15 +79,19 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        $messages = $inbox->query()->all()->get();
+        $email = Email::where('id', $request->email)->first();
 
-        if ($messages->isEmpty()) {
-            dd('Inbox-ul este gol sau IMAP nu returnează mesaje.');
+        if (!$email || !$email->message_id) {
+            return response()->json(['error' => 'Mesajul nu a fost găsit în baza de date.'], 404);
         }
 
-        foreach ($messages as $msg) {
-            return "UID: " . $msg->getUid() . " | Subiect: " . $msg->getSubject() . "<br>";
+        $uid = (int) $email->message_id; // Acesta este UID-ul IMAP real
+        $message = $inbox->query()->getMessage($uid);
+
+        if (!$message) {
+            return response()->json(['error' => 'Mesajul nu a fost găsit în inbox.'], 404);
         }
+
 
 
         // Găsește mesajul original
