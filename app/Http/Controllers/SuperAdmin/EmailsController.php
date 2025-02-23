@@ -60,7 +60,6 @@ class EmailsController extends Controller
         $account = $user->email_femm;
         $password = $user->password_mail_femm;
 
-
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -92,13 +91,28 @@ class EmailsController extends Controller
         $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
         $replyMessage = $request->reply_message; // Mesajul de răspuns
 
-        // Trimite răspunsul folosind Mail
+        // Trimite răspunsul
         Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
             $mail->to($replyTo)
                 ->from($account)
                 ->subject($subject);
         });
 
-        return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
+        // Salvare e-mail în baza de date
+        Email::create([
+            'user_id'     => $user->id,
+            'message_id'  => $message->getMessageId(),
+            'from'        => $account,
+            'to'          => $replyTo,
+            'subject'     => $subject,
+            'body'        => $replyMessage,
+            'is_seen'     => 1,
+            'attachments' => null, // Dacă ai atașamente, trebuie adăugate aici
+            'type'        => 'sent',
+            'created_at'  => now(),
+            'updated_at'  => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Răspunsul a fost trimis și salvat cu succes!');
     }
 }
