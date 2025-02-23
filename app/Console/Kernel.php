@@ -19,6 +19,8 @@ class Kernel extends ConsoleKernel
             app(EmailSyncController::class)->syncEmails();
         })->everyMinute();
         $schedule->command('emails:sync')->everyMinute();
+
+        $schedule->exec('curl http://your-domain.com/sync-emails')->everyMinute();
     }
 
     /**
