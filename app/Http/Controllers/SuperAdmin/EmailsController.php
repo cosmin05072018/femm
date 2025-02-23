@@ -79,7 +79,15 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
+        // Obține toate mesajele (sau poți folosi recent(), unread() etc.)
+        $messages = $inbox->query()->all()->get();
 
+        $uids = [];
+        foreach ($messages as $message) {
+            $uids[] = $message->getUid(); // Obține UID-ul fiecărui email
+        }
+
+        dd($uids);
         // Găsește mesajul original
         $message = $inbox->query()->getMessage(44);
         // dd($message);
