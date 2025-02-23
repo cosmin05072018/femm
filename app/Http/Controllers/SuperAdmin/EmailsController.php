@@ -86,10 +86,8 @@ class EmailsController extends Controller
         foreach ($messages as $message) {
             $uids[] = $message->getUid(); // Obține UID-ul fiecărui email
         }
-
-        dd($uids);
         // Găsește mesajul original
-        $message = $inbox->query()->getMessage(44);
+        $message = $inbox->query()->getMessage($uids);
         // dd($message);
 
         if (!$message) {
