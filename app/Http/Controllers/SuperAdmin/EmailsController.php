@@ -79,9 +79,10 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
+        dd($inbox);
 
         // Găsește mesajul original
-        $message = $inbox->query()->getMessage(44);
+        $message = $inbox->query()->getMessage($request->email);
 
         if (!$message) {
             return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
