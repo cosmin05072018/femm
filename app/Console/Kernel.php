@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
         $schedule->command('emails:sync')->everyMinute();
 
-        $schedule->exec('curl http://your-domain.com/sync-emails')->everyMinute();
+        $schedule->exec('curl https://femm.ro/sync-emails')->everyMinute();
     }
 
     /**
