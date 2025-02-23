@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             app(EmailSyncController::class)->syncEmails();
         })->everyFiveMinutes();
+        $schedule->command('emails:sync')->everyMinute();
     }
 
     /**
