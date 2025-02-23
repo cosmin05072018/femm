@@ -35,6 +35,8 @@ class EmailsController extends Controller
             ->where('type', 'sent') // Alegem doar emailurile trimise
             ->orderByDesc('created_at') // Sortăm descrescător
             ->get();
+            dd(Email::where('user_id', Auth::id())->where('type', 'sent')->get());
+
 
 
 
