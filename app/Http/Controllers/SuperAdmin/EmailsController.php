@@ -23,17 +23,17 @@ class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
     public function index()
-    {$emails = Email::where('type', 'sent')->get();
-        dd($emails); // Verifică dacă rezultatele sunt corecte
-
+    {
 
         $user = Auth::user();
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)
-            ->where('type', 'sent')  // Adaugă condiția pentru 'type' = 'sent'
+            ->where('type', 'sent')  // Verifică că această condiție funcționează
             ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
             ->get();
+
+        dd($emails);  // Verifică ce date sunt returnate
 
 
         return view('superAdmin/emails', compact('owner', 'emails'));
