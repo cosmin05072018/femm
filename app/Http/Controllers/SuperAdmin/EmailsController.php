@@ -29,8 +29,8 @@ class EmailsController extends Controller
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)
-               ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
-               ->get();
+            ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
+            ->get();
 
 
 
@@ -39,8 +39,12 @@ class EmailsController extends Controller
 
     public function show(Request $request)
     {
-        // dd($request->email);
+
         $mailAdressView = $request->email;
+        Email::where('id', $mailAdressView)
+            ->update(['is_seen' => 1]);
+
+
         $owner = User::where('role', 'owner')->first();
         $message = Email::where('id', $mailAdressView)->first();
 
