@@ -28,9 +28,7 @@ class EmailsController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
-        $emails = Email::where('user_id', $userId)
-            ->where('type', 'sad') // Filtrare după 'type' egal cu 'received'
-            ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
+        $emails = Email::where('type', 'sad')
             ->get();
 
         return view('superAdmin/emails', compact('owner', 'emails'));
