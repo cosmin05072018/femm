@@ -11,6 +11,10 @@ use App\Http\Controllers\SuperAdmin\CreateUserController;
 use App\Http\Controllers\SuperAdmin\EmailsController;
 use App\Http\Controllers\EmailController;
 use Webklex\PHPIMAP\ClientManager;
+use App\Http\Controllers\EmailSyncController;
+
+Route::get('/sync-emails', [EmailSyncController::class, 'syncEmails']);
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
