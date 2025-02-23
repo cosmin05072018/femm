@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Http::get('https://femm.ro/sync-emails');
         })->everyMinute();
+
+        $schedule->command('emails:sync')->everyMinute();
     }
 
     /**
