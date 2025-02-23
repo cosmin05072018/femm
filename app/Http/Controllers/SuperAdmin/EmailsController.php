@@ -29,11 +29,13 @@ class EmailsController extends Controller
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)
-               ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
-               ->get();
-        $sentEmails = Email::where('id', $userId)
-                 ->where('type', 'sent')
-                 ->get();
+            ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
+            ->get();
+        $sentEmails = Email::where('user_id', $userId) // Corect: filtrăm după user_id
+            ->where('type', 'sent') // Alegem doar emailurile trimise
+            ->orderByDesc('created_at') // Sortăm descrescător
+            ->get();
+
 
 
 
