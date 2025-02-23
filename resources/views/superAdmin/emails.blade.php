@@ -10,7 +10,7 @@
         <div id="content">
             <h1>Emailuri</h1>
 
-            <div class="container-fluid p-0">
+            <div class="p-0">
                 <div class="row w-100">
                     <!--main-->
                     <!-- tabs -->
