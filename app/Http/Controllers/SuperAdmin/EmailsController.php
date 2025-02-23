@@ -29,10 +29,9 @@ class EmailsController extends Controller
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)
+            ->where('type', 'received') // Filtrare după 'type' egal cu 'received'
             ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
             ->get();
-
-
 
         return view('superAdmin/emails', compact('owner', 'emails'));
     }
@@ -46,10 +45,7 @@ class EmailsController extends Controller
 
 
         $owner = User::where('role', 'owner')->first();
-        $message = Email::where('id', $mailAdressView)
-            ->where('type', 'received')
-            ->first();
-
+        $message = Email::where('id', $mailAdressView)->first();
 
         return view('superAdmin/view-email', compact('owner', 'message'));
     }
