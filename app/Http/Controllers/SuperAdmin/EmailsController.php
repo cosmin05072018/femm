@@ -98,6 +98,13 @@ class EmailsController extends Controller
                 ->subject($subject);
         });
 
+        // Verifică dacă mesajul a fost deja salvat
+        $existingEmail = Email::where('message_id', $message->getMessageId())->first();
+
+        if ($existingEmail) {
+            // Dacă există deja, nu mai salva mesajul din nou
+            return redirect()->back()->with('error', 'Mesajul a fost deja salvat.');
+        }
         // Salvare e-mail în baza de date
         Email::create([
             'user_id'     => $user->id,
