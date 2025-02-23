@@ -80,11 +80,17 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
 
+        // Verificăm dacă inbox-ul conține mesaje
+        if ($inbox->count() == 0) {
+            return response()->json(['error' => 'Inbox-ul este gol.'], 404);
+        }
+
         // Căutăm mesajul în funcție de emailul expeditorului
         $messages = $inbox->query()->from($request->email)->get();
+        dd($messages); // Afișează toate mesajele disponibile
 
         if ($messages->isEmpty()) {
-            return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
+            return response()->json(['error' => 'Nu au fost găsite mesaje pentru acest email.'], 404);
         }
 
         // Obținem primul mesaj
