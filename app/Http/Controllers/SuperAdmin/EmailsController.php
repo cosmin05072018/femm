@@ -81,7 +81,14 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
         $messages = $inbox->query()->all()->get();
 
-dd($messages->pluck('uid')->toArray()); // Afișează toate UID-urile disponibile
+        if ($messages->isEmpty()) {
+            dd('Inbox-ul este gol sau IMAP nu returnează mesaje.');
+        }
+
+        foreach ($messages as $msg) {
+            echo "UID: " . $msg->getUid() . " | Subiect: " . $msg->getSubject() . "<br>";
+        }
+
 
         // Găsește mesajul original
         $message = $inbox->query()->getMessage($request->email);
