@@ -60,7 +60,6 @@ class EmailsController extends Controller
         $account = $user->email_femm;
         $password = $user->password_mail_femm;
 
-        dd($user, $account, $password);
 
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
