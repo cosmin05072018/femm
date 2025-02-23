@@ -38,7 +38,7 @@ class EmailsController extends Controller
 
     public function show(Request $request)
     {
-        // dd($request->email);
+        dd($request->email);
         $mailAdressView = $request->email;
 
         $user = Auth::user();
@@ -71,14 +71,6 @@ class EmailsController extends Controller
 
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }
-    // public function show()
-    // {
-    //     $owner = User::where('role', 'owner')->first();
-    //     $user = Auth::user();
-    //     $emails = Email::where('user_id', $user->id)->orderBy('date', 'desc')->paginate(10);
-
-    //     return view('superAdmin/view-email', compact('owner', 'emails'));
-    // }
 
 
 

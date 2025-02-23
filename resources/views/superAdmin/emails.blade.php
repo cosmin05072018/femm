@@ -22,10 +22,6 @@
                         </li>
                         <li><a href="#profile" class="nav-link" data-toggle="tab">
                                 <i class="fa fa-user mr-1"></i> Mesaje Trimise </a></li>
-                        <li><a href="#settings" class="nav-link" data-toggle="tab">
-                                <i class="fa fa-plus"></i>
-                            </a>
-                        </li>
                         <li>
                             <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i
                                     class="fa fa-edit"></i>
