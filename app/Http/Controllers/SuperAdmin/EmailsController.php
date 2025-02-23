@@ -29,11 +29,15 @@ class EmailsController extends Controller
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)
-            ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
-            ->get();
+               ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
+               ->get();
+        $sentEmails = Email::where('id', $userId)
+                 ->where('type', 'sent')
+                 ->get();
 
 
-        return view('superAdmin/emails', compact('owner', 'emails'));
+
+        return view('superAdmin/emails', compact('owner', 'emails', 'sentEmails'));
     }
 
     public function show(Request $request)
@@ -42,13 +46,8 @@ class EmailsController extends Controller
         $mailAdressView = $request->email;
         $owner = User::where('role', 'owner')->first();
         $message = Email::where('id', $mailAdressView)->first();
-        $sentEmails = Email::where('id', $mailAdressView)
-            ->where('type', 'sent')
-            ->get();
 
-            dd($sentEmails);
-
-        return view('superAdmin/view-email', compact('owner', 'message', 'sentEmails'));
+        return view('superAdmin/view-email', compact('owner', 'message'));
     }
 
 
