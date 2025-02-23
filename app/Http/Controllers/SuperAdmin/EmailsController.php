@@ -78,21 +78,11 @@ class EmailsController extends Controller
         ]);
 
         $client->connect();
-
         $inbox = $client->getFolder('INBOX');
-        $messages = $inbox->query()->all()->get();
-
-        if ($messages->isEmpty()) {
-            dd('Inbox-ul este gol sau IMAP nu returnează mesaje.');
-        }
-
-        // Afișează toate UID-urile disponibile
-        $uids = $messages->pluck('uid')->toArray();
-        dd($uids);
-
 
         // Găsește mesajul original
-        $message = $inbox->query()->getMessage(0);
+        $message = $inbox->query()->getMessage(44);
+        dd($message);
 
         if (!$message) {
             return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
