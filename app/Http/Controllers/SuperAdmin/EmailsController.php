@@ -84,7 +84,7 @@ class EmailsController extends Controller
 
         $uids= '';
         foreach ($messages as $message) {
-            $uids[] = (int) $message->getUid(); // Convertim UID-ul la int
+            $uids = (int) $message->getUid(); // Convertim UID-ul la int
         }
 
         // Găsește mesajul original
