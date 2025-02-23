@@ -7,7 +7,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content p-3">
+        <div id="content" style="padding: 20px 40px">
             <h1>Emailuri</h1>
             <div class="row w-100">
                 <!--main-->
