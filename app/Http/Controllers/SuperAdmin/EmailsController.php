@@ -93,11 +93,11 @@ class EmailsController extends Controller
         $replyMessage = $request->reply_message; // Mesajul de răspuns
 
         // Trimite răspunsul folosind Mail
-        Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
-            $mail->to($replyTo)
-                ->from($account)
-                ->subject($subject);
-        });
+        // Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
+        //     $mail->to($replyTo)
+        //         ->from($account)
+        //         ->subject($subject);
+        // });
 
         return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
     }
