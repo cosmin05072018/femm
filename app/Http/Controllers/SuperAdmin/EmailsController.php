@@ -28,42 +28,11 @@ class EmailsController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
-
-        $account = $user->email_femm;
-        $password = $user->password_mail_femm;
-
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
-
-        $client = Client::make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account,
-            'password'      => $password,
-            'protocol'      => 'imap',
-        ]);
-
-        $client->connect();
-        $inbox = $client->getFolder('INBOX');
-
-        $unseenMessage = $inbox->query()->unseen()->get();
-        $seenMessage = $inbox->query()->seen()->get();
-
-        $messages = $inbox->messages()->all()->get();
-
-        foreach ($messages as $message) {
-            $flags = $message->flags();  // Obține colecția de flag-uri
-            $message->is_seen = $flags->contains('Seen');  // Verifică dacă colecția conține flag-ul 'Seen'
-        }
+        $emails = Email::where('user_id', $userId)->get();
+        dd($emails);
 
 
-        // $idUserFromMail = User::where('email_femm', $account)->value('id');
-
-
-        return view('superAdmin/emails', compact('owner', 'messages'));
+        return view('superAdmin/emails', compact('owner', 'emails'));
     }
 
     public function show(Request $request)

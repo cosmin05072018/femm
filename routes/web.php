@@ -106,9 +106,5 @@ Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail'])
 Route::post('/create-email', [EmailController::class, 'createEmail'])->name('createEmail');
 
 
-// previzualizare mailuri
-Route::get('/emails-test', [EmailSyncController::class, 'showEmails'])->name('emails-test.index');
-
-
 require __DIR__ . '/auth.php';
 
