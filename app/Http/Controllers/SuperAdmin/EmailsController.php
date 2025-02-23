@@ -86,7 +86,7 @@ class EmailsController extends Controller
         }
 
         $uid = (int) $email->message_id; // Acesta este UID-ul IMAP real
-        $message = $inbox->query()->getMessage($uid);
+        $message = $inbox->query()->getMessage(44);
 
         if (!$message) {
             return response()->json(['error' => 'Mesajul nu a fost găsit în inbox.'], 404);
