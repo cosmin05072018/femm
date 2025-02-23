@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div class="container">
     <h2 class="mb-4">Inbox</h2>
     <table class="table table-striped">
@@ -35,4 +32,3 @@
         </tbody>
     </table>
 </div>
-@endsection
