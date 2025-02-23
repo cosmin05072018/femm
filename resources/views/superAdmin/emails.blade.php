@@ -9,13 +9,6 @@
         <!-- Main Content -->
         <div id="content">
             <h1>Emailuri</h1>
-            @php
-                use App\Models\Email;
-                use Illuminate\Support\Facades\Auth;
-
-                // Preluăm emailurile utilizatorului autentificat și le sortăm descrescător după `created_at`
-                $emails = Email::where('user_id', Auth::id())->orderByDesc('created_at')->get();
-            @endphp
 
             <div class="container-fluid p-0">
                 <div class="row w-100">
