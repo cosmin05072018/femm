@@ -29,7 +29,7 @@ class EmailsController extends Controller
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)
-            ->where('type', 'sent')  // Verifică că această condiție funcționează
+            ->where('type', 'received')  // Verifică că această condiție funcționează
             ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
             ->get();
 
