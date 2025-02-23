@@ -79,7 +79,7 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-
+        dd($request->email);
         // Găsește mesajul original
         $message = $inbox->query()->getMessage($request->email);
 
