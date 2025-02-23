@@ -55,12 +55,22 @@ class EmailSyncController extends Controller
                             $attachmentsData[] = $path;
                         }
 
+                        $toAddresses = $message->getTo();
+                        $toEmails = [];
+
+                        if (is_array($toAddresses) || $toAddresses instanceof \Traversable) {
+
+                            foreach ($toAddresses as $to) {
+                                $toEmails[] = $to->mail;
+                            }
+                        }
+
                         // Salvăm emailul în baza de date
                         Email::create([
                             'user_id'    => $user->id,
                             'message_id' => $messageId,
                             'from'       => $message->getFrom()[0]->mail ?? 'Unknown',
-                            'to'         => implode(',', array_map(fn($to) => $to->mail, $message->getTo())),
+                            'to' => implode(',', $toEmails),
                             'subject'    => $message->getSubject() ?? 'No Subject',
                             'body'       => $message->getTextBody() ?? 'No Content',
                             'is_seen'    => $message->getFlags()->contains('Seen'),
