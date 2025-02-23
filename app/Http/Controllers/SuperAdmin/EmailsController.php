@@ -81,7 +81,7 @@ class EmailsController extends Controller
         $inbox = $client->getFolder('INBOX');
 
         // Găsește mesajul original
-        $message = $inbox->query()->getMessage(1);
+        $message = $inbox->query()->getMessage(0);
 
         if (!$message) {
             return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
