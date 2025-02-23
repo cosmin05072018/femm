@@ -46,6 +46,8 @@ class EmailsController extends Controller
             ->where('type', 'sent')
             ->get();
 
+            dd($sentEmails);
+
         return view('superAdmin/view-email', compact('owner', 'message', 'sentEmails'));
     }
 
