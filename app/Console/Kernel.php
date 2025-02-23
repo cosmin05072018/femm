@@ -6,6 +6,8 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Jobs\SyncEmailsJob;
 use App\Http\Controllers\EmailSyncController;
+use Illuminate\Support\Facades\Http;
+
 
 
 class Kernel extends ConsoleKernel
@@ -21,6 +23,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('emails:sync')->everyMinute();
 
         $schedule->exec('curl https://femm.ro/sync-emails')->everyMinute();
+
+        $schedule->call(function () {
+            Http::get('https://femm.ro/sync-emails');
+        })->everyMinute();
     }
 
     /**
