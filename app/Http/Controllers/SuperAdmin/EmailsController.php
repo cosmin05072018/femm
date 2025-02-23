@@ -33,7 +33,7 @@ class EmailsController extends Controller
             ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
             ->get();
 
-        // return view('superAdmin/emails', compact('owner', 'emails'));
+        return view('superAdmin/emails', compact('owner', 'emails'));
     }
 
     public function show(Request $request)
