@@ -89,7 +89,7 @@ class EmailSyncController extends Controller
     public function showEmails()
 {
     $emails = Email::orderBy('created_at', 'desc')->get();
-    return view('emails.index', compact('emails'));
+    return view('emails-test.index', compact('emails'));
 }
 
 }

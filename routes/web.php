@@ -107,7 +107,7 @@ Route::post('/create-email', [EmailController::class, 'createEmail'])->name('cre
 
 
 // previzualizare mailuri
-Route::get('/emails', [EmailSyncController::class, 'showEmails'])->name('emails.index');
+Route::get('/emails-test', [EmailSyncController::class, 'showEmails'])->name('emails-test.index');
 
 
 require __DIR__ . '/auth.php';
