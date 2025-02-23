@@ -38,36 +38,10 @@ class EmailsController extends Controller
 
     public function show(Request $request)
     {
-        dd($request->email);
+        // dd($request->email);
         $mailAdressView = $request->email;
-
-        $user = Auth::user();
         $owner = User::where('role', 'owner')->first();
-
-        $account = $user->email_femm;
-        $password = $user->password_mail_femm;
-
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
-
-        $client = Client::make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account,
-            'password'      => $password,
-            'protocol'      => 'imap',
-        ]);
-
-        $client->connect();
-        $inbox = $client->getFolder('INBOX');
-
-        $messages = $inbox->query()->getMessage($request->email);
-        $attachment = $messages->getAttachments();
-        // dd($attachment);
-        //cred ca trebuie salvat pe server
+        $messages = Email::where('email', $mailAdressView)->first();
 
         return view('superAdmin/view-email', compact('owner', 'messages'));
     }

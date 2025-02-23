@@ -8,14 +8,27 @@
 
         <!-- Main Content -->
         <div id="content mt-5">
-            <p class="text-dark">Mail primit de la: <b>{{ $messages->getFrom()[0]->mail }}</b></p>
-            <p class="text-dark">Subiect: <b>{{ $messages->getSubject() }}</b></p>
+            <p class="text-dark">Mail primit de la: <b>{{ $message->from }}</b></p>
+            <p class="text-dark">Subiect: <b>{{ $message->subject }}</b></p>
 
-            <p class="text-dark">Continutul mailului:</p>
+            <p class="text-dark">Conținutul mailului:</p>
             <div class="container-fluid p-3 border b-rounded">
-                {!! $messages->mask()->getHTMLBodyWithEmbeddedBase64Images() !!}
-                    {{ $messages->getAttachments }}
+                {!! $message->body !!}
             </div>
+
+            <!-- Afișare atașamente dacă există -->
+            @if($message->attachments && strlen($message->attachments) > 0)
+                <p class="text-dark mt-3"><b>Atașamente:</b></p>
+                <ul>
+                    @foreach(json_decode($message->attachments, true) as $attachment)
+                        <li>
+                            <a href="{{ route('download.attachment', ['id' => $attachment['id']]) }}" target="_blank">
+                                {{ $attachment['name'] }}
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endif
 
             <!-- Butonul pentru activarea modalului -->
             <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal"
@@ -30,11 +43,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="userRequestModalLabel">Raspunde lui
-                                <b>{{ $messages->getFrom()[0]->mail }}</b></h5>
+                                <b>{{ $message->from }}</b></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin.reply', ['email' => $messages->getUid()]) }}" method="POST"
+                            <form action="{{ route('admin.reply', ['email' => $message->id]) }}" method="POST"
                                 style="display:inline;">
                                 @csrf
                                 <div class="mb-3">
