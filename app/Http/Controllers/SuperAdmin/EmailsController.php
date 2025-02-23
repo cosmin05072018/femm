@@ -86,7 +86,7 @@ class EmailsController extends Controller
         }
 
         foreach ($messages as $msg) {
-            echo "UID: " . $msg->getUid() . " | Subiect: " . $msg->getSubject() . "<br>";
+            return "UID: " . $msg->getUid() . " | Subiect: " . $msg->getSubject() . "<br>";
         }
 
 
