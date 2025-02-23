@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Referință către utilizator
-            $table->string('email_id')->unique(); // ID unic al emailului de pe server
+            $table->unsignedBigInteger('user_id');
+            $table->string('message_id')->unique(); // ID unic al emailului
             $table->string('from');
             $table->string('to');
             $table->string('subject')->nullable();
             $table->text('body')->nullable();
-            $table->timestamp('date');
-            $table->boolean('is_read')->default(false);
+            $table->boolean('is_seen')->default(false);
+            $table->json('attachments')->nullable(); // Salvăm atașamentele în format JSON
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
