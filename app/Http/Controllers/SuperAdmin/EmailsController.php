@@ -28,11 +28,12 @@ class EmailsController extends Controller
         $user = Auth::user();
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
-        $emails = Email::where('type', 'received') // Filtrare după 'type' egal cu 'received'
+        $emails = Email::where('user_id', $userId)
+            ->where('type', 'received') // Filtrare după 'type' egal cu 'received'
             ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
             ->get();
 
-        return view('superAdmin/emails', compact('owner', 'emails'));
+        // return view('superAdmin/emails', compact('owner', 'emails'));
     }
 
     public function show(Request $request)
