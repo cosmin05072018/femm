@@ -13,7 +13,7 @@
             <div class="container-fluid p-0">
                 <div class="row w-100">
                     <!--main-->
-                    <!-- tabs -->
+                    <!-- Tab-urile -->
                     <ul class="nav nav-tabs border-0">
                         <li class="nav-item">
                             <a class="nav-link active" href="#inbox" data-toggle="tab">
@@ -21,7 +21,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#sent" class="nav-link" data-toggle="tab">
+                            <a class="nav-link" href="#sent" data-toggle="tab">
                                 <i class="fa fa-paper-plane mr-1"></i> Mesaje Trimise
                             </a>
                         </li>
@@ -31,8 +31,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- tab panes -->
-                    <!-- tab panes -->
+                    <!-- Conținutul tab-urilor -->
                     <div class="tab-content py-4">
                         <!-- Toate mesajele -->
                         <div class="tab-pane fade show active" id="inbox">
@@ -86,7 +85,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($emails->where('type', 'sent') as $email)
+                                    @foreach ($sentEmails as $email)
                                         <tr class="bg-transparent"
                                             onclick="window.location='{{ route('admin.view-email', ['email' => $email->id]) }}';"
                                             style="cursor: pointer;">
