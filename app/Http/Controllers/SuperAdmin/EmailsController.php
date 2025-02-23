@@ -18,6 +18,7 @@ use Webklex\PHPIMAP\Facade\IMAP;
 use Webklex\PHPIMAP\Query\WhereQuery;
 use Webklex\PHPIMAP\ClientManager;
 use Illuminate\Support\Facades\Storage;
+use Webklex\PHPIMAP\Message;
 
 class EmailsController extends Controller
 {
@@ -61,7 +62,7 @@ class EmailsController extends Controller
         $account = $user->email_femm;
         $password = $user->password_mail_femm;
 
-        if (!$account) {
+        if (!$account || !$password) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
@@ -79,40 +80,41 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        dd($inbox);
 
-        // Găsește mesajul original
-        $message = $inbox->query()->getMessage($request->email);
+        // UID-ul e-mailului la care vrei să răspunzi (primit din request)
+        $uid = $request->input('uid');
 
-        if (!$message) {
-            return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
+        if (!$uid) {
+            return response()->json(['error' => 'UID-ul e-mailului nu a fost specificat.'], 400);
         }
 
-        // Setează detaliile mesajului de răspuns
-        $replyTo = $message->getFrom()[0]->mail; // E-mailul destinatarului
-        $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
-        $replyMessage = $request->reply_message; // Mesajul de răspuns
+        // Caută e-mailul după UID
+        $message = $inbox->query()->uid($uid)->get()->first();
 
-        // Trimite răspunsul folosind Mail
-        Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
-            $mail->to($replyTo)
+        if (!$message) {
+            return response()->json(['error' => 'E-mailul nu a fost găsit.'], 404);
+        }
+
+        // Obține detaliile e-mailului original
+        $fromEmail = $message->getFrom()[0]->mail;
+        $originalSubject = $message->getSubject();
+        $originalBody = $message->getTextBody();
+
+        // Compune mesajul de răspuns
+        $replySubject = "Re: " . $originalSubject;
+        $replyBody = $request->input('message'); // Mesajul nou trimis de utilizator
+
+        if (!$replyBody) {
+            return response()->json(['error' => 'Conținutul răspunsului este gol.'], 400);
+        }
+
+        // Trimiterea e-mailului de răspuns
+        Mail::raw($replyBody, function ($mail) use ($fromEmail, $replySubject, $account) {
+            $mail->to($fromEmail)
                 ->from($account)
-                ->subject($subject);
+                ->subject($replySubject);
         });
 
-        // Salvează emailul trimis în baza de date
-        Email::create([
-            'user_id'   => $user->id, // ID-ul utilizatorului
-            'message_id' => uniqid(), // ID unic pentru mesajul trimis (poți utiliza un alt ID relevant)
-            'from'      => $account,
-            'to'        => $replyTo,
-            'subject'   => $subject,
-            'body'      => $replyMessage,
-            'is_seen'   => false,
-            'type'      => 'sent', // Setează tipul la 'sent'
-            'attachments' => json_encode([]), // Dacă sunt atașamente, le poți adăuga aici, altfel lasă un array gol
-        ]);
-
-        return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
+        return response()->json(['success' => 'Răspunsul a fost trimis cu succes.']);
     }
 }
