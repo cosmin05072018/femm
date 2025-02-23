@@ -43,7 +43,7 @@ class EmailsController extends Controller
         $owner = User::where('role', 'owner')->first();
         $messages = Email::where('id', $mailAdressView)->first();
 
-        return view('superAdmin/view-email', compact('owner', 'messages'));
+        return view('superAdmin/view-email', compact('owner', 'message'));
     }
 
 
