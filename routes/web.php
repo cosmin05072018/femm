@@ -13,6 +13,7 @@ use App\Http\Controllers\EmailController;
 use Webklex\PHPIMAP\ClientManager;
 use App\Http\Controllers\EmailSyncController;
 
+// ruta de sincronizare mailuri
 Route::get('/sync-emails', [EmailSyncController::class, 'syncEmails']);
 
 /*
@@ -103,6 +104,10 @@ Route::get('/emails/{messageId}', [EmailController::class, 'showEmail']);
 Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail'])->name('emails.reply');
 
 Route::post('/create-email', [EmailController::class, 'createEmail'])->name('createEmail');
+
+
+// previzualizare mailuri
+Route::get('/emails', [EmailSyncController::class, 'showEmails'])->name('emails.index');
 
 
 require __DIR__ . '/auth.php';

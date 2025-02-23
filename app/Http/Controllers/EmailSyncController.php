@@ -85,4 +85,11 @@ class EmailSyncController extends Controller
 
         return response()->json(['message' => 'Sincronizare finalizată.']);
     }
+
+    public function showEmails()
+{
+    $emails = Email::orderBy('created_at', 'desc')->get();
+    return view('emails.index', compact('emails'));
+}
+
 }
