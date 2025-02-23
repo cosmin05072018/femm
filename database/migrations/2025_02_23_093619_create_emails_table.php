@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('body')->nullable();
             $table->boolean('is_seen')->default(false);
             $table->json('attachments')->nullable(); // Salvăm atașamentele în format JSON
+            $table->string('type');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

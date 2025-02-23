@@ -18,6 +18,7 @@ class Email extends Model
         'body',
         'is_seen',
         'attachments',
+        'type'
     ];
 
     protected $casts = [

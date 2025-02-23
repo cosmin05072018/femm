@@ -33,51 +33,12 @@ class EmailSyncController extends Controller
                 ]);
 
                 $client->connect();
-                $inbox = $client->getFolder('INBOX');
-                $messages = $inbox->query()->all()->get();
 
-                foreach ($messages as $message) {
-                    $messageId = $message->getMessageId();
+                // Sincronizare emailuri primite (INBOX)
+                $this->syncEmailsFromFolder($client, $user, 'INBOX', 'received');
 
-                    // Verificăm dacă emailul există deja în baza de date
-                    if (!Email::where('message_id', $messageId)->exists()) {
-                        $attachmentsData = [];
-
-                        // Descărcăm atașamentele
-                        foreach ($message->getAttachments() as $attachment) {
-                            $filename = time() . '-' . $attachment->getName();
-                            $path = "emails/attachments/{$user->id}/" . $filename;
-
-                            // Salvăm atașamentul pe server
-                            Storage::disk('public')->put($path, $attachment->getContent());
-
-                            // Adăugăm calea în array
-                            $attachmentsData[] = $path;
-                        }
-
-                        $toAddresses = $message->getTo();
-                        $toEmails = [];
-
-                        if (is_array($toAddresses) || $toAddresses instanceof \Traversable) {
-
-                            foreach ($toAddresses as $to) {
-                                $toEmails[] = $to->mail;
-                            }
-                        }
-
-                        // Salvăm emailul în baza de date
-                        Email::create([
-                            'user_id'    => $user->id,
-                            'message_id' => $messageId,
-                            'from'       => $message->getFrom()[0]->mail ?? 'Unknown',
-                            'to' => implode(',', $toEmails),
-                            'subject'    => $message->getSubject() ?? 'No Subject',
-                            'body'       => $message->getTextBody() ?? 'No Content',
-                            'is_seen'    => $message->getFlags()->contains('Seen'),
-                            'attachments' => json_encode($attachmentsData),
-                        ]);
-                    }
-                }
+                // Sincronizare emailuri trimise (Sent)
+                $this->syncEmailsFromFolder($client, $user, 'Sent', 'sent');
             } catch (Exception $e) {
                 Log::error("Eroare la sincronizarea emailurilor pentru utilizatorul {$user->id}: " . $e->getMessage());
             }
@@ -86,4 +47,56 @@ class EmailSyncController extends Controller
         return response()->json(['message' => 'Sincronizare finalizată.']);
     }
 
+    private function syncEmailsFromFolder($client, $user, $folderName, $type)
+    {
+        try {
+            $folder = $client->getFolder($folderName);
+            $messages = $folder->query()->all()->get();
+
+            foreach ($messages as $message) {
+                $messageId = $message->getMessageId();
+
+                // Verificăm dacă emailul există deja în baza de date
+                if (!Email::where('message_id', $messageId)->exists()) {
+                    $attachmentsData = [];
+
+                    // Descărcăm atașamentele
+                    foreach ($message->getAttachments() as $attachment) {
+                        $filename = time() . '-' . $attachment->getName();
+                        $path = "emails/attachments/{$user->id}/" . $filename;
+
+                        // Salvăm atașamentul pe server
+                        Storage::disk('public')->put($path, $attachment->getContent());
+
+                        // Adăugăm calea în array
+                        $attachmentsData[] = $path;
+                    }
+
+                    $toAddresses = $message->getTo();
+                    $toEmails = [];
+
+                    if (is_array($toAddresses) || $toAddresses instanceof \Traversable) {
+                        foreach ($toAddresses as $to) {
+                            $toEmails[] = $to->mail;
+                        }
+                    }
+
+                    // Salvăm emailul în baza de date
+                    Email::create([
+                        'user_id'    => $user->id,
+                        'message_id' => $messageId,
+                        'from'       => $message->getFrom()[0]->mail ?? 'Unknown',
+                        'to'         => implode(',', $toEmails),
+                        'subject'    => $message->getSubject() ?? 'No Subject',
+                        'body'       => $message->getTextBody() ?? 'No Content',
+                        'is_seen'    => $message->getFlags()->contains('Seen'),
+                        'attachments' => json_encode($attachmentsData),
+                        'type'       => $type, // 'received' pentru primite, 'sent' pentru trimise
+                    ]);
+                }
+            }
+        } catch (Exception $e) {
+            Log::error("Eroare la sincronizarea emailurilor din folderul {$folderName} pentru utilizatorul {$user->id}: " . $e->getMessage());
+        }
+    }
 }
