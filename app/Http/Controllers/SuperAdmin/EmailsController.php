@@ -23,7 +23,9 @@ class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
     public function index()
-    {
+    {$emails = Email::where('type', 'sent')->get();
+        dd($emails); // Verifică dacă rezultatele sunt corecte
+
 
         $user = Auth::user();
         $userId = $user->id;
