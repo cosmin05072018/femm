@@ -91,35 +91,26 @@ class EmailsController extends Controller
         $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
         $replyMessage = $request->reply_message; // Mesajul de răspuns
 
-        // Trimite răspunsul
+        // Trimite răspunsul folosind Mail
         Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
             $mail->to($replyTo)
                 ->from($account)
                 ->subject($subject);
         });
 
-        // Verifică dacă mesajul a fost deja salvat
-        $existingEmail = Email::where('message_id', $message->getMessageId())->first();
-
-        if ($existingEmail) {
-            // Dacă există deja, nu mai salva mesajul din nou
-            return redirect()->back()->with('error', 'Mesajul a fost deja salvat.');
-        }
-        // Salvare e-mail în baza de date
+        // Salvează emailul trimis în baza de date
         Email::create([
-            'user_id'     => $user->id,
-            'message_id'  => $message->getMessageId(),
-            'from'        => $account,
-            'to'          => $replyTo,
-            'subject'     => $subject,
-            'body'        => $replyMessage,
-            'is_seen'     => 1,
-            'attachments' => null, // Dacă ai atașamente, trebuie adăugate aici
-            'type'        => 'sent',
-            'created_at'  => now(),
-            'updated_at'  => now(),
+            'user_id'   => $user->id, // ID-ul utilizatorului
+            'message_id' => uniqid(), // ID unic pentru mesajul trimis (poți utiliza un alt ID relevant)
+            'from'      => $account,
+            'to'        => $replyTo,
+            'subject'   => $subject,
+            'body'      => $replyMessage,
+            'is_seen'   => false,
+            'type'      => 'sent', // Setează tipul la 'sent'
+            'attachments' => json_encode([]), // Dacă sunt atașamente, le poți adăuga aici, altfel lasă un array gol
         ]);
 
-        return redirect()->back()->with('success', 'Răspunsul a fost trimis și salvat cu succes!');
+        return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
     }
 }
