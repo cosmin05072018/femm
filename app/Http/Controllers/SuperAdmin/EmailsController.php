@@ -80,28 +80,19 @@ class EmailsController extends Controller
         $client->connect();
         $inbox = $client->getFolder('INBOX');
 
-        // Verificăm dacă inbox-ul conține mesaje
-        if ($inbox->count() == 0) {
-            return response()->json(['error' => 'Inbox-ul este gol.'], 404);
+        // Găsește mesajul original
+        $message = $inbox->query()->getMessage($request->email);
+        dd($message);
+        if (!$message) {
+            return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
         }
-
-        // Căutăm mesajul în funcție de emailul expeditorului
-        $messages = $inbox->query()->from($request->email)->get();
-        dd($messages); // Afișează toate mesajele disponibile
-
-        if ($messages->isEmpty()) {
-            return response()->json(['error' => 'Nu au fost găsite mesaje pentru acest email.'], 404);
-        }
-
-        // Obținem primul mesaj
-        $message = $messages->first();
 
         // Setează detaliile mesajului de răspuns
-        $replyTo = $message->getFrom()[0]->mail;
-        $subject = 'Re: ' . $message->getSubject();
-        $replyMessage = $request->reply_message;
+        $replyTo = $message->getFrom()[0]->mail; // E-mailul destinatarului
+        $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
+        $replyMessage = $request->reply_message; // Mesajul de răspuns
 
-        // Trimite răspunsul prin email
+        // Trimite răspunsul folosind Mail
         Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
             $mail->to($replyTo)
                 ->from($account)
@@ -110,15 +101,15 @@ class EmailsController extends Controller
 
         // Salvează emailul trimis în baza de date
         Email::create([
-            'user_id'   => $user->id,
-            'message_id' => uniqid(),
+            'user_id'   => $user->id, // ID-ul utilizatorului
+            'message_id' => uniqid(), // ID unic pentru mesajul trimis (poți utiliza un alt ID relevant)
             'from'      => $account,
             'to'        => $replyTo,
             'subject'   => $subject,
             'body'      => $replyMessage,
             'is_seen'   => false,
-            'type'      => 'sent',
-            'attachments' => json_encode([]),
+            'type'      => 'sent', // Setează tipul la 'sent'
+            'attachments' => json_encode([]), // Dacă sunt atașamente, le poți adăuga aici, altfel lasă un array gol
         ]);
 
         return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
