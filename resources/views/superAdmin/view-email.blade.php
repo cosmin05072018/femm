@@ -17,13 +17,16 @@
             </div>
 
             <!-- Afișare atașamente dacă există -->
-            @if($message->attachments && strlen($message->attachments) > 0)
+            @php
+                $attachments = json_decode($message->attachments, true);
+            @endphp
+            @if(!empty($attachments))
                 <p class="text-dark mt-3"><b>Atașamente:</b></p>
                 <ul>
-                    @foreach(json_decode($message->attachments, true) as $attachment)
+                    @foreach($attachments as $attachment)
                         <li>
-                            <a href="{{ route('download.attachment', ['id' => $attachment['id']]) }}" target="_blank">
-                                {{ $attachment['name'] }}
+                            <a href="{{ asset('storage/' . $attachment) }}" target="_blank">
+                                {{ basename($attachment) }}
                             </a>
                         </li>
                     @endforeach
