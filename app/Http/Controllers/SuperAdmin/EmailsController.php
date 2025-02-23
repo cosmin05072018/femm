@@ -29,8 +29,6 @@ class EmailsController extends Controller
         $userId = $user->id;
         $owner = User::where('role', 'owner')->first();
         $emails = Email::where('user_id', $userId)->get();
-        dd($emails);
-
 
         return view('superAdmin/emails', compact('owner', 'emails'));
     }

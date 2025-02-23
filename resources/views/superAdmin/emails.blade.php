@@ -9,12 +9,6 @@
         <!-- Main Content -->
         <div id="content">
             <h1>Emailuri</h1>
-            @php
-                // Sortăm mesajele în ordine descrescătoare după dată
-                $sortedMessages = collect($messages)->sortByDesc(function ($message) {
-                    return $message->getDate();
-                });
-            @endphp
 
             <div class="container-fluid p-0">
                 <div class="row w-100">
@@ -50,24 +44,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($sortedMessages as $message)
+                                    @foreach ($emails as $email)
                                         @if (
-                                            !str_contains($message->getSubject(), 'Client Configuration') &&
-                                                !str_contains($message->bodies['text'] ?? '', 'Client Configuration'))
-                                            <tr class="bg-transparent" onclick="window.location='{{ route('admin.view-email', ['email' => $message->getUid()]) }}';" style="cursor: pointer;">
+                                            !str_contains($email->subject, 'Client Configuration') &&
+                                                !str_contains($email->body ?? '', 'Client Configuration'))
+                                            <tr class="bg-transparent"
+                                                onclick="window.location='{{ route('admin.view-email', ['email' => $email->id]) }}';"
+                                                style="cursor: pointer;">
                                                 <td class="bg-transparent">
-                                                    <span class="name text-truncate {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
-                                                        {{ $message->getFrom()[0]->mail }}
+                                                    <span class="name text-truncate {{ $email->is_seen ? 'seen' : 'text-dark fw-bold' }}">
+                                                        {{ $email->from }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span class="subject {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
-                                                        {{ $message->getSubject() }}
+                                                    <span class="subject {{ $email->is_seen ? 'seen' : 'text-dark fw-bold' }}">
+                                                        {{ $email->subject }}
                                                     </span>
                                                 </td>
                                                 <td>
-                                                    <span class="text-dark {{ $message->is_seen ? 'seen' : 'text-dark fw-bold' }}">
-                                                        {{ $message->getDate() }}
+                                                    <span class="text-dark {{ $email->is_seen ? 'seen' : 'text-dark fw-bold' }}">
+                                                        {{ $email->created_at->format('d-m-Y H:i') }}
                                                     </span>
                                                 </td>
                                             </tr>
