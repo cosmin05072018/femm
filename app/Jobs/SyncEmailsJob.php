@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Console\Commands;
+namespace App\Jobs;
 
 use Illuminate\Console\Command;
 use App\Http\Controllers\EmailSyncController;
