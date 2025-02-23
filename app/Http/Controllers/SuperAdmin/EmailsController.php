@@ -79,6 +79,9 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
+        $messages = $inbox->query()->all()->get();
+
+dd($messages->pluck('uid')->toArray()); // Afișează toate UID-urile disponibile
 
         // Găsește mesajul original
         $message = $inbox->query()->getMessage($request->email);
