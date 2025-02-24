@@ -78,14 +78,14 @@ class EmailsController extends Controller
         }
 
         $request->validate([
-            'recipient' => 'required|email',
-            'subject' => 'required|string',
-            'message' => 'required|string',
+            'recipient'  => 'required|email',
+            'subject'    => 'required|string',
+            'message'    => 'required|string',
             'attachment' => 'nullable|file|max:10240', // 10MB max
         ]);
 
-        $recipient = $request->recipient;
-        $subject = $request->subject;
+        $recipient   = $request->recipient;
+        $subject     = $request->subject;
         $messageBody = $request->message;
         $attachmentsData = [];
 
@@ -117,12 +117,12 @@ class EmailsController extends Controller
 
         // Trimitere email folosind Symfony Mime
         Mail::send([], [], function ($mail) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
-            $email = (new MimeEmail())
+            $email = (new \Symfony\Component\Mime\Email())
                 ->from($account)
                 ->to($recipient)
                 ->subject($subject)
-                ->text($messageBody)
-                ->html(new TextPart($messageBody, 'utf-8', 'html'));
+                ->text($messageBody)    // versiunea plain text
+                ->html($messageBody);   // versiunea HTML, transmisă ca string
 
             foreach ($attachmentsData as $filePath) {
                 $email->attachFromPath(storage_path("app/public/" . $filePath));
@@ -133,20 +133,19 @@ class EmailsController extends Controller
 
         // Salvare email trimis în baza de date
         Email::create([
-            'user_id'   => $user->id,
+            'user_id'    => $user->id,
             'message_id' => uniqid(),
-            'from'      => $account,
-            'to'        => $recipient,
-            'subject'   => $subject,
-            'body'      => $messageBody,
-            'is_seen'   => false,
-            'type'      => 'sent',
+            'from'       => $account,
+            'to'         => $recipient,
+            'subject'    => $subject,
+            'body'       => $messageBody,
+            'is_seen'    => false,
+            'type'       => 'sent',
             'attachments' => json_encode($attachmentsData),
         ]);
 
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
-
 
 
     public function reply(Request $request)
