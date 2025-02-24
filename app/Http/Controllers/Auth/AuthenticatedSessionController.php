@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
-use app\Models\Employee;
+use App\Models\Employee;
 
 class AuthenticatedSessionController extends Controller
 {
