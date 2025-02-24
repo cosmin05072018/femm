@@ -18,36 +18,36 @@ use Webklex\PHPIMAP\Facade\IMAP;
 use Webklex\PHPIMAP\Query\WhereQuery;
 use Webklex\PHPIMAP\ClientManager;
 use Illuminate\Support\Facades\Storage;
-
+use Exception;
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
     public function index()
-{
-    $user = Auth::user();
-    $userId = $user->id;
-    $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
+    {
+        $user = Auth::user();
+        $userId = $user->id;
+        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
 
-    // Mesaje primite
-    $receivedEmails = Email::where('user_id', $userId)
-        ->where('type', 'received')
-        ->orderByDesc('created_at')
-        ->get();
+        // Mesaje primite
+        $receivedEmails = Email::where('user_id', $userId)
+            ->where('type', 'received')
+            ->orderByDesc('created_at')
+            ->get();
 
-    // Mesaje necitite
-    $unreadEmails = Email::where('user_id', $userId)
-        ->where('is_seen', 0)
-        ->orderByDesc('created_at')
-        ->get();
+        // Mesaje necitite
+        $unreadEmails = Email::where('user_id', $userId)
+            ->where('is_seen', 0)
+            ->orderByDesc('created_at')
+            ->get();
 
-    // Mesaje trimise
-    $sentEmails = Email::where('user_id', $userId)
-        ->where('type', 'sent')
-        ->orderByDesc('created_at')
-        ->get();
+        // Mesaje trimise
+        $sentEmails = Email::where('user_id', $userId)
+            ->where('type', 'sent')
+            ->orderByDesc('created_at')
+            ->get();
 
-    return view('superAdmin/emails', compact('owner', 'receivedEmails', 'unreadEmails', 'sentEmails'));
-}
+        return view('superAdmin/emails', compact('owner', 'receivedEmails', 'unreadEmails', 'sentEmails'));
+    }
 
 
     public function show(Request $request)
@@ -64,8 +64,67 @@ class EmailsController extends Controller
         return view('superAdmin/view-email', compact('owner', 'message'));
     }
 
-    public function send(Request $request){
-        dd($request);
+    public function send(Request $request)
+    {
+        $user = Auth::user();
+        $account = $user->email_femm;
+        $password = $user->password_mail_femm;
+
+        if (!$account) {
+            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+        }
+
+        $request->validate([
+            'recipient' => 'required|email',
+            'subject' => 'required|string',
+            'message' => 'required|string',
+            'attachment' => 'nullable|file|max:10240', // 10MB max
+        ]);
+
+        $recipient = $request->recipient;
+        $subject = $request->subject;
+        $messageBody = $request->message;
+        $attachmentsData = [];
+
+        // Gestionare atașament
+        if ($request->hasFile('attachment')) {
+            try {
+                $file = $request->file('attachment');
+                $filename = time() . '-' . $file->getClientOriginalName();
+                $path = "emails/attachments/{$user->id}/" . $filename;
+                Storage::disk('public')->put($path, file_get_contents($file));
+                $attachmentsData[] = $path;
+            } catch (Exception $e) {
+                return response()->json(['error' => 'Eroare la salvarea atașamentului.'], 500);
+            }
+        }
+
+        // Trimitere email
+        Mail::send([], [], function ($mail) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
+            $mail->to($recipient)
+                ->from($account)
+                ->subject($subject)
+                ->setBody($messageBody, 'text/html');
+
+            foreach ($attachmentsData as $filePath) {
+                $mail->attach(storage_path("app/public/" . $filePath));
+            }
+        });
+
+        // Salvare email trimis în baza de date
+        Email::create([
+            'user_id'   => $user->id,
+            'message_id' => uniqid(),
+            'from'      => $account,
+            'to'        => $recipient,
+            'subject'   => $subject,
+            'body'      => $messageBody,
+            'is_seen'   => false,
+            'type'      => 'sent',
+            'attachments' => json_encode($attachmentsData),
+        ]);
+
+        return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
 
 
