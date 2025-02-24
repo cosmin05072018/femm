@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('hotel_name')->nullable();        // Nume Hotel (poate fi null pentru super-admin)
             $table->string('company_cui')->nullable();       // CUI Firmă (poate fi null pentru super-admin)
             $table->string('manager_name')->nullable();      // Nume Manager (poate fi null pentru super-admin)
+            $table->string('employee_name')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('function')->nullable();
             $table->string('company_address')->nullable();   // Sediu Firmă (poate fi null pentru super-admin)
             $table->string('email')->unique();               // Email (unic pentru fiecare firmă)
             $table->string('password')->nullable();          // Parolă (poate fi null implicit)
