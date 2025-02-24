@@ -48,7 +48,7 @@ class CreateUserController extends Controller
                 'role_id' => $role_id,
                 'department_id' => $department_id,
                 'function' => $functie,
-                'password' => bcrypt($password),
+                'password' => $password,
                 'hotel_id' => $hotel
             ]);
 
