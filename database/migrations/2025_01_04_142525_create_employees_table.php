@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('phone'); // Număr de telefon
             $table->string('email')->unique(); // Email unic
             $table->string('password')->nullable();
-            $table->string('function')->unique(); // Email unic
+            $table->string('function');
             $table->unsignedBigInteger('role_id'); // Foreign key pentru rol
             $table->unsignedBigInteger('department_id'); // Foreign key pentru departament
             $table->unsignedBigInteger('hotel_id');
