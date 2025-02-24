@@ -4,7 +4,7 @@
 
 @section('content')
     <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content-wrapper" class="d-flex flex-column p-3">
 
         <!-- Main Content -->
         <div id="content mt-5">
@@ -59,6 +59,10 @@
                                 @csrf
                                 <div class="mb-3">
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="reply_message" rows="8"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="attachment" class="form-label">Atașament</label>
+                                    <input type="file" class="form-control" id="attachment" name="attachment[]" multiple>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Trimite</button>
                             </form>
