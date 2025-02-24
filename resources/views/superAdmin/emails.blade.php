@@ -7,11 +7,11 @@
     <div id="content-wrapper" class="d-flex flex-column">
 
         <!-- Main Content -->
-        <div id="content" style="padding: 20px 40px">
+        <div id="content" style="padding: 20px 10px">
             <h1>Emailuri</h1>
             <div class="container my-5">
                 <!-- Taburile -->
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <ul class="nav nav-tabs d-flex justify-content-between" id="myTab" role="tablist">
                     <!-- Tabul pentru Toate mesajele -->
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Toate mesajele</button>
