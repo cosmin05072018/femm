@@ -115,20 +115,18 @@ class EmailsController extends Controller
             }
         }
 
-        // Trimitere email folosind Symfony Mime
-        Mail::send([], [], function ($mail) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
-            $email = (new \Symfony\Component\Mime\Email())
+        // Trimitere email
+        Mail::send([], [], function ($message) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
+            $message->to($recipient)
                 ->from($account)
-                ->to($recipient)
-                ->subject($subject)
-                ->text($messageBody)    // versiunea plain text
-                ->html($messageBody);   // versiunea HTML, transmisă ca string
+                ->subject($subject);
+
+            // Setează corpul email-ului ca string, cu format HTML
+            $message->setBody($messageBody, 'text/html');
 
             foreach ($attachmentsData as $filePath) {
-                $email->attachFromPath(storage_path("app/public/" . $filePath));
+                $message->attach(storage_path("app/public/" . $filePath));
             }
-
-            $mail->setSymfonyMessage($email);
         });
 
         // Salvare email trimis în baza de date
