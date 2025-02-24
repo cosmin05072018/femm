@@ -78,18 +78,6 @@ class EmailsController extends Controller
             'message'    => 'required|string',
             'attachment' => 'nullable|file',
         ]);
-        dd([
-            'recipient'  => $request->input('recipient'),
-            'subject'    => $request->input('subject'),
-            'message'    => $request->input('message'),
-            'has_file'   => $request->hasFile('attachment') ? 'YES' : 'NO',
-            'file_info'  => $request->file('attachment') ? [
-                'original_name' => $request->file('attachment')->getClientOriginalName(),
-                'size'          => $request->file('attachment')->getSize(),
-                'mime_type'     => $request->file('attachment')->getClientMimeType(),
-            ] : 'No file uploaded'
-        ]);
-
 
         $user = Auth::user();
         $account = $user->email_femm;
