@@ -19,6 +19,7 @@ use Webklex\PHPIMAP\Query\WhereQuery;
 use Webklex\PHPIMAP\ClientManager;
 use Illuminate\Support\Facades\Storage;
 use Exception;
+
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
@@ -86,6 +87,19 @@ class EmailsController extends Controller
         $messageBody = $request->message;
         $attachmentsData = [];
 
+        // Conectare la serverul IMAP
+        $clientManager = new ClientManager();
+        $client = $clientManager->make([
+            'host'          => 'mail.femm.ro',
+            'port'          => 993,
+            'encryption'    => 'ssl',
+            'validate_cert' => true,
+            'username'      => $account,
+            'password'      => $password,
+            'protocol'      => 'imap',
+        ]);
+        $client->connect();
+
         // Gestionare atașament
         if ($request->hasFile('attachment')) {
             try {
@@ -94,9 +108,7 @@ class EmailsController extends Controller
                 $path = "emails/attachments/{$user->id}/" . $filename;
                 Storage::disk('public')->put($path, file_get_contents($file));
                 $attachmentsData[] = $path;
-                dd('succes');
             } catch (Exception $e) {
-                dd($e);
                 return response()->json(['error' => 'Eroare la salvarea atașamentului.'], 500);
             }
         }
