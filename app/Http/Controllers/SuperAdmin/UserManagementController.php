@@ -22,6 +22,7 @@ class UserManagementController extends Controller
 {
     // Metoda pentru a lista utilizatorii
     public function index()
+
     {
         // Preluăm toți utilizatorii din baza de date
         $users = User::all();
