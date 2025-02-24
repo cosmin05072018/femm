@@ -55,7 +55,7 @@
                         </div>
                         <div class="modal-body">
                             <form action="{{ route('admin.reply', ['email' => $message->id]) }}" method="POST"
-                                style="display:inline;">
+                                enctype="multipart/form-data" style="display:inline;">
                                 @csrf
                                 <div class="mb-3">
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="reply_message" rows="8"></textarea>

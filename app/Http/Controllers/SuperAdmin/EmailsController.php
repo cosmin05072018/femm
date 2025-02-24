@@ -169,7 +169,7 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        // Obține toate mesajele (sau poți folosi recent(), unread() etc.)
+        // Obține toate mesajele
         $messages = $inbox->query()->all()->get();
 
         $uids = '';
@@ -179,7 +179,6 @@ class EmailsController extends Controller
 
         // Găsește mesajul original
         $message = $inbox->query()->getMessage($uids);
-        // dd($message);
 
         if (!$message) {
             return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
@@ -190,24 +189,53 @@ class EmailsController extends Controller
         $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
         $replyMessage = $request->reply_message; // Mesajul de răspuns
 
-        // Trimite răspunsul folosind Mail
-        Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account) {
-            $mail->to($replyTo)
-                ->from($account)
-                ->subject($subject);
-        });
+        // Inițializăm un array pentru căile atașamentelor
+        $attachmentPaths = [];
 
-        // Salvează emailul trimis în baza de date
+        // Verificăm dacă sunt atașamente
+        if ($request->hasFile('attachment')) {
+            foreach ($request->file('attachment') as $attachmentFile) {
+                // Stocăm fiecare fișier în directorul 'attachments' pe disk-ul public
+                $attachmentPath = $attachmentFile->storeAs('attachments', $attachmentFile->getClientOriginalName(), 'public');
+                if ($attachmentPath) {
+                    $attachmentPaths[] = $attachmentPath; // Adăugăm calea fișierului la array
+                }
+            }
+        }
+
+        try {
+            // Trimiterea emailului cu atașamente
+            Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account, $attachmentPaths) {
+                $mail->to($replyTo)
+                    ->from($account)
+                    ->subject($subject);
+
+                // Atașăm fiecare fișier
+                foreach ($attachmentPaths as $attachmentPath) {
+                    $fullAttachmentPath = storage_path('app/public/' . $attachmentPath);
+                    $attachmentContent = file_get_contents($fullAttachmentPath);
+
+                    $mail->attachData($attachmentContent, basename($fullAttachmentPath), [
+                        'mime' => mime_content_type($fullAttachmentPath),
+                    ]);
+                }
+            });
+        } catch (\Exception $e) {
+            Log::error('Trimiterea emailului a eșuat: ' . $e->getMessage());
+            return response()->json(['error' => 'Trimiterea emailului a eșuat.'], 500);
+        }
+
+        // Salvarea emailului trimis în baza de date
         Email::create([
-            'user_id'   => $user->id, // ID-ul utilizatorului
-            'message_id' => uniqid(), // ID unic pentru mesajul trimis (poți utiliza un alt ID relevant)
-            'from'      => $account,
-            'to'        => $replyTo,
-            'subject'   => $subject,
-            'body'      => $replyMessage,
-            'is_seen'   => false,
-            'type'      => 'sent', // Setează tipul la 'sent'
-            'attachments' => json_encode([]), // Dacă sunt atașamente, le poți adăuga aici, altfel lasă un array gol
+            'user_id'    => $user->id,
+            'message_id' => uniqid(),
+            'from'       => $account,
+            'to'         => $replyTo,
+            'subject'    => $subject,
+            'body'       => $replyMessage,
+            'is_seen'    => false,
+            'type'       => 'sent',
+            'attachments' => json_encode($attachmentPaths),  // Stocăm căile fișierelor în format JSON
         ]);
 
         return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');
