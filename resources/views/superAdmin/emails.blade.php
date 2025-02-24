@@ -48,12 +48,18 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('admin.send-email') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('admin.send-email') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="recipient" class="form-label">Destinatar</label>
                                             <input type="email" class="form-control" id="recipient"
                                                 placeholder="Introduceti destinatarul" name="recipient">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="cc" class="form-label">CC</label>
+                                            <input type="text" class="form-control" id="cc"
+                                                placeholder="Introduceți adresele CC separate prin virgulă" name="cc">
                                         </div>
                                         <div class="mb-3">
                                             <label for="subject" class="form-label">Subiect</label>
@@ -66,7 +72,8 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="attachment" class="form-label">Atașament</label>
-                                            <input type="file" class="form-control" id="attachment" name="attachment[]" multiple>
+                                            <input type="file" class="form-control" id="attachment" name="attachment[]"
+                                                multiple>
                                         </div>
                                         <button type="submit" class="btn btn-primary">Trimite</button>
                                     </form>
