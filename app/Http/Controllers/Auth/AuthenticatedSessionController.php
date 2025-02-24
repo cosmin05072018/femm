@@ -49,7 +49,7 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
 
             // Gestionăm redirecționarea pentru `employees`
-            return redirect()->intended(route('employee.dashboard'));
+            return redirect()->intended(route('admin.management-hotel'));
         }
 
         // Tratarea statusului pentru User
