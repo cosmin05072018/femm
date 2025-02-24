@@ -11,7 +11,7 @@ class CheckAdminAccess
     public function handle(Request $request, Closure $next)
     {
         // Verificăm utilizatorul autenticat (fie User, fie Employee)
-        $employeeOwner = optional(Auth::guard('employees')->user())->role === 'owner' ? Auth::guard('employees')->user() : null;
+        $user = optional(Auth::guard('employees')->user())->role === 'owner' ? Auth::guard('employees')->user() : null;
 
         // Dacă nu există utilizator autentificat, redirecționăm la login
         if (!$user) {
