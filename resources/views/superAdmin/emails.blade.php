@@ -9,9 +9,10 @@
         <!-- Main Content -->
         <div id="content" style="padding: 20px 40px">
             <div class="filter-buttons">
-                <a href="{{ route('emails.index', ['filter' => 'all']) }}" class="btn {{ $filter == 'all' ? 'btn-primary' : 'btn-secondary' }}">Toate mesajele</a>
-                <a href="{{ route('emails.index', ['filter' => 'unread']) }}" class="btn {{ $filter == 'unread' ? 'btn-primary' : 'btn-secondary' }}">Mesaje necitite</a>
-                <a href="{{ route('emails.index', ['filter' => 'sent']) }}" class="btn {{ $filter == 'sent' ? 'btn-primary' : 'btn-secondary' }}">Mesaje trimise</a>
+
+                <a href="{{ route('admin.emails.index', ['filter' => 'all']) }}" class="btn {{ $filter == 'all' ? 'btn-primary' : 'btn-secondary' }}">Toate mesajele</a>
+                <a href="{{ route('admin.emails.index', ['filter' => 'unread']) }}" class="btn {{ $filter == 'unread' ? 'btn-primary' : 'btn-secondary' }}">Mesaje necitite</a>
+                <a href="{{ route('admin.emails.index', ['filter' => 'sent']) }}" class="btn {{ $filter == 'sent' ? 'btn-primary' : 'btn-secondary' }}">Mesaje trimise</a>
             </div>
 
             <table class="table">
