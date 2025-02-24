@@ -80,7 +80,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // vezi mail
     Route::get('/view-email', [EmailsController::class, 'show'])->name('view-email');
     // trimite mail
-    Route::get('/send-email', [EmailsController::class, 'send'])->name('send-email');
+    Route::post('/send-email', [EmailsController::class, 'send'])->name('send-email');
 
     //raspnde la mail reply
     Route::post('/reply', [EmailsController::class, 'reply'])->name('reply');
