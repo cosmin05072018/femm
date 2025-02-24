@@ -158,7 +158,15 @@ class EmailsController extends Controller
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
-        // Conectare la serverul IMAP
+        // Validare input
+        $validated = $request->validate([
+            'reply_message' => 'required|string',
+            'cc'            => 'nullable|string', // Permitem introducerea adreselor CC separate prin virgulă
+            'attachment'    => 'nullable|array',
+            'attachment.*'  => 'file'
+        ]);
+
+        // Conectare la serverul IMAP pentru a obține mesajul original
         $clientManager = new ClientManager();
         $client = $clientManager->make([
             'host'          => 'mail.femm.ro',
@@ -172,48 +180,46 @@ class EmailsController extends Controller
 
         $client->connect();
         $inbox = $client->getFolder('INBOX');
-        // Obține toate mesajele
+
+        // Găsim ultimul mesaj pentru a răspunde la el
         $messages = $inbox->query()->all()->get();
-
-        $uids = '';
-        foreach ($messages as $message) {
-            $uids = (int) $message->getUid(); // Convertim UID-ul la int
-        }
-
-        // Găsește mesajul original
-        $message = $inbox->query()->getMessage($uids);
+        $uids = collect($messages)->map(fn($msg) => (int) $msg->getUid())->toArray();
+        $message = $uids ? $inbox->query()->getMessage(end($uids)) : null;
 
         if (!$message) {
-            return response()->json(['error' => 'Mesajul nu a fost găsit.'], 404);
+            return response()->json(['error' => 'Mesajul original nu a fost găsit.'], 404);
         }
 
-        // Setează detaliile mesajului de răspuns
-        $replyTo = $message->getFrom()[0]->mail; // E-mailul destinatarului
-        $subject = 'Re: ' . $message->getSubject(); // Subiectul răspunsului
-        $replyMessage = $request->reply_message; // Mesajul de răspuns
+        // Setăm destinatarii
+        $replyTo = $message->getFrom()[0]->mail;
+        $subject = 'Re: ' . $message->getSubject();
+        $replyMessage = $request->reply_message;
 
-        // Inițializăm un array pentru căile atașamentelor
+        // Gestionare CC
+        $ccAddresses = $request->input('cc') ? explode(',', $request->input('cc')) : [];
+
+        // Gestionare atașamente multiple
         $attachmentPaths = [];
-
-        // Verificăm dacă sunt atașamente
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachmentFile) {
-                // Stocăm fiecare fișier în directorul 'attachments' pe disk-ul public
                 $attachmentPath = $attachmentFile->storeAs('attachments', $attachmentFile->getClientOriginalName(), 'public');
                 if ($attachmentPath) {
-                    $attachmentPaths[] = $attachmentPath; // Adăugăm calea fișierului la array
+                    $attachmentPaths[] = $attachmentPath;
                 }
             }
         }
 
         try {
-            // Trimiterea emailului cu atașamente
-            Mail::raw($replyMessage, function ($mail) use ($replyTo, $subject, $account, $attachmentPaths) {
+            // Trimiterea emailului cu CC și atașamente
+            Mail::raw($replyMessage, function ($mail) use ($replyTo, $ccAddresses, $subject, $account, $attachmentPaths) {
                 $mail->to($replyTo)
                     ->from($account)
                     ->subject($subject);
 
-                // Atașăm fiecare fișier
+                if (!empty($ccAddresses)) {
+                    $mail->cc($ccAddresses);
+                }
+
                 foreach ($attachmentPaths as $attachmentPath) {
                     $fullAttachmentPath = storage_path('app/public/' . $attachmentPath);
                     $attachmentContent = file_get_contents($fullAttachmentPath);
@@ -228,17 +234,18 @@ class EmailsController extends Controller
             return response()->json(['error' => 'Trimiterea emailului a eșuat.'], 500);
         }
 
-        // Salvarea emailului trimis în baza de date
+        // Salvăm emailul în baza de date
         Email::create([
             'user_id'    => $user->id,
             'message_id' => uniqid(),
             'from'       => $account,
             'to'         => $replyTo,
+            'cc'         => json_encode($ccAddresses),
             'subject'    => $subject,
             'body'       => $replyMessage,
             'is_seen'    => false,
             'type'       => 'sent',
-            'attachments' => json_encode($attachmentPaths),  // Stocăm căile fișierelor în format JSON
+            'attachments' => json_encode($attachmentPaths),
         ]);
 
         return redirect()->back()->with('success', 'Răspunsul a fost trimis cu succes!');

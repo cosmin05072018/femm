@@ -54,9 +54,12 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('admin.reply', ['email' => $message->id]) }}" method="POST"
-                                enctype="multipart/form-data" style="display:inline;">
+                            <form action="{{ route('admin.reply', ['email' => $message->id]) }}" method="POST" enctype="multipart/form-data" style="display:inline;">
                                 @csrf
+                                <div class="mb-3">
+                                    <label for="cc" class="form-label">CC</label>
+                                    <input type="text" class="form-control" id="cc" placeholder="Introduceți adresele CC separate prin virgulă" name="cc">
+                                </div>
                                 <div class="mb-3">
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="reply_message" rows="8"></textarea>
                                 </div>
