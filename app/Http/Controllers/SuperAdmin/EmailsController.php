@@ -94,7 +94,9 @@ class EmailsController extends Controller
                 $path = "emails/attachments/{$user->id}/" . $filename;
                 Storage::disk('public')->put($path, file_get_contents($file));
                 $attachmentsData[] = $path;
+                dd('succes');
             } catch (Exception $e) {
+                dd($e);
                 return response()->json(['error' => 'Eroare la salvarea atașamentului.'], 500);
             }
         }
