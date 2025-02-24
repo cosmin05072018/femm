@@ -15,7 +15,7 @@ class FantasticAdminController extends Controller
     public function index()
     {
 
-        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
+        $owner = User::where('role', 'owner')->first();
 
         $totalUsers = User::count(); // Numărul total de utilizatori
         $inactiveUsers = User::where('status', 0)->count(); // Utilizatori cu status = 0
