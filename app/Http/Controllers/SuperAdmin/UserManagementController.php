@@ -98,7 +98,6 @@ class UserManagementController extends Controller
     public function show(Request $request)
     {
         $hotelId = session('hotel_id');
-        dd($hotelId);
 
         if (!$hotelId) {
             return;
