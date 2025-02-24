@@ -48,24 +48,25 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="emailForm">
+                                    <form id="emailForm" action="{{ route('admin.send-email') }}">
+                                        @csrf
                                         <div class="mb-3">
                                             <label for="recipient" class="form-label">Destinatar</label>
                                             <input type="email" class="form-control" id="recipient"
-                                                placeholder="Introduceti destinatarul">
+                                                placeholder="Introduceti destinatarul" name="recipient">
                                         </div>
                                         <div class="mb-3">
                                             <label for="subject" class="form-label">Subiect</label>
                                             <input type="text" class="form-control" id="subject"
-                                                placeholder="Introduceti subiectul">
+                                                placeholder="Introduceti subiectul" name="subject">
                                         </div>
                                         <div class="mb-3">
                                             <label for="message" class="form-label">Mesaj</label>
-                                            <textarea class="form-control" id="message" rows="4" placeholder="Introduceti mesajul"></textarea>
+                                            <textarea name="message" class="form-control" id="message" rows="4" placeholder="Introduceti mesajul"></textarea>
                                         </div>
                                         <div class="mb-3">
                                             <label for="attachment" class="form-label">Atașament</label>
-                                            <input type="file" class="form-control" id="attachment">
+                                            <input type="file" class="form-control" id="attachment" name="attachment">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Trimite</button>
                                     </form>
