@@ -19,6 +19,8 @@ use Webklex\PHPIMAP\Query\WhereQuery;
 use Webklex\PHPIMAP\ClientManager;
 use Illuminate\Support\Facades\Storage;
 use Exception;
+use Symfony\Component\Mime\Email as MimeEmail;
+use Symfony\Component\Mime\Part\TextPart;
 
 class EmailsController extends Controller
 {
