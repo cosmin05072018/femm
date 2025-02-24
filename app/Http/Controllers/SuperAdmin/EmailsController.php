@@ -22,46 +22,31 @@ use Illuminate\Support\Facades\Storage;
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
-    // public function index()
-    // {
-
-    //     $user = Auth::user();
-    //     $userId = $user->id;
-    //     $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
-    //     $emails = Email::where('user_id', $userId)
-    //         ->where('type', 'received')  // Verifică că această condiție funcționează
-    //         ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
-    //         ->get();
-
-
-
-    //     return view('superAdmin/emails', compact('owner', 'emails'));
-    // }
-
-    public function index(Request $request)
+    public function index()
 {
     $user = Auth::user();
     $userId = $user->id;
     $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
 
-    // Preluăm filtrul din request (implicit 'all')
-    $filter = $request->query('filter', 'all');
+    // Mesaje primite
+    $receivedEmails = Email::where('user_id', $userId)
+        ->where('type', 'received')
+        ->orderByDesc('created_at')
+        ->get();
 
-    // Construim query-ul
-    $query = Email::where('user_id', $userId);
+    // Mesaje necitite
+    $unreadEmails = Email::where('user_id', $userId)
+        ->where('is_seen', 0)
+        ->orderByDesc('created_at')
+        ->get();
 
-    // Aplicăm filtrarea
-    if ($filter === 'unread') {
-        $query->where('type', 'received')->where('is_seen', 0);
-    } elseif ($filter === 'sent') {
-        $query->where('type', 'sent');
-    } else {
-        $query->where('type', 'received'); // Implicit: toate mesajele primite
-    }
+    // Mesaje trimise
+    $sentEmails = Email::where('user_id', $userId)
+        ->where('type', 'sent')
+        ->orderByDesc('created_at')
+        ->get();
 
-    $emails = $query->orderByDesc('created_at')->get();
-
-    return view('superAdmin/emails', compact('owner', 'emails', 'filter'));
+    return view('superAdmin/emails', compact('owner', 'receivedEmails', 'unreadEmails', 'sentEmails'));
 }
 
 
