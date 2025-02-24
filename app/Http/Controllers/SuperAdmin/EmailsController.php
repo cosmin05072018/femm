@@ -65,6 +65,7 @@ class EmailsController extends Controller
 
         $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
         $message = Email::where('id', $mailAdressView)->first();
+        dd($message->body);
 
         return view('superAdmin/view-email', compact('owner', 'message'));
     }
