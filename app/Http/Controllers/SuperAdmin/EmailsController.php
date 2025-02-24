@@ -23,6 +23,7 @@ use Symfony\Component\Mime\Email as MimeEmail;
 use Symfony\Component\Mime\Part\TextPart;
 use Illuminate\Support\Facades\Log;
 
+
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
@@ -75,7 +76,7 @@ class EmailsController extends Controller
             'recipient'  => 'required|email',
             'subject'    => 'required|string',
             'message'    => 'required|string',
-            'attachment' => 'nullable|file'
+            'attachment' => 'nullable|file',
         ]);
 
         $user = Auth::user();
@@ -91,8 +92,9 @@ class EmailsController extends Controller
         $attachmentData = null;
         if ($request->hasFile('attachment')) {
             $attachmentFile = $request->file('attachment');
-            // Stocăm fișierul în directorul 'attachments' de pe disk-ul public
+            // Stocăm fișierul în directorul 'attachments' pe disk-ul public
             $attachmentPath = $attachmentFile->store('attachments', 'public');
+            // Construim calea completă folosind storage_path()
             $fullAttachmentPath = storage_path('app/public/' . $attachmentPath);
 
             // Verificăm dacă fișierul există
@@ -112,8 +114,8 @@ class EmailsController extends Controller
             // Trimiterea emailului
             Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentData) {
                 $mail->to($recipient)
-                    ->from($account)
-                    ->subject($subject);
+                     ->from($account)
+                     ->subject($subject);
 
                 // Atașăm fișierul dacă există
                 if ($attachmentData) {
@@ -138,13 +140,11 @@ class EmailsController extends Controller
             'body'       => $messageBody,
             'is_seen'    => false,
             'type'       => 'sent',
-            'attachments' => json_encode($attachmentData ? [$attachmentData['path']] : []),
+            'attachments'=> json_encode($attachmentData ? [$attachmentData['path']] : []),
         ]);
 
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
-
-
 
 
     public function reply(Request $request)
