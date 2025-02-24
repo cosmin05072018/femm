@@ -10,6 +10,9 @@ use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class CreateUserController extends Controller
 {
@@ -25,17 +28,19 @@ class CreateUserController extends Controller
                 'role' => 'required|exists:roles,id',
                 'functie' => 'required|string|max:255',
                 'department' => 'required|exists:departments,id',
-                'password' => 'required|string|min:8', // Adăugat validarea pentru parolă
+                'password' => 'required|string|min:8',
             ]);
 
             $name = $validated['name'];
             $phone = $validated['phone'];
-            $email = $validated['email'] . '@femm.ro'; // Adaugă sufixul automat
+            $emailPrefix = $validated['email'];
+            $email = $emailPrefix . '@femm.ro'; // Adaugă sufixul automat
             $role_id = $validated['role'];
             $department_id = $validated['department'];
             $functie = $validated['functie'];
-            $password = $validated['password']; // Stocăm parola validată
+            $password = $validated['password'];
 
+            // Crearea angajatului în baza de date
             Employee::create([
                 'name' => $name,
                 'phone' => $phone,
@@ -43,13 +48,35 @@ class CreateUserController extends Controller
                 'role_id' => $role_id,
                 'department_id' => $department_id,
                 'function' => $functie,
-                'password' => bcrypt($password), // Hashing parola
+                'password' => bcrypt($password),
                 'hotel_id' => $hotel
             ]);
 
-            return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati');
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // Capturează erorile de validare și redirecționează cu hash-ul formularului
+            // Crearea adresei de mail pe server
+            $cpanelHost = env('CPANEL_HOST');
+            $cpanelUsername = env('CPANEL_USERNAME');
+            $cpanelToken = env('CPANEL_API_TOKEN');
+
+            $url = "https://$cpanelHost:2083/execute/Email/add_pop";
+            $params = [
+                'email' => $emailPrefix, // Fără sufixul @femm.ro deoarece API-ul îl adaugă automat
+                'password' => $password, // Parola originală
+            ];
+
+            $response = Http::withHeaders([
+                'Authorization' => "cpanel $cpanelUsername:$cpanelToken",
+            ])->post($url, $params);
+
+            // Verificare dacă mailul a fost creat cu succes
+            if (!$response->successful()) {
+                return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati')
+                    ->with('error', 'Angajatul a fost creat, dar adresa de email nu a fost generată.')
+                    ->withInput();
+            }
+
+            return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati')
+                ->with('success', 'Angajatul a fost creat și adresa de email a fost generată cu succes.');
+        } catch (ValidationException $e) {
             return redirect()->to(route('admin.hotel.show', ['id' => $hotel]) . '#formular-angajati')
                 ->withErrors($e->validator)
                 ->withInput();

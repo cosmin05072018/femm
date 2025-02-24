@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Http;
 use App\Mail\MailForUserAccepted;
 use PHPUnit\Framework\Attributes\Depends;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 
 use function Ramsey\Uuid\v1;
