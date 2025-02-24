@@ -25,7 +25,7 @@
                 <ul>
                     @foreach($attachments as $attachment)
                         <li>
-                            <a href="{{ url('storage/' . $attachment) }}" target="_blank">
+                            <a href="{{ Storage::url($attachment) }}" target="_blank">
                                 {{ basename($attachment) }}
                             </a>
                         </li>
