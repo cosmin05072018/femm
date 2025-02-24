@@ -33,6 +33,24 @@
                 </ul>
             @endif
 
+            @php
+    $attachments = json_decode($message->attachments, true);  // presupunem că ai lista atașamentelor în câmpul `attachments`
+@endphp
+
+@if (!empty($attachments))
+    <p class="text-dark mt-3"><b>Atașamente:</b></p>
+    <ul>
+        @foreach ($attachments as $attachment)
+            <li>
+                <a href="{{ Storage::url($attachment) }}" target="_blank">
+                    {{ basename($attachment) }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
+@endif
+
+
             <!-- Butonul pentru activarea modalului -->
             <a href="#" class="btn btn-info btn-sm my-4" title="Raspunde" data-bs-toggle="modal"
                 data-bs-target="#userRequestModal">
