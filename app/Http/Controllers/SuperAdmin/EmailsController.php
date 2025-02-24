@@ -80,7 +80,6 @@ class EmailsController extends Controller
         // Obține utilizatorul autentificat și contul de email configurat
         $user = Auth::user();
         $account = $user->email_femm;
-
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
@@ -90,26 +89,30 @@ class EmailsController extends Controller
         $subject     = $request->input('subject');
         $messageBody = $request->input('message');
 
-        // Gestionare atașament, dacă există
-        $attachmentFile = null;
-        $attachmentPath = null;
+        // Gestionează atașamentul: stocăm fișierul și pregătim datele necesare
+        $attachmentData = null;
         if ($request->hasFile('attachment')) {
             $attachmentFile = $request->file('attachment');
-            // Opțional: stocăm fișierul în directorul 'attachments' de pe disk-ul 'public'
+            // Stocăm fișierul în directorul 'attachments' din storage-ul public
             $attachmentPath = $attachmentFile->store('attachments', 'public');
+            $attachmentData = [
+                'path' => storage_path('app/public/' . $attachmentPath),
+                'as'   => $attachmentFile->getClientOriginalName(),
+                'mime' => $attachmentFile->getClientMimeType(),
+            ];
         }
 
         // Trimitere email folosind Mail
-        Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentFile) {
+        Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentData) {
             $mail->to($recipient)
                 ->from($account)
                 ->subject($subject);
 
-            // Atașare fișier, dacă este cazul
-            if ($attachmentFile) {
-                $mail->attach($attachmentFile->getRealPath(), [
-                    'as'   => $attachmentFile->getClientOriginalName(),
-                    'mime' => $attachmentFile->getClientMimeType(),
+            // Atașează fișierul folosind calea stocată permanent, dacă există
+            if ($attachmentData) {
+                $mail->attach($attachmentData['path'], [
+                    'as'   => $attachmentData['as'],
+                    'mime' => $attachmentData['mime'],
                 ]);
             }
         });
@@ -124,11 +127,12 @@ class EmailsController extends Controller
             'body'       => $messageBody,
             'is_seen'    => false,
             'type'       => 'sent',
-            'attachments' => json_encode($attachmentPath ? [$attachmentPath] : []),
+            'attachments' => json_encode($attachmentData ? [$attachmentData['path']] : []),
         ]);
 
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
+
 
 
     public function reply(Request $request)
