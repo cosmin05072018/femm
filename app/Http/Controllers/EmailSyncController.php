@@ -88,7 +88,7 @@ class EmailSyncController extends Controller
                         'from'       => $message->getFrom()[0]->mail ?? 'Unknown',
                         'to'         => implode(',', $toEmails),
                         'subject'    => $message->getSubject() ?? 'No Subject',
-                        'body'       => $message->getTextBody() ?? 'No Content',
+                        'body'       => $message->getHTMLBody() ?? $message->getTextBody() ?? 'No Content',
                         'is_seen'    => $message->getFlags()->contains('Seen'),
                         'attachments' => json_encode($attachmentsData),
                         'type'       => $type, // 'received' pentru primite, 'sent' pentru trimise
