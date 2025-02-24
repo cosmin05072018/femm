@@ -9,7 +9,7 @@
         <!-- Main Content -->
         <div id="content" style="padding: 20px 10px">
             <h1>Emailuri</h1>
-            <div class="container my-5">
+            <div class="container my-0">
                 <!-- Taburile -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <!-- Tabul pentru Toate mesajele -->
