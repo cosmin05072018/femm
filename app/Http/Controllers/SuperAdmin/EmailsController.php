@@ -66,80 +66,84 @@ class EmailsController extends Controller
     }
 
     public function send(Request $request)
-    {
-        $user = Auth::user();
-        $account = $user->email_femm;
-        $password = $user->password_mail_femm;
+{
+    $user = Auth::user();
+    $account = $user->email_femm;
+    $password = $user->password_mail_femm;
 
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
-
-        $request->validate([
-            'recipient' => 'required|email',
-            'subject' => 'required|string',
-            'message' => 'required|string',
-            'attachment' => 'nullable|file|max:10240', // 10MB max
-        ]);
-
-        $recipient = $request->recipient;
-        $subject = $request->subject;
-        $messageBody = $request->message;
-        $attachmentsData = [];
-
-        // Conectare la serverul IMAP
-        $clientManager = new ClientManager();
-        $client = $clientManager->make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account,
-            'password'      => $password,
-            'protocol'      => 'imap',
-        ]);
-        $client->connect();
-
-        // Gestionare atașament
-        if ($request->hasFile('attachment')) {
-            try {
-                $file = $request->file('attachment');
-                $filename = time() . '-' . $file->getClientOriginalName();
-                $path = "emails/attachments/{$user->id}/" . $filename;
-                Storage::disk('public')->put($path, file_get_contents($file));
-                $attachmentsData[] = $path;
-            } catch (Exception $e) {
-                return response()->json(['error' => 'Eroare la salvarea atașamentului.'], 500);
-            }
-        }
-
-        // Trimitere email
-        Mail::send([], [], function ($mail) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
-            $mail->to($recipient)
-                ->from($account)
-                ->subject($subject)
-                ->setBody($messageBody, 'text/html');
-
-            foreach ($attachmentsData as $filePath) {
-                $mail->attach(storage_path("app/public/" . $filePath));
-            }
-        });
-
-        // Salvare email trimis în baza de date
-        Email::create([
-            'user_id'   => $user->id,
-            'message_id' => uniqid(),
-            'from'      => $account,
-            'to'        => $recipient,
-            'subject'   => $subject,
-            'body'      => $messageBody,
-            'is_seen'   => false,
-            'type'      => 'sent',
-            'attachments' => json_encode($attachmentsData),
-        ]);
-
-        return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
+    if (!$account) {
+        return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
     }
+
+    $request->validate([
+        'recipient' => 'required|email',
+        'subject' => 'required|string',
+        'message' => 'required|string',
+        'attachment' => 'nullable|file|max:10240', // 10MB max
+    ]);
+
+    $recipient = $request->recipient;
+    $subject = $request->subject;
+    $messageBody = $request->message;
+    $attachmentsData = [];
+
+    // Conectare la serverul IMAP
+    $clientManager = new ClientManager();
+    $client = $clientManager->make([
+        'host'          => 'mail.femm.ro',
+        'port'          => 993,
+        'encryption'    => 'ssl',
+        'validate_cert' => true,
+        'username'      => $account,
+        'password'      => $password,
+        'protocol'      => 'imap',
+    ]);
+    $client->connect();
+
+    // Gestionare atașament
+    if ($request->hasFile('attachment')) {
+        try {
+            $file = $request->file('attachment');
+            $filename = time() . '-' . $file->getClientOriginalName();
+            $path = "emails/attachments/{$user->id}/" . $filename;
+            Storage::disk('public')->put($path, file_get_contents($file));
+            $attachmentsData[] = $path;
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Eroare la salvarea atașamentului.'], 500);
+        }
+    }
+
+    // Trimitere email folosind Symfony Mime
+    Mail::send([], [], function ($mail) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
+        $email = (new MimeEmail())
+            ->from($account)
+            ->to($recipient)
+            ->subject($subject)
+            ->text($messageBody)
+            ->html(new TextPart($messageBody, 'utf-8', 'html'));
+
+        foreach ($attachmentsData as $filePath) {
+            $email->attachFromPath(storage_path("app/public/" . $filePath));
+        }
+
+        $mail->setSymfonyMessage($email);
+    });
+
+    // Salvare email trimis în baza de date
+    Email::create([
+        'user_id'   => $user->id,
+        'message_id' => uniqid(),
+        'from'      => $account,
+        'to'        => $recipient,
+        'subject'   => $subject,
+        'body'      => $messageBody,
+        'is_seen'   => false,
+        'type'      => 'sent',
+        'attachments' => json_encode($attachmentsData),
+    ]);
+
+    return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
+}
 
 
     public function reply(Request $request)
