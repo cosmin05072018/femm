@@ -109,6 +109,15 @@ class EmailsController extends Controller
                 'mime' => $attachmentFile->getClientMimeType(),
             ];
         }
+        $attachmentPath = $attachmentFile->store('attachments', 'public');
+
+dd([
+    'storage_path' => storage_path('app/public/' . $attachmentPath),
+    'public_url' => asset('storage/' . $attachmentPath),
+    'storage_url' => Storage::url($attachmentPath),
+    'exists' => file_exists(storage_path('app/public/' . $attachmentPath))
+]);
+
 
         try {
             // Trimiterea emailului folosind Mail::raw() și attachData pentru atașament
