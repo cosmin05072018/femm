@@ -48,7 +48,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form id="emailForm" action="{{ route('admin.send-email') }}">
+                                    <form action="{{ route('admin.send-email') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         <div class="mb-3">
                                             <label for="recipient" class="form-label">Destinatar</label>
