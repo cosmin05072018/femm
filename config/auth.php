@@ -41,11 +41,12 @@ return [
             'provider' => 'users',
         ],
 
-        'employee' => [
+        'employees' => [
             'driver' => 'session',
             'provider' => 'employees',
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

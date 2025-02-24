@@ -8,26 +8,25 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckAdminAccess
 {
-    /**
-     * Manejează cererea.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
+        // Verificăm utilizatorul autenticat (fie User, fie Employee)
+        $user = Auth::user() ?? Auth::guard('employees')->user();
 
-        // Verificăm dacă utilizatorul este autentificat și are status = 1
-        if (!$user || (isset($user->status) && $user->status !== 1)) {
-            return redirect('fantastic-admin');
+        // Dacă nu există utilizator autentificat, redirecționăm la login
+        if (!$user) {
+            return redirect('fantastic-admin')->with('error', 'Trebuie să fii autentificat.');
+        }
+
+        // Dacă modelul are atributul "status" și nu este 1, blocăm accesul
+        if (isset($user->status) && $user->status !== 1) {
+            return redirect('fantastic-admin')->with('error', 'Acces restricționat.');
         }
 
         // Verificăm ruta curentă
-        $currentRoute = $request->path(); // Obține ruta curentă relativă
+        $currentRoute = $request->path();
 
-        // Verificăm dacă utilizatorul trebuie redirecționat, dar **numai dacă nu e deja acolo**
+        // Verificăm rolul și redirecționăm
         if ($currentRoute === 'fantastic-admin' && in_array($user->role, ['super-admin', 'admin', 'user'])) {
             return redirect()->route('admin.management-hotel');
         }
