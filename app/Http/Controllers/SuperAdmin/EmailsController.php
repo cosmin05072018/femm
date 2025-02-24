@@ -69,63 +69,48 @@ class EmailsController extends Controller
 
     public function send(Request $request)
     {
+        // Validare input
+        $validated = $request->validate([
+            'recipient'  => 'required|email',
+            'subject'    => 'required|string',
+            'message'    => 'required|string',
+            'attachment' => 'nullable|file'
+        ]);
+
+        // Obține utilizatorul autentificat și contul de email configurat
         $user = Auth::user();
         $account = $user->email_femm;
-        $password = $user->password_mail_femm;
 
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
-        $request->validate([
-            'recipient'  => 'required|email',
-            'subject'    => 'required|string',
-            'message'    => 'required|string',
-            'attachment' => 'nullable|file|max:10240', // 10MB max
-        ]);
+        // Preluare date din request
+        $recipient   = $request->input('recipient');
+        $subject     = $request->input('subject');
+        $messageBody = $request->input('message');
 
-        $recipient   = $request->recipient;
-        $subject     = $request->subject;
-        $messageBody = $request->message;
-        $attachmentsData = [];
-
-        // Conectare la serverul IMAP
-        $clientManager = new ClientManager();
-        $client = $clientManager->make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            'username'      => $account,
-            'password'      => $password,
-            'protocol'      => 'imap',
-        ]);
-        $client->connect();
-
-        // Gestionare atașament
+        // Gestionare atașament, dacă există
+        $attachmentFile = null;
+        $attachmentPath = null;
         if ($request->hasFile('attachment')) {
-            try {
-                $file = $request->file('attachment');
-                $filename = time() . '-' . $file->getClientOriginalName();
-                $path = "emails/attachments/{$user->id}/" . $filename;
-                Storage::disk('public')->put($path, file_get_contents($file));
-                $attachmentsData[] = $path;
-            } catch (Exception $e) {
-                return response()->json(['error' => 'Eroare la salvarea atașamentului.'], 500);
-            }
+            $attachmentFile = $request->file('attachment');
+            // Opțional: stocăm fișierul în directorul 'attachments' de pe disk-ul 'public'
+            $attachmentPath = $attachmentFile->store('attachments', 'public');
         }
 
-        // Trimitere email
-        Mail::send([], [], function ($message) use ($recipient, $subject, $messageBody, $account, $attachmentsData) {
-            $message->to($recipient)
+        // Trimitere email folosind Mail
+        Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentFile) {
+            $mail->to($recipient)
                 ->from($account)
                 ->subject($subject);
 
-            // Setează corpul email-ului ca string, cu format HTML
-            $message->setBody($messageBody, 'text/html');
-
-            foreach ($attachmentsData as $filePath) {
-                $message->attach(storage_path("app/public/" . $filePath));
+            // Atașare fișier, dacă este cazul
+            if ($attachmentFile) {
+                $mail->attach($attachmentFile->getRealPath(), [
+                    'as'   => $attachmentFile->getClientOriginalName(),
+                    'mime' => $attachmentFile->getClientMimeType(),
+                ]);
             }
         });
 
@@ -139,7 +124,7 @@ class EmailsController extends Controller
             'body'       => $messageBody,
             'is_seen'    => false,
             'type'       => 'sent',
-            'attachments' => json_encode($attachmentsData),
+            'attachments' => json_encode($attachmentPath ? [$attachmentPath] : []),
         ]);
 
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
