@@ -22,21 +22,48 @@ use Illuminate\Support\Facades\Storage;
 class EmailsController extends Controller
 {
     // Metoda pentru a lista utilizatorii
-    public function index()
-    {
+    // public function index()
+    // {
 
-        $user = Auth::user();
-        $userId = $user->id;
-        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
-        $emails = Email::where('user_id', $userId)
-            ->where('type', 'received')  // Verifică că această condiție funcționează
-            ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
-            ->get();
+    //     $user = Auth::user();
+    //     $userId = $user->id;
+    //     $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
+    //     $emails = Email::where('user_id', $userId)
+    //         ->where('type', 'received')  // Verifică că această condiție funcționează
+    //         ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
+    //         ->get();
 
 
 
-        return view('superAdmin/emails', compact('owner', 'emails'));
+    //     return view('superAdmin/emails', compact('owner', 'emails'));
+    // }
+
+    public function index(Request $request)
+{
+    $user = Auth::user();
+    $userId = $user->id;
+    $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
+
+    // Preluăm filtrul din request (implicit 'all')
+    $filter = $request->query('filter', 'all');
+
+    // Construim query-ul
+    $query = Email::where('user_id', $userId);
+
+    // Aplicăm filtrarea
+    if ($filter === 'unread') {
+        $query->where('type', 'received')->where('is_seen', 0);
+    } elseif ($filter === 'sent') {
+        $query->where('type', 'sent');
+    } else {
+        $query->where('type', 'received'); // Implicit: toate mesajele primite
     }
+
+    $emails = $query->orderByDesc('created_at')->get();
+
+    return view('superAdmin/emails', compact('owner', 'emails', 'filter'));
+}
+
 
     public function show(Request $request)
     {

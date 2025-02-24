@@ -15,34 +15,34 @@ class EmailController extends Controller
 {
     // Metodă pentru a obține și lista emailurile
     // public function fetchEmails($userId)
-    public function fetchEmails()
-    {
-        // $account = EmailAccount::where('user_id', $userId)->first();
-        $account = 'anonimanonimus330@femm.ro';
-        if (!$account) {
-            return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
-        }
+    // public function fetchEmails()
+    // {
+    //     // $account = EmailAccount::where('user_id', $userId)->first();
+    //     $account = 'anonimanonimus330@femm.ro';
+    //     if (!$account) {
+    //         return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
+    //     }
 
-        $client = Client::make([
-            'host'          => 'mail.femm.ro',
-            'port'          => 993,
-            'encryption'    => 'ssl',
-            'validate_cert' => true,
-            // 'username'      => $account->email,
-            'username'      => $account,
-            // 'password'      => Crypt::decryptString($account->password),
-            'password'      => 'bpBo1+H]ynKU',
-            'protocol'      => 'imap',
-        ]);
+    //     $client = Client::make([
+    //         'host'          => 'mail.femm.ro',
+    //         'port'          => 993,
+    //         'encryption'    => 'ssl',
+    //         'validate_cert' => true,
+    //         // 'username'      => $account->email,
+    //         'username'      => $account,
+    //         // 'password'      => Crypt::decryptString($account->password),
+    //         'password'      => 'bpBo1+H]ynKU',
+    //         'protocol'      => 'imap',
+    //     ]);
 
-        $client->connect();
-        $inbox = $client->getFolder('INBOX');
-        $messages = $inbox->messages()->all()->get();
+    //     $client->connect();
+    //     $inbox = $client->getFolder('INBOX');
+    //     $messages = $inbox->messages()->all()->get();
 
-        dd($messages);
+    //     dd($messages);
 
-        return view('emails.index', compact('messages'));
-    }
+    //     return view('emails.index', compact('messages'));
+    // }
 
     // Metodă pentru a deschide un email specific
     // public function showEmail($userId, $messageId)
