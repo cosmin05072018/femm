@@ -32,7 +32,7 @@ class CreateUserController extends Controller
                     'required',
                     'string',
                     'min:8',
-                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/'
                 ],
             ], [
                 'password.regex' => 'Parola trebuie să conțină cel puțin o literă mare, o cifră, un caracter special (@$!%*?&) și să aibă minim 8 caractere.',
