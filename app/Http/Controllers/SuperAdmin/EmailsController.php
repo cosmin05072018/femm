@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Storage;
 use Exception;
 use Symfony\Component\Mime\Email as MimeEmail;
 use Symfony\Component\Mime\Part\TextPart;
+use Illuminate\Support\Facades\Log;
 
 class EmailsController extends Controller
 {
@@ -96,7 +97,7 @@ class EmailsController extends Controller
 
             // Verificăm dacă fișierul există
             if (!file_exists($fullAttachmentPath)) {
-                \Log::error('Atașamentul nu a fost găsit: ' . $fullAttachmentPath);
+                Log::error('Atașamentul nu a fost găsit: ' . $fullAttachmentPath);
                 return response()->json(['error' => 'Atașamentul nu a putut fi găsit.'], 500);
             }
 
@@ -123,7 +124,7 @@ class EmailsController extends Controller
                 }
             });
         } catch (\Exception $e) {
-            \Log::error('Trimiterea emailului a eșuat: ' . $e->getMessage());
+            Log::error('Trimiterea emailului a eșuat: ' . $e->getMessage());
             return response()->json(['error' => 'Trimiterea emailului a eșuat.'], 500);
         }
 
