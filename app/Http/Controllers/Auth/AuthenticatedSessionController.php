@@ -43,7 +43,7 @@ class AuthenticatedSessionController extends Controller
             }
 
             // Autentificare pentru Employee fără verificarea statusului
-            Auth::guard('employee')->login($employee);
+            Auth::guard('employees')->login($employee);
 
             // Regenerăm sesiunea
             $request->session()->regenerate();
