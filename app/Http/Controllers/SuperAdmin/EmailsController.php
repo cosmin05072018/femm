@@ -82,6 +82,7 @@ class EmailsController extends Controller
         $user = Auth::user();
         $account = $user->email_femm;
         if (!$account) {
+            dd('Contul de email nu este configurat.');
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
@@ -94,43 +95,43 @@ class EmailsController extends Controller
             $attachmentFile = $request->file('attachment');
             // Stocăm fișierul în directorul 'attachments' pe disk-ul public
             $attachmentPath = $attachmentFile->store('attachments', 'public');
-            // Construim calea completă folosind storage_path()
             $fullAttachmentPath = storage_path('app/public/' . $attachmentPath);
 
             // Verificăm dacă fișierul există
             if (!file_exists($fullAttachmentPath)) {
-                Log::error('Atașamentul nu a fost găsit: ' . $fullAttachmentPath);
+                dd('Atașamentul nu a fost găsit: ' . $fullAttachmentPath);
                 return response()->json(['error' => 'Atașamentul nu a putut fi găsit.'], 500);
             }
 
+            // Citim conținutul fișierului pentru a-l atașa
+            $attachmentContent = file_get_contents($fullAttachmentPath);
             $attachmentData = [
-                'path' => $fullAttachmentPath,
-                'as'   => $attachmentFile->getClientOriginalName(),
+                'data' => $attachmentContent,
+                'name' => $attachmentFile->getClientOriginalName(),
                 'mime' => $attachmentFile->getClientMimeType(),
             ];
         }
 
         try {
-            // Trimiterea emailului
+            // Trimiterea emailului folosind Mail::raw() și attachData pentru atașament
             Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentData) {
                 $mail->to($recipient)
                      ->from($account)
                      ->subject($subject);
 
-                // Atașăm fișierul dacă există
                 if ($attachmentData) {
-                    $mail->attach($attachmentData['path'], [
-                        'as'   => $attachmentData['as'],
+                    $mail->attachData($attachmentData['data'], $attachmentData['name'], [
                         'mime' => $attachmentData['mime'],
                     ]);
                 }
             });
         } catch (\Exception $e) {
+            dd('Trimiterea emailului a eșuat: ' . $e->getMessage());
             Log::error('Trimiterea emailului a eșuat: ' . $e->getMessage());
             return response()->json(['error' => 'Trimiterea emailului a eșuat.'], 500);
         }
 
-        // Salvăm emailul trimis în baza de date
+        // Salvarea emailului trimis în baza de date
         Email::create([
             'user_id'    => $user->id,
             'message_id' => uniqid(),
@@ -140,9 +141,10 @@ class EmailsController extends Controller
             'body'       => $messageBody,
             'is_seen'    => false,
             'type'       => 'sent',
-            'attachments'=> json_encode($attachmentData ? [$attachmentData['path']] : []),
+            'attachments'=> json_encode($attachmentData ? [$attachmentData['name']] : []),
         ]);
 
+        dd('Emailul a fost trimis cu succes!');
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
 
