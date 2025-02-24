@@ -20,11 +20,13 @@
             @php
                 $attachments = json_decode($message->attachments, true);
             @endphp
-            @if(!empty($attachments))
+
+            @if (!empty($attachments))
                 <p class="text-dark mt-3"><b>Atașamente:</b></p>
                 <ul>
-                    @foreach($attachments as $attachment)
+                    @foreach ($attachments as $attachment)
                         <li>
+                            <!-- Generează URL-ul pentru fiecare atașament stocat în 'public/storage/attachments/{filename}' -->
                             <a href="{{ Storage::url($attachment) }}" target="_blank">
                                 {{ basename($attachment) }}
                             </a>
@@ -32,23 +34,6 @@
                     @endforeach
                 </ul>
             @endif
-
-            @php
-    $attachments = json_decode($message->attachments, true);  // presupunem că ai lista atașamentelor în câmpul `attachments`
-@endphp
-
-@if (!empty($attachments))
-    <p class="text-dark mt-3"><b>Atașamente:</b></p>
-    <ul>
-        @foreach ($attachments as $attachment)
-            <li>
-                <a href="{{ Storage::url($attachment) }}" target="_blank">
-                    {{ basename($attachment) }}
-                </a>
-            </li>
-        @endforeach
-    </ul>
-@endif
 
 
             <!-- Butonul pentru activarea modalului -->
@@ -64,7 +49,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="userRequestModalLabel">Raspunde lui
-                                <b>{{ $message->from }}</b></h5>
+                                <b>{{ $message->from }}</b>
+                            </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Închide"></button>
                         </div>
                         <div class="modal-body">
