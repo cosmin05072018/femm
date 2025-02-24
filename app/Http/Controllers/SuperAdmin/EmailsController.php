@@ -82,7 +82,6 @@ class EmailsController extends Controller
         $user = Auth::user();
         $account = $user->email_femm;
         if (!$account) {
-            dd('Contul de email nu este configurat.');
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
@@ -99,7 +98,6 @@ class EmailsController extends Controller
 
             // Verificăm dacă fișierul există
             if (!file_exists($fullAttachmentPath)) {
-                dd('Atașamentul nu a fost găsit: ' . $fullAttachmentPath);
                 return response()->json(['error' => 'Atașamentul nu a putut fi găsit.'], 500);
             }
 
@@ -116,8 +114,8 @@ class EmailsController extends Controller
             // Trimiterea emailului folosind Mail::raw() și attachData pentru atașament
             Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentData) {
                 $mail->to($recipient)
-                     ->from($account)
-                     ->subject($subject);
+                    ->from($account)
+                    ->subject($subject);
 
                 if ($attachmentData) {
                     $mail->attachData($attachmentData['data'], $attachmentData['name'], [
@@ -126,7 +124,7 @@ class EmailsController extends Controller
                 }
             });
         } catch (\Exception $e) {
-            dd('Trimiterea emailului a eșuat: ' . $e->getMessage());
+            // dd('Trimiterea emailului a eșuat: ' . $e->getMessage());
             Log::error('Trimiterea emailului a eșuat: ' . $e->getMessage());
             return response()->json(['error' => 'Trimiterea emailului a eșuat.'], 500);
         }
@@ -141,10 +139,9 @@ class EmailsController extends Controller
             'body'       => $messageBody,
             'is_seen'    => false,
             'type'       => 'sent',
-            'attachments'=> json_encode($attachmentData ? [$attachmentData['name']] : []),
+            'attachments' => json_encode($attachmentData ? [$attachmentData['name']] : []),
         ]);
 
-        dd('Emailul a fost trimis cu succes!');
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
 
