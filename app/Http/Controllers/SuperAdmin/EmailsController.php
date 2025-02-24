@@ -74,48 +74,49 @@ class EmailsController extends Controller
         // Validare input
         $validated = $request->validate([
             'recipient'  => 'required|email',
+            'cc'         => 'nullable|string', // Acceptă o listă de adrese separate prin virgulă
             'subject'    => 'required|string',
             'message'    => 'required|string',
-            'attachment' => 'nullable|array', // Permitem multiple fișiere
-            'attachment.*' => 'file', // Validăm fiecare fișier
+            'attachment' => 'nullable|array',
+            'attachment.*' => 'file'
         ]);
 
         $user = Auth::user();
         $account = $user->email_femm;
 
-        // Verificăm dacă contul de email este configurat
         if (!$account) {
             return response()->json(['error' => 'Contul de email nu este configurat.'], 404);
         }
 
         $recipient   = $request->input('recipient');
+        $ccAddresses = $request->input('cc') ? explode(',', $request->input('cc')) : []; // Convertim lista CC în array
         $subject     = $request->input('subject');
         $messageBody = $request->input('message');
 
-        $attachmentPaths = [];  // Inițializăm un array pentru căile fișierelor atașate
-
-        // Verificăm dacă există fișiere atașate
+        // Gestionare atașamente
+        $attachmentPaths = [];
         if ($request->hasFile('attachment')) {
             foreach ($request->file('attachment') as $attachmentFile) {
-                // Stocăm fiecare fișier în directorul 'attachments' pe disk-ul public
                 $attachmentPath = $attachmentFile->storeAs('attachments', $attachmentFile->getClientOriginalName(), 'public');
-                // Verificăm dacă fișierul s-a stocat corect
                 if ($attachmentPath) {
-                    $attachmentPaths[] = $attachmentPath; // Adăugăm calea fișierului la array
-                } else {
-                    return response()->json(['error' => 'Atașamentul nu a putut fi salvat.'], 500);
+                    $attachmentPaths[] = $attachmentPath;
                 }
             }
         }
 
         try {
-            // Trimiterea emailului folosind Mail::raw() și attachData pentru atașamente
-            Mail::raw($messageBody, function ($mail) use ($recipient, $subject, $account, $attachmentPaths) {
+            // Trimiterea emailului
+            Mail::raw($messageBody, function ($mail) use ($recipient, $ccAddresses, $subject, $account, $attachmentPaths) {
                 $mail->to($recipient)
                     ->from($account)
                     ->subject($subject);
 
-                // Dacă există atașamente, le adăugăm la email
+                // Adăugăm destinatarii CC
+                if (!empty($ccAddresses)) {
+                    $mail->cc($ccAddresses);
+                }
+
+                // Atașăm fiecare fișier
                 foreach ($attachmentPaths as $attachmentPath) {
                     $fullAttachmentPath = storage_path('app/public/' . $attachmentPath);
                     $attachmentContent = file_get_contents($fullAttachmentPath);
@@ -130,21 +131,23 @@ class EmailsController extends Controller
             return response()->json(['error' => 'Trimiterea emailului a eșuat.'], 500);
         }
 
-        // Salvarea emailului trimis în baza de date
+        // Salvarea emailului în baza de date
         Email::create([
-            'user_id'    => $user->id,
-            'message_id' => uniqid(),
-            'from'       => $account,
-            'to'         => $recipient,
-            'subject'    => $subject,
-            'body'       => $messageBody,
-            'is_seen'    => false,
-            'type'       => 'sent',
-            'attachments' => json_encode($attachmentPaths),  // Stocăm căile fișierelor în format JSON
+            'user_id'     => $user->id,
+            'message_id'  => uniqid(),
+            'from'        => $account,
+            'to'          => $recipient,
+            'cc'          => json_encode($ccAddresses),
+            'subject'     => $subject,
+            'body'        => $messageBody,
+            'is_seen'     => false,
+            'type'        => 'sent',
+            'attachments' => json_encode($attachmentPaths),
         ]);
 
         return redirect()->back()->with('success', 'Emailul a fost trimis cu succes!');
     }
+
     public function reply(Request $request)
     {
         $user = Auth::user();
