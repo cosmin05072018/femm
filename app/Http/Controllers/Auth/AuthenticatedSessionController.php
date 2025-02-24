@@ -42,15 +42,7 @@ class AuthenticatedSessionController extends Controller
                 return back()->withErrors(['email' => 'Nu există cont cu aceste date. Vă rugăm să solicitați crearea unuia.']);
             }
 
-            // Tratarea statusului pentru Employee
-            switch ($employee->status) {
-                case 0:
-                    return back()->withErrors(['email' => 'Înregistrarea dvs. a fost deja solicitată. Veți fi notificat odată ce contul dvs. este aprobat.']);
-                case 2:
-                    return back()->withErrors(['email' => 'Înregistrarea dvs. a fost respinsă.']);
-            }
-
-            // Autentificare pentru Employee
+            // Autentificare pentru Employee fără verificarea statusului
             Auth::guard('employee')->login($employee);
 
             // Regenerăm sesiunea
@@ -82,6 +74,7 @@ class AuthenticatedSessionController extends Controller
 
         return back()->withErrors(['email' => 'Rolul utilizatorului este invalid.']);
     }
+
 
 
 
