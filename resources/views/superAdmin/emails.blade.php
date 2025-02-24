@@ -11,7 +11,7 @@
             <h1>Emailuri</h1>
             <div class="container my-5">
                 <!-- Taburile -->
-                <ul class="nav nav-tabs d-flex justify-content-between" id="myTab" role="tablist">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <!-- Tabul pentru Toate mesajele -->
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Toate mesajele</button>
@@ -24,9 +24,9 @@
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="sent-tab" data-bs-toggle="tab" data-bs-target="#sent" type="button" role="tab" aria-controls="sent" aria-selected="false">Mesaje Trimise</button>
                     </li>
-                    <!-- Buton pentru a compune un email -->
-                    <li>
-                        <a href="#" class="btn btn-danger btn-sm btn-block" role="button"><i class="fa fa-edit"></i> Compune un mail</a>
+                    <!-- Buton pentru a compune un email, mutat în dreapta -->
+                    <li class="ms-auto">
+                        <a href="#" class="btn btn-danger btn-sm" role="button"><i class="fa fa-edit"></i> Compune un mail</a>
                     </li>
                 </ul>
 
