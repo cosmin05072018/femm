@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
 use App\Mail\MailForUserAccepted;
 use PHPUnit\Framework\Attributes\Depends;
+use Illuminate\Support\Facades\DB;
+
 
 use function Ramsey\Uuid\v1;
 
@@ -37,8 +39,6 @@ class UserManagementController extends Controller
 
     public function acceptUser(Request $request, $id)
     {
-        // dd($request->all());
-        // dd($request->input('parola-femm'));
         // Găsim utilizatorul după ID
         $user = User::findOrFail($id);
 
@@ -48,58 +48,51 @@ class UserManagementController extends Controller
         $hotel->address = $user->company_address; // Preluăm adresa companiei din tabela users
         $hotel->save();
 
+        // **Adăugăm automat toate departamentele existente în hotel_department**
+        $departments = Department::all(); // Obținem toate departamentele
+        foreach ($departments as $department) {
+            DB::table('hotel_department')->insert([
+                'hotel_id' => $hotel->id,
+                'department_id' => $department->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
         // Actualizăm statusul și rolul utilizatorului
         $user->status = 1; // 1 = Aprobat
         $user->role = 'super-admin';
         $user->hotel_id = $hotel->id; // Asociem utilizatorul cu ID-ul hotelului
-        $user->email_femm = $request->input('email-femm').'@femm.ro';
+        $user->email_femm = $request->input('email-femm') . '@femm.ro';
         $user->password_mail_femm = $request->input('parola-femm'); // Hashing parola
         $user->save();
-
-        // date de logare pe mail care vor fi trimise in Mail creat automat
-        $userMail = $request->input('email-femm');
-        $userPasswordMail = $request->input('parola-femm');
 
         // Trimitem email utilizatorului
         Mail::to($user->email)->send(new MailForUserAccepted($user));
 
         // Crearea adresei de mail pe server
-        // Validează datele introduse în formular
         $request->validate([
             'email-femm' => 'required|string',
             'parola-femm' => 'required|string|min:6',
         ]);
 
-        // Construiește URL-ul pentru API-ul cPanel
         $cpanelHost = env('CPANEL_HOST');
         $cpanelUsername = env('CPANEL_USERNAME');
         $cpanelToken = env('CPANEL_API_TOKEN');
 
         $url = "https://$cpanelHost:2083/execute/Email/add_pop";
-
-        // Parametrii pentru cererea API
         $params = [
             'email' => $request->input('email-femm'),
             'password' => $request->input('parola-femm'),
         ];
 
-        // Efectuează cererea către API cu metoda POST
         $response = Http::withHeaders([
             'Authorization' => "cpanel $cpanelUsername:$cpanelToken",
         ])->post($url, $params);
 
-        // Verifică răspunsul API
-        if ($response->successful()) {
-            // Afișează răspunsul pentru debugging în caz de succes
-            // dd('Email creat cu succes:', $response->json());
-        } else {
-            // Afișează răspunsul pentru debugging în caz de eroare
-            // dd('Eroare la crearea emailului:', $response->body());
-        }
-
-        // Redirectăm înapoi cu un mesaj de succes
-        return redirect()->back()->with('success', 'Utilizatorul a fost aprobat și hotelul a fost adăugat.');
+        return redirect()->back()->with('success', 'Utilizatorul a fost aprobat, hotelul a fost adăugat și departamentele au fost asociate.');
     }
+
 
     public function show(Request $request)
     {
