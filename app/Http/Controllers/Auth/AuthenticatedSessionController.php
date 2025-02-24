@@ -49,7 +49,8 @@ class AuthenticatedSessionController extends Controller
             $request->session()->regenerate();
 
             // Gestionăm redirecționarea pentru `employees`
-            return redirect()->intended(route('admin.fantastic-admin/management-hotel'));
+            return redirect()->intended(route('admin.management-hotel'));
+
         }
 
         // Tratarea statusului pentru User
