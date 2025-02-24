@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
+use app\Models\Employee;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -26,18 +27,40 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        // Preluăm emailul din request
         $email = $request->input('email');
 
-        // Căutăm în tabelă dacă există un utilizator cu acest email
+        // Căutăm utilizatorul în tabela `users`
         $user = User::where('email', $email)->first();
+        $employee = null;
 
-        // Dacă emailul nu există în tabelă, returnăm un mesaj de eroare specific
+        // Dacă utilizatorul nu există în `users`, căutăm în `employees`
         if (!$user) {
-            return back()->withErrors(['email' => 'Nu există cont cu aceste date. Vă rugăm să solicitați crearea unuia.']);
+            $employee = Employee::where('email', $email)->first();
+
+            // Dacă nu există nici în `employees`, returnăm eroare
+            if (!$employee) {
+                return back()->withErrors(['email' => 'Nu există cont cu aceste date. Vă rugăm să solicitați crearea unuia.']);
+            }
+
+            // Tratarea statusului pentru Employee
+            switch ($employee->status) {
+                case 0:
+                    return back()->withErrors(['email' => 'Înregistrarea dvs. a fost deja solicitată. Veți fi notificat odată ce contul dvs. este aprobat.']);
+                case 2:
+                    return back()->withErrors(['email' => 'Înregistrarea dvs. a fost respinsă.']);
+            }
+
+            // Autentificare pentru Employee
+            Auth::guard('employee')->login($employee);
+
+            // Regenerăm sesiunea
+            $request->session()->regenerate();
+
+            // Gestionăm redirecționarea pentru `employees`
+            return redirect()->intended(route('employee.dashboard'));
         }
 
-        // Verificăm valoarea coloanei `status`
+        // Tratarea statusului pentru User
         switch ($user->status) {
             case 0:
                 return back()->withErrors(['email' => 'Înregistrarea dvs. a fost deja solicitată. Veți fi notificat odată ce contul dvs. este aprobat.']);
@@ -45,61 +68,21 @@ class AuthenticatedSessionController extends Controller
                 return back()->withErrors(['email' => 'Înregistrarea dvs. a fost respinsă.']);
         }
 
-        // Continuăm autentificarea dacă emailul și statusul sunt valide
+        // Autentificare pentru User
         $request->authenticate();
-
-        // Regenerăm sesiunea după autentificare
         $request->session()->regenerate();
 
-        // Verificăm rolul utilizatorului
+        // Redirecționare în funcție de rol
         if ($user->role === 'owner') {
-            // Redirecționăm super-admin-ul către ruta '/fantastic-admin'
             return redirect()->route('admin.dashboard');
         } elseif (in_array($user->role, ['super-admin', 'user'])) {
-            // Preia toți utilizatorii care aparțin aceluiași hotel_id ca utilizatorul curent
-            $users = User::where('hotel_id', $user->hotel_id)
-                ->with(['department', 'hotel'])
-                ->get();
-
-            // Salvăm `hotel_id` în sesiune
             session(['hotel_id' => $user->hotel_id]);
-
-            // Redirecționare către pagina fără a include `hotel_id` în URL
             return redirect()->intended(route('admin.management-hotel'));
         }
 
-        // În cazul unui rol necunoscut, returnăm eroare
         return back()->withErrors(['email' => 'Rolul utilizatorului este invalid.']);
     }
 
-    // public function managementHotel(Request $request)
-    // {
-
-    //     dd(1);
-    //     // Preluăm utilizatorii din parametrii redirecționării
-    //     $users = $request->users;
-
-    //     // Returnăm un view care afișează utilizatorii
-    //     return view('sameHotelView', compact('users'));
-    // }
-
-
-    // public function usersFromSameHotel()
-    // {
-    //     // Preia utilizatorul autentificat
-    //     $user = Auth::user();
-
-    //     // Verifică dacă utilizatorul are un hotel_id atribuit
-    //     if (!$user->hotel_id) {
-    //         return redirect()->back()->with('error', 'Nu aveți un hotel asociat.');
-    //     }
-
-    //     // Preia toți utilizatorii care aparțin aceluiași hotel_id
-    //     $users = User::where('hotel_id', $user->hotel_id)->get();
-
-    //     // Returnează un view cu lista utilizatorilor
-    //     return view('users.same_hotel', compact('users'));
-    // }
 
 
     /**

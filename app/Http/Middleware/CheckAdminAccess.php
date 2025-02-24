@@ -30,8 +30,8 @@ class CheckAdminAccess
 
     // Reguli pentru redirecționare în funcție de rol
     if ($currentRoute === 'fantastic-admin') {
-        if (in_array($user->role, ['super-admin', 'admin'])) {
-            // Redirect către management-hotel dacă este super-admin sau admin
+        if (in_array($user->role, ['super-admin', 'admin', 'user'])) {
+            // Redirect către management-hotel dacă este super-admin, admin sau user
             return redirect('fantastic-admin/management-hotel');
         } elseif ($user->role !== 'owner') {
             // Dacă rolul nu este permis, redirecționăm la o rută implicită
@@ -39,9 +39,9 @@ class CheckAdminAccess
         }
     }
 
-    if ($currentRoute === 'fantastic-admin/management-hotel' && !in_array($user->role, ['super-admin', 'admin'])) {
+    if ($currentRoute === 'fantastic-admin/management-hotel' && !in_array($user->role, ['super-admin', 'admin', 'user'])) {
         // Dacă ruta este management-hotel și utilizatorul nu are rol permis
-        return redirect('fantastic-admin')->with('error', 'Acces permis doar pentru super-admin sau admin.');
+        return redirect('fantastic-admin')->with('error', 'Acces permis doar pentru super-admin, admin sau user.');
     }
 
     // Acces permis pentru cererea curentă
