@@ -27,7 +27,7 @@ class EmailsController extends Controller
 
         $user = Auth::user();
         $userId = $user->id;
-        $owner = User::where('role', 'owner')->first();
+        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
         $emails = Email::where('user_id', $userId)
             ->where('type', 'received')  // Verifică că această condiție funcționează
             ->orderByDesc('created_at') // Sortează de la cel mai nou la cel mai vechi
@@ -46,7 +46,7 @@ class EmailsController extends Controller
             ->update(['is_seen' => 1]);
 
 
-        $owner = User::where('role', 'owner')->first();
+        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
         $message = Email::where('id', $mailAdressView)->first();
 
         return view('superAdmin/view-email', compact('owner', 'message'));
@@ -82,7 +82,7 @@ class EmailsController extends Controller
         // Obține toate mesajele (sau poți folosi recent(), unread() etc.)
         $messages = $inbox->query()->all()->get();
 
-        $uids= '';
+        $uids = '';
         foreach ($messages as $message) {
             $uids = (int) $message->getUid(); // Convertim UID-ul la int
         }

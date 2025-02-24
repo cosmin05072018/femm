@@ -16,7 +16,7 @@ class HotelsController extends Controller
 {
     public function index()
     {
-        $owner = User::where('role', 'owner')->first();
+        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
         $hotels = Hotel::all();
 
         $hotelsWithEmployeeCount = $hotels->map(function ($hotel) {
@@ -29,7 +29,7 @@ class HotelsController extends Controller
 
     public function show(Request $request)
     {
-        $owner = User::where('role', 'owner')->first();
+        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
         $hotelSelected = Hotel::where('id', $request->id)->first();
         $users = User::where('hotel_id', $request->id)->get();
         $departments = Department::all();
