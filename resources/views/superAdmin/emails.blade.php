@@ -81,7 +81,7 @@
                     <!-- Tabul pentru Toate mesajele -->
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h2 class="mb-3">Toate mesajele</h2>
-                        <table class="table table-hover">
+                        <table class="table table-hover table-responsive">
                             <thead>
                                 <tr>
                                     <th>De la:</th>
