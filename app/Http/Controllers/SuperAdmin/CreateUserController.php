@@ -28,8 +28,16 @@ class CreateUserController extends Controller
                 'role' => 'required|exists:roles,id',
                 'functie' => 'required|string|max:255',
                 'department' => 'required|exists:departments,id',
-                'password' => 'required|string|min:8',
+                'password' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/'
+                ],
+            ], [
+                'password.regex' => 'Parola trebuie să conțină cel puțin o literă mare, o cifră, un caracter special (@$!%*?&) și să aibă minim 8 caractere.',
             ]);
+
 
             $name = $validated['name'];
             $phone = $validated['phone'];
