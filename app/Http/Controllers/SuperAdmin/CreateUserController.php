@@ -43,7 +43,7 @@ class CreateUserController extends Controller
 
             // special email
             $nameModified = strtolower(str_replace(' ', '', $validated['name']));
-            $departmentNameForEmail = strtolower(str_replace(' ', '', $validated['department_name']));
+            $departmentNameForEmail = strtolower(str_replace(' ', '', $validated['department']));
             $email = "{$nameModified}.{$departmentNameForEmail}@femm.ro";
             dd($email);
             $role_id = $validated['role'];
