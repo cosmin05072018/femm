@@ -40,8 +40,12 @@ class CreateUserController extends Controller
 
             $name = $validated['name'];
             $phone = $validated['phone'];
-            $emailPrefix = $validated['email'];
-            $email = $emailPrefix . '@femm.ro'; // Adaugă sufixul automat
+
+            // special email
+            $nameModified = strtolower(str_replace(' ', '', $validated['name']));
+            $departmentNameForEmail = strtolower(str_replace(' ', '', $validated['department_name']));
+            $email = "{$nameModified}.{$departmentNameForEmail}@femm.ro";
+            dd($email);
             $role_id = $validated['role'];
             $department_id = $validated['department'];
             $functie = $validated['functie'];
@@ -51,11 +55,11 @@ class CreateUserController extends Controller
             User::create([
                 'employee_name' => $name,
                 'phone' => $phone,
-                'email_femm' => $email,
+                'email' => $email,
                 'role_id' => $role_id,
                 'department_id' => $department_id,
                 'function' => $functie,
-                'password_mail_femm' => $password,
+                'password' => $password,
                 'status' => 1,
                 'hotel_id' => $hotel
             ]);

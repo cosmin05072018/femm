@@ -99,9 +99,9 @@
                             <div class="row">
                                 <!-- Input Nume -->
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label for="name" class="form-label">Nume</label>
+                                    <label for="name" class="form-label">Nume și Prenume</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
-                                        id="name" name="name" placeholder="Introduceti numele"
+                                        id="name" name="name" placeholder="Introduceti numele și prenumele"
                                         value="{{ old('name') }}">
                                     @error('name')
                                         <div class="invalid-feedback">{{ $message }}</div>
