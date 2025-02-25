@@ -31,7 +31,7 @@ class EmailsController extends Controller
     {
         $user = Auth::user();
         $userId = $user->id;
-        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
+        $owner = auth()->user()->role_id === 1 ? auth()->user() : null;
 
         // Mesaje primite
         $receivedEmails = Email::where('user_id', $userId)
@@ -63,7 +63,7 @@ class EmailsController extends Controller
             ->update(['is_seen' => 1]);
 
 
-        $owner = auth()->user()->role === 'owner' ? auth()->user() : null;
+        $owner = auth()->user()->role_id === 1 ? auth()->user() : null;
         $message = Email::where('id', $mailAdressView)->first();
 
         return view('superAdmin/view-email', compact('owner', 'message'));
