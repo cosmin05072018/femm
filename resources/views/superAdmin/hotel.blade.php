@@ -141,26 +141,20 @@
                                     @enderror
                                 </div>
 
-                                <!-- Input Email -->
+                                <!-- Select Departament -->
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                        id="email" name="email" placeholder="Introduceti adresa de email"
-                                        value="{{ old('email') }}">
-                                    <small class="form-text text-muted">Introduceti doar numele. Adresa de email va fi
-                                        completată automat cu @femm.ro</small>
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Input Parola email-->
-                                <div class="mb-3 col-md-6 col-12">
-                                    <label for="password" class="form-label">Parola email</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        id="password" name="password" placeholder="Introduceti parola"
-                                        value="{{ old('password') }}">
-                                    @error('password')
+                                    <label for="department" class="form-label">Departament</label>
+                                    <select class="form-select @error('department') is-invalid @enderror" id="department"
+                                        name="department">
+                                        <option value="0" disabled selected>-- Selectați departamentul --</option>
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}"
+                                                {{ old('department') == $department->id ? 'selected' : '' }}>
+                                                {{ $department->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('department')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -198,20 +192,26 @@
                                     @enderror
                                 </div>
 
-                                <!-- Select Departament -->
+                                <!-- Input Email -->
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label for="department" class="form-label">Departament</label>
-                                    <select class="form-select @error('department') is-invalid @enderror" id="department"
-                                        name="department">
-                                        <option value="0" disabled selected>-- Selectați departamentul --</option>
-                                        @foreach ($departments as $department)
-                                            <option value="{{ $department->id }}"
-                                                {{ old('department') == $department->id ? 'selected' : '' }}>
-                                                {{ $department->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('department')
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                        id="email" name="email" placeholder="Introduceti adresa de email"
+                                        value="{{ old('email') }}">
+                                    <small class="form-text text-muted">Introduceti doar numele. Adresa de email va fi
+                                        completată automat cu @femm.ro</small>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Input Parola email-->
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label for="password" class="form-label">Parola email</label>
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                        id="password" name="password" placeholder="Introduceti parola"
+                                        value="{{ old('password') }}">
+                                    @error('password')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
