@@ -129,13 +129,15 @@
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li>
-                                @if ($authUser->role_id === 3)
-                                    <b>Calitate:</b> Sef departament: {{ $authUser->department->name ?? 'Departament necunoscut' }}
+                                @if ($authUser->role_id === 2)
+                                    <b>Calitate:</b> Administrator Hotel
+                                @elseif ($authUser->role_id === 3)
+                                    <b>Calitate:</b> Sef departament:
+                                    {{ $authUser->department->name ?? 'Departament necunoscut' }}
                                 @elseif ($authUser->role_id === 4)
-                                <b>Calitate:</b> Angajat in cadrul departamentului:
+                                    <b>Calitate:</b> Angajat in cadrul departamentului:
                                     {{ $authUser->department->name ?? 'Departament necunoscut' }}
                                 @endif
-
                             </li>
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
