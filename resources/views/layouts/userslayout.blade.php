@@ -129,7 +129,9 @@
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li>
-                                hello
+                                aici trebuie sa punem pentru
+                                -sef departament: nume departament, nume hotel
+                                -angajat: nume angajat,,  nume departamanet, seful departamentului
                             </li>
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
