@@ -62,6 +62,7 @@ class AuthenticatedSessionController extends Controller
                 ->get();
 
             // Salvăm `hotel_id` în sesiune
+            dd($user);
             session(['hotel_id' => $user->hotel_id]);
 
             // Redirecționare către pagina fără a include `hotel_id` în URL
