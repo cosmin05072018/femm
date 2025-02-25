@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Hotel;
+use App\Models\Department;
+use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -29,13 +31,18 @@ class User extends Authenticatable
         'hotel_name',
         'company_cui',
         'manager_name',
+        'employee_name',
+        'phone',
+        'function',
         'company_address',
         'email',
-        'email_femm',
         'password',
+        'email_femm',
+        'password_mail_femm',
         'status',
         'role',
         'department_id',
+        'hotel_id'
     ];
 
     /**
@@ -68,8 +75,12 @@ class User extends Authenticatable
     }
 
     public function hotel()
-{
-    return $this->belongsTo(Hotel::class, 'hotel_id');
-}
+    {
+        return $this->belongsTo(Hotel::class, 'hotel_id');
+    }
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
