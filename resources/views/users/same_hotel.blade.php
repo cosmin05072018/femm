@@ -30,11 +30,10 @@
                 </div>
                 <div class="row">
                     @foreach ($data['departments'] as $department)
-                        <!--ADD CLASSES HERE d-flex align-items-stretch-->
                         <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                             <div class="card w-100 text-center">
                                 <div class="card-body d-flex flex-column"
-                                    style="background: {{ isset($department['color']) ? $department['color'] : '#3d5272' }};">
+                                    style="background: {{ $department->color ?? '#3d5272' }};">
                                     <h3 class="card-title text-white">{{ $department->name }}</h3>
                                     <p class="card-text py-4 text-white">{{ $department->description }}</p>
                                     <a href="#" class="text-white">Vezi mai multe</a>

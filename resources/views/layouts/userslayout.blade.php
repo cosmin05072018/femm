@@ -51,7 +51,7 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    <h1 class="text-white">{{ $data['hotelName'] }}</h1>
+                    <h1 class="text-white">{{ $authUser->hotel->name }}</h1>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                             <i class="gg-menu-right"></i>
@@ -352,9 +352,12 @@
                                     <span class="profile-username">
                                         <span class="op-7">Hello, </span>
                                         <span class="fw-bold">
-                                            @foreach ($data['users'] as $user)
-                                                {{ $user->manager_name }}
-                                            @endforeach
+                                            @if ($authUser->status === 2)
+                                                {{ $authUser->manager_name }}
+                                            @elseif ($authUser->status === 3 || $authUser->status === 5)
+                                                {{ $authUser->employee_name }}
+                                            @endif
+
                                         </span>
                                     </span>
                                 </a>
@@ -363,21 +366,11 @@
                                         <li>
                                             <div class="user-box">
                                                 <div class="u-text">
-                                                    <h4>
-                                                        @foreach ($data['users'] as $user)
-                                                            @if ($user->role_id == 2)
-                                                                {{ $user->manager_name }}
-                                                            @elseif ($user->role_id == 3 || $user->role_id == 4)
-                                                                {{ $user->employee_name }}
-                                                            @endif
-                                                        @endforeach
-                                                    </h4>
                                                     <p class="text-muted">
-                                                        @foreach ($data['users'] as $user)
-                                                            {{ $user->email }}
-                                                        @endforeach
+                                                            {{ $authUser->email }}
                                                     </p>
-                                                    <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                                    <a href="profile.html"
+                                                        class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -390,11 +383,13 @@
                                             <a class="dropdown-item" href="#">Account Setting</a>
                                             <div class="dropdown-divider"></div>
                                             <!-- Formular ascuns pentru logout -->
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                style="display: none;">
                                                 @csrf
                                             </form>
                                             <!-- Linkul pentru logout -->
-                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <a class="dropdown-item" href="#"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
                                         </li>

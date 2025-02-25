@@ -100,7 +100,12 @@ class UserManagementController extends Controller
     {
         $authUser = Auth::user();
 
-        return view('users.same_hotel', compact('authUser'));
+        // Preluăm doar departamentele hotelului utilizatorului
+        $departments = Department::whereHas('hotels', function ($query) use ($authUser) {
+            $query->where('hotels.id', $authUser->hotel_id);
+        })->get();
+
+        return view('users.same_hotel', compact('authUser', 'departments'));
     }
 
 
