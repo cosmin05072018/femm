@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Hotel;
 use App\Models\Department;
-use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -49,14 +48,15 @@ class CreateUserController extends Controller
             $password = $validated['password'];
 
             // Crearea angajatului în baza de date
-            Employee::create([
-                'name' => $name,
+            User::create([
+                'employee_name' => $name,
                 'phone' => $phone,
-                'email' => $email,
+                'email_femm' => $email,
                 'role_id' => $role_id,
                 'department_id' => $department_id,
                 'function' => $functie,
-                'password' => $password,
+                'password_mail_femm' => $password,
+                'status' => 1,
                 'hotel_id' => $hotel
             ]);
 
