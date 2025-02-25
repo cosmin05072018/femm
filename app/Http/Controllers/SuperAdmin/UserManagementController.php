@@ -100,10 +100,14 @@ class UserManagementController extends Controller
     {
         $authUser = Auth::user();
 
-        // Preluăm doar departamentele hotelului utilizatorului
-        $departments = Department::whereHas('hotels', function ($query) use ($authUser) {
-            $query->where('hotels.id', $authUser->hotel_id);
-        })->get();
+        // Verificăm rolul utilizatorului
+        if ($authUser->role_id == 2) {
+            // Dacă role_id este 2 (Manager), returnăm toate departamentele
+            $departments = Department::all();
+        } elseif (in_array($authUser->role_id, [3, 4])) {
+            // Dacă role_id este 3 sau 4, returnăm doar departamentul de care aparține
+            $departments = Department::where('id', $authUser->department_id)->get();
+        }
 
         return view('users.same_hotel', compact('authUser', 'departments'));
     }
