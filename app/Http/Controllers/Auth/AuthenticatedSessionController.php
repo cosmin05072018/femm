@@ -52,12 +52,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // Verificăm rolul utilizatorului
-        if ($user->role === 'owner') {
+        if ($user->role_id === 1) {
             // Redirecționăm super-admin-ul către ruta '/fantastic-admin'
             return redirect()->route('admin.dashboard');
-        } elseif (in_array($user->role, ['super-admin', 'user'])) {
+        } else {
             // Preia toți utilizatorii care aparțin aceluiași hotel_id ca utilizatorul curent
-            $users = User::where('hotel_id', $user->hotel_id)
+            $user = User::where('hotel_id', $user->hotel_id)
                 ->with(['department', 'hotel'])
                 ->get();
 
