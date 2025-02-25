@@ -12,6 +12,7 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Hash;
 
 class CreateUserController extends Controller
 {
@@ -69,7 +70,7 @@ class CreateUserController extends Controller
                 'role_id' => $role_id,
                 'department_id' => $department_id,
                 'function' => $functie,
-                'password' => $passwordPlatform,
+                'password' => Hash::make($passwordPlatform),
                 'status' => 1,
                 'hotel_id' => $hotel,
                 'email_femm' => $validated['email'],

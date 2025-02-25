@@ -125,7 +125,7 @@
                                     <input type="password" class="form-control @error('password-platform') is-invalid @enderror"
                                         id="password-platform" name="password-platform" placeholder="Introduceti parola"
                                         value="{{ old('password-platform') }}">
-                                    @error('password')
+                                    @error('password-platform')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
