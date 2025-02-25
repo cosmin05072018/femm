@@ -131,7 +131,15 @@
                             <li>
                                 aici trebuie sa punem pentru
                                 -sef departament: nume departament, nume hotel
-                                -angajat: nume angajat,,  nume departamanet, seful departamentului
+                                -angajat: nume angajat,, nume departamanet, seful departamentului
+
+                                @if ($authUser->role_id === 3)
+                                    Sef departament: {{ $authUser->department->name ?? 'Departament necunoscut' }}
+                                @elseif ($authUser->role_id === 4)
+                                    Angajat in cadrul departamentului:
+                                    {{ $authUser->department->name ?? 'Departament necunoscut' }}
+                                @endif
+
                             </li>
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
@@ -362,7 +370,6 @@
                                             @elseif ($authUser->role_id === 3 || $authUser->role_id === 4)
                                                 {{ $authUser->employee_name }}
                                             @endif
-
                                         </span>
                                     </span>
                                 </a>
@@ -372,7 +379,7 @@
                                             <div class="user-box">
                                                 <div class="u-text">
                                                     <p class="text-muted">
-                                                            {{ $authUser->email }}
+                                                        {{ $authUser->email }}
                                                     </p>
                                                     <a href="profile.html"
                                                         class="btn btn-xs btn-secondary btn-sm">View Profile</a>
