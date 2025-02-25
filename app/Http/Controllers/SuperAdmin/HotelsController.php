@@ -31,7 +31,10 @@ class HotelsController extends Controller
     {
         $owner = auth()->user()->role_id === 1 ? auth()->user() : null;
         $hotelSelected = Hotel::where('id', $request->id)->first();
-        $users = User::where('hotel_id', $request->id)->get();
+        $users = User::where('hotel_id', $request->id)
+             ->where('role_id', 2)
+             ->get();
+
         $departments = Department::all();
         $employees = User::where('hotel_id', $request->id)->get();
         $roles = Role::whereIn('name', ['admin', 'user'])->get();
