@@ -41,14 +41,15 @@
                                 {{ $user->status == 0 ? 'În așteptare' : ($user->status == 1 ? 'Aprobat' : 'Respins') }}
                             </td>
                             <td class='{{ $user->role ? '' : 'text-danger' }}'>
-                                {{ $user->role ? $user->role : 'Nu sunt informatii' }}</td>
+                                {{ $user->role ? $user->role->name : 'Nu sunt informatii' }}
+                            </td>
                             <td class='{{ $user->department_id ? '' : 'text-danger' }}'>
                                 {{ $user->department ? $user->department->name : 'Nu sunt informatii' }}</td>
                             <td class='{{ $user->hotel_name ? '' : 'text-danger' }}'>
                                 {{ $user->hotel_name ? $user->hotel_name : 'Nu sunt informatii' }}
                             </td>
                             <td>
-                                @if ($user->role == 'owner')
+                                @if ($user->role_id === 1)
                                     <!-- Dacă rolul este "owner" -->
                                     <span class="text-success font-weight-bold">TU ESTI OWNER</span>
                                 @elseif ($user->status == 0)
