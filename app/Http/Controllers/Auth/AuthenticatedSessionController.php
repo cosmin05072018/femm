@@ -59,10 +59,11 @@ class AuthenticatedSessionController extends Controller
             // Preia toți utilizatorii care aparțin aceluiași hotel_id ca utilizatorul curent
             $user = User::where('hotel_id', $user->hotel_id)
                 ->with(['department', 'hotel'])
-                ->get();
+                ->first();  // Folosește `first()` pentru a obține un singur utilizator
 
             // Salvăm `hotel_id` în sesiune
             session(['hotel_id' => $user->hotel_id]);
+
 
             // Redirecționare către pagina fără a include `hotel_id` în URL
             return redirect()->intended(route('admin.management-hotel'));
