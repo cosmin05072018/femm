@@ -269,7 +269,7 @@
                                             @foreach ($employees->where('department_id', $department->id)->where('role_id', 3) as $employee)
                                                 <tr>
                                                     <td>{{ $counter++ }}</td>
-                                                    <td>{{ $employee->name }}</td>
+                                                    <td>{{ $employee->employee_name }}</td>
                                                     <td>{{ $employee->function }}</td>
                                                     <td>{{ $employee->phone }}</td>
                                                     <td>{{ $employee->email }}</td>
