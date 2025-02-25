@@ -352,9 +352,9 @@
                                     <span class="profile-username">
                                         <span class="op-7">Hello, </span>
                                         <span class="fw-bold">
-                                            @if ($authUser->status === 2)
+                                            @if ($authUser->role_id === 2)
                                                 {{ $authUser->manager_name }}
-                                            @elseif ($authUser->status === 3 || $authUser->status === 4)
+                                            @elseif ($authUser->role_id === 3 || $authUser->role_id === 4)
                                                 {{ $authUser->employee_name }}
                                             @endif
 
