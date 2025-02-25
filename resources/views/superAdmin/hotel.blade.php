@@ -39,7 +39,7 @@
                             <p><span>Nume Manager:</span> <b>{{ $user['manager_name'] }}</b></p>
                             <p><span>Rol:</span>
                                 <b>
-                                    @if ($user['role'] == 'super-admin')
+                                    @if ($user->role_id === 2)
                                         GENERAL MANAGER
                                     @endif
                                 </b>
