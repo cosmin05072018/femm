@@ -27,6 +27,12 @@ class CreateUserController extends Controller
                 'role' => 'required|exists:roles,id',
                 'functie' => 'required|string|max:255',
                 'department' => 'required|exists:departments,id',
+                'password-platform' => [
+                    'required',
+                    'string',
+                    'min:8',
+                    'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/'
+                ],
                 'password' => [
                     'required',
                     'string',
@@ -34,22 +40,25 @@ class CreateUserController extends Controller
                     'regex:/^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]+$/'
                 ],
             ], [
+                'password-platform.regex' => 'Parola trebuie să conțină cel puțin o literă mare, o cifră, un caracter special (@$!%*?&) și să aibă minim 8 caractere.',
                 'password.regex' => 'Parola trebuie să conțină cel puțin o literă mare, o cifră, un caracter special (@$!%*?&) și să aibă minim 8 caractere.',
             ]);
 
 
             $name = $validated['name'];
             $phone = $validated['phone'];
+            $emailPrefix= $validated['email'];
 
             // special email
             $nameModified = strtolower(str_replace(' ', '', $validated['name']));
             $departmentName = Department::find($validated['department']);
             $departmentNameForEmail = strtolower(str_replace(' ', '', $departmentName->name ?? ''));
             $email = "{$nameModified}.{$departmentNameForEmail}@femm.ro";
-            dd($email);
+
             $role_id = $validated['role'];
             $department_id = $validated['department'];
             $functie = $validated['functie'];
+            $passwordPlatform = $validated['password-platform'];
             $password = $validated['password'];
 
             // Crearea angajatului în baza de date
@@ -60,9 +69,11 @@ class CreateUserController extends Controller
                 'role_id' => $role_id,
                 'department_id' => $department_id,
                 'function' => $functie,
-                'password' => $password,
+                'password' => $passwordPlatform,
                 'status' => 1,
-                'hotel_id' => $hotel
+                'hotel_id' => $hotel,
+                'email_femm' => $validated['email'],
+                'password_mail_femm' => $password
             ]);
 
             // Crearea adresei de mail pe server

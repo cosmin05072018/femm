@@ -90,6 +90,18 @@
                     <h4 class="card-title">
                         <i class="fas fa-user-plus me-2 text-primary"></i> Adaugă angajați
                     </h4>
+                    <small class="form-text text-muted">
+                        <b>Convenții:</b><br>
+                        <ul>
+                            <li>
+                                Adresa de mail pentru autentificare este creată automat astfel: câmp ”Nume și prenume” + . + nume departament. <br>
+                                Exemplu: moraricosmin.housekeeping@femm.ro
+                            </li>
+                            <li>
+                                Câmpul ”Email” reprezintă emailul pentru secțiunea de Mail a companiei, nu de logare pe platformă.
+                            </li>
+                        </ul>
+                    </small>
                 </div>
                 <div class="card border-0">
                     <div class="card-body">
@@ -104,6 +116,16 @@
                                         id="name" name="name" placeholder="Introduceti numele și prenumele"
                                         value="{{ old('name') }}">
                                     @error('name')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <!-- Input Parola Platforma-->
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label for="password-platform" class="form-label">Parola logare pe platforma</label>
+                                    <input type="password" class="form-control @error('password-platform') is-invalid @enderror"
+                                        id="password-platform" name="password-platform" placeholder="Introduceti parola"
+                                        value="{{ old('password-platform') }}">
+                                    @error('password')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -132,9 +154,9 @@
                                     @enderror
                                 </div>
 
-                                <!-- Input Parola -->
+                                <!-- Input Parola email-->
                                 <div class="mb-3 col-md-6 col-12">
-                                    <label for="password" class="form-label">Parola</label>
+                                    <label for="password" class="form-label">Parola email</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
                                         id="password" name="password" placeholder="Introduceti parola"
                                         value="{{ old('password') }}">
