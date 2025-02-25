@@ -149,6 +149,7 @@
                                 </a>
                                 <ul class="dropdown-menu messages-notif-box animated fadeIn"
                                     aria-labelledby="messageDropdown">
+                                    <li>hello</li>
                                     <li>
                                         <div class="dropdown-title d-flex justify-content-between align-items-center">
                                             Messages
@@ -350,7 +351,7 @@
                                 <a class="dropdown-toggle profile-pic" data-bs-toggle="dropdown" href="#"
                                     aria-expanded="false">
                                     <span class="profile-username">
-                                        <span class="op-7">Hello, </span>
+                                        <span class="op-7">Bine ai venit, </span>
                                         <span class="fw-bold">
                                             @if ($authUser->role_id === 2)
                                                 {{ $authUser->manager_name }}
