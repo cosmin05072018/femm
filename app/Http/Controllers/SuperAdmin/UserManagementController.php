@@ -63,7 +63,7 @@ class UserManagementController extends Controller
 
         // Actualizăm statusul și rolul utilizatorului
         $user->status = 1; // 1 = Aprobat
-        $user->role = 'super-admin';
+        $user->role_id = 2;
         $user->hotel_id = $hotel->id; // Asociem utilizatorul cu ID-ul hotelului
         $user->email_femm = $request->input('email-femm') . '@femm.ro';
         $user->password_mail_femm = $request->input('parola-femm'); // Hashing parola
