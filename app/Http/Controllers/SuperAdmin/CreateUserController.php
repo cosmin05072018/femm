@@ -73,7 +73,7 @@ class CreateUserController extends Controller
                 'password' => Hash::make($passwordPlatform),
                 'status' => 1,
                 'hotel_id' => $hotel,
-                'email_femm' => $validated['email'],
+                'email_femm' => $validated['email'].'@femm.ro',
                 'password_mail_femm' => $password
             ]);
 
