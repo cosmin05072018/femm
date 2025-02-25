@@ -73,36 +73,6 @@ class AuthenticatedSessionController extends Controller
         return back()->withErrors(['email' => 'Rolul utilizatorului este invalid.']);
     }
 
-    // public function managementHotel(Request $request)
-    // {
-
-    //     dd(1);
-    //     // Preluăm utilizatorii din parametrii redirecționării
-    //     $users = $request->users;
-
-    //     // Returnăm un view care afișează utilizatorii
-    //     return view('sameHotelView', compact('users'));
-    // }
-
-
-    // public function usersFromSameHotel()
-    // {
-    //     // Preia utilizatorul autentificat
-    //     $user = Auth::user();
-
-    //     // Verifică dacă utilizatorul are un hotel_id atribuit
-    //     if (!$user->hotel_id) {
-    //         return redirect()->back()->with('error', 'Nu aveți un hotel asociat.');
-    //     }
-
-    //     // Preia toți utilizatorii care aparțin aceluiași hotel_id
-    //     $users = User::where('hotel_id', $user->hotel_id)->get();
-
-    //     // Returnează un view cu lista utilizatorilor
-    //     return view('users.same_hotel', compact('users'));
-    // }
-
-
     /**
      * Destroy an authenticated session.
      */

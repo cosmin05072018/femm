@@ -365,7 +365,11 @@
                                                 <div class="u-text">
                                                     <h4>
                                                         @foreach ($data['users'] as $user)
-                                                            {{ $user->manager_name }}
+                                                            @if ($user->role_id == 2)
+                                                                {{ $user->manager_name }}
+                                                            @elseif ($user->role_id == 3 || $user->role_id == 4)
+                                                                {{ $user->employee_name }}
+                                                            @endif
                                                         @endforeach
                                                     </h4>
                                                     <p class="text-muted">
@@ -373,8 +377,7 @@
                                                             {{ $user->email }}
                                                         @endforeach
                                                     </p>
-                                                    <a href="profile.html"
-                                                        class="btn btn-xs btn-secondary btn-sm">View Profile</a>
+                                                    <a href="profile.html" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -387,13 +390,11 @@
                                             <a class="dropdown-item" href="#">Account Setting</a>
                                             <div class="dropdown-divider"></div>
                                             <!-- Formular ascuns pentru logout -->
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                style="display: none;">
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                 @csrf
                                             </form>
                                             <!-- Linkul pentru logout -->
-                                            <a class="dropdown-item" href="#"
-                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 Logout
                                             </a>
                                         </li>
