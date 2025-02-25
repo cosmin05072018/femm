@@ -57,13 +57,13 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.dashboard');
         } else {
             // Preia toți utilizatorii care aparțin aceluiași hotel_id ca utilizatorul curent
-            $user = User::where('hotel_id', $user->hotel_id)
+            $users = User::where('hotel_id', $user->hotel_id)
                 ->with(['department', 'hotel'])
                 ->get();
 
             // Salvăm `hotel_id` în sesiune
-            dd($user);
-            session(['hotel_id' => $user->hotel_id]);
+            dd($users);
+            session(['hotel_id' => $users->hotel_id]);
 
             // Redirecționare către pagina fără a include `hotel_id` în URL
             return redirect()->intended(route('admin.management-hotel'));
