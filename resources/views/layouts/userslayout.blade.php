@@ -128,6 +128,9 @@
                 <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                            <li>
+                                hello
+                            </li>
                             <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
                                 <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                                     role="button" aria-expanded="false" aria-haspopup="true">
@@ -149,7 +152,6 @@
                                 </a>
                                 <ul class="dropdown-menu messages-notif-box animated fadeIn"
                                     aria-labelledby="messageDropdown">
-                                    <li>hello</li>
                                     <li>
                                         <div class="dropdown-title d-flex justify-content-between align-items-center">
                                             Messages
