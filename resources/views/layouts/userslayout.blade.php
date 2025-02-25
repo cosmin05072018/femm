@@ -354,7 +354,7 @@
                                         <span class="fw-bold">
                                             @if ($authUser->status === 2)
                                                 {{ $authUser->manager_name }}
-                                            @elseif ($authUser->status === 3 || $authUser->status === 5)
+                                            @elseif ($authUser->status === 3 || $authUser->status === 4)
                                                 {{ $authUser->employee_name }}
                                             @endif
 
