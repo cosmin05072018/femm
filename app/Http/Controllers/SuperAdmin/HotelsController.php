@@ -32,7 +32,7 @@ class HotelsController extends Controller
         $owner = auth()->user()->role_id === 1 ? auth()->user() : null;
         $hotelSelected = Hotel::where('id', $request->id)->first();
         $users = User::where('hotel_id', $request->id)
-        ->where('id', '!=', auth()->id()) // Exclude utilizatorul logat, dacă e necesar
+        ->where('id', '=', auth()->id()) // Exclude utilizatorul logat, dacă e necesar
         ->get();
         dd($users);
         $departments = Department::all();
