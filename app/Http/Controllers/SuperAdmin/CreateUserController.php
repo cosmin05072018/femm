@@ -44,7 +44,7 @@ class CreateUserController extends Controller
             // special email
             $nameModified = strtolower(str_replace(' ', '', $validated['name']));
             $departmentName = Department::find($validated['department']);
-            $departmentNameForEmail = strtolower(str_replace(' ', '', $department->name ?? ''));
+            $departmentNameForEmail = strtolower(str_replace(' ', '', $departmentName->name ?? ''));
             $email = "{$nameModified}.{$departmentNameForEmail}@femm.ro";
             dd($email);
             $role_id = $validated['role'];
