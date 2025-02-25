@@ -90,7 +90,8 @@
                     <h4 class="card-title">
                         <i class="fas fa-user-plus me-2 text-primary"></i> Adaugă angajați
                     </h4>
-                    <small class="form-text text-muted">
+                    <br>
+                    <small class="form-text text-white">
                         <b>Convenții:</b><br>
                         <ul>
                             <li>
