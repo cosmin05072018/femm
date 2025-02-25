@@ -94,11 +94,13 @@
                         <b>Convenții:</b><br>
                         <ul>
                             <li>
-                                Adresa de mail pentru autentificare este creată automat astfel: câmp ”Nume și prenume” + . + nume departament. <br>
+                                Adresa de mail pentru autentificare este creată automat astfel: câmp ”Nume și prenume” + . +
+                                nume departament. <br>
                                 Exemplu: moraricosmin.housekeeping@femm.ro
                             </li>
                             <li>
-                                Câmpul ”Email” reprezintă emailul pentru secțiunea de Mail a companiei, nu de logare pe platformă.
+                                Câmpul ”Email” reprezintă emailul pentru secțiunea de Mail a companiei, nu de logare pe
+                                platformă.
                             </li>
                         </ul>
                     </small>
@@ -109,52 +111,13 @@
                             @csrf
 
                             <div class="row">
-                                <!-- Input Nume -->
+                                <!-- Input Nume si Prenume -->
                                 <div class="mb-3 col-md-6 col-12">
                                     <label for="name" class="form-label">Nume și Prenume</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
                                         id="name" name="name" placeholder="Introduceti numele și prenumele"
                                         value="{{ old('name') }}">
                                     @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <!-- Input Parola Platforma-->
-                                <div class="mb-3 col-md-6 col-12">
-                                    <label for="password-platform" class="form-label">Parola logare pe platforma</label>
-                                    <input type="password" class="form-control @error('password-platform') is-invalid @enderror"
-                                        id="password-platform" name="password-platform" placeholder="Introduceti parola"
-                                        value="{{ old('password-platform') }}">
-                                    @error('password-platform')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Input Număr de Telefon -->
-                                <div class="mb-3 col-md-6 col-12">
-                                    <label for="phone" class="form-label">Număr de Telefon</label>
-                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                        id="phone" name="phone" placeholder="Introduceti numărul de telefon"
-                                        value="{{ old('phone') }}">
-                                    @error('phone')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <!-- Select Departament -->
-                                <div class="mb-3 col-md-6 col-12">
-                                    <label for="department" class="form-label">Departament</label>
-                                    <select class="form-select @error('department') is-invalid @enderror" id="department"
-                                        name="department">
-                                        <option value="0" disabled selected>-- Selectați departamentul --</option>
-                                        @foreach ($departments as $department)
-                                            <option value="{{ $department->id }}"
-                                                {{ old('department') == $department->id ? 'selected' : '' }}>
-                                                {{ $department->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('department')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -181,6 +144,18 @@
                                     @enderror
                                 </div>
 
+                                <!-- Input Parola Platforma -->
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label for="password-platform" class="form-label">Parola logare pe platforma</label>
+                                    <input type="password"
+                                        class="form-control @error('password-platform') is-invalid @enderror"
+                                        id="password-platform" name="password-platform" placeholder="Introduceti parola"
+                                        value="{{ old('password-platform') }}">
+                                    @error('password-platform')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
                                 <!-- Input Functie -->
                                 <div class="mb-3 col-md-6 col-12">
                                     <label for="functie" class="form-label">Functie</label>
@@ -188,6 +163,17 @@
                                         id="functie" name="functie" placeholder="Introduceti numele functiei"
                                         value="{{ old('functie') }}">
                                     @error('functie')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Input Număr de Telefon -->
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label for="phone" class="form-label">Număr de Telefon</label>
+                                    <input type="tel" class="form-control @error('phone') is-invalid @enderror"
+                                        id="phone" name="phone" placeholder="Introduceti numărul de telefon"
+                                        value="{{ old('phone') }}">
+                                    @error('phone')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -205,7 +191,25 @@
                                     @enderror
                                 </div>
 
-                                <!-- Input Parola email-->
+                                <!-- Select Departament -->
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label for="department" class="form-label">Departament</label>
+                                    <select class="form-select @error('department') is-invalid @enderror" id="department"
+                                        name="department">
+                                        <option value="0" disabled selected>-- Selectați departamentul --</option>
+                                        @foreach ($departments as $department)
+                                            <option value="{{ $department->id }}"
+                                                {{ old('department') == $department->id ? 'selected' : '' }}>
+                                                {{ $department->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('department')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <!-- Input Parola email -->
                                 <div class="mb-3 col-md-6 col-12">
                                     <label for="password" class="form-label">Parola email</label>
                                     <input type="password" class="form-control @error('password') is-invalid @enderror"
@@ -221,6 +225,7 @@
                                     <button type="submit" class="btn btn-custom-action w-100">Salvează</button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -236,12 +241,16 @@
                     @foreach ($departments as $department)
                         <div class="accordion-item accordion-custom">
                             <h2 class="accordion-header py-3" id="flush-heading{{ $department->id }}">
-                                <button class="accordion-button collapsed d-flex gap-3" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $department->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $department->id }}">
+                                <button class="accordion-button collapsed d-flex gap-3" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $department->id }}"
+                                    aria-expanded="false" aria-controls="flush-collapse{{ $department->id }}">
                                     <span>Departament:</span> <br> <span></span><b> {{ $department->name }} </b></span>
                                 </button>
                             </h2>
 
-                            <div id="flush-collapse{{ $department->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $department->id }}" data-bs-parent="#departmentsAccordion">
+                            <div id="flush-collapse{{ $department->id }}" class="accordion-collapse collapse"
+                                aria-labelledby="flush-heading{{ $department->id }}"
+                                data-bs-parent="#departmentsAccordion">
                                 <div class="accordion-body">
                                     <!-- Șefi Departament -->
                                     <p><b>Șefi Departament</b></p>
@@ -270,7 +279,8 @@
                                     </table>
 
                                     @if ($employees->where('department_id', $department->id)->where('role_id', 3)->isEmpty())
-                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest departament.</p>
+                                        <p class="text-center">Nu sunt șefi de departament înregistrați pentru acest
+                                            departament.</p>
                                     @endif
 
                                     <!-- Angajați -->
