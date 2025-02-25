@@ -18,16 +18,19 @@
         <!-- Main Content -->
         <div id="content">
             <section class="bg-light p-3 shadow-sm">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col-lg-4 mb-3 d-flex align-items-stretch">
-                        <div class="card w-100 text-center bg-dark text-white">
-                            <div class="card-body d-flex flex-column">
-                                <h1 class="card-title text-white py-5">GM</h1>
-                                <a href="#" class="text-white">Vezi mai multe</a>
+                @if ($authUser->role_id == 2)
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-lg-4 mb-3 d-flex align-items-stretch">
+                            <div class="card w-100 text-center bg-dark text-white">
+                                <div class="card-body d-flex flex-column">
+                                    <h1 class="card-title text-white py-5">GM</h1>
+                                    <a href="#" class="text-white">Vezi mai multe</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
+
                 <div class="row">
                     @foreach ($departments as $department)
                         <div class="col-lg-4 mb-3 d-flex align-items-stretch">
