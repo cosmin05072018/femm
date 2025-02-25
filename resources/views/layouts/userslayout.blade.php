@@ -129,14 +129,10 @@
                     <div class="container-fluid">
                         <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
                             <li>
-                                aici trebuie sa punem pentru
-                                -sef departament: nume departament, nume hotel
-                                -angajat: nume angajat,, nume departamanet, seful departamentului
-
                                 @if ($authUser->role_id === 3)
-                                    Sef departament: {{ $authUser->department->name ?? 'Departament necunoscut' }}
+                                    <b>Calitate:</b> Sef departament: {{ $authUser->department->name ?? 'Departament necunoscut' }}
                                 @elseif ($authUser->role_id === 4)
-                                    Angajat in cadrul departamentului:
+                                <b>Calitate:</b> Angajat in cadrul departamentului:
                                     {{ $authUser->department->name ?? 'Departament necunoscut' }}
                                 @endif
 
