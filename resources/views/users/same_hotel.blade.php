@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($data['departments'] as $department)
+                    @foreach ($departments as $department)
                         <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                             <div class="card w-100 text-center">
                                 <div class="card-body d-flex flex-column"
