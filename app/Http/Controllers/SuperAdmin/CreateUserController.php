@@ -47,8 +47,6 @@ class CreateUserController extends Controller
             $functie = $validated['functie'];
             $password = $validated['password'];
 
-            dd($password);
-
             // Crearea angajatului în baza de date
             User::create([
                 'employee_name' => $name,
