@@ -28,13 +28,14 @@ return new class extends Migration
             $table->string('email_femm')->unique()->nullable();
             $table->string('password_mail_femm')->unique()->nullable();
             $table->tinyInteger('status')->default(0);       // Status (0 - în așteptare, 1 - aprobat, 2 - respins)
-            $table->enum('role', ['owner', 'super-admin', 'admin', 'user'])->nullable(); // Roluri utilizatori
+            $table->unsignedBigInteger('role_id')->nullable();
             $table->unsignedBigInteger('department_id')->nullable(); // ID-ul departamentului asignat
             $table->unsignedBigInteger('hotel_id')->nullable(); // Asociază utilizatorul cu un hotel
             $table->string('remember_token', 100)->nullable();
             $table->timestamps();                            // Created at și updated at
 
             // Definire cheie externă pentru department_id
+            $table->foreign('role_id')->references('id')->on('roles')->onDelete('set null');
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade'); // Ștergere în lanț
         });

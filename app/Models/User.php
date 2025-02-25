@@ -40,7 +40,7 @@ class User extends Authenticatable
         'email_femm',
         'password_mail_femm',
         'status',
-        'role',
+        'role_id',
         'department_id',
         'hotel_id'
     ];
@@ -62,8 +62,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'status' => 'integer',
-        'role' => 'string',
+        'status' => 'integer'
     ];
 
     /**
