@@ -17,7 +17,7 @@
         <!-- Chat HM + sefi departamente -->
         <div class="container mt-5">
             <div class="card shadow-lg border-0 p-4 text-center">
-                <h4 class="mb-3">Chat pentru Hotel</h4>
+                <h4 class="mb-3">Chat pentru Hotel Manager și Șefi de Departamente</h4>
 
                 @if ($existsChatGroup)
                     <div class="chat-section">
@@ -31,7 +31,7 @@
                     </div>
                 @else
                     <div class="chat-section mt-3">
-                        <p class="mt-2 text-muted">Nu există un chat pentru acest hotel. Creează unul acum!</p>
+                        <p class="mt-2 text-muted">Nu există un grup de chat pentru Hotel Manager și Șefi de Departamente. Creează unul acum!</p>
                         <div class="d-flex justify-content-center">
                             <a href="#" class="btn btn-success btn-lg d-flex align-items-center gap-2">
                                 <span>&#10133;</span> Creează un Chat
