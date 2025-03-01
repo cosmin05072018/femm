@@ -30,4 +30,8 @@ class DepartmentFromHotelController extends Controller
 
         return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser'));
     }
+
+    public function create(Request $request){
+        dd(Auth::user());
+    }
 }
