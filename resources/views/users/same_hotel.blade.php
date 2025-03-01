@@ -14,18 +14,30 @@
     </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Chat HM + sefi departamente -->
+            <div class="container mt-5">
+                <div class="card shadow-lg border-0 p-4 text-center">
+                    <h4 class="mb-3">Chat pentru Hotel</h4>
 
+                    <!-- Exemplu de structură pentru ambele scenarii -->
+                    <div class="chat-section">
+                        <a href="#" class="btn btn-primary btn-lg d-flex align-items-center justify-content-center gap-2">
+                            <span>&#128994;</span> Mergi la Chat
+                        </a>
+                        <small class="text-muted d-block mt-2">În acest grup fac parte Managerul Hotelului și Șefii Departamentelor.</small>
+                    </div>
+
+                    <!-- Alternativ, dacă nu există chat -->
+                    <div class="chat-section mt-3">
+                        <a href="#" class="btn btn-success btn-lg d-flex align-items-center justify-content-center gap-2">
+                            <span>&#10133;</span> Creează un Chat
+                        </a>
+                        <p class="mt-2 text-muted">Nu există un chat pentru acest hotel. Creează unul acum!</p>
+                    </div>
+                </div>
+            </div>
         <!-- Main Content -->
         <div id="content">
-            <!-- Chat HM + sefi departamente -->
-            @if ($existsChatGroup)
-                <a href="#" class="btn btn-primary">🔵 Mergi la Chat</a>
-                <small>In acest grup fac parte Managerul Hotelului si Sefii Departamentelor</small>
-            @else
-                <a href="#" class="btn btn-success">➕ Creează un Chat</a>
-                <p>Nu există un chat pentru acest hotel. Creează unul acum!</p>
-            @endif
-            <h1></h1>
             <section class="bg-light p-3 shadow-sm">
                 @if ($authUser->role_id == 2)
                     <div class="row d-flex justify-content-center align-items-center">
