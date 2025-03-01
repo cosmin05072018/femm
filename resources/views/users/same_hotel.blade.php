@@ -22,7 +22,7 @@
                 @if ($existsChatGroup)
                     <div class="chat-section">
                         <div class="d-flex justify-content-center">
-                            <a href="{{ route('admin.department.users.chat') }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                            <a href="{{ route('admin.department.users.chat-nivel1') }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
                                 <span>&#128994;</span> Chat
                             </a>
                         </div>
@@ -33,7 +33,37 @@
                     <div class="chat-section mt-3">
                         <p class="mt-2 text-muted">Nu există un grup de chat pentru Hotel Manager și Șefi de Departamente. Creează unul acum!</p>
                         <div class="d-flex justify-content-center">
-                            <form action="{{ route('admin.department.users.create-chat') }}" method="POST">
+                            <form action="{{ route('admin.department.users.create-chat-nivel1') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-lg d-flex align-items-center gap-2">
+                                    <span>&#10133;</span> Crează un Chat
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <!-- Chat sefi departamente -->
+        <div class="container mt-5">
+            <div class="card shadow-lg border-0 p-4 text-center">
+                <h4 class="mb-3">Chat pentru Șefi de Departamente</h4>
+
+                @if ($existsChatGroup)
+                    <div class="chat-section">
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('admin.department.users.chat-nivel2') }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                                <span>&#128994;</span> Chat
+                            </a>
+                        </div>
+                        <small class="text-muted d-block mt-2">În acest grup fac parte Șefii
+                            Departamentelor.</small>
+                    </div>
+                @else
+                    <div class="chat-section mt-3">
+                        <p class="mt-2 text-muted">Nu există un grup de chat pentru Șefi de Departamente. Creează unul acum!</p>
+                        <div class="d-flex justify-content-center">
+                            <form action="{{ route('admin.department.users.create-chat-nivel2') }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-lg d-flex align-items-center gap-2">
                                     <span>&#10133;</span> Crează un Chat
