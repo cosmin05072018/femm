@@ -13,6 +13,8 @@ use App\Http\Controllers\EmailController;
 use Webklex\PHPIMAP\ClientManager;
 use App\Http\Controllers\EmailSyncController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\DepartmentFromHotelController;
+
 
 // ruta de sincronizare mailuri
 Route::get('/sync-emails', [EmailSyncController::class, 'syncEmails']);
@@ -97,6 +99,8 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);
     Route::get('/chat/messages/{groupId}', [ChatController::class, 'getMessages']);
 
+    // detalii departament
+    Route::get('/department/{departmentId}/users', [DepartmentFromHotelController::class, 'show'])->name('department.users');
 });
 
 

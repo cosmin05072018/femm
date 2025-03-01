@@ -40,7 +40,7 @@
                                 <div class="card-body d-flex flex-column py-4" style="background: {{ $department->color ?? '#3d5272' }};">
                                     <h3 class="card-title text-white my-3">{{ $department->name }}</h3>
                                     <p class="card-text text-white flex-grow-1">{{ $department->description }}</p>
-                                    <a href="#" class="btn btn-light mt-auto rounded-pill">Vezi mai multe</a>
+                                    <a href="{{ route('admin.department.users', ['departmentId' => $department->id]) }}" class="btn btn-light mt-auto rounded-pill">Vezi mai multe</a>
                                 </div>
                             </div>
                         </div>
