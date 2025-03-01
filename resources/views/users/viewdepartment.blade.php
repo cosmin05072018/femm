@@ -6,12 +6,13 @@
     <div class="container mt-5">
         <div class="col-md-12">
             <div class="card">
-                <button class="btn btn-primary" onclick="goBack()">
-                    <i class="bi bi-arrow-left-circle"></i> Înapoi
-                  </button>
                 <div class="card-header">
                     <div class="d-flex align-items-center">
                         <!--<h4 class="card-title">Add Row</h4> -->
+                        <button class="btn btn-primary w-2 my-3" onclick="goBack()">
+                            <i class="bi bi-arrow-left-circle"></i> Înapoi
+                        </button>
+                        <br>
                         <h2>Departamentul: {{ $department->name }}</h2>
                         <!--<button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
                             <i class="fa fa-plus"></i>
