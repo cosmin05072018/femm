@@ -32,8 +32,8 @@
                             <td>{{ $loop->iteration }}</td>
                             <td class='{{ $user->county ? '' : 'text-danger' }}'>
                                 {{ $user->county ? $user->county : 'Nu sunt informatii' }}</td>
-                            <td class='{{ $user->company_address ? '' : 'text-danger' }}'>
-                                {{ $user->company_address ? $user->company_address : 'Nu sunt informatii' }}</td>
+                            <td class='{{ $user->manager_name ? '' : 'text-danger' }}'>
+                                {{ $user->manager_name ? $user->manager_name : 'Nu sunt informatii' }}</td>
                             <td class='{{ $user->email ? '' : 'text-danger' }}'>
                                 {{ $user->email ? $user->email : 'Nu sunt informatii' }}</td>
                             <td

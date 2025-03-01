@@ -23,7 +23,7 @@
                     <div class="chat-section">
                         <div class="d-flex justify-content-center">
                             <a href="#" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
-                                <span>&#128994;</span> Mergi la Chat
+                                <span>&#128994;</span> Chat
                             </a>
                         </div>
                         <small class="text-muted d-block mt-2">În acest grup fac parte Managerul Hotelului și Șefii

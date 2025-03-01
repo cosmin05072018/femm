@@ -42,8 +42,6 @@ class DepartmentFromHotelController extends Controller
             ->with('department')
             ->get();
 
-        $names = ['nivel1', 'nivel2', 'nivel3'];
-
         foreach ($departments as $department) {
             ChatGroup::create([
                 'hotel_id' => $hotel_id,
