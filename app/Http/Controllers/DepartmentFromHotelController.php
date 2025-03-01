@@ -10,6 +10,7 @@ class DepartmentFromHotelController extends Controller
 {
     public function show($departmentId)
     {
+        // Găsim departamentul
         $department = Department::findOrFail($departmentId);
 
         // Obținem hotelurile asociate acestui departament
@@ -20,8 +21,8 @@ class DepartmentFromHotelController extends Controller
 
         // Găsim utilizatorii care sunt în acest departament și au același hotel
         $users = User::where('department_id', $department->id)
-            ->where('hotel_id', $hotel->id) // Asumăm că fiecare utilizator are un hotel_id
-            ->get();
+                     ->where('hotel_id', $hotel ? $hotel->id : null) // Asigură-te că $hotel nu e null
+                     ->get();
 
 
         return view('users.viewdepartment', compact('department', 'users'));
