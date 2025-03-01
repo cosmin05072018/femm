@@ -145,18 +145,6 @@
                     <th style="width: 10%">Action</th>
                   </tr>
                 </thead>
-                <tfoot>
-                  <tr>
-                    <th>ID</th>
-                    <th>Employee Name</th>
-                    <th>Phone</th>
-                    <th>Function</th>
-                    <th>Email FEMM</th>
-                    <th>Role</th>
-                    <th>Last Connection</th>
-                    <th>Action</th>
-                  </tr>
-                </tfoot>
                 <tbody>
                   @foreach($users as $user)
                   <tr>
@@ -205,5 +193,50 @@
       </div>
 
 </div>
+
+<script>
+    $(document).ready(function() {
+        var table = $("#add-row").DataTable({
+            pageLength: 5
+        });
+
+        var action =
+            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+        $("#addRowButton").click(function() {
+            // Capturăm valorile din inputuri
+            var employeeName = $("#addName").val();
+            var phone = $("#addPhone").val();
+            var functionValue = $("#addPosition").val();
+            var emailFemm = $("#addEmailFemm").val();
+            var role = $("#addRole").val(); // presupunând că ai un câmp pentru rol
+            var lastConnection = $("#addLastConnection").val(); // presupunând că ai un câmp pentru ultima conexiune
+
+            // Adăugăm rândul în tabel
+            table.row.add([
+                '',  // ID-ul va fi generat automat pe server
+                employeeName,
+                phone,
+                functionValue,
+                emailFemm,
+                role,
+                lastConnection,
+                action
+            ]).draw();
+
+            // Închidem modalul
+            $("#addRowModal").modal("hide");
+
+            // Resetăm formularul pentru a fi gata pentru următoarea adăugare
+            $("#addName").val('');
+            $("#addPhone").val('');
+            $("#addPosition").val('');
+            $("#addEmailFemm").val('');
+            $("#addRole").val('');
+            $("#addLastConnection").val('');
+        });
+    });
+
+</script>
 
 @endsection
