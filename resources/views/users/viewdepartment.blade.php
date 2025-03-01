@@ -191,13 +191,57 @@
           </div>
         </div>
       </div>
-
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      console.log('Hello from JS!');
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    console.log("jQuery loaded");
+    $(document).ready(function() {
+        // Inițializăm DataTable și facem variabila globală
+        var table = $("#add-row").DataTable({
+            pageLength: 5
+        });
+
+        console.log($("#add-row"));
+
+        // Definim butoanele de acțiune
+        var action =
+            '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger"> <i class="fa fa-times"></i> </button> </div> </td>';
+
+        // Eveniment pentru butonul de adăugare
+        $("#addRowButton").click(function() {
+            // Capturăm valorile din inputuri
+            var employeeName = $("#addName").val();
+            var phone = $("#addPhone").val();
+            var functionValue = $("#addPosition").val();
+            var emailFemm = $("#addEmailFemm").val();
+            var role = $("#addRole").val();
+            var lastConnection = $("#addLastConnection").val();
+
+            // Adăugăm rândul în tabel
+            table.row.add([
+                '',  // ID-ul generat automat
+                employeeName,
+                phone,
+                functionValue,
+                emailFemm,
+                role,
+                lastConnection,
+                action
+            ]).draw();
+
+            // Închidem modalul
+            $("#addRowModal").modal("hide");
+
+            // Resetăm formularul
+            $("#addName, #addPhone, #addPosition, #addEmailFemm, #addRole, #addLastConnection").val('');
+        });
     });
-  </script>
+</script>
+
+
 @endsection
 
 
