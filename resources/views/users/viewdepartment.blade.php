@@ -197,5 +197,10 @@
 @endsection
 
 @push('scripts')
-        console.log('Hello from JS!');
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log('Hello from JS!');
+  });
+</script>
 @endpush
+
