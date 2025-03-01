@@ -37,4 +37,14 @@ class Department extends Model
     {
         return $this->belongsToMany(Hotel::class, 'hotel_department');
     }
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 }
