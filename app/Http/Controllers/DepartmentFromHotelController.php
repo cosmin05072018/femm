@@ -34,6 +34,9 @@ class DepartmentFromHotelController extends Controller
     }
 
     protected $names = ['nivel1', 'nivel2', 'nivel3'];
+    // nivel1 -> intre HM si sefi dep. de la acelasi hotel
+    // nivel2 -> intre sefi dep. de la acelasi hotel
+    // nivel1 -> intre sefi dep. si angajati dintr-un dep. de la acelasi hotel
 
     public function createChatGroupLevel1()
     {
@@ -53,7 +56,7 @@ class DepartmentFromHotelController extends Controller
         return redirect()->back()->with('success', 'Chat groups created successfully.');
     }
 
-    public function viewviewChatGroupLevel1chat()
+    public function viewChatGroupLevel1()
     {
         $hotel_id = Auth::user()->hotel_id;
 
