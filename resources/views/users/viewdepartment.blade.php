@@ -193,14 +193,11 @@
       </div>
 
 </div>
-
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log('Hello from JS!');
+    });
+  </script>
 @endsection
 
-@push('scripts')
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    console.log('Hello from JS!');
-  });
-</script>
-@endpush
 
