@@ -136,13 +136,13 @@
                 <thead>
                   <tr>
                     <th>ID</th>
-                    <th>Employee Name</th>
-                    <th>Phone</th>
-                    <th>Function</th>
-                    <th>Email FEMM</th>
-                    <th>Role</th>
-                    <th>Last Connection</th>
-                    <th style="width: 10%">Action</th>
+                    <th>Nume angajat</th>
+                    <th>Telefon</th>
+                    <th>Functie</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Status</th>
+                    <th style="width: 10%">Acțiuni</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -162,7 +162,15 @@
                             {{ $user->role->name ?? 'N/A' }}
                         @endif
                     </td>
-                    <td>trebuie creata o noua coloana in tabela users pentru a vedea daca userul este sau nu conectat</td>
+                    <td>
+                        @if ($user->is_logged_in == 1)
+                            <span>Activ</span>
+                            <i class="fas fa-check-circle" style="color: green;"></i> <!-- Icon activ -->
+                        @else
+                            <span>Inactiv</span>
+                            <i class="fas fa-times-circle" style="color: red;"></i> <!-- Icon inactiv -->
+                        @endif
+                    </td>
                     <td>
                       <div class="form-button-action">
                         <button
