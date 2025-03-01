@@ -32,6 +32,7 @@ class DepartmentFromHotelController extends Controller
     }
 
     public function create(Request $request){
-        dd(Auth::user());
+        dd(Auth::user()->hotel_id->name);
+
     }
 }
