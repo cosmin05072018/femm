@@ -52,7 +52,14 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // Actualizăm starea de conectare a utilizatorului
-        $user->update(['is_logged_in' => 1]);
+        if ($user) {
+            // Obține instanța completă din baza de date
+            $user = User::find($user->id);
+
+            // Actualizează starea de deconectare
+            $user->is_logged_in = 1;
+            $user->save();
+        }
 
         // Verificăm rolul utilizatorului
         if ($user->role_id === 1) {
