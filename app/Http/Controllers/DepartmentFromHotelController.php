@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\HotelDepartment;
 
 class DepartmentFromHotelController extends Controller
 {
@@ -24,15 +25,20 @@ class DepartmentFromHotelController extends Controller
 
         // Găsim utilizatorii care sunt în acest departament și au același hotel
         $users = User::where('department_id', $department->id)
-                     ->where('hotel_id', $hotel ? $hotel->id : null) // Asigură-te că $hotel nu e null
-                     ->get();
+            ->where('hotel_id', $hotel ? $hotel->id : null) // Asigură-te că $hotel nu e null
+            ->get();
 
 
         return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser'));
     }
 
-    public function create(Request $request){
-        dd(Auth::user()->hotel_id);
+    public function create(Request $request)
+    {
+        $hotel_id = Auth::user()->hotel_id;
+        $departments = HotelDepartment::where('hotel_id', $hotel_id)
+            ->with('department') // Preia relația cu Department
+            ->get();
 
+        dd($departments);
     }
 }
