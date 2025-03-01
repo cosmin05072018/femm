@@ -34,10 +34,10 @@
                     @foreach ($departments as $department)
                         <div class="col-lg-4 mb-3 d-flex align-items-stretch">
                             <div class="card w-100 text-center position-relative">
-                                <div class="position-absolute top-0 end-0 m-2 text-white d-flex align-items-center gap-3 p-2">
-                                    <i class="fas fa-user me-1">:</i> {{ $department->users_count }}
+                                <div class="position-absolute top-0 end-0 m-2 text-white d-flex align-items-center">
+                                    <i class="fas fa-user me-1"></i> {{ $department->users_count }}
                                 </div>
-                                <div class="card-body d-flex flex-column"
+                                <div class="card-body d-flex flex-column py-3"
                                     style="background: {{ $department->color ?? '#3d5272' }};">
                                     <h3 class="card-title text-white">{{ $department->name }}</h3>
                                     <p class="card-text py-4 text-white">{{ $department->description }}</p>
