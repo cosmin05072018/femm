@@ -165,7 +165,15 @@
                     <td>{{ $user->phone }}</td>
                     <td>{{ $user->function }}</td>
                     <td>{{ $user->email_femm }}</td>
-                    <td>{{ $user->role->name ?? 'N/A' }}</td>
+                    <td>
+                        @if($user->role_id === 3)
+                            Sef departament
+                        @elseif($user->role_id === 4)
+                            Angajat
+                        @else
+                            {{ $user->role->name ?? 'N/A' }}
+                        @endif
+                    </td>
                     <td>{{ $user->remember_token ? \Carbon\Carbon::parse($user->updated_at)->diffForHumans() : 'Never' }}</td>
                     <td>
                       <div class="form-button-action">
