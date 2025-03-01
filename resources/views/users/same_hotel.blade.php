@@ -19,13 +19,11 @@
         <div id="content">
             <!-- Chat HM + sefi departamente -->
             @if ($existsChatGroup)
-                <a href="{{ route('chat.index') }}" class="btn btn-primary">🔵 Mergi la Chat</a>
+                <a href="#" class="btn btn-primary">🔵 Mergi la Chat</a>
                 <small>In acest grup fac parte Managerul Hotelului si Sefii Departamentelor</small>
-                <a href="#">Mergi catre Chat</a>
             @else
-                <a href="{{ route('chat.create') }}" class="btn btn-success">➕ Creează un Chat</a>
+                <a href="#" class="btn btn-success">➕ Creează un Chat</a>
                 <p>Nu există un chat pentru acest hotel. Creează unul acum!</p>
-                <a href="#">Creează Chat</a>
             @endif
             <h1></h1>
             <section class="bg-light p-3 shadow-sm">
