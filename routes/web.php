@@ -12,6 +12,7 @@ use App\Http\Controllers\SuperAdmin\EmailsController;
 use App\Http\Controllers\EmailController;
 use Webklex\PHPIMAP\ClientManager;
 use App\Http\Controllers\EmailSyncController;
+use App\Http\Controllers\ChatController;
 
 // ruta de sincronizare mailuri
 Route::get('/sync-emails', [EmailSyncController::class, 'syncEmails']);
@@ -91,6 +92,10 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     Route::post('/hotel/{id}/create-user', [CreateUserController::class, 'create'])->name('hotel.create-user');
     // delete hotel
     Route::delete('hotel/{id}', [HotelsController::class, 'destroy'])->name('hotel.destroy');
+
+    // Chat
+    Route::post('/chat/send', [ChatController::class, 'sendMessage']);
+    Route::get('/chat/messages/{groupId}', [ChatController::class, 'getMessages']);
 
 });
 
