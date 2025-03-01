@@ -22,7 +22,7 @@
                 @if ($existsChatGroup)
                     <div class="chat-section">
                         <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                            <a href="{{ route('admin.department.users.chat') }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
                                 <span>&#128994;</span> Chat
                             </a>
                         </div>

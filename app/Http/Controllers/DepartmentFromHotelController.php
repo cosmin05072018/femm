@@ -52,4 +52,8 @@ class DepartmentFromHotelController extends Controller
 
         return redirect()->back()->with('success', 'Chat groups created successfully.');
     }
+
+    public function viewchat(){
+        dd(Auth::user());
+    }
 }
