@@ -105,7 +105,7 @@
                                         @php
                                             $counter = 1;
                                         @endphp
-                                            <td>{{ $counter++ }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->id }}</td>
                                         <td>{{ $user->employee_name }}</td>
                                         <td>{{ $user->phone }}</td>
