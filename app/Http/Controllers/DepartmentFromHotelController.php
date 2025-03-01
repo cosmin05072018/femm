@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DepartmentFromHotelController extends Controller
 {
     public function show($departmentId)
     {
+
+        $authUser = Auth::user();
         // Găsim departamentul
         $department = Department::findOrFail($departmentId);
 
@@ -25,6 +28,6 @@ class DepartmentFromHotelController extends Controller
                      ->get();
 
 
-        return view('users.viewdepartment', compact('department', 'hotel', 'users'));
+        return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser'));
     }
 }
