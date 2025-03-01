@@ -111,7 +111,13 @@
                                             $counter = 1;
                                         @endphp
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->employee_name }}</td>
+                                        <td>
+                                            @if (auth()->user()->id === $user->id)
+                                                <span class="text-success">TU</span>
+                                            @else
+                                                {{ $user->employee_name }}
+                                            @endif
+                                        </td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->function }}</td>
                                         <td>{{ $user->email_femm }}</td>
