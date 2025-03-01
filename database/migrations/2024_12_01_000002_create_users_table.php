@@ -32,6 +32,7 @@ return new class extends Migration
             $table->unsignedBigInteger('department_id')->nullable(); // ID-ul departamentului asignat
             $table->unsignedBigInteger('hotel_id')->nullable(); // Asociază utilizatorul cu un hotel
             $table->string('remember_token', 100)->nullable();
+            $table->tinyInteger('is_logged_in')->default(0); // 0 - deconectat, 1 - conectat
             $table->timestamps();                            // Created at și updated at
 
             // Definire cheie externă pentru department_id

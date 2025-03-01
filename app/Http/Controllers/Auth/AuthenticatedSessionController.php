@@ -51,6 +51,9 @@ class AuthenticatedSessionController extends Controller
         // Regenerăm sesiunea după autentificare
         $request->session()->regenerate();
 
+        // Actualizăm starea de conectare a utilizatorului
+        $user->update(['is_logged_in' => 1]);
+
         // Verificăm rolul utilizatorului
         if ($user->role_id === 1) {
             // Redirecționăm super-admin-ul către ruta '/fantastic-admin'
@@ -78,6 +81,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // Preia utilizatorul curent
+        $user = auth()->user();
+
+        // Verifică dacă utilizatorul este autentificat și apoi actualizează
+        if ($user) {
+            // Obține instanța completă din baza de date
+            $user = User::find($user->id);
+
+            // Actualizează starea de deconectare
+            $user->is_logged_in = 0;
+            $user->save();
+        }
+
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
