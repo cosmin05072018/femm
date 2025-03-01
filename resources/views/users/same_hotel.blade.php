@@ -17,7 +17,13 @@
 
         <!-- Main Content -->
         <div id="content">
-            <h1>{{ existsChatGroup }}</h1>
+            @if ($existsChatGroup)
+                {{ existsChatGroup }}
+            @else{
+                nu exista
+            }
+            @endif
+            <h1></h1>
             <section class="bg-light p-3 shadow-sm">
                 @if ($authUser->role_id == 2)
                     <div class="row d-flex justify-content-center align-items-center">
