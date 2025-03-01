@@ -201,7 +201,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
+        console.log("jQuery loaded");
         $(document).ready(function() {
             // Inițializăm DataTable și facem variabila globală
             var table = $("#add-row").DataTable({
@@ -243,5 +243,4 @@
                 $("#addName, #addPhone, #addPosition, #addEmailFemm, #addRole, #addLastConnection").val('');
             });
         });
-    </script>
 @endpush
