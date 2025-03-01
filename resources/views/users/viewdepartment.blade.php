@@ -165,10 +165,10 @@
                     <td>
                         @if ($user->is_logged_in == 1)
                             <span>Activ</span>
-                            <i class="fas fa-check-circle" style="color: green;"></i> <!-- Icon activ -->
+                            <span style="display: inline-block; width: 10px; height: 10px; background-color: green; border-radius: 50%;"></span>
                         @else
                             <span>Inactiv</span>
-                            <i class="fas fa-times-circle" style="color: red;"></i> <!-- Icon inactiv -->
+                            <span style="display: inline-block; width: 10px; height: 10px; background-color: red; border-radius: 50%;"></span>
                         @endif
                     </td>
                     <td>
