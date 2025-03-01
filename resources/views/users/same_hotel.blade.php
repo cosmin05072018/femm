@@ -17,11 +17,15 @@
 
         <!-- Main Content -->
         <div id="content">
+            <!-- Chat HM + sefi departamente -->
             @if ($existsChatGroup)
-                {{ existsChatGroup }}
-            @else{
-                nu exista
-            }
+                <a href="{{ route('chat.index') }}" class="btn btn-primary">🔵 Mergi la Chat</a>
+                <small>In acest grup fac parte Managerul Hotelului si Sefii Departamentelor</small>
+                <a href="{{ route('chat.test') }}">Mergi catre Chat</a>
+            @else
+                <a href="{{ route('chat.create') }}" class="btn btn-success">➕ Creează un Chat</a>
+                <p>Nu există un chat pentru acest hotel. Creează unul acum!</p>
+                <a href="{{ route('chat.test') }}">Creează Chat</a>
             @endif
             <h1></h1>
             <section class="bg-light p-3 shadow-sm">
@@ -44,10 +48,12 @@
                                 <div class="position-absolute top-0 end-0 m-2 text-white d-flex align-items-center p-3">
                                     <i class="fas fa-user me-1"></i> {{ $department->users_count }}
                                 </div>
-                                <div class="card-body d-flex flex-column py-4" style="background: {{ $department->color ?? '#3d5272' }};">
+                                <div class="card-body d-flex flex-column py-4"
+                                    style="background: {{ $department->color ?? '#3d5272' }};">
                                     <h3 class="card-title text-white my-3">{{ $department->name }}</h3>
                                     <p class="card-text text-white flex-grow-1">{{ $department->description }}</p>
-                                    <a href="{{ route('admin.department.users', ['departmentId' => $department->id]) }}" class="btn btn-light mt-auto rounded-pill">Vezi mai multe</a>
+                                    <a href="{{ route('admin.department.users', ['departmentId' => $department->id]) }}"
+                                        class="btn btn-light mt-auto rounded-pill">Vezi mai multe</a>
                                 </div>
                             </div>
                         </div>
