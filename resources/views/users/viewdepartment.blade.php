@@ -129,10 +129,77 @@
             </div>
 
             <div class="table-responsive">
-              <table
+                <table
                 id="add-row"
                 class="display table table-striped table-hover"
               >
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Employee Name</th>
+                    <th>Phone</th>
+                    <th>Function</th>
+                    <th>Email FEMM</th>
+                    <th>Role</th>
+                    <th>Last Connection</th>
+                    <th style="width: 10%">Action</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Employee Name</th>
+                    <th>Phone</th>
+                    <th>Function</th>
+                    <th>Email FEMM</th>
+                    <th>Role</th>
+                    <th>Last Connection</th>
+                    <th>Action</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                  @foreach($users as $user)
+                  <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->employee_name }}</td>
+                    <td>{{ $user->phone }}</td>
+                    <td>{{ $user->function }}</td>
+                    <td>{{ $user->email_femm }}</td>
+                    <td>
+                      @if($user->role_id === 3)
+                        Sef departament
+                      @elseif($user->role_id === 4)
+                        Angajat
+                      @else
+                        {{ $user->role->name ?? 'N/A' }}
+                      @endif
+                    </td>
+                    <td>{{ $user->last_connection ?? 'Never' }}</td> <!-- Adăugat coloana Last Connection -->
+                    <td>
+                      <div class="form-button-action">
+                        <button
+                          type="button"
+                          data-bs-toggle="tooltip"
+                          title="Edit Task"
+                          class="btn btn-link btn-primary btn-lg"
+                        >
+                          <i class="fa fa-edit"></i>
+                        </button>
+                        <button
+                          type="button"
+                          data-bs-toggle="tooltip"
+                          title="Remove"
+                          class="btn btn-link btn-danger"
+                        >
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -174,7 +241,7 @@
                             {{ $user->role->name ?? 'N/A' }}
                         @endif
                     </td>
-                    <td>{{ $user->remember_token ? \Carbon\Carbon::parse($user->updated_at)->diffForHumans() : 'Never' }}</td>
+                    <td>trebuie creata o noua coloana in tabela users pentru a vedea daca userul este sau nu conectat</td>
                     <td>
                       <div class="form-button-action">
                         <button
@@ -207,3 +274,70 @@
 </div>
 
 @endsection
+
+
+$(document).ready(function () {
+    // Inițializarea DataTable pentru tabelul cu ID-ul add-row
+    $("#add-row").DataTable({
+      pageLength: 5,
+      initComplete: function () {
+        // Inițializarea filtrelor pe coloane, dacă este necesar
+        this.api()
+          .columns()
+          .every(function () {
+            var column = this;
+            var select = $(
+              '<select class="form-select"><option value=""></option></select>'
+            )
+              .appendTo($(column.footer()).empty())
+              .on("change", function () {
+                var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                column.search(val ? "^" + val + "$" : "", true, false).draw();
+              });
+
+            column
+              .data()
+              .unique()
+              .sort()
+              .each(function (d, j) {
+                select.append('<option value="' + d + '">' + d + "</option>");
+              });
+          });
+      },
+    });
+
+    // Logica pentru adăugarea unui rând nou
+    var action =
+      '<td><div class="form-button-action">' +
+      '<button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg">' +
+      '<i class="fa fa-edit"></i></button>' +
+      '<button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger">' +
+      '<i class="fa fa-times"></i></button>' +
+      '</div></td>';
+
+    $("#addRowButton").click(function () {
+      var userName = $("#addName").val();
+      var userPhone = $("#addPhone").val();
+      var userFunction = $("#addFunction").val();
+      var userEmail = $("#addEmail").val();
+      var userRole = $("#addRole").val();
+      var userConnection = $("#addConnection").val(); // Adăugăm logică pentru connection
+
+      // Adăugăm rândul nou în tabel
+      $("#add-row")
+        .DataTable()
+        .row.add([
+          userName,
+          userPhone,
+          userFunction,
+          userEmail,
+          userRole,
+          userConnection, // Coloana de Last Connection
+          action,
+        ])
+        .draw();
+
+      // Ascundem modalul de adăugare a rândului
+      $("#addRowModal").modal("hide");
+    });
+  });
