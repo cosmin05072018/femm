@@ -21,20 +21,22 @@
 
                 @if ($existsChatGroup)
                     <div class="chat-section">
-                        <a href="#"
-                            class="btn btn-primary btn-lg d-flex align-items-center justify-content-center gap-2">
-                            <span>&#128994;</span> Mergi la Chat
-                        </a>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                                <span>&#128994;</span> Mergi la Chat
+                            </a>
+                        </div>
                         <small class="text-muted d-block mt-2">În acest grup fac parte Managerul Hotelului și Șefii
                             Departamentelor.</small>
                     </div>
                 @else
                     <div class="chat-section mt-3">
-                        <a href="#"
-                            class="btn btn-success btn-lg d-flex align-items-center justify-content-center gap-2">
-                            <span>&#10133;</span> Creează un Chat
-                        </a>
                         <p class="mt-2 text-muted">Nu există un chat pentru acest hotel. Creează unul acum!</p>
+                        <div class="d-flex justify-content-center">
+                            <a href="#" class="btn btn-success btn-lg d-flex align-items-center gap-2">
+                                <span>&#10133;</span> Creează un Chat
+                            </a>
+                        </div>
                     </div>
                 @endif
             </div>
