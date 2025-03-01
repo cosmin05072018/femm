@@ -8,11 +8,12 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex align-items-center">
-                        <h4 class="card-title">Add Row</h4>
-                        <button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
+                        <!--<h4 class="card-title">Add Row</h4> -->
+                        <h2>Departamentul: {{ $department->name }}</h2>
+                        <!--<button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
                             <i class="fa fa-plus"></i>
                             Add Row
-                        </button>
+                        </button>-->
                     </div>
                 </div>
                 <div class="card-body">
