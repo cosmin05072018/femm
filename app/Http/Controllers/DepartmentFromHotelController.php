@@ -53,7 +53,17 @@ class DepartmentFromHotelController extends Controller
         return redirect()->back()->with('success', 'Chat groups created successfully.');
     }
 
-    public function viewchat(){
-        dd(Auth::user());
+    public function viewchat()
+    {
+        $hotel_id = Auth::user()->hotel_id;
+
+        // Găsim toate departamentele asociate hotelului în tabela chat_groups
+        $departmentIds = ChatGroup::where('hotel_id', $hotel_id)
+            ->pluck('department_id'); // Obținem doar ID-urile departamentelor
+
+        // Găsim toți utilizatorii care aparțin acestor departamente
+        $users = User::whereIn('department_id', $departmentIds)->get();
+        dd($users);
+        return redirect()->back();
     }
 }
