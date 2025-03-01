@@ -70,12 +70,12 @@ class User extends Authenticatable
      */
     public function department()
     {
-        return $this->belongsTo(Department::class, 'department_id');
+        return $this->belongsTo(Department::class);
     }
 
     public function hotel()
     {
-        return $this->belongsTo(Hotel::class, 'hotel_id');
+        return $this->belongsTo(Hotel::class);
     }
 
     public function role()
