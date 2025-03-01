@@ -25,6 +25,6 @@ class DepartmentFromHotelController extends Controller
                      ->get();
 
 
-        return view('users.viewdepartment', compact('department', 'users'));
+        return view('users.viewdepartment', compact('department', 'hotel', 'users'));
     }
 }
