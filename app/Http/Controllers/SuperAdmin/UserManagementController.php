@@ -100,31 +100,29 @@ class UserManagementController extends Controller
     {
         $authUser = Auth::user();
 
-        // Verificăm rolul utilizatorului și filtrăm utilizatorii din același hotel
+        // Obținem ID-ul hotelului utilizatorului autentificat
+        $hotelId = $authUser->hotel_id;
+
+        // Verificăm rolul utilizatorului și returnăm departamentele corespunzătoare
         if ($authUser->role_id == 2) {
-            // Manager - vede toți utilizatorii din hotelul său
-            $departments = Department::where('hotel_id', $authUser->hotel_id)
-                ->withCount(['users' => function ($query) use ($authUser) {
-                    $query->where('hotel_id', $authUser->hotel_id); // Asigură-te că sunt utilizatori din același hotel
-                }])
-                ->get();
+            // Manager - toate departamentele din același hotel
+            $departments = Department::whereHas('hotels', function ($query) use ($hotelId) {
+                $query->where('hotel_id', $hotelId);
+            })->withCount(['users' => function ($query) use ($hotelId) {
+                $query->where('hotel_id', $hotelId);
+            }])->get();
         } elseif (in_array($authUser->role_id, [3, 4])) {
-            // Admin sau utilizator - vede doar utilizatorii din departamentul lor
+            // Alți utilizatori - doar departamentul propriu
             $departments = Department::where('id', $authUser->department_id)
-                ->where('hotel_id', $authUser->hotel_id)
-                ->withCount(['users' => function ($query) use ($authUser) {
-                    $query->where('hotel_id', $authUser->hotel_id);
-                }])
-                ->get();
-        } else {
-            // Dacă utilizatorul nu are un rol definit, returnăm o listă goală
-            $departments = collect();
+                ->whereHas('hotels', function ($query) use ($hotelId) {
+                    $query->where('hotel_id', $hotelId);
+                })->withCount(['users' => function ($query) use ($hotelId) {
+                    $query->where('hotel_id', $hotelId);
+                }])->get();
         }
 
         return view('users.same_hotel', compact('authUser', 'departments'));
     }
-
-
     public function destroy($userId)
     {
         // Găsește utilizatorul pe baza ID-ului
