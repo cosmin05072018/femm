@@ -59,10 +59,12 @@ class DepartmentFromHotelController extends Controller
 
         // Găsim toate departamentele asociate hotelului în tabela chat_groups
         $departmentIds = ChatGroup::where('hotel_id', $hotel_id)
-            ->pluck('department_id'); // Obținem doar ID-urile departamentelor
+            ->pluck('department_id');
 
-        // Găsim toți utilizatorii care aparțin acestor departamente
-        $users = User::whereIn('department_id', $departmentIds)->get();
+        // Găsim utilizatorii care sunt în același hotel și în aceste departamente
+        $users = User::where('hotel_id', $hotel_id)
+            ->whereIn('department_id', $departmentIds)
+            ->get();
         dd($users);
         return redirect()->back();
     }
