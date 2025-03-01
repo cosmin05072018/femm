@@ -483,6 +483,10 @@
     <script src="{{ asset('js/setting-demo.js') }}"></script>
     <script src="{{ asset('js/demo.js') }}"></script>
     <script>
+        function goBack() {
+            window.history.back();
+        }
+
         $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
             type: "line",
             height: "70",
