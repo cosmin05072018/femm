@@ -7,6 +7,7 @@ use App\Models\Department;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\HotelDepartment;
+use App\Models\ChatGroup;
 
 class DepartmentFromHotelController extends Controller
 {
@@ -32,13 +33,25 @@ class DepartmentFromHotelController extends Controller
         return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser'));
     }
 
-    public function create(Request $request)
+    protected $names = ['nivel1', 'nivel2', 'nivel3'];
+
+    public function createChatGroupLevel1()
     {
         $hotel_id = Auth::user()->hotel_id;
         $departments = HotelDepartment::where('hotel_id', $hotel_id)
-            ->with('department') // Preia relația cu Department
+            ->with('department')
             ->get();
 
-        dd($departments);
+        $names = ['nivel1', 'nivel2', 'nivel3'];
+
+        foreach ($departments as $department) {
+            ChatGroup::create([
+                'hotel_id' => $hotel_id,
+                'department_id' => $department->department_id,
+                'name' => $this->names[0],
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Chat groups created successfully.');
     }
 }
