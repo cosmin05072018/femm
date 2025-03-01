@@ -1,4 +1,5 @@
 @extends('layouts.userslayout')
+@extends('layouts.app')
 
 @section('title', 'Departament')
 
