@@ -158,47 +158,53 @@
                   </tr>
                 </tfoot>
                 <tbody>
-                  @foreach($users as $user)
-                  <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->employee_name }}</td>
-                    <td>{{ $user->phone }}</td>
-                    <td>{{ $user->function }}</td>
-                    <td>{{ $user->email_femm }}</td>
-                    <td>
-                      @if($user->role_id === 3)
-                        Sef departament
-                      @elseif($user->role_id === 4)
-                        Angajat
-                      @else
-                        {{ $user->role->name ?? 'N/A' }}
-                      @endif
-                    </td>
-                    <td>{{ $user->last_connection ?? 'Never' }}</td> <!-- Adăugat coloana Last Connection -->
-                    <td>
-                      <div class="form-button-action">
-                        <button
-                          type="button"
-                          data-bs-toggle="tooltip"
-                          title="Edit Task"
-                          class="btn btn-link btn-primary btn-lg"
-                        >
-                          <i class="fa fa-edit"></i>
-                        </button>
-                        <button
-                          type="button"
-                          data-bs-toggle="tooltip"
-                          title="Remove"
-                          class="btn btn-link btn-danger"
-                        >
-                          <i class="fa fa-times"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  @endforeach
+                  <!-- Rânduri de utilizatori vor fi adăugate din JavaScript -->
                 </tbody>
               </table>
+
+              <!-- Modal pentru adăugarea unui rând nou -->
+              <div class="modal" id="addRowModal" tabindex="-1" aria-labelledby="addRowModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="addRowModalLabel">Add New Employee</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="addEmployeeForm">
+                        <div class="mb-3">
+                          <label for="addName" class="form-label">Employee Name</label>
+                          <input type="text" class="form-control" id="addName" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="addPhone" class="form-label">Phone</label>
+                          <input type="text" class="form-control" id="addPhone" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="addFunction" class="form-label">Function</label>
+                          <input type="text" class="form-control" id="addFunction" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="addEmail" class="form-label">Email FEMM</label>
+                          <input type="email" class="form-control" id="addEmail" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="addRole" class="form-label">Role</label>
+                          <input type="text" class="form-control" id="addRole" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="addConnection" class="form-label">Last Connection</label>
+                          <input type="text" class="form-control" id="addConnection" required>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="addRowButton">Add Employee</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
                 <thead>
                   <tr>
@@ -273,73 +279,52 @@
 
 </div>
 
+
 <script>
-$(document).ready(function () {
-    // Inițializarea DataTable pentru tabelul cu ID-ul add-row
-    $("#add-row").DataTable({
-      pageLength: 5,
-      initComplete: function () {
-        // Inițializarea filtrelor pe coloane, dacă este necesar
-        this.api()
-          .columns()
-          .every(function () {
-            var column = this;
-            var select = $(
-              '<select class="form-select"><option value=""></option></select>'
-            )
-              .appendTo($(column.footer()).empty())
-              .on("change", function () {
-                var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                column.search(val ? "^" + val + "$" : "", true, false).draw();
-              });
 
-            column
-              .data()
-              .unique()
-              .sort()
-              .each(function (d, j) {
-                select.append('<option value="' + d + '">' + d + "</option>");
-              });
-          });
-      },
-    });
+    $(document).ready(function () {
+        // Inițializarea DataTable pentru tabelul cu ID-ul add-row
+        var table = $("#add-row").DataTable({
+          pageLength: 5,
+        });
 
-    // Logica pentru adăugarea unui rând nou
-    var action =
-      '<td><div class="form-button-action">' +
-      '<button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg">' +
-      '<i class="fa fa-edit"></i></button>' +
-      '<button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger">' +
-      '<i class="fa fa-times"></i></button>' +
-      '</div></td>';
+        // Definirea acțiunilor pentru butoanele din fiecare rând
+        var action =
+          '<td><div class="form-button-action">' +
+          '<button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg">' +
+          '<i class="fa fa-edit"></i></button>' +
+          '<button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger">' +
+          '<i class="fa fa-times"></i></button>' +
+          '</div></td>';
 
-    $("#addRowButton").click(function () {
-      var userName = $("#addName").val();
-      var userPhone = $("#addPhone").val();
-      var userFunction = $("#addFunction").val();
-      var userEmail = $("#addEmail").val();
-      var userRole = $("#addRole").val();
-      var userConnection = $("#addConnection").val(); // Adăugăm logică pentru connection
+        // La click pe butonul de adăugare a unui rând
+        $("#addRowButton").click(function () {
+          // Preluarea valorilor din formular
+          var name = $("#addName").val();
+          var phone = $("#addPhone").val();
+          var functionVal = $("#addFunction").val();
+          var email = $("#addEmail").val();
+          var role = $("#addRole").val();
+          var connection = $("#addConnection").val();
 
-      // Adăugăm rândul nou în tabel
-      $("#add-row")
-        .DataTable()
-        .row.add([
-          userName,
-          userPhone,
-          userFunction,
-          userEmail,
-          userRole,
-          userConnection, // Coloana de Last Connection
-          action,
-        ])
-        .draw();
+          // Adăugarea unui rând nou în DataTable
+          table.row.add([
+            name,
+            phone,
+            functionVal,
+            email,
+            role,
+            connection,
+            action,
+          ]).draw();
 
-      // Ascundem modalul de adăugare a rândului
-      $("#addRowModal").modal("hide");
-    });
-  });
+          // Închiderea modalului după adăugare
+          $("#addRowModal").modal("hide");
+
+          // Resetarea formularului
+          $("#addEmployeeForm")[0].reset();
+        });
+      });
+
 </script>
 @endsection
-
-
