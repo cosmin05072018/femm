@@ -14,28 +14,31 @@
     </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Chat HM + sefi departamente -->
-            <div class="container mt-5">
-                <div class="card shadow-lg border-0 p-4 text-center">
-                    <h4 class="mb-3">Chat pentru Hotel</h4>
+        <!-- Chat HM + sefi departamente -->
+        <div class="container mt-5">
+            <div class="card shadow-lg border-0 p-4 text-center">
+                <h4 class="mb-3">Chat pentru Hotel</h4>
 
-                    <!-- Exemplu de structură pentru ambele scenarii -->
+                @if ($existsChatGroup)
                     <div class="chat-section">
-                        <a href="#" class="btn btn-primary btn-lg d-flex align-items-center justify-content-center gap-2">
+                        <a href="#"
+                            class="btn btn-primary btn-lg d-flex align-items-center justify-content-center gap-2">
                             <span>&#128994;</span> Mergi la Chat
                         </a>
-                        <small class="text-muted d-block mt-2">În acest grup fac parte Managerul Hotelului și Șefii Departamentelor.</small>
+                        <small class="text-muted d-block mt-2">În acest grup fac parte Managerul Hotelului și Șefii
+                            Departamentelor.</small>
                     </div>
-
-                    <!-- Alternativ, dacă nu există chat -->
+                @else
                     <div class="chat-section mt-3">
-                        <a href="#" class="btn btn-success btn-lg d-flex align-items-center justify-content-center gap-2">
+                        <a href="#"
+                            class="btn btn-success btn-lg d-flex align-items-center justify-content-center gap-2">
                             <span>&#10133;</span> Creează un Chat
                         </a>
                         <p class="mt-2 text-muted">Nu există un chat pentru acest hotel. Creează unul acum!</p>
                     </div>
-                </div>
+                @endif
             </div>
+        </div>
         <!-- Main Content -->
         <div id="content">
             <section class="bg-light p-3 shadow-sm">
