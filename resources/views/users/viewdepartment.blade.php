@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <div class="d-flex flex-direction-column align-items-center">
+                    <div class="d-flex flex-column align-items-start">
                         <!--<h4 class="card-title">Add Row</h4> -->
                         <button class="btn btn-primary w-2 my-3" onclick="goBack()">
                             <i class="bi bi-arrow-left-circle"></i> Înapoi
