@@ -106,7 +106,6 @@
                                             $counter = 1;
                                         @endphp
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $user->id }}</td>
                                         <td>{{ $user->employee_name }}</td>
                                         <td>{{ $user->phone }}</td>
                                         <td>{{ $user->function }}</td>
