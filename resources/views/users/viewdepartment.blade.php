@@ -206,6 +206,8 @@
                 pageLength: 5
             });
 
+            console.log($("#add-row"));
+
             // Definim butoanele de acțiune
             var action =
                 '<td> <div class="form-button-action"> <button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg"> <i class="fa fa-edit"></i> </button> <button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger"> <i class="fa fa-times"></i> </button> </div> </td>';
