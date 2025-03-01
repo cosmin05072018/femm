@@ -273,9 +273,6 @@
 
 </div>
 
-@endsection
-
-
 $(document).ready(function () {
     // Inițializarea DataTable pentru tabelul cu ID-ul add-row
     $("#add-row").DataTable({
@@ -341,3 +338,7 @@ $(document).ready(function () {
       $("#addRowModal").modal("hide");
     });
   });
+
+@endsection
+
+
