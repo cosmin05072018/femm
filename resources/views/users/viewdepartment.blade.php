@@ -129,83 +129,10 @@
             </div>
 
             <div class="table-responsive">
-                <table
+              <table
                 id="add-row"
                 class="display table table-striped table-hover"
               >
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Employee Name</th>
-                    <th>Phone</th>
-                    <th>Function</th>
-                    <th>Email FEMM</th>
-                    <th>Role</th>
-                    <th>Last Connection</th>
-                    <th style="width: 10%">Action</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th>ID</th>
-                    <th>Employee Name</th>
-                    <th>Phone</th>
-                    <th>Function</th>
-                    <th>Email FEMM</th>
-                    <th>Role</th>
-                    <th>Last Connection</th>
-                    <th>Action</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                  <!-- Rânduri de utilizatori vor fi adăugate din JavaScript -->
-                </tbody>
-              </table>
-
-              <!-- Modal pentru adăugarea unui rând nou -->
-              <div class="modal" id="addRowModal" tabindex="-1" aria-labelledby="addRowModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="addRowModalLabel">Add New Employee</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <form id="addEmployeeForm">
-                        <div class="mb-3">
-                          <label for="addName" class="form-label">Employee Name</label>
-                          <input type="text" class="form-control" id="addName" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="addPhone" class="form-label">Phone</label>
-                          <input type="text" class="form-control" id="addPhone" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="addFunction" class="form-label">Function</label>
-                          <input type="text" class="form-control" id="addFunction" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="addEmail" class="form-label">Email FEMM</label>
-                          <input type="email" class="form-control" id="addEmail" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="addRole" class="form-label">Role</label>
-                          <input type="text" class="form-control" id="addRole" required>
-                        </div>
-                        <div class="mb-3">
-                          <label for="addConnection" class="form-label">Last Connection</label>
-                          <input type="text" class="form-control" id="addConnection" required>
-                        </div>
-                      </form>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" id="addRowButton">Add Employee</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -279,52 +206,4 @@
 
 </div>
 
-
-<script>
-
-    $(document).ready(function () {
-        // Inițializarea DataTable pentru tabelul cu ID-ul add-row
-        var table = $("#add-row").DataTable({
-          pageLength: 5,
-        });
-
-        // Definirea acțiunilor pentru butoanele din fiecare rând
-        var action =
-          '<td><div class="form-button-action">' +
-          '<button type="button" data-bs-toggle="tooltip" title="Edit Task" class="btn btn-link btn-primary btn-lg">' +
-          '<i class="fa fa-edit"></i></button>' +
-          '<button type="button" data-bs-toggle="tooltip" title="Remove" class="btn btn-link btn-danger">' +
-          '<i class="fa fa-times"></i></button>' +
-          '</div></td>';
-
-        // La click pe butonul de adăugare a unui rând
-        $("#addRowButton").click(function () {
-          // Preluarea valorilor din formular
-          var name = $("#addName").val();
-          var phone = $("#addPhone").val();
-          var functionVal = $("#addFunction").val();
-          var email = $("#addEmail").val();
-          var role = $("#addRole").val();
-          var connection = $("#addConnection").val();
-
-          // Adăugarea unui rând nou în DataTable
-          table.row.add([
-            name,
-            phone,
-            functionVal,
-            email,
-            role,
-            connection,
-            action,
-          ]).draw();
-
-          // Închiderea modalului după adăugare
-          $("#addRowModal").modal("hide");
-
-          // Resetarea formularului
-          $("#addEmployeeForm")[0].reset();
-        });
-      });
-
-</script>
 @endsection
