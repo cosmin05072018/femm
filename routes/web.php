@@ -102,7 +102,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // detalii departament
     Route::get('/department/{departmentId}/users', [DepartmentFromHotelController::class, 'show'])->name('department.users');
     Route::post('/department/users/create-chat', [DepartmentFromHotelController::class, 'createChatGroupLevel1'])->name('department.users.create-chat');
-    Route::get('/department/users/chat', [DepartmentFromHotelController::class, 'viewchat'])->name('department.users.chat');
+    Route::get('/department/users/chat', [DepartmentFromHotelController::class, 'viewChatGroupLevel1'])->name('department.users.chat');
 });
 
 

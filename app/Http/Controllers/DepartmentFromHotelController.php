@@ -53,7 +53,7 @@ class DepartmentFromHotelController extends Controller
         return redirect()->back()->with('success', 'Chat groups created successfully.');
     }
 
-    public function viewchat()
+    public function viewviewChatGroupLevel1chat()
     {
         $hotel_id = Auth::user()->hotel_id;
 
@@ -65,7 +65,8 @@ class DepartmentFromHotelController extends Controller
         $users = User::where('hotel_id', $hotel_id)
             ->whereIn('department_id', $departmentIds)
             ->get();
-        dd($users);
+
+        dd('chat Level1');
         return redirect()->back();
     }
 }
