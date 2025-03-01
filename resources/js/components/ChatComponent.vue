@@ -68,29 +68,24 @@ export default {
         }
     },
     methods: {
-        async fetchMessages() {
-            try {
-                const response = await axios.get(`/api/chat/messages/${this.groupId}`);
+    fetchMessages() {
+        axios.get(`/fantastic-admin/chat/messages/${this.groupId}`)
+            .then(response => {
                 this.messages = response.data;
-            } catch (error) {
-                console.error("Eroare la încărcarea mesajelor:", error);
-            }
-        },
-        async sendMessage() {
-            if (this.newMessage.trim() === '') return;
+            });
+    },
+    sendMessage() {
+        if (this.newMessage.trim() === '') return;
 
-            try {
-                await axios.post('/api/chat/send', {
-                    message: this.newMessage,
-                    group_id: this.groupId,
-                });
-
-                this.newMessage = '';
-            } catch (error) {
-                console.error("Eroare la trimiterea mesajului:", error);
-            }
-        }
+        axios.post('/fantastic-admin/chat/send', {
+            message: this.newMessage,
+            group_id: this.groupId
+        }).then(response => {
+            this.newMessage = '';
+        });
     }
+}
+
 };
 </script>
 
