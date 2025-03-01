@@ -23,7 +23,7 @@ class DepartmentFromHotelController extends Controller
             ->where('hotel_id', $hotel->id) // Asumăm că fiecare utilizator are un hotel_id
             ->get();
 
-        dd($department['name']);
+        dd($department->hotel['name']);
 
         return view('users.viewdepartment', compact('department', 'users'));
     }
