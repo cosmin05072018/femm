@@ -101,7 +101,6 @@
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Status</th>
-                                    <th style="width: 10%">Acțiuni</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,18 +139,6 @@
                                                 <span
                                                     style="display: inline-block; width: 10px; height: 10px; background-color: red; border-radius: 50%;"></span>
                                             @endif
-                                        </td>
-                                        <td>
-                                            <div class="form-button-action">
-                                                <button type="button" data-bs-toggle="tooltip" title="Edit Task"
-                                                    class="btn btn-link btn-primary btn-lg">
-                                                    <i class="fa fa-edit"></i>
-                                                </button>
-                                                <button type="button" data-bs-toggle="tooltip" title="Remove"
-                                                    class="btn btn-link btn-danger">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach
