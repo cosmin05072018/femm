@@ -2,7 +2,7 @@
 
 @section('title', 'Departament')
 
-@section('content-department')
+@section('content-users')
 <div class="container">
     <h2>Utilizatori din Departamentul {{ $department->name }} - Hotelul {{ $hotel ? $hotel->name : 'Necunoscut' }}</h2>
 
