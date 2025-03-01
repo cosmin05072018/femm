@@ -33,9 +33,12 @@
                     <div class="chat-section mt-3">
                         <p class="mt-2 text-muted">Nu există un grup de chat pentru Hotel Manager și Șefi de Departamente. Creează unul acum!</p>
                         <div class="d-flex justify-content-center">
-                            <a href="{{ route('admin.department.users.create-chat') }}" class="btn btn-success btn-lg d-flex align-items-center gap-2">
-                                <span>&#10133;</span> Crează un Chat
-                            </a>
+                            <form action="{{ route('admin.department.users.create-chat') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-lg d-flex align-items-center gap-2">
+                                    <span>&#10133;</span> Crează un Chat
+                                </button>
+                            </form>
                         </div>
                     </div>
                 @endif
