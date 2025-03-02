@@ -9,7 +9,7 @@ use App\Http\Controllers\SuperAdmin\DepartmentsController;
 use App\Http\Controllers\SuperAdmin\HotelsController;
 use App\Http\Controllers\SuperAdmin\CreateUserController;
 use App\Http\Controllers\SuperAdmin\EmailsController;
-use App\Http\Controllers\EmailController;
+// use App\Http\Controllers\EmailController;
 use Webklex\PHPIMAP\ClientManager;
 use App\Http\Controllers\EmailSyncController;
 use App\Http\Controllers\ChatController;
@@ -116,16 +116,16 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
 
 
 // Route pentru listarea emailurilor
-Route::get('/emails', [EmailController::class, 'fetchEmails']);
+// Route::get('/emails', [EmailController::class, 'fetchEmails']);
 
 // Route pentru vizualizarea unui email
-Route::get('/emails/{messageId}', [EmailController::class, 'showEmail']);
+// Route::get('/emails/{messageId}', [EmailController::class, 'showEmail']);
 
 // Route pentru a răspunde la un email
 // Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail']);
-Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail'])->name('emails.reply');
+// Route::post('/emails/{messageId}/reply', [EmailController::class, 'replyEmail'])->name('emails.reply');
 
-Route::post('/create-email', [EmailController::class, 'createEmail'])->name('createEmail');
+// Route::post('/create-email', [EmailController::class, 'createEmail'])->name('createEmail');
 
 
 require __DIR__ . '/auth.php';
