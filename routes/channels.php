@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
+
 Broadcast::channel('chat.{groupId}', function ($user, $groupId) {
     return $user->hotel_id === (int) $groupId; // Condiție de acces la canal
 });
