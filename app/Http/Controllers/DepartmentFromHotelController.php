@@ -61,19 +61,21 @@ class DepartmentFromHotelController extends Controller
 
     public function viewChatGroupLevel1()
     {
-        $hotel_id = Auth::user()->hotel_id;
+        // $hotel_id = Auth::user()->hotel_id;
 
-        // Găsim toate departamentele asociate hotelului în tabela chat_groups
-        $departmentIds = ChatGroup::where('hotel_id', $hotel_id)
-            ->pluck('department_id');
+        // // Găsim toate departamentele asociate hotelului în tabela chat_groups
+        // $departmentIds = ChatGroup::where('hotel_id', $hotel_id)
+        //     ->pluck('department_id');
 
-        // Găsim utilizatorii care sunt în același hotel și în aceste departamente
-        $users = User::where('hotel_id', $hotel_id)
-            ->whereIn('department_id', $departmentIds)
-            ->get();
+        // // Găsim utilizatorii care sunt în același hotel și în aceste departamente
+        // $users = User::where('hotel_id', $hotel_id)
+        //     ->whereIn('department_id', $departmentIds)
+        //     ->get();
 
-        dd('chat Level1');
-        return redirect()->back();
+        // dd('chat Level1');
+        // return redirect()->back();
+
+        return view('users.chat');
     }
 
 
