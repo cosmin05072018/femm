@@ -2,7 +2,7 @@
 
 @section('title', 'Chat')
 
-@section('content-chat')
+@section('content-users')
 <h1>hello</h1>
     <div id="app">
         <chat-component></chat-component>
