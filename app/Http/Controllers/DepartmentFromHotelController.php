@@ -103,4 +103,9 @@ class DepartmentFromHotelController extends Controller
         dd('chat Level2');
         return redirect()->back();
     }
+
+
+    public function chatIndividual(Request $request){
+        dd('Chat individual'.$request->id);
+    }
 }

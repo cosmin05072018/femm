@@ -111,6 +111,11 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     Route::post('/department/users/create-chat-nivel2', [DepartmentFromHotelController::class, 'createChatGroupLevel2'])->name('department.users.create-chat-nivel2');
     // catre chat nivel2
     Route::get('/department/users/chat-nivel2', [DepartmentFromHotelController::class, 'viewChatGroupLevel2'])->name('department.users.chat-nivel2');
+
+
+
+    // chat individual
+    Route::get('/department/user/chat/messages/{id}', [DepartmentFromHotelController::class, 'chatIndividual'])->name('department.user');;
 });
 
 

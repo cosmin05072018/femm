@@ -101,6 +101,7 @@
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Status</th>
+                                    <th>Chat</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -140,6 +141,15 @@
                                                     style="display: inline-block; width: 10px; height: 10px; background-color: red; border-radius: 50%;"></span>
                                             @endif
                                         </td>
+                                        <td><div class="chat-section">
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('admin.department.user', [$user->id]) }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                                                    <span>&#128994;</span> Chat
+                                                </a>
+                                            </div>
+                                            <small class="text-muted d-block mt-2">În acest grup fac parte Șefii
+                                                Departamentelor.</small>
+                                        </div></td>
                                     </tr>
                                 @endforeach
                             </tbody>
