@@ -24,7 +24,7 @@ class DepartmentFromHotelController extends Controller
         // Verificăm dacă există cel puțin un hotel
         $hotelIds = $hotels->pluck('id')->toArray();
 
-        $existsChatGroup = ChatGroup::where('hotel_id', $hotelIds->id)->exists();
+        $existsChatGroup = ChatGroup::whereIn('hotel_id', $hotelIds)->exists();
 
         // Găsim utilizatorii care sunt în acest departament și au același hotel
         $users = User::where('department_id', $department->id)
