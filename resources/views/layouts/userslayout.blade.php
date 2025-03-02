@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Femm</title>
@@ -33,8 +34,6 @@
     <link href="{{ asset('css/plugins.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/kaiadmin.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    @vite(['resources/js/app.js'])
 
     <!-- =======================================================
   * Template Name: Impact
