@@ -438,7 +438,7 @@
             </footer>
         </div>
     </div>
-    <script src="{{ url('build/assets/app-CeCM94Nh.js') }}"></script>
+    <script src="{{ url('build/assets/app-CdayKrS4.js') }}"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/circles/0.0.4/circles.min.js"
