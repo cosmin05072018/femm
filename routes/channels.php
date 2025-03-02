@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+Broadcast::channel('chat.{groupId}', function ($user, $groupId) {
+    return $user->hotel_id === (int) $groupId; // Condiție de acces la canal
 });
+
