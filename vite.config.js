@@ -10,5 +10,8 @@ export default defineConfig({
         }),
         vue(),
     ],
+    build: {
+        manifest: true, // Adaugă această linie pentru a activa generarea manifestului
+        outDir: 'public/build', // Asigură-te că fișierele de build sunt salvate în directorul corect
+    }
 });
-
