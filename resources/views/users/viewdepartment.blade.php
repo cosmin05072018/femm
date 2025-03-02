@@ -143,7 +143,7 @@
                                         </td>
                                         <td>
                                             <a href="{{ route('admin.department.user', [$user->id]) }}"
-                                                class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                                                class="btn btn-primary d-flex align-items-center gap-2">
                                                 <span>&#128994;</span> Chat
                                             </a>
                                         </td>
