@@ -19,7 +19,7 @@ class DepartmentFromHotelController extends Controller
         $department = Department::findOrFail($departmentId);
 
         // Obținem hotelurile asociate acestui departament
-        $hotels = $department->hotels()->where('id', $authUser->hotel_id)->get();
+        $hotels = $department->hotels()->where('hotels.id', $authUser->hotel_id)->get();
 
         // Verificăm dacă există cel puțin un hotel
         $hotel = $hotels->first(); // Folosim primul hotel din colecție, presupunând că sunt multiple hoteluri
