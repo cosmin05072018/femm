@@ -23,12 +23,12 @@ class DepartmentFromHotelController extends Controller
 
         // Verificăm dacă există cel puțin un hotel
         $hotel = $hotels->first(); // Folosim primul hotel din colecție, presupunând că sunt multiple hoteluri
-        dd($hotel);
+
         $existsChatGroup = ChatGroup::where('hotel_id', $hotel->id)->exists();
 
         // Găsim utilizatorii care sunt în acest departament și au același hotel
         $users = User::where('department_id', $department->id)
-            ->where('hotel_id', $hotel ? $hotel->id : null) // Asigură-te că $hotel nu e null
+            ->where('hotel_id', $hotel->id) // Asigură-te că $hotel nu e null
             ->get();
 
 
