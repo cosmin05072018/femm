@@ -3,7 +3,7 @@
 
 <head>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
-    <link href="{{ mix('build/assets/app-Da1WAMSj.css') }}" rel="stylesheet">
+    <link href="{{ url('build/assets/app-yxWhnCx_.css') }}" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -440,7 +440,7 @@
             </footer>
         </div>
     </div>
-    <script src="{{ mix('build/assets/app-BjCBnTiP.js') }}"></script>
+    <script src="{{ url('build/assets/app-EPWUomtA.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/circles/0.0.4/circles.min.js"
         integrity="sha512-b1WwqOM9cYn7+FkAOcEoY+CfteslFr4lZOHjC1Alh75hM9f4sySAa0eO1YG7CoEwOV0j46vZ+aHXBSV64Kqw2g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
