@@ -17,9 +17,11 @@
 </template>
 
 <script>
+console.log("Scriptul a început");
 import axios from 'axios';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
+console.log("Dependențele au fost importate");
 
 export default {
     data() {
@@ -36,6 +38,7 @@ export default {
         };
     },
     async mounted() {
+        console.log("Componenta este montată");
         try {
             const userResponse = await axios.get('/api/user');
             const user = userResponse.data;
