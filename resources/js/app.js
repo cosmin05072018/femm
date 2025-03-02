@@ -6,11 +6,14 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+
+import Echo from 'laravel-echo';
 window.Pusher = require('pusher-js');
+
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY,
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+    key: '4126cc215b26910f04eb',
+    cluster: 'eu',
     encrypted: true,
 });
 
@@ -19,8 +22,5 @@ import { createApp } from 'vue';
 import ChatComponent from './components/ChatComponent.vue';
 
 const app = createApp({});
-// app.component('chat-component', ChatComponent);
-// app.mount('#app');
-createApp(app)
-  .component('chat-component', ChatComponent) // Înregistrează componenta global
-  .mount('#app'); // Montează aplicația pe elementul cu id-ul 'app'
+app.component('chat-component', ChatComponent);
+app.mount('#app');
