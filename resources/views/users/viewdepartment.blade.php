@@ -101,7 +101,9 @@
                                     <th>Email</th>
                                     <th>Rol</th>
                                     <th>Status</th>
+                                    @if ($authUser->role_id === 2)
                                     <th>Chat</th>
+                                    @endif
                                 </tr>
                             </thead>
                             <tbody>
@@ -141,12 +143,14 @@
                                                     style="display: inline-block; width: 10px; height: 10px; background-color: red; border-radius: 50%;"></span>
                                             @endif
                                         </td>
+                                        @if ($authUser->role_id === 2)
                                         <td>
                                             <a href="{{ route('admin.department.user', [$user->id]) }}"
                                                 class="btn btn-primary d-flex align-items-center gap-2">
                                                 <span>&#128994;</span> Chat
                                             </a>
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
