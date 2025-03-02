@@ -3,6 +3,7 @@
 @section('title', 'Chat')
 
 @section('content-chat')
+<h1>hello</h1>
     <div id="app">
         <chat-component></chat-component>
     </div>
