@@ -1,0 +1,13 @@
+{
+  "/js/app.js": {
+    "file": "build/assets/app-CeCM94Nh.js",
+    "src": "/js/app.js",
+    "isEntry": true
+  },
+  "/css/app.css": {
+    "file": "build/assets/app-Cyp_e9n7.css",
+    "src": "/css/app.css",
+    "name": "app",
+    "isEntry": true
+  }
+}
