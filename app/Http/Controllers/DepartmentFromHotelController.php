@@ -19,10 +19,10 @@ class DepartmentFromHotelController extends Controller
         $department = Department::findOrFail($departmentId);
 
         // Obținem hotelurile asociate acestui departament
-        $hotels = $department->hotels; // Poate fi mai multe hoteluri asociate departamentului
+        $hotel = $department->hotels; // Poate fi mai multe hoteluri asociate departamentului
 
         // Verificăm dacă există cel puțin un hotel
-        $hotelIds = $hotels->pluck('id')->toArray();
+        $hotelIds = $hotel->pluck('id')->toArray();
 
         $existsChatGroup = ChatGroup::whereIn('hotel_id', $hotelIds)->exists();
 
