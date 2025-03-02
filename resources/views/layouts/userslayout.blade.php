@@ -439,7 +439,7 @@
         </div>
     </div>
     <script src="{{ url('public/build/assets/app-CeCM94Nh.js') }}"></script>
-    <script src="{{ url('resources/js/app.js') }}"></script>
+    <script src="{{ url('public/resources/js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/circles/0.0.4/circles.min.js"
         integrity="sha512-b1WwqOM9cYn7+FkAOcEoY+CfteslFr4lZOHjC1Alh75hM9f4sySAa0eO1YG7CoEwOV0j46vZ+aHXBSV64Kqw2g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
