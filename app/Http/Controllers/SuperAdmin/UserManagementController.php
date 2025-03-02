@@ -105,7 +105,14 @@ class UserManagementController extends Controller
         // Obținem ID-ul hotelului utilizatorului autentificat
         $hotelId = $authUser->hotel_id;
 
-        $existsChatGroup = ChatGroup::where('hotel_id', $hotelId)->exists();
+        $existsChatGroup1 = ChatGroup::where('hotel_id', $hotelId)
+            ->where('name', 'nivel1')
+            ->exists();
+
+        $existsChatGroup2 = ChatGroup::where('hotel_id', $hotelId)
+            ->where('name', 'nivel2')
+            ->exists();
+
 
         // Verificăm rolul utilizatorului și returnăm departamentele corespunzătoare
         if ($authUser->role_id == 2) {
@@ -125,7 +132,7 @@ class UserManagementController extends Controller
                 }])->get();
         }
 
-        return view('users.same_hotel', compact('authUser', 'departments', 'existsChatGroup'));
+        return view('users.same_hotel', compact('authUser', 'departments', 'existsChatGroup1', 'existsChatGroup2'));
     }
     public function destroy($userId)
     {
