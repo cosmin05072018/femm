@@ -24,7 +24,10 @@ class DepartmentFromHotelController extends Controller
         // Verificăm dacă există cel puțin un hotel
         $hotel = $hotels->first(); // Folosim primul hotel din colecție, presupunând că sunt multiple hoteluri
 
-        $existsChatGroup = ChatGroup::where('hotel_id', $hotel->id)->exists();
+        $existsChatGroup = ChatGroup::where('hotel_id', $hotel->id)
+            ->where('name', 'nivel1')
+            ->exists();
+
 
         // Găsim utilizatorii care sunt în acest departament și au același hotel
         $users = User::where('department_id', $department->id)
@@ -76,7 +79,8 @@ class DepartmentFromHotelController extends Controller
     }
 
 
-    public function createChatGroupLevel2(){
+    public function createChatGroupLevel2()
+    {
         $hotel_id = Auth::user()->hotel_id;
         $departments = HotelDepartment::where('hotel_id', $hotel_id)
             ->with('department')
