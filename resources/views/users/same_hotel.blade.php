@@ -14,6 +14,7 @@
     </style>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
+        @if ($authUser->role_id === 2 || $authUser->role_id === 3)
         <!-- Chat HM + sefi departamente -->
         <div class="container mt-5">
             <div class="card shadow-lg border-0 p-4 text-center">
@@ -44,6 +45,8 @@
                 @endif
             </div>
         </div>
+        @endif
+        @if ($authUser->role_id === 3)
         <!-- Chat sefi departamente -->
         <div class="container mt-5">
             <div class="card shadow-lg border-0 p-4 text-center">
@@ -74,6 +77,7 @@
                 @endif
             </div>
         </div>
+        @endif
         <!-- Main Content -->
         <div id="content">
             <section class="bg-light p-3 shadow-sm">
