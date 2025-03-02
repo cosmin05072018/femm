@@ -116,7 +116,7 @@ class DepartmentFromHotelController extends Controller
 
         ChatGroup::create([
             'hotel_id' => $hotel_id,
-            'department_id' => $departments->id,
+            'department_id' => Auth::user()->department_id,
             'name' => $this->names[2],
         ]);
 
