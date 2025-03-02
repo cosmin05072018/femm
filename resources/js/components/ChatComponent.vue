@@ -1,5 +1,6 @@
 <template>
     <div class="chat-container">
+        <h1>chat</h1>
         <div v-if="loading">Se încarcă chat-ul...</div>
 
         <div v-else>
