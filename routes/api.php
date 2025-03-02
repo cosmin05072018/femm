@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('/email/receiver', [EmailController::class, 'getFromReceiver']);
+// Route::post('/email/receiver', [EmailController::class, 'getFromReceiver']);
