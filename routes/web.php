@@ -102,9 +102,10 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // detalii departament
     Route::get('/department/{departmentId}/users', [DepartmentFromHotelController::class, 'show'])->name('department.users');
 
-    // chat
+    // CHAT
     // creare chat nivel1
-    Route::post('/department/users/create-chat-nivel1', [DepartmentFromHotelController::class, 'createChatGroupLevel1'])->name('department-create-chat-nivel1');    // catre chat nivel1
+    Route::post('/department/users/create-chat-nivel1', [DepartmentFromHotelController::class, 'createChatGroupLevel1'])->name('department-create-chat-nivel1');
+    // catre chat nivel1
     Route::get('/department/users/chat-nivel1', [DepartmentFromHotelController::class, 'viewChatGroupLevel1'])->name('department.users.chat-nivel1');
 
     // creare chat nivel2
@@ -112,7 +113,10 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // catre chat nivel2
     Route::get('/department/users/chat-nivel2', [DepartmentFromHotelController::class, 'viewChatGroupLevel2'])->name('department.users.chat-nivel2');
 
-
+    // creare chat nivel3
+    Route::post('/department/users/create-chat-nivel3', [DepartmentFromHotelController::class, 'createChatGroupLevel3'])->name('department.users.create-chat-nivel3');
+    // catre chat nivel3
+    Route::get('/department/users/chat-nivel3', [DepartmentFromHotelController::class, 'viewChatGroupLevel3'])->name('department.users.chat-nivel3');
 
     // chat individual
     Route::get('/department/user/chat/messages/{id}', [DepartmentFromHotelController::class, 'chatIndividual'])->name('department.user');;

@@ -24,14 +24,16 @@ class DepartmentFromHotelController extends Controller
         // Verificăm dacă există cel puțin un hotel
         $hotel = $hotels->first(); // Folosim primul hotel din colecție, presupunând că sunt multiple hoteluri
 
-        $existsChatGroup = ChatGroup::where('hotel_id', $hotel->id)->exists();
+        $existsChatGroupNivel3 = ChatGroup::where('hotel_id', $hotel->id)
+            ->where('name', 'nivel3')
+            ->exists();
 
         // Găsim utilizatorii care sunt în acest departament și au același hotel
         $users = User::where('department_id', $department->id)
             ->where('hotel_id', $hotel->id) // Asigură-te că $hotel nu e null
             ->get();
 
-        return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser'));
+        return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser', 'existsChatGroupNivel3'));
     }
 
     protected $names = ['nivel1', 'nivel2', 'nivel3'];
@@ -102,6 +104,27 @@ class DepartmentFromHotelController extends Controller
 
         dd('chat Level2');
         return redirect()->back();
+    }
+
+    public function createChatGroupLevel3(){
+        $hotel_id = Auth::user()->hotel_id;
+        $departments = HotelDepartment::where('hotel_id', $hotel_id)
+            ->with('department')
+            ->get();
+
+        foreach ($departments as $department) {
+            ChatGroup::create([
+                'hotel_id' => $hotel_id,
+                'department_id' => $department->department_id,
+                'name' => $this->names[2],
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Chat groups created successfully.');
+    }
+
+    public function viewChatGroupLevel3(){
+        dd('chat Level3');
     }
 
 

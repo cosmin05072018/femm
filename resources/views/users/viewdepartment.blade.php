@@ -3,6 +3,38 @@
 @section('title', 'Departament')
 
 @section('content-users')
+    @if ($authUser->role_id === 3 || $authUser->role_id === 4)
+        <!-- Chat sef departament si angajati -->
+        <div class="container mt-5">
+            <div class="card shadow-lg border-0 p-4 text-center">
+                <h4 class="mb-3">Chat pentru Șef de Departament și angajații departamentului</h4>
+
+                @if ($existsChatGroupNivel3)
+                    <div class="chat-section">
+                        <div class="d-flex justify-content-center">
+                            <a href="{{ route('admin.department.users.chat-nivel3') }}"
+                                class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                                <span>&#128994;</span> Chat
+                            </a>
+                        </div>
+                    </div>
+                @else
+                    <div class="chat-section mt-3">
+                        <p class="mt-2 text-muted">Nu există un grup de chat. Creează unul
+                            acum!</p>
+                        <div class="d-flex justify-content-center">
+                            <form action="{{ route('admin.department.users.create-chat-nivel3') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-success btn-lg d-flex align-items-center gap-2">
+                                    <span>&#10133;</span> Crează un Chat
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    @endif
     <div class="container mt-5">
         <div class="col-md-12">
             <div class="card">
@@ -15,9 +47,9 @@
                         <br>
                         <h2>Departamentul: {{ $department->name }}</h2>
                         <!--<button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
-                                <i class="fa fa-plus"></i>
-                                Add Row
-                            </button>-->
+                                    <i class="fa fa-plus"></i>
+                                    Add Row
+                                </button>-->
                     </div>
                 </div>
                 <div class="card-body">
@@ -102,7 +134,7 @@
                                     <th>Rol</th>
                                     <th>Status</th>
                                     @if ($authUser->role_id === 2)
-                                    <th>Chat</th>
+                                        <th>Chat</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -144,12 +176,12 @@
                                             @endif
                                         </td>
                                         @if ($authUser->role_id === 2)
-                                        <td>
-                                            <a href="{{ route('admin.department.user', [$user->id]) }}"
-                                                class="btn btn-primary d-flex align-items-center gap-2">
-                                                <span>&#128994;</span> Chat
-                                            </a>
-                                        </td>
+                                            <td>
+                                                <a href="{{ route('admin.department.user', [$user->id]) }}"
+                                                    class="btn btn-primary d-flex align-items-center gap-2">
+                                                    <span>&#128994;</span> Chat
+                                                </a>
+                                            </td>
                                         @endif
                                     </tr>
                                 @endforeach
