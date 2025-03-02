@@ -15,9 +15,9 @@
                         <br>
                         <h2>Departamentul: {{ $department->name }}</h2>
                         <!--<button class="btn btn-primary btn-round ms-auto" data-bs-toggle="modal" data-bs-target="#addRowModal">
-                            <i class="fa fa-plus"></i>
-                            Add Row
-                        </button>-->
+                                <i class="fa fa-plus"></i>
+                                Add Row
+                            </button>-->
                     </div>
                 </div>
                 <div class="card-body">
@@ -141,15 +141,12 @@
                                                     style="display: inline-block; width: 10px; height: 10px; background-color: red; border-radius: 50%;"></span>
                                             @endif
                                         </td>
-                                        <td><div class="chat-section">
-                                            <div class="d-flex justify-content-center">
-                                                <a href="{{ route('admin.department.user', [$user->id]) }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
-                                                    <span>&#128994;</span> Chat
-                                                </a>
-                                            </div>
-                                            <small class="text-muted d-block mt-2">În acest grup fac parte Șefii
-                                                Departamentelor.</small>
-                                        </div></td>
+                                        <td>
+                                            <a href="{{ route('admin.department.user', [$user->id]) }}"
+                                                class="btn btn-primary btn-lg d-flex align-items-center gap-2">
+                                                <span>&#128994;</span> Chat
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
