@@ -2,8 +2,7 @@
 <html lang="en">
 
 <head>
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
-    <link href="{{ url('build/assets/app-yxWhnCx_.css') }}" rel="stylesheet">
+    <link href="{{ url('build/assets/app-Cyp_e9n7.css') }}" rel="stylesheet">
 
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
