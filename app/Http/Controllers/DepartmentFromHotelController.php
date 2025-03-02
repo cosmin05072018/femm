@@ -38,7 +38,7 @@ class DepartmentFromHotelController extends Controller
             ->get();
 
 
-        return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser', 'existsChatGroupNivel1'. 'existsChatGroupNivel2'));
+        return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser', 'existsChatGroupNivel1', 'existsChatGroupNivel2'));
     }
 
     protected $names = ['nivel1', 'nivel2', 'nivel3'];
