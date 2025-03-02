@@ -106,29 +106,32 @@ class DepartmentFromHotelController extends Controller
         return redirect()->back();
     }
 
-    public function createChatGroupLevel3(){
+    public function createChatGroupLevel3()
+    {
         $hotel_id = Auth::user()->hotel_id;
         $departments = HotelDepartment::where('hotel_id', $hotel_id)
             ->with('department')
             ->get();
 
-        foreach ($departments as $department) {
-            ChatGroup::create([
-                'hotel_id' => $hotel_id,
-                'department_id' => $department->department_id,
-                'name' => $this->names[2],
-            ]);
-        }
+
+        ChatGroup::create([
+            'hotel_id' => $hotel_id,
+            'department_id' => $departments->id,
+            'name' => $this->names[2],
+        ]);
+
 
         return redirect()->back()->with('success', 'Chat groups created successfully.');
     }
 
-    public function viewChatGroupLevel3(){
+    public function viewChatGroupLevel3()
+    {
         dd('chat Level3');
     }
 
 
-    public function chatIndividual(Request $request){
-        dd('Chat individual'.$request->id);
+    public function chatIndividual(Request $request)
+    {
+        dd('Chat individual' . $request->id);
     }
 }
