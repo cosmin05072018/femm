@@ -19,7 +19,7 @@
             <div class="card shadow-lg border-0 p-4 text-center">
                 <h4 class="mb-3">Chat pentru Hotel Manager și Șefi de Departamente</h4>
 
-                @if ($existsChatGroup)
+                @if ($existsChatGroupNivel1)
                     <div class="chat-section">
                         <div class="d-flex justify-content-center">
                             <a href="{{ route('admin.department.users.chat-nivel1') }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
@@ -49,7 +49,7 @@
             <div class="card shadow-lg border-0 p-4 text-center">
                 <h4 class="mb-3">Chat pentru Șefi de Departamente</h4>
 
-                @if ($existsChatGroup)
+                @if ($existsChatGroupNivel2)
                     <div class="chat-section">
                         <div class="d-flex justify-content-center">
                             <a href="{{ route('admin.department.users.chat-nivel2') }}" class="btn btn-primary btn-lg d-flex align-items-center gap-2">
