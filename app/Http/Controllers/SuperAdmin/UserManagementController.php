@@ -100,8 +100,6 @@ class UserManagementController extends Controller
     public function show(Request $request)
     {
 
-        dd(route('admin.department.users.create-chat-nivel1'));
-
         $authUser = Auth::user();
 
         // Obținem ID-ul hotelului utilizatorului autentificat
