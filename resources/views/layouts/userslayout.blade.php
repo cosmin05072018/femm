@@ -4,6 +4,7 @@
 <head>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     <link href="{{ mix('build/assets/app-Da1WAMSj.css') }}" rel="stylesheet">
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Femm</title>
