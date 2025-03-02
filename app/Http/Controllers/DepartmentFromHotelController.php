@@ -31,6 +31,8 @@ class DepartmentFromHotelController extends Controller
             ->where('hotel_id', $hotel->id) // Asigură-te că $hotel nu e null
             ->get();
 
+        dd($hotel, $hotel->id, $users);
+
 
         return view('users.viewdepartment', compact('department', 'hotel', 'users', 'authUser'));
     }
