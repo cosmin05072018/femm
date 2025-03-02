@@ -18,14 +18,20 @@
 </template>
 
 <script>
-console.log("Scriptul a început");
+
+import ChatComponent from './ChatComponent.vue'; // Asigură-te că calea este corectă
+
 import axios from 'axios';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
+
 console.log("Dependențele au fost importate");
 console.log(axios);
 
 export default {
+    components: {
+    ChatComponent
+  },
     data() {
         return {
             newMessage: '',
