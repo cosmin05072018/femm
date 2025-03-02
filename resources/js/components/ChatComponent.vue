@@ -22,6 +22,7 @@ import axios from 'axios';
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 console.log("Dependențele au fost importate");
+console.log(axios);
 
 export default {
     data() {
