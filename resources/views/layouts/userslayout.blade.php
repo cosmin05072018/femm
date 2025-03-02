@@ -439,7 +439,6 @@
         </div>
     </div>
     <script src="{{ url('public/build/assets/app-CeCM94Nh.js') }}"></script>
-    <script src="{{ mix('build/assets/app-CeCM94Nh.js') }}"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/circles/0.0.4/circles.min.js"
