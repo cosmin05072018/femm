@@ -7,11 +7,19 @@ export default defineConfig({
         laravel({
             input: ['resources/js/app.js'],
             refresh: true,
+            manifest: true,  // Adaugă această linie pentru a asigura generarea manifestului
         }),
         vue(),
     ],
     build: {
-        manifest: true, // Adaugă această linie pentru a activa generarea manifestului
-        outDir: 'public/build', // Asigură-te că fișierele de build sunt salvate în directorul corect
-    }
+        outDir: 'public/build', // Asigură-te că fișierele de build sunt în directorul corect
+        emptyOutDir: true, // Curăță directorul de build înainte de fiecare build
+        rollupOptions: {
+            output: {
+                entryFileNames: 'assets/[name]-[hash].js',
+                chunkFileNames: 'assets/[name]-[hash].js',
+                assetFileNames: 'assets/[name]-[hash][extname]',
+            },
+        },
+    },
 });
