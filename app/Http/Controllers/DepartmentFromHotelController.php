@@ -19,7 +19,7 @@ class DepartmentFromHotelController extends Controller
         $department = Department::findOrFail($departmentId);
 
         // Obținem hotelurile asociate acestui departament
-        $hotels = $department->hotels; // Poate fi mai multe hoteluri asociate departamentului
+        $hotels = $department->hotels()->where('id', $authUser->hotel_id)->get();
 
         // Verificăm dacă există cel puțin un hotel
         $hotel = $hotels->first(); // Folosim primul hotel din colecție, presupunând că sunt multiple hoteluri
@@ -78,7 +78,8 @@ class DepartmentFromHotelController extends Controller
     }
 
 
-    public function createChatGroupLevel2(){
+    public function createChatGroupLevel2()
+    {
         $hotel_id = Auth::user()->hotel_id;
         $departments = HotelDepartment::where('hotel_id', $hotel_id)
             ->with('department')
