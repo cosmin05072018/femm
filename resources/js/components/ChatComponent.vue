@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <h1>hello 12</h1>
     <div class="chat-container">
         <h1>chat</h1>
@@ -137,5 +137,22 @@ export default {
 .message {
     padding: 5px;
     border-bottom: 1px solid #eee;
+}
+</style> -->
+<template>
+    <h1>Salut! Bine ai venit!</h1>
+</template>
+
+<script>
+export default {
+    name: "GreetingComponent",
+};
+</script>
+
+<style scoped>
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 20px;
 }
 </style>
