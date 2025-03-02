@@ -75,7 +75,7 @@ class DepartmentFromHotelController extends Controller
         // dd('chat Level1');
         // return redirect()->back();
 
-        return view('users.chat');
+        return view('users.chat', compact('authUser'));
     }
 
 
