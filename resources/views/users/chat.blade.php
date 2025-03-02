@@ -8,5 +8,6 @@
         <h1>hellos</h1>
         <chat-component></chat-component>
     </div>
-
 @endsection
+
+@vite('resources/js/app.js')
