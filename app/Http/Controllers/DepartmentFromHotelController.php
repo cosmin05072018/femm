@@ -63,6 +63,8 @@ class DepartmentFromHotelController extends Controller
     {
         // $hotel_id = Auth::user()->hotel_id;
 
+        $authUser = Auth::user();
+
         // // Găsim toate departamentele asociate hotelului în tabela chat_groups
         // $departmentIds = ChatGroup::where('hotel_id', $hotel_id)
         //     ->pluck('department_id');
