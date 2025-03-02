@@ -119,7 +119,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     Route::get('/department/users/chat-nivel3', [DepartmentFromHotelController::class, 'viewChatGroupLevel3'])->name('department.users.chat-nivel3');
 
     // chat individual
-    Route::get('/department/user/chat/messages/{id}', [DepartmentFromHotelController::class, 'chatIndividual'])->name('department.user');;
+    Route::get('/department/user/chat/messages/{id}', [DepartmentFromHotelController::class, 'chatIndividual'])->name('department.user');
 });
 
 

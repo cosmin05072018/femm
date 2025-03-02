@@ -30,12 +30,13 @@ export default {
             departmentId: null,
             roleId: null,
             groupId: null,
+            chatLevel: 1, // Default chat level
             loading: true,
         };
     },
     async mounted() {
         try {
-            const userResponse = await axios.get('/api/user'); // Obținem utilizatorul autentificat
+            const userResponse = await axios.get('/api/user');
             const user = userResponse.data;
 
             this.userId = user.id;
@@ -43,11 +44,10 @@ export default {
             this.departmentId = user.department_id;
             this.roleId = user.role_id;
 
-            this.groupId = `hotel_${this.hotelId}_department_${this.departmentId}`; // Grup dinamic
+            this.groupId = `hotel_${this.hotelId}_department_${this.departmentId}`;
 
             await this.fetchMessages();
 
-            // Configurare Laravel Echo + Pusher
             window.Pusher = Pusher;
             window.Echo = new Echo({
                 broadcaster: 'pusher',
@@ -68,26 +68,54 @@ export default {
         }
     },
     methods: {
-    fetchMessages() {
-        axios.get(`/fantastic-admin/chat/messages/${this.groupId}`)
-            .then(response => {
+        fetchMessages() {
+            let endpoint;
+            switch (this.chatLevel) {
+                case 1:
+                    endpoint = `/fantastic-admin/department/users/chat-nivel1`;
+                    break;
+                case 2:
+                    endpoint = `/fantastic-admin/department/users/chat-nivel2`;
+                    break;
+                case 3:
+                    endpoint = `/fantastic-admin/department/users/chat-nivel3`;
+                    break;
+                default:
+                    endpoint = `/fantastic-admin/department/users/chat-nivel1`;
+            }
+            axios.get(endpoint).then(response => {
                 this.messages = response.data;
             });
-    },
-    sendMessage() {
-        if (this.newMessage.trim() === '') return;
+        },
+        sendMessage() {
+            if (this.newMessage.trim() === '') return;
 
-        axios.post('/fantastic-admin/chat/send', {
-            message: this.newMessage,
-            group_id: this.groupId
-        }).then(response => {
-            this.newMessage = '';
-        });
+            let endpoint;
+            switch (this.chatLevel) {
+                case 1:
+                    endpoint = `/fantastic-admin/department/users/create-chat-nivel1`;
+                    break;
+                case 2:
+                    endpoint = `/fantastic-admin/department/users/create-chat-nivel2`;
+                    break;
+                case 3:
+                    endpoint = `/fantastic-admin/department/users/create-chat-nivel3`;
+                    break;
+                default:
+                    endpoint = `/fantastic-admin/department/users/create-chat-nivel1`;
+            }
+
+            axios.post(endpoint, {
+                message: this.newMessage,
+                group_id: this.groupId
+            }).then(response => {
+                this.newMessage = '';
+            });
+        }
     }
-}
-
 };
 </script>
+
 
 <style scoped>
 .chat-container {
