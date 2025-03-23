@@ -17,8 +17,9 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet"> <!-- Tailwind CSS sau CSS global -->
+        <link href="{{ mix('css/custom.css') }}" rel="stylesheet"> <!-- Fișierul CSS personalizat -->
 
-        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.24/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body class="font-sans antialiased">
