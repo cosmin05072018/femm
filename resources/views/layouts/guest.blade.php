@@ -13,7 +13,7 @@
         <link href="{{ asset('css/custom-design.css') }}" rel="stylesheet">
 
         <!-- Scripts -->
-        <link href="{{ url('/css/styles.css') }}" rel="stylesheet">
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
     <body class="font-sans text-gray-900 antialiased">
