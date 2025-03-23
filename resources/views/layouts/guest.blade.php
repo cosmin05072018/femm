@@ -12,8 +12,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link href="{{ asset('css/custom-design.css') }}" rel="stylesheet">
 
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet"> <!-- Tailwind CSS sau CSS global -->
-        <link href="{{ mix('css/custom.css') }}" rel="stylesheet"> <!-- Fișierul CSS personalizat -->
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     </head>
     <body class="font-sans text-gray-900 antialiased">
