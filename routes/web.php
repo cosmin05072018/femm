@@ -73,6 +73,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // utilizatorii din acelasi hotel
     Route::get('/management-hotel', [UserManagementController::class, 'show'])->name('management-hotel');
 
+
     // departamentele (acces pt super-admin)
     Route::get('/departments', [DepartmentsController::class, 'index'])->name('departments');
     Route::post('/change-color', [DepartmentsController::class, 'ChangeColorDepartments'])->name('change-color');
