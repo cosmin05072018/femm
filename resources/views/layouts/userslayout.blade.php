@@ -51,12 +51,7 @@
             <div class="sidebar-logo">
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
-                    @if ($authUser && $authUser->hotel)
-                        <h1 class="text-white">{{ $authUser->hotel->name }}</h1>
-                    @else
-                        <h1 class="text-white">Fără hotel</h1>
-                    @endif
-
+                    <h1 class="text-white">{{ $authUser->hotel->name }}</h1>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">
                             <i class="gg-menu-right"></i>

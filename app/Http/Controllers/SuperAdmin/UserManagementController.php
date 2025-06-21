@@ -99,7 +99,10 @@ class UserManagementController extends Controller
 
     public function show(Request $request)
     {
+
         $authUser = Auth::user();
+
+        // Obținem ID-ul hotelului utilizatorului autentificat
         $hotelId = $authUser->hotel_id;
 
         $existsChatGroupNivel1 = ChatGroup::where('hotel_id', $hotelId)
@@ -110,35 +113,27 @@ class UserManagementController extends Controller
             ->where('name', 'nivel2')
             ->exists();
 
-        // Owner (1) și Manager (2) — toate departamentele din hotel
-        if (in_array($authUser->role_id, [1, 2])) {
+
+        // Verificăm rolul utilizatorului și returnăm departamentele corespunzătoare
+        if ($authUser->role_id == 2) {
+            // Manager - toate departamentele din același hotel
             $departments = Department::whereHas('hotels', function ($query) use ($hotelId) {
                 $query->where('hotel_id', $hotelId);
             })->withCount(['users' => function ($query) use ($hotelId) {
                 $query->where('hotel_id', $hotelId);
             }])->get();
-
-            // Admin/operator (3, 4) — doar departamentul propriu
         } elseif (in_array($authUser->role_id, [3, 4])) {
+            // Alți utilizatori - doar departamentul propriu
             $departments = Department::where('id', $authUser->department_id)
                 ->whereHas('hotels', function ($query) use ($hotelId) {
                     $query->where('hotel_id', $hotelId);
                 })->withCount(['users' => function ($query) use ($hotelId) {
                     $query->where('hotel_id', $hotelId);
                 }])->get();
-        } else {
-            // fallback: fără acces sau necunoscut
-            abort(403, 'Rol necunoscut. Acces interzis.');
         }
 
-        return view('users.same_hotel', compact(
-            'authUser',
-            'departments',
-            'existsChatGroupNivel1',
-            'existsChatGroupNivel2'
-        ));
+        return view('users.same_hotel', compact('authUser', 'departments', 'existsChatGroupNivel1', 'existsChatGroupNivel2'));
     }
-
     public function destroy($userId)
     {
         // Găsește utilizatorul pe baza ID-ului
