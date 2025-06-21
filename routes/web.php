@@ -73,7 +73,6 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // utilizatorii din acelasi hotel
     Route::get('/management-hotel', [UserManagementController::class, 'show'])->name('management-hotel');
 
-
     // departamentele (acces pt super-admin)
     Route::get('/departments', [DepartmentsController::class, 'index'])->name('departments');
     Route::post('/change-color', [DepartmentsController::class, 'ChangeColorDepartments'])->name('change-color');
@@ -99,7 +98,6 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     // Chat
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);
     Route::get('/chat/messages/{groupId}', [ChatController::class, 'getMessages']);
-
 
     // detalii departament
     Route::get('/department/{departmentId}/users', [DepartmentFromHotelController::class, 'show'])->name('department.users');
