@@ -33,7 +33,7 @@ class CheckAdminAccess
                 return redirect('fantastic-admin/management-hotel');
             // } elseif ($user->role_id !== 1) { // Nu este owner (1)
             //     return redirect('fantastic-admin')->with('error', 'Acces permis doar pentru owner.');
-            // }
+            }
         }
 
         // if ($currentRoute === 'fantastic-admin/management-hotel' && !in_array($user->role_id, [2, 3, 4])) {
