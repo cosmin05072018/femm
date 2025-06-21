@@ -41,9 +41,10 @@ class CheckAdminAccess
             }
         }
 
-        if ($currentRoute === 'fantastic-admin/management-hotel' && !in_array($user->role_id, [2, 3, 4])) {
-            abort(403, 'Acces permis doar pentru super-admin sau admin.');
+        if ($currentRoute === 'fantastic-admin/management-hotel' && !in_array($user->role_id, [1, 2, 3, 4])) {
+            abort(403, 'Acces permis doar pentru super-admin, admin sau owner.');
         }
+
 
         return $next($request);
     }
