@@ -100,6 +100,7 @@ Route::middleware('admin.access')->prefix('fantastic-admin')->name('admin.')->gr
     Route::post('/chat/send', [ChatController::class, 'sendMessage']);
     Route::get('/chat/messages/{groupId}', [ChatController::class, 'getMessages']);
 
+
     // detalii departament
     Route::get('/department/{departmentId}/users', [DepartmentFromHotelController::class, 'show'])->name('department.users');
 
