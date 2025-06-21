@@ -19,7 +19,7 @@ class DepartmentsController extends Controller
     {
         // Preluăm toți utilizatorii din baza de date
         $departments = Department::all();
-        $owner = auth()->user()->role_id === '1' ? auth()->user() : null;
+        $owner = auth()->user() ? auth()->user() : null;
 
         // Returnăm view-ul cu lista utilizatorilor
         return view('superAdmin/departments', compact('departments', 'owner'));
