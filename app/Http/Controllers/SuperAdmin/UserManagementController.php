@@ -30,7 +30,7 @@ class UserManagementController extends Controller
         $users = User::all();
         $owner = auth()->user()->role_id === '1' ? auth()->user() : null;
 
-        // dd(auth()->user()->role_id === '1');
+        dd(auth()->user()->role_id === '1');
 
         // Returnăm view-ul cu lista utilizatorilor
         return view('superAdmin/usermanagement', compact('users', 'owner'));
