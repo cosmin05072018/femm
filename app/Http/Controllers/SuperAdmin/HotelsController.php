@@ -16,7 +16,7 @@ class HotelsController extends Controller
 {
     public function index()
     {
-        $owner = auth()->user()->role_id === 1 ? auth()->user() : null;
+        $owner = auth()->user()->role_id === '1' ? auth()->user() : null;
         $hotels = Hotel::all();
 
         $hotelsWithEmployeeCount = $hotels->map(function ($hotel) {
