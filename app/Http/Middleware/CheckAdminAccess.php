@@ -29,7 +29,7 @@ class CheckAdminAccess
 
         // Reguli pentru redirecționare în funcție de rol_id
         if ($currentRoute === 'fantastic-admin') {
-            if (in_array($user->role_id, [2, 3, 4])) { // super-admin (2) sau admin (3)
+            if (in_array($user->role_id, [1])) { // super-admin (2) sau admin (3)
                 return redirect('fantastic-admin/management-hotel');
             } elseif ($user->role_id !== 1) { // Nu este owner (1)
                 return redirect('fantastic-admin')->with('error', 'Acces permis doar pentru owner.');
